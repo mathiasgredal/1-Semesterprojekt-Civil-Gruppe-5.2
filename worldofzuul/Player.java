@@ -19,13 +19,17 @@ public class Player {
         this.playerEconomy = playerEconomy;
     }
 
-    public void addEnergySource(GasEnergy e){
+    public void addEnergySource(EnergySource e){
         energySources.add(e);
     }
 
-    //TODO: Udfyld metoden med beregning for spillerens emission.
-    public int calculateEmission(ArrayList arrayList){
-        return 0;
+    //Runs through the length of the instantiated arraylist, adds all the emission ints from the arraylists objects into the totalEmission.
+    public int calculateEmission(){
+        int totalEmission = 0;
+        for(int i = 0; i < energySources.size(); i++){
+            totalEmission += energySources.get(i).getEnergyEmission();
+        }
+        return totalEmission;
     }
 
     public void printEnergySources(){

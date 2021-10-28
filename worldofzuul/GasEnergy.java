@@ -1,7 +1,7 @@
 package worldofzuul;
 
 public class GasEnergy extends EnergySource{
-    public GasEnergy(int energyPrice, int energyEmission, int energyOutput) {
-        super(energyPrice, energyEmission, energyOutput);
+    public GasEnergy(String energyName, int energyPrice, int energyEmission, int energyOutput) {
+        super(energyName, energyPrice, energyEmission, energyOutput);
     }
 }

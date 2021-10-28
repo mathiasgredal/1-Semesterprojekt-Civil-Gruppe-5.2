@@ -1,6 +1,9 @@
 package worldofzuul;
 
-public class Game 
+import java.sql.Array;
+import java.sql.SQLOutput;
+
+public class Game
 {
     private Parser parser;
     private Room currentRoom;
@@ -15,9 +18,15 @@ public class Game
 
     private void createRooms()
     {
-        Room outside, theatre, pub, lab, office;
-      
-        outside = new Room("outside the main entrance of the university");
+        //TODO: Create a statement that checks every time there is a room change, if the currentRoom is from the Shop class, if so print the shops details.
+        /**
+         * Example of how to instantiate the newly made shop class.
+         * Shop outside = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy("Cenovous Energy Inc", 50000, 1342, 1600), new CoalEnergy("EOG Resources Inc", 62000, 1976, 1750)});
+        **/
+
+        Room theatre, pub, lab, office;
+
+        Room outside = new Room("outside the main entrance of the university");
         theatre = new Room("in a lecture theatre");
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");

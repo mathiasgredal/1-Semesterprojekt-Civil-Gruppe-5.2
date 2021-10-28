@@ -1,14 +1,24 @@
 package worldofzuul;
 
 public abstract class EnergySource {
+    private String energyName;
     private int energyPrice;
     private int energyEmission;
     private int energyOutput;
 
-    public EnergySource(int energyPrice, int energyEmission, int energyOutput){
+    public EnergySource(String energyName, int energyPrice, int energyEmission, int energyOutput){
+        this.energyName = energyName;
         this.energyPrice = energyPrice;
         this.energyEmission = energyEmission;
         this.energyOutput = energyOutput;
+    }
+
+    public String getEnergyName() {
+        return energyName;
+    }
+
+    public void setEnergyName(String energyName) {
+        this.energyName = energyName;
     }
 
     public int getEnergyPrice() {
