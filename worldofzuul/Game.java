@@ -2,9 +2,12 @@ package worldofzuul;
 
 import java.sql.Array;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class Game
 {
+    Player player = new Player(2323, new ArrayList());
     private Parser parser;
     private Room currentRoom;
         
@@ -24,35 +27,30 @@ public class Game
          * Shop outside = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy("Cenovous Energy Inc", 50000, 1342, 1600), new CoalEnergy("EOG Resources Inc", 62000, 1976, 1750)});
         **/
 
-        Room theatre, pub, lab, office;
+        ArrayList<Room> rooms = new ArrayList<>();
+        House house = new House("in your house", 1600);
+        Shop fossilShop = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy("Cenovous Energy Inc", 50000, 1342, 1600), new CoalEnergy("EOG Resources Inc", 62000, 1976, 1750)});
+        Shop renewableShop = new Shop("in a shop, where you can buy renewable energy soruces", new EnergySource[]{new HydroEnergy("Watermill", 120000, 0, 600)});
 
-        Room outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        rooms.add(house);
+        rooms.add(fossilShop);
+        rooms.add(renewableShop);
+
         
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        house.setExit("west", renewableShop);
+        house.setExit("east", fossilShop);
 
-        theatre.setExit("west", outside);
+        renewableShop.setExit("east", house);
 
-        pub.setExit("east", outside);
+        fossilShop.setExit("west", house);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        currentRoom = outside;
+        currentRoom = house;
     }
 
     public void play() 
     {            
         printWelcome();
 
-                
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -91,6 +89,12 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
+        //Checks if the player wants to buy an item from one of the shops.
+        else if (commandWord == CommandWord.BUY){
+            if(currentRoom instanceof Shop){
+                buyItem(command, (Shop) currentRoom);
+            }
+        }
         return wantToQuit;
     }
 
@@ -114,12 +118,51 @@ public class Game
 
         Room nextRoom = currentRoom.getExit(direction);
 
+
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
         else {
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+
+            //Checks if the current room the player is in, is a child of the Shop class.
+            if(currentRoom instanceof Shop){
+                System.out.println(currentRoom.getShortDescription());
+
+                //Lists the available items, that was added in createRoom
+                System.out.println("Available items: ");
+                ((Shop) currentRoom).printShopDetails();
+
+                //Gets the exits out of the room.
+                System.out.println("\n" + currentRoom.getExitString());
+            }
+            else{
+                System.out.println(currentRoom.getShortDescription());
+            }
+        }
+    }
+
+    private void buyItem(Command command, Shop currentShop){
+        if(!command.hasSecondWord()) {
+            System.out.println("Buy what?");
+            return;
+        }
+
+        //Try-catch to handle exceptions that can be created by the user.
+        try {
+            String item = command.getSecondWord();
+
+            System.out.println("You have bought: " + currentShop.getShopItem(Integer.valueOf(item) - 1).getEnergyName());
+
+            //Adds the bought energy source to the players' arraylist.
+            player.addEnergySource(currentShop.getShopItem(Integer.valueOf(item) - 1));
+
+        }
+        catch (IndexOutOfBoundsException ex){
+            System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().length);
+        }
+        catch (NumberFormatException ex){
+            System.out.println("Please enter a valid number");
         }
     }
 

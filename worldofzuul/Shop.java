@@ -8,6 +8,10 @@ public class Shop extends Room{
         this.shopItems = shopItems;
     }
 
+    public EnergySource getShopItem(int index) {
+        return shopItems[index];
+    }
+
     public EnergySource[] getShopItems() {
         return shopItems;
     }

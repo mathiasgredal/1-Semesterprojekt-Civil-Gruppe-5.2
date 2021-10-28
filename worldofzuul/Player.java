@@ -34,7 +34,7 @@ public class Player {
 
     public void printEnergySources(){
         for(int i = 0; i < energySources.size(); i++){
-            System.out.println(energySources.get(i).getEnergyPrice() + ", " + energySources.get(i).getEnergyEmission() + ", " + energySources.get(i).getEnergyOutput());
+            System.out.println(energySources.get(i).getEnergyName() + ", " + energySources.get(i).getEnergyPrice() + ", " + energySources.get(i).getEnergyEmission() + ", " + energySources.get(i).getEnergyOutput());
         }
     }
 }
