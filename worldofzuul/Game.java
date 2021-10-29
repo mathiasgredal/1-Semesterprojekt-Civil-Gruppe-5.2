@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 
 public class Game
 {
-    Player player = new Player(2323, new ArrayList());
+    Player player = new Player(120000, new ArrayList());
     private Parser parser;
     private Room currentRoom;
         
@@ -21,22 +21,16 @@ public class Game
 
     private void createRooms()
     {
-        //TODO: Create a statement that checks every time there is a room change, if the currentRoom is from the Shop class, if so print the shops details.
-        /**
-         * Example of how to instantiate the newly made shop class.
-         * Shop outside = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy("Cenovous Energy Inc", 50000, 1342, 1600), new CoalEnergy("EOG Resources Inc", 62000, 1976, 1750)});
-        **/
-
         ArrayList<Room> rooms = new ArrayList<>();
+
         House house = new House("in your house", 1600);
         Shop fossilShop = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy("Cenovous Energy Inc", 50000, 1342, 1600), new CoalEnergy("EOG Resources Inc", 62000, 1976, 1750)});
-        Shop renewableShop = new Shop("in a shop, where you can buy renewable energy soruces", new EnergySource[]{new HydroEnergy("Watermill", 120000, 0, 600)});
+        Shop renewableShop = new Shop("in a shop, where you can buy renewable energy soruces", new EnergySource[]{new HydroEnergy("Watermill", 120000, 0, 600), new SolarEnergy("Solar Panel", 1300000, 0, 1800)});
 
         rooms.add(house);
         rooms.add(fossilShop);
         rooms.add(renewableShop);
 
-        
         house.setExit("west", renewableShop);
         house.setExit("east", fossilShop);
 
@@ -129,6 +123,7 @@ public class Game
             if(currentRoom instanceof Shop){
                 System.out.println(currentRoom.getShortDescription());
 
+                System.out.println("\nYour available balance: " + "$" + player.getPlayerEconomy());
                 //Lists the available items, that was added in createRoom
                 System.out.println("Available items: ");
                 ((Shop) currentRoom).printShopDetails();
@@ -137,7 +132,12 @@ public class Game
                 System.out.println("\n" + currentRoom.getExitString());
             }
             else{
+                currentRoom = nextRoom;
                 System.out.println(currentRoom.getShortDescription());
+                System.out.println("Current energy supplier/soruces: ");
+                player.printEnergySources();
+
+                //TODO: Calculate if the energy needed is fulfilled, and print to the player.
             }
         }
     }
@@ -151,11 +151,18 @@ public class Game
         //Try-catch to handle exceptions that can be created by the user.
         try {
             String item = command.getSecondWord();
+            EnergySource itemFromShop = currentShop.getShopItem(Integer.valueOf(item) - 1);
 
-            System.out.println("You have bought: " + currentShop.getShopItem(Integer.valueOf(item) - 1).getEnergyName());
-
-            //Adds the bought energy source to the players' arraylist.
-            player.addEnergySource(currentShop.getShopItem(Integer.valueOf(item) - 1));
+            if(itemFromShop.getEnergyPrice() <= player.getPlayerEconomy()){
+                //Adds the bought energy source to the players' arraylist.
+                System.out.println("You have bought: " + itemFromShop.getEnergyName());
+                player.addEnergySource(itemFromShop);
+                player.setPlayerEconomy(player.getPlayerEconomy() - itemFromShop.getEnergyPrice());
+                System.out.println(player.getPlayerEconomy());
+            }
+            else{
+                System.out.println("Not enough money to buy this item, you need: " + (itemFromShop.getEnergyPrice() - player.getPlayerEconomy()));
+            }
 
         }
         catch (IndexOutOfBoundsException ex){

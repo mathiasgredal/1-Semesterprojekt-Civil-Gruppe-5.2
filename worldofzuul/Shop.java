@@ -22,7 +22,7 @@ public class Shop extends Room{
 
     public void printShopDetails(){
         for(int i = 0; i < shopItems.length; i++){
-            System.out.println("[" + (i+1)  + "] " + shopItems[i].getEnergyName() + ", Costs: " + "$" + shopItems[i].getEnergyPrice() + ", Emits: " + shopItems[i].getEnergyEmission() + "g CO\u2082" + ", Outputs: " + shopItems[i].getEnergyOutput() + " kWh.");
+            System.out.println("[" + (i+1)  + "] " + shopItems[i].getEnergyName() + ", Costs: " + "$" + shopItems[i].getEnergyPrice() + ", Emits: " + shopItems[i].getEnergyEmission() + "g/year CO\u2082" + ", Outputs: " + shopItems[i].getEnergyOutput() + " kWh.");
         }
     }
 }
