@@ -133,11 +133,22 @@ public class Game
             }
             else{
                 currentRoom = nextRoom;
+
                 System.out.println(currentRoom.getShortDescription());
-                System.out.println("Current energy supplier/soruces: ");
+                System.out.println("Current energy supplier(s)/source(s): ");
                 player.printEnergySources();
 
-                //TODO: Calculate if the energy needed is fulfilled, and print to the player.
+                //Checks if the players total energy output from the bought energy sources is lower than the needed energy from the house.
+                if(player.getTotalEnergyOutput() < ((House) currentRoom).getEnergyNeed()){
+                    System.out.println("\nYou have not fulfilled the energy requirement, you need: " + (((House) currentRoom).getEnergyNeed()-player.getTotalEnergyOutput()) + " kWh");
+                }
+                else{
+                    System.out.println("\nYou have fulfilled the requirement");
+                }
+
+                //Print exits, the rooms you can go to.
+                System.out.println(currentRoom.getExitString());
+
             }
         }
     }
