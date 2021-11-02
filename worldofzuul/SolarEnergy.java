@@ -1,7 +1,7 @@
 package worldofzuul;
 
 public class SolarEnergy extends EnergySource{
-    private static String solarEnergyName = "Sol Energy";
+    private static String solarEnergyName = "Solar Energy";
     private static int solarEnergyPrice = 30900;
     private static int solarEnergyEmission = 0;
     private static int solarEnergyOutput = 1;
