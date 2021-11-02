@@ -170,7 +170,7 @@ public class Game {
                 if (player.getTotalEnergyOutput() >= ((House) currentRoom).getEnergyNeed()) {
                     gameYear++;
                     System.out.println("You are now in the year: " + (2010 + getGameYear()));
-                    player.clearEnergySources();
+                    player.clearEnergySources(getGameYear());
                 } else {
                     System.out.println("Please fulfill the required amount of energy");
                 }
