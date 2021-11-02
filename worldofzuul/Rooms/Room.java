@@ -1,5 +1,6 @@
 package worldofzuul.Rooms;
 
+import worldofzuul.*;
 import java.util.Set;
 import java.util.HashMap;
 
@@ -27,7 +28,7 @@ public abstract class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n";
     }
 
     public String getExitString()
@@ -44,5 +45,7 @@ public abstract class Room
     {
         return exits.get(direction);
     }
+
+    public abstract void printEnterRoomString(Game game);
 }
 
