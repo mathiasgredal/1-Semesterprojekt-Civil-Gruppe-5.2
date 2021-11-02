@@ -25,4 +25,5 @@ public class Shop extends Room{
             System.out.println("[" + (i+1)  + "] " + shopItems[i].getEnergyName() + ", Costs: " + "$" + shopItems[i].getEnergyPrice() + ", Emits: " + shopItems[i].getEnergyEmission() + "g/year CO\u2082" + ", Outputs: " + shopItems[i].getEnergyOutput() + " kWh.");
         }
     }
+
 }

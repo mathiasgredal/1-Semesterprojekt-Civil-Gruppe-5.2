@@ -10,7 +10,6 @@ public class Game
     Player player = new Player(120000, new ArrayList());
     private Parser parser;
     private Room currentRoom;
-        
 
     public Game() 
     {
@@ -64,26 +63,20 @@ public class Game
 
         CommandWord commandWord = command.getCommandWord();
 
-        if(commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
-
-        if (commandWord == CommandWord.HELP) {
-            printHelp();
-        }
-        else if (commandWord == CommandWord.GO) {
-            goRoom(command);
-        }
-        else if (commandWord == CommandWord.QUIT) {
-            wantToQuit = quit(command);
-        }
-        //Checks if the player wants to buy an item from one of the shops.
-        else if (commandWord == CommandWord.BUY){
-            if(currentRoom instanceof Shop){
-                buyItem(command, (Shop) currentRoom);
+        switch (commandWord) {
+            case GO -> goRoom(command);
+            case QUIT -> wantToQuit = quit(command);
+            case HELP -> printHelp();
+            case UNKNOWN -> System.out.println("I don't know what you mean...");
+            case BUY -> {
+                if(currentRoom instanceof Shop){
+                    buyItem(command, (Shop) currentRoom);
+                } else {
+                    System.out.println("You are not currently in a shop");
+                }
             }
         }
+
         return wantToQuit;
     }
 
@@ -127,8 +120,6 @@ public class Game
                 System.out.println("\n" + currentRoom.getExitString());
             }
             else{
-                currentRoom = nextRoom;
-
                 System.out.println(currentRoom.getShortDescription());
                 System.out.println("Current energy supplier(s)/source(s): ");
                 player.printEnergySources();
@@ -157,7 +148,7 @@ public class Game
         //Try-catch to handle exceptions that can be created by the user.
         try {
             String item = command.getSecondWord();
-            EnergySource itemFromShop = currentShop.getShopItem(Integer.valueOf(item) - 1);
+            EnergySource itemFromShop = currentShop.getShopItem(Integer.parseInt(item) - 1);
 
             if(itemFromShop.getEnergyPrice() <= player.getPlayerEconomy()){
                 //Adds the bought energy source to the players' arraylist.
