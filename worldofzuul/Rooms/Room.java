@@ -1,8 +1,7 @@
-package worldofzuul;
+package worldofzuul.Rooms;
 
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 
 
 public abstract class Room

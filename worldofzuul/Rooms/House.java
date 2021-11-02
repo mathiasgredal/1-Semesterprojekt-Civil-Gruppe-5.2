@@ -1,4 +1,4 @@
-package worldofzuul;
+package worldofzuul.Rooms;
 
 public class House extends Room{
     private int energyNeed;

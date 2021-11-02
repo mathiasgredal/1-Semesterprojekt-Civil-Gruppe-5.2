@@ -1,5 +1,7 @@
 package worldofzuul;
 
+import worldofzuul.EnergySources.EnergySource;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

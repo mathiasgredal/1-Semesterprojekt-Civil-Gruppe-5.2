@@ -1,4 +1,6 @@
-package worldofzuul;
+package worldofzuul.Rooms;
+
+import worldofzuul.EnergySources.EnergySource;
 
 public class Shop extends Room{
     private EnergySource[] shopItems;

@@ -1,4 +1,4 @@
-package worldofzuul;
+package worldofzuul.EnergySources;
 
 public class WindEnergy extends EnergySource{
     public WindEnergy(String energyName, int energyPrice, int energyEmission, int energyOutput) {

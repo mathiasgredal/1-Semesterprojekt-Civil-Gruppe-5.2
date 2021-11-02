@@ -1,5 +1,13 @@
 package worldofzuul;
 
+import worldofzuul.EnergySources.*;
+import worldofzuul.Input.Command;
+import worldofzuul.Input.CommandWord;
+import worldofzuul.Input.Parser;
+import worldofzuul.Rooms.House;
+import worldofzuul.Rooms.Room;
+import worldofzuul.Rooms.Shop;
+
 import java.util.ArrayList;
 
 public class Game {
