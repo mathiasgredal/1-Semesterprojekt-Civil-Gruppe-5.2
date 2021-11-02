@@ -161,7 +161,7 @@ public class Game {
 
     public void nextYear(Command command) {
         if (!command.hasSecondWord()) {
-            System.out.println("What do you want to next?");
+            System.out.println("Next year?");
             return;
         }
 

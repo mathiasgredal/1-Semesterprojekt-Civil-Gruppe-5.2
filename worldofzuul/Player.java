@@ -39,7 +39,6 @@ public class Player {
 
     public void clearEnergySources(int year){
         recapEnergySources.put(year, energySources);
-        System.out.println(recapEnergySources);
         energySources.removeIf(s -> s.getEnergyEmission() > 0);
     }
 
