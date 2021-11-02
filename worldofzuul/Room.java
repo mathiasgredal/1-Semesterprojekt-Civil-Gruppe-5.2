@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 
-public class Room 
+public abstract class Room
 {
     private String description;
     private HashMap<String, Room> exits;
@@ -31,7 +31,7 @@ public class Room
         return "You are " + description + ".\n" + getExitString();
     }
 
-    private String getExitString()
+    public String getExitString()
     {
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
