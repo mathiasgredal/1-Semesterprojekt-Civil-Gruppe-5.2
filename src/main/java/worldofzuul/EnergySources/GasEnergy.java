@@ -6,7 +6,7 @@ public class GasEnergy extends EnergySource{
     private static int gasEnergyEmission =27;
     private static int gasEnergyOutput = 176;
 
-    public GasEnergy(String energyName, int energyPrice, int energyEmission, int energyOutput) {
+    public GasEnergy() {
         super(gasEnergyName, gasEnergyPrice, gasEnergyEmission, gasEnergyOutput);
     }
 }

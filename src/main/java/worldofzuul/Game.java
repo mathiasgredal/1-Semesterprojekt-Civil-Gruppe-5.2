@@ -7,6 +7,7 @@ import worldofzuul.Rooms.*;
 import java.util.ArrayList;
 
 public class Game {
+    String nameOfGame = "Greenhouse 'Jazz'";
     Player player = new Player(120000, new ArrayList<>());
     private int gameYear = 0;
     private Parser parser;
@@ -19,8 +20,8 @@ public class Game {
 
     private void createRooms() {
         House house = new House("in your house", 1600);
-        Shop fossilShop = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy("Cenovous Energy Inc", 50000, 1342, 1600), new CoalEnergy("EOG Resources Inc", 62000, 1976, 1750)});
-        Shop renewableShop = new Shop("in a shop, where you can buy renewable energy soruces", new EnergySource[]{new HydroEnergy("Watermill", 120000, 0, 600), new SolarEnergy("Solar Panel", 1300000, 0, 1800)});
+        Shop fossilShop = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy(), new CoalEnergy()});
+        Shop renewableShop = new Shop("in a shop, where you can buy renewable energy sources", new EnergySource[]{new HydroEnergy(), new SolarEnergy()});
 
         house.setExit("west", renewableShop);
         house.setExit("east", fossilShop);
@@ -45,9 +46,9 @@ public class Game {
 
     private void printWelcome() {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.printf("Welcome to the %s!", nameOfGame);
+        System.out.printf("\n%s is a new, incredibly awesome adventure game.", nameOfGame);
+        System.out.println(" Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription()+currentRoom.getExitString());
     }
@@ -76,8 +77,8 @@ public class Game {
     }
 
     private void printHelp() {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("You are in your house");
+        System.out.println("now go fight climate change");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();

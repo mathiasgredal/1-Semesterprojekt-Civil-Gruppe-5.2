@@ -6,7 +6,7 @@ public class CoalEnergy extends EnergySource{
     private static int coalEnergyEmission = 24;
     private static int coalEnergyOutput = 90;
 
-    public CoalEnergy(String energyName, int energyPrice, int energyEmission, int energyOutput) {
+    public CoalEnergy() {
         super(coalEnergyName, coalEnergyPrice, coalEnergyEmission, coalEnergyOutput);
     }
 }

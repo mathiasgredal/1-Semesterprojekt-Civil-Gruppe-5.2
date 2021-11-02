@@ -6,7 +6,7 @@ public class SolarEnergy extends EnergySource{
     private static int solarEnergyEmission = 0;
     private static int solarEnergyOutput = 1;
 
-    public SolarEnergy(String energyName, int energyPrice, int energyEmission, int energyOutput) {
+    public SolarEnergy() {
         super(solarEnergyName, solarEnergyPrice, solarEnergyEmission, solarEnergyOutput);
     }
 }

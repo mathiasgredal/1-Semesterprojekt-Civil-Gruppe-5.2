@@ -6,7 +6,7 @@ public class WindEnergy extends EnergySource{
     private static int windEnergyEmission = 0;
     private static int windEnergyOutput = 20;
 
-    public WindEnergy(String energyName, int energyPrice, int energyEmission, int energyOutput) {
+    public WindEnergy() {
         super(windEnergyName, windEnergyPrice, windEnergyEmission, windEnergyOutput);
     }
 
