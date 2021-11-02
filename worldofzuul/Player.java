@@ -35,6 +35,10 @@ public class Player {
         return totalEmission;
     }
 
+    public void clearEnergySources(){
+        energySources.clear();
+    }
+
     /**
      * Runs through the length of the instantiated arraylist, adds all the energy output ints from the arraylists objects into the totalOutput variable.
      * @return The total energy output

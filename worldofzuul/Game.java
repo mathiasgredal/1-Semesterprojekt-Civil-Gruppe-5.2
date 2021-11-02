@@ -7,7 +7,11 @@ import java.util.InputMismatchException;
 
 public class Game
 {
+    private int gameYear = 0;
+
     Player player = new Player(120000, new ArrayList());
+
+
     private Parser parser;
     private Room currentRoom;
 
@@ -75,6 +79,7 @@ public class Game
                     System.out.println("You are not currently in a shop");
                 }
             }
+            case NEXT -> nextYear(command);
         }
 
         return wantToQuit;
@@ -101,42 +106,42 @@ public class Game
         Room nextRoom = currentRoom.getExit(direction);
 
 
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else {
-            currentRoom = nextRoom;
-
-            //Checks if the current room the player is in, is a child of the Shop class.
-            if(currentRoom instanceof Shop){
-                System.out.println(currentRoom.getShortDescription());
-
-                System.out.println("\nYour available balance: " + "$" + player.getPlayerEconomy());
-                //Lists the available items, that was added in createRoom
-                System.out.println("Available items: ");
-                ((Shop) currentRoom).printShopDetails();
-
-                //Gets the exits out of the room.
-                System.out.println("\n" + currentRoom.getExitString());
+            if (nextRoom == null) {
+                System.out.println("There is no door!");
             }
-            else{
-                System.out.println(currentRoom.getShortDescription());
-                System.out.println("Current energy supplier(s)/source(s): ");
-                player.printEnergySources();
+            else {
+                currentRoom = nextRoom;
 
-                //Checks if the players total energy output from the bought energy sources is lower than the needed energy from the house.
-                if(player.getTotalEnergyOutput() < ((House) currentRoom).getEnergyNeed()){
-                    System.out.println("\nYou have not fulfilled the energy requirement, you need: " + (((House) currentRoom).getEnergyNeed()-player.getTotalEnergyOutput()) + " kWh");
+                //Checks if the current room the player is in, is a child of the Shop class.
+                if(currentRoom instanceof Shop){
+                    System.out.println(currentRoom.getShortDescription());
+
+                    System.out.println("\nYour available balance: " + "$" + player.getPlayerEconomy());
+                    //Lists the available items, that was added in createRoom
+                    System.out.println("Available items: ");
+                    ((Shop) currentRoom).printShopDetails();
+
+                    //Gets the exits out of the room.
+                    System.out.println("\n" + currentRoom.getExitString());
                 }
                 else{
-                    System.out.println("\nYou have fulfilled the requirement");
+                    System.out.println(currentRoom.getShortDescription());
+                    System.out.println("Current energy supplier(s)/source(s): ");
+                    player.printEnergySources();
+
+                    //Checks if the players total energy output from the bought energy sources is lower than the needed energy from the house.
+                    if(player.getTotalEnergyOutput() < ((House) currentRoom).getEnergyNeed()){
+                        System.out.println("\nYou have not fulfilled the energy requirement, you need: " + (((House) currentRoom).getEnergyNeed()-player.getTotalEnergyOutput()) + " kWh");
+                    }
+                    else{
+                        System.out.println("\nYou have fulfilled the requirement");
+                    }
+
+                    //Print exits, the rooms you can go to.
+                    System.out.println(currentRoom.getExitString());
+
                 }
-
-                //Print exits, the rooms you can go to.
-                System.out.println(currentRoom.getExitString());
-
             }
-        }
     }
 
     private void buyItem(Command command, Shop currentShop){
@@ -168,6 +173,39 @@ public class Game
         catch (NumberFormatException ex){
             System.out.println("Please enter a valid number");
         }
+    }
+
+    public int getGameYear(){
+        return gameYear;
+    }
+
+    public void nextYear(Command command){
+        if(!command.hasSecondWord()) {
+            System.out.println("What do you want to next?");
+            return;
+        }
+
+        try {
+            if (command.getSecondWord().contains("year")) {
+                if (player.getTotalEnergyOutput() >= ((House) currentRoom).getEnergyNeed()) {
+                    gameYear++;
+                    System.out.println("You are now in the year: " + (2010 + getGameYear()));
+                    player.clearEnergySources();
+                }
+                else {
+                    System.out.println("Please fulfill the required amount of energy");
+                }
+            }
+        }
+        catch(ClassCastException ex){
+            if(currentRoom instanceof Shop){
+                System.out.println("Unable to do this action, outside of your house");
+            }
+            else{
+                System.out.println("Failure to proceed");
+            }
+        }
+
     }
 
     private boolean quit(Command command) 
