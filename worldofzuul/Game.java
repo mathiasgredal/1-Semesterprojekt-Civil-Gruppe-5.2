@@ -1,12 +1,8 @@
 package worldofzuul;
 
 import worldofzuul.EnergySources.*;
-import worldofzuul.Input.Command;
-import worldofzuul.Input.CommandWord;
-import worldofzuul.Input.Parser;
-import worldofzuul.Rooms.House;
-import worldofzuul.Rooms.Room;
-import worldofzuul.Rooms.Shop;
+import worldofzuul.Input.*;
+import worldofzuul.Rooms.*;
 
 import java.util.ArrayList;
 
@@ -21,12 +17,10 @@ public class Game {
         parser = new Parser();
     }
 
-
     private void createRooms() {
         House house = new House("in your house", 1600);
         Shop fossilShop = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy("Cenovous Energy Inc", 50000, 1342, 1600), new CoalEnergy("EOG Resources Inc", 62000, 1976, 1750)});
         Shop renewableShop = new Shop("in a shop, where you can buy renewable energy soruces", new EnergySource[]{new HydroEnergy("Watermill", 120000, 0, 600), new SolarEnergy("Solar Panel", 1300000, 0, 1800)});
-
 
         house.setExit("west", renewableShop);
         house.setExit("east", fossilShop);
@@ -55,7 +49,7 @@ public class Game {
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(currentRoom.getLongDescription()+currentRoom.getExitString());
     }
 
     private boolean processCommand(Command command) {
@@ -99,39 +93,11 @@ public class Game {
 
         Room nextRoom = currentRoom.getExit(direction);
 
-
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
             currentRoom = nextRoom;
-
-            //Checks if the current room the player is in, is a child of the Shop class.
-            if (currentRoom instanceof Shop) {
-                System.out.println(currentRoom.getShortDescription());
-
-                System.out.println("\nYour available balance: " + "$" + player.getPlayerEconomy());
-                //Lists the available items, that was added in createRoom
-                System.out.println("Available items: ");
-                ((Shop) currentRoom).printShopDetails();
-
-                //Gets the exits out of the room.
-                System.out.println("\n" + currentRoom.getExitString());
-            } else {
-                System.out.println(currentRoom.getShortDescription());
-                System.out.println("Current energy supplier(s)/source(s): ");
-                player.printEnergySources();
-
-                //Checks if the players total energy output from the bought energy sources is lower than the needed energy from the house.
-                if (player.getTotalEnergyOutput() < ((House) currentRoom).getEnergyNeed()) {
-                    System.out.println("\nYou have not fulfilled the energy requirement, you need: " + (((House) currentRoom).getEnergyNeed() - player.getTotalEnergyOutput()) + " kWh");
-                } else {
-                    System.out.println("\nYou have fulfilled the requirement");
-                }
-
-                //Print exits, the rooms you can go to.
-                System.out.println(currentRoom.getExitString());
-
-            }
+            currentRoom.printEnterRoomString(this);
         }
     }
 
@@ -200,5 +166,9 @@ public class Game {
         } else {
             return true;
         }
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }
