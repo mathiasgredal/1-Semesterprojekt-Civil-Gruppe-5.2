@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Game
 {
-    Player player = new Player(120000, new ArrayList());
+    Player player = new Player(120000, new ArrayList<>());
     private Parser parser;
     private Room currentRoom;
 
