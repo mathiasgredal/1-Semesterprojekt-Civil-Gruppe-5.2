@@ -1,9 +1,9 @@
 package worldofzuul.Rooms;
 
-import worldofzuul.EnergySources.*;
+import worldofzuul.EnergySources.EnergySource;
 import worldofzuul.Game;
 
-public class Shop extends Room{
+public class Shop extends Room {
     private EnergySource[] shopItems;
 
     public Shop(String description, EnergySource[] shopItems) {
@@ -23,9 +23,9 @@ public class Shop extends Room{
         this.shopItems = shopItems;
     }
 
-    public void printShopDetails(){
-        for(int i = 0; i < shopItems.length; i++){
-            System.out.println("[" + (i+1)  + "] " + shopItems[i].getEnergyName() + ", Costs: " + "$" + shopItems[i].getEnergyPrice() + ", Emits: " + shopItems[i].getEnergyEmission() + "g/year CO\u2082" + ", Outputs: " + shopItems[i].getEnergyOutput() + " kWh.");
+    public void printShopDetails() {
+        for (int i = 0; i < shopItems.length; i++) {
+            System.out.println("[" + (i + 1) + "] " + shopItems[i].getEnergyName() + ", Costs: " + "$" + shopItems[i].getEnergyPrice() + ", Emits: " + shopItems[i].getEnergyEmission() + "g/year CO\u2082" + ", Outputs: " + shopItems[i].getEnergyOutput() + " kWh.");
         }
     }
 

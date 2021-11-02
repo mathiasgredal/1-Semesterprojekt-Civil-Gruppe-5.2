@@ -1,16 +1,16 @@
 package worldofzuul;
 
-import worldofzuul.EnergySources.*;
+import worldofzuul.EnergySources.EnergySource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Player {
     private int playerEconomy;
-    private ArrayList<EnergySource> energySources;
-    private HashMap<Integer, ArrayList> recapEnergySources = new HashMap<>();
+    private final ArrayList<EnergySource> energySources;
+    private final HashMap<Integer, ArrayList> recapEnergySources = new HashMap<>();
 
-    public Player(int playerEconomy, ArrayList<EnergySource> energySources){
+    public Player(int playerEconomy, ArrayList<EnergySource> energySources) {
         this.playerEconomy = playerEconomy;
         this.energySources = energySources;
     }
@@ -23,15 +23,16 @@ public class Player {
         this.playerEconomy = playerEconomy;
     }
 
-    public void addEnergySource(EnergySource e){
+    public void addEnergySource(EnergySource e) {
         energySources.add(e);
     }
 
     /**
      * Runs through the length of the instantiated arraylist, adds all the emission ints from the arraylists objects into the totalEmission.
+     *
      * @return The total emission
      */
-    public int calculateEmission(){
+    public int calculateEmission() {
         int totalEmission = 0;
         for (EnergySource energySource : energySources) {
             totalEmission += energySource.getEnergyEmission();
@@ -39,7 +40,7 @@ public class Player {
         return totalEmission;
     }
 
-    public void clearEnergySources(int year){
+    public void clearEnergySources(int year) {
         recapEnergySources.put(year, energySources);
         System.out.println(recapEnergySources);
         energySources.removeIf(s -> s.getEnergyEmission() > 0);
@@ -47,9 +48,10 @@ public class Player {
 
     /**
      * Runs through the length of the instantiated arraylist, adds all the energy output ints from the arraylists objects into the totalOutput variable.
+     *
      * @return The total energy output
      */
-    public int getTotalEnergyOutput(){
+    public int getTotalEnergyOutput() {
         int totalOutput = 0;
         for (EnergySource energySource : energySources) {
             totalOutput = energySource.getEnergyOutput();
@@ -57,7 +59,7 @@ public class Player {
         return totalOutput;
     }
 
-    public void printEnergySources(){
+    public void printEnergySources() {
         for (EnergySource energySource : energySources) {
             System.out.println(energySource.getEnergyName() + ", " + energySource.getEnergyPrice() + ", " + energySource.getEnergyEmission() + ", " + energySource.getEnergyOutput());
         }

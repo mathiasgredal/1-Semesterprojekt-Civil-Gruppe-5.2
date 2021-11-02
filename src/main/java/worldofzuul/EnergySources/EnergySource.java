@@ -6,7 +6,7 @@ public abstract class EnergySource {
     private int energyEmission;
     private int energyOutput;
 
-    public EnergySource(String energyName, int energyPrice, int energyEmission, int energyOutput){
+    public EnergySource(String energyName, int energyPrice, int energyEmission, int energyOutput) {
         this.energyName = energyName;
         this.energyPrice = energyPrice;
         this.energyEmission = energyEmission;

@@ -1,11 +1,11 @@
 package worldofzuul.Rooms;
 
-import worldofzuul.*;
+import worldofzuul.Game;
 
-public class House extends Room{
+public class House extends Room {
     private int energyNeed;
 
-    public House(String description, int energyNeed){
+    public House(String description, int energyNeed) {
         super(description);
         this.energyNeed = energyNeed;
     }
@@ -25,10 +25,9 @@ public class House extends Room{
         game.getPlayer().printEnergySources();
 
         //Checks if the players total energy output from the bought energy sources is lower than the needed energy from the house.
-        if(game.getPlayer().getTotalEnergyOutput() < getEnergyNeed()){
-            System.out.println("\nYou have not fulfilled the energy requirement, you need: " + (getEnergyNeed()-game.getPlayer().getTotalEnergyOutput()) + " kWh");
-        }
-        else{
+        if (game.getPlayer().getTotalEnergyOutput() < getEnergyNeed()) {
+            System.out.println("\nYou have not fulfilled the energy requirement, you need: " + (getEnergyNeed() - game.getPlayer().getTotalEnergyOutput()) + " kWh");
+        } else {
             System.out.println("\nYou have fulfilled the requirement");
         }
 
