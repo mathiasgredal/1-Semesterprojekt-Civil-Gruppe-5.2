@@ -3,10 +3,12 @@ package worldofzuul;
 import worldofzuul.EnergySources.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Player {
     private int playerEconomy;
     private ArrayList<EnergySource> energySources;
+    private HashMap<Integer, ArrayList> recapEnergySources = new HashMap<>();
 
     public Player(int playerEconomy, ArrayList<EnergySource> energySources){
         this.playerEconomy = playerEconomy;
@@ -35,6 +37,12 @@ public class Player {
             totalEmission += energySource.getEnergyEmission();
         }
         return totalEmission;
+    }
+
+    public void clearEnergySources(int year){
+        recapEnergySources.put(year, energySources);
+        System.out.println(recapEnergySources);
+        energySources.removeIf(s -> s.getEnergyEmission() > 0);
     }
 
     /**

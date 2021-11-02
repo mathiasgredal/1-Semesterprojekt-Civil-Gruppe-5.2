@@ -1,15 +1,15 @@
 package worldofzuul;
 
-import worldofzuul.EnergySources.*;
 import worldofzuul.Input.*;
 import worldofzuul.Rooms.*;
+import worldofzuul.EnergySources.*;
 
 import java.util.ArrayList;
 
 public class Game
 {
     Player player = new Player(120000, new ArrayList<>());
-    private Parser parser;
+    private final Parser parser;
     private Room currentRoom;
 
     public Game() 
@@ -18,11 +18,13 @@ public class Game
         parser = new Parser();
     }
 
+
     private void createRooms()
     {
         House house = new House("in your house", 1600);
         Shop fossilShop = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy("Cenovous Energy Inc", 50000, 1342, 1600), new CoalEnergy("EOG Resources Inc", 62000, 1976, 1750)});
         Shop renewableShop = new Shop("in a shop, where you can buy renewable energy soruces", new EnergySource[]{new HydroEnergy("Watermill", 120000, 0, 600), new SolarEnergy("Solar Panel", 1300000, 0, 1800)});
+
 
         house.setExit("west", renewableShop);
         house.setExit("east", fossilShop);
@@ -53,7 +55,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription()+currentRoom.getExitString());
+        System.out.println(currentRoom.getLongDescription() + currentRoom.getExitString());
     }
 
     private boolean processCommand(Command command) 
@@ -98,6 +100,7 @@ public class Game
         String direction = command.getSecondWord();
 
         Room nextRoom = currentRoom.getExit(direction);
+
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
