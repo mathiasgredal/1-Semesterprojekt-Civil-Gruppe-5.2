@@ -21,15 +21,10 @@ public class Game
 
     private void createRooms()
     {
-        ArrayList<Room> rooms = new ArrayList<>();
-
         House house = new House("in your house", 1600);
         Shop fossilShop = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy("Cenovous Energy Inc", 50000, 1342, 1600), new CoalEnergy("EOG Resources Inc", 62000, 1976, 1750)});
         Shop renewableShop = new Shop("in a shop, where you can buy renewable energy soruces", new EnergySource[]{new HydroEnergy("Watermill", 120000, 0, 600), new SolarEnergy("Solar Panel", 1300000, 0, 1800)});
 
-        rooms.add(house);
-        rooms.add(fossilShop);
-        rooms.add(renewableShop);
 
         house.setExit("west", renewableShop);
         house.setExit("east", fossilShop);
