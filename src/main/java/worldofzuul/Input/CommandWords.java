@@ -1,5 +1,6 @@
-package worldofzuul;
+package worldofzuul.Input;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 public class CommandWords
@@ -8,7 +9,7 @@ public class CommandWords
 
     public CommandWords()
     {
-        validCommands = new HashMap<String, CommandWord>();
+        validCommands = new HashMap<>();
         for(CommandWord command : CommandWord.values()) {
             if(command != CommandWord.UNKNOWN) {
                 validCommands.put(command.toString(), command);
@@ -19,12 +20,7 @@ public class CommandWords
     public CommandWord getCommandWord(String commandWord)
     {
         CommandWord command = validCommands.get(commandWord);
-        if(command != null) {
-            return command;
-        }
-        else {
-            return CommandWord.UNKNOWN;
-        }
+        return Objects.requireNonNullElse(command, CommandWord.UNKNOWN);
     }
     
     public boolean isCommand(String aString)

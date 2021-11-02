@@ -1,5 +1,7 @@
 package worldofzuul;
 
+import worldofzuul.EnergySources.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,7 +10,7 @@ public class Player {
     private ArrayList<EnergySource> energySources;
     private HashMap<Integer, ArrayList> recapEnergySources = new HashMap<Integer, ArrayList>();
 
-    public Player(int playerEconomy, ArrayList energySources){
+    public Player(int playerEconomy, ArrayList<EnergySource> energySources){
         this.playerEconomy = playerEconomy;
         this.energySources = energySources;
     }
@@ -39,7 +41,6 @@ public class Player {
 
     public void clearEnergySources(int year){
         recapEnergySources.put(year, energySources);
-        System.out.println(recapEnergySources);
         energySources.removeIf(s -> s.getEnergyEmission() > 0);
     }
 
@@ -49,15 +50,15 @@ public class Player {
      */
     public int getTotalEnergyOutput(){
         int totalOutput = 0;
-        for(int i = 0; i < energySources.size(); i++){
-            totalOutput = energySources.get(i).getEnergyOutput();
+        for (EnergySource energySource : energySources) {
+            totalOutput = energySource.getEnergyOutput();
         }
         return totalOutput;
     }
 
     public void printEnergySources(){
-        for(int i = 0; i < energySources.size(); i++){
-            System.out.println(energySources.get(i).getEnergyName() + ", " + energySources.get(i).getEnergyPrice() + ", " + energySources.get(i).getEnergyEmission() + ", " + energySources.get(i).getEnergyOutput());
+        for (EnergySource energySource : energySources) {
+            System.out.println(energySource.getEnergyName() + ", " + energySource.getEnergyPrice() + ", " + energySource.getEnergyEmission() + ", " + energySource.getEnergyOutput());
         }
     }
 }

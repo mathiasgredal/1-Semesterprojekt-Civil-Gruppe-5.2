@@ -1,8 +1,8 @@
-package worldofzuul;
+package worldofzuul.Rooms;
 
+import worldofzuul.*;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 
 
 public abstract class Room
@@ -13,7 +13,7 @@ public abstract class Room
     public Room(String description) 
     {
         this.description = description;
-        exits = new HashMap<String, Room>();
+        exits = new HashMap<>();
     }
 
     public void setExit(String direction, Room neighbor) 
@@ -28,22 +28,24 @@ public abstract class Room
 
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n";
     }
 
     public String getExitString()
     {
-        String returnString = "Exits:";
+        StringBuilder returnString = new StringBuilder("Exits:");
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
-            returnString += " " + exit;
+            returnString.append(" ").append(exit);
         }
-        return returnString;
+        return returnString.toString();
     }
 
     public Room getExit(String direction) 
     {
         return exits.get(direction);
     }
+
+    public abstract void printEnterRoomString(Game game);
 }
 

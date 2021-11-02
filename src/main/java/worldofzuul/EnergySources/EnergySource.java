@@ -1,4 +1,4 @@
-package worldofzuul;
+package worldofzuul.EnergySources;
 
 public abstract class EnergySource {
     private String energyName;
