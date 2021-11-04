@@ -20,15 +20,39 @@ public class Game {
 
     private void createRooms() {
         House house = new House("in your house", 1600);
-        Shop fossilShop = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy(), new CoalEnergy()});
-        Shop renewableShop = new Shop("in a shop, where you can buy renewable energy sources", new EnergySource[]{new HydroEnergy(), new SolarEnergy()});
 
-        house.setExit("west", renewableShop);
-        house.setExit("east", fossilShop);
+        Paths pathEast = new Paths("You are on a path, where you can go to energy companies, that uses fossil fuels");
+        Paths pathWest = new Paths("You are on a path, where you can go to energy companies, that uses renewable fuels");
 
-        renewableShop.setExit("east", house);
+        Shop gasProvider = new Shop("in a shop, where they sell power from gas energy", new EnergySource[]{new GasEnergy()});
+        Shop coalProvider = new Shop("in a shop, where they sell power from coal energy", new EnergySource[]{new CoalEnergy()});
+        Shop oilProvider = new Shop("in a shop, where they sell power from oil energy", new EnergySource[]{new OilEnergy()});
 
-        fossilShop.setExit("west", house);
+        //Shop hydroProvider = new Shop("in a shop, where you can buy renewable energy sources", new EnergySource[]{new HydroEnergy(), new SolarEnergy()});
+        Shop windProvider = new Shop("in a shop, where you can buy windmills", new EnergySource[]{new WindEnergy()});
+        Shop solarProvider = new Shop("in a shop, where you can buy solar panels", new EnergySource[]{new SolarEnergy()});
+
+
+        house.setExit("west", pathWest);
+        house.setExit("east", pathEast);
+
+        pathEast.setExit("south",gasProvider);
+        pathEast.setExit("east", coalProvider);
+        pathEast.setExit("north",oilProvider);
+        pathEast.setExit("west", house);
+
+        pathWest.setExit("south",windProvider);
+        pathWest.setExit("east", house);
+        pathWest.setExit("north",solarProvider);
+
+
+        gasProvider.setExit("north", pathEast);
+        coalProvider.setExit("west", pathEast);
+        oilProvider.setExit("south", pathEast);
+
+        windProvider.setExit("north", pathWest);
+        solarProvider.setExit("south", pathWest);
+
 
         currentRoom = house;
     }
