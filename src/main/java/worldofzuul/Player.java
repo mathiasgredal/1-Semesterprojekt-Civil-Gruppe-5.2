@@ -6,59 +6,47 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Player {
-    private int playerEconomy;
-    private ArrayList<EnergySource> energySources;
-    private HashMap<Integer, ArrayList> recapEnergySources = new HashMap<Integer, ArrayList>();
+    private double playerEconomy = 300000;
+    private double yearlyIncome = 10000;
 
-    public Player(int playerEconomy, ArrayList<EnergySource> energySources){
-        this.playerEconomy = playerEconomy;
-        this.energySources = energySources;
+    public Player() {
     }
 
-    public int getPlayerEconomy() {
+    public Player(int playerEconomy) {
+        this.playerEconomy = playerEconomy;
+    }
+
+    /**
+     * Gets the amount of money the player has
+     *
+     * @return The amount of money
+     */
+    public double getPlayerEconomy() {
         return playerEconomy;
     }
 
-    public void setPlayerEconomy(int playerEconomy) {
-        this.playerEconomy = playerEconomy;
-    }
-
-    public void addEnergySource(EnergySource e){
-        energySources.add(e);
+    /**
+     * Withdraws money from account
+     *
+     * @return Returns true if withdrawal was successful
+     */
+    public boolean withdrawMoney(double amount) {
+        if (playerEconomy > amount) {
+            playerEconomy -= amount;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
-     * Runs through the length of the instantiated arraylist, adds all the emission ints from the arraylists objects into the totalEmission.
-     * @return The total emission
+     * Inserts money into account
      */
-    public int calculateEmission(){
-        int totalEmission = 0;
-        for (EnergySource energySource : energySources) {
-            totalEmission += energySource.getEnergyEmission();
-        }
-        return totalEmission;
+    public void insertMoney(double amount) {
+        playerEconomy += amount;
     }
 
-    public void clearEnergySources(int year){
-        recapEnergySources.put(year, energySources);
-        energySources.removeIf(s -> s.getEnergyEmission() > 0);
-    }
-
-    /**
-     * Runs through the length of the instantiated arraylist, adds all the energy output ints from the arraylists objects into the totalOutput variable.
-     * @return The total energy output
-     */
-    public int getTotalEnergyOutput(){
-        int totalOutput = 0;
-        for (EnergySource energySource : energySources) {
-            totalOutput = energySource.getEnergyOutput();
-        }
-        return totalOutput;
-    }
-
-    public void printEnergySources(){
-        for (EnergySource energySource : energySources) {
-            System.out.println(energySource.getEnergyName() + ", " + energySource.getEnergyPrice() + ", " + energySource.getEnergyEmission() + ", " + energySource.getEnergyOutput());
-        }
+    public double getYearlyIncome() {
+        return yearlyIncome;
     }
 }

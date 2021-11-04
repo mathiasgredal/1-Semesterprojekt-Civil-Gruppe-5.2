@@ -1,51 +1,48 @@
 package worldofzuul.Rooms;
 
 import worldofzuul.*;
+
 import java.util.Set;
 import java.util.HashMap;
 
-
-public abstract class Room
-{
+public abstract class Room {
     private String description;
     private HashMap<String, Room> exits;
 
-    public Room(String description) 
-    {
+    public Room(String description) {
         this.description = description;
         exits = new HashMap<>();
     }
 
-    public void setExit(String direction, Room neighbor) 
-    {
+    public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
     }
 
-    public String getShortDescription()
-    {
+    public String getShortDescription() {
         return description;
     }
 
-    public String getLongDescription()
-    {
+    public String getLongDescription() {
         return "You are " + description + ".\n";
     }
 
-    public String getExitString()
-    {
+    public String getExitString() {
         StringBuilder returnString = new StringBuilder("Exits:");
         Set<String> keys = exits.keySet();
-        for(String exit : keys) {
+        for (String exit : keys) {
             returnString.append(" ").append(exit);
         }
         return returnString.toString();
     }
 
-    public Room getExit(String direction) 
-    {
+    public Room getExit(String direction) {
         return exits.get(direction);
     }
 
     public abstract void printEnterRoomString(Game game);
+
+    public void getInfoAbout(String secondWord) {
+        System.out.println("I don't know what \"" + secondWord + "\" is.");
+    }
 }
 

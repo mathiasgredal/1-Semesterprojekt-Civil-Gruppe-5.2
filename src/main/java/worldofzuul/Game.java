@@ -3,15 +3,21 @@ package worldofzuul;
 import worldofzuul.EnergySources.*;
 import worldofzuul.Input.*;
 import worldofzuul.Rooms.*;
-
-import java.util.ArrayList;
+import worldofzuul.Rooms.Shops.*;
 
 public class Game {
-    String nameOfGame = "Greenhouse 'Jazz'";
-    Player player = new Player(120000, new ArrayList<>());
-    private int gameYear = 0;
+    String nameOfGame = "World of Renewable Energy";
+    Player player = new Player();
+
+    private int gameYear = 2010;
+
     private Parser parser;
     private Room currentRoom;
+
+    private BuildArea buildArea = new BuildArea();
+    private House house = new House(1600);
+
+    Recap recap = new Recap();
 
     public Game() {
         createRooms();
@@ -19,16 +25,32 @@ public class Game {
     }
 
     private void createRooms() {
-        House house = new House("in your house", 1600);
-        Shop fossilShop = new Shop("in a shop, where they sell power from fossil fuels", new EnergySource[]{new GasEnergy(), new CoalEnergy()});
-        Shop renewableShop = new Shop("in a shop, where you can buy renewable energy sources", new EnergySource[]{new HydroEnergy(), new SolarEnergy()});
+        CrossRoad crossRoad = new CrossRoad();
+        ShopArea shopArea = new ShopArea();
+        Shop fossilShop = new FossilShop();
 
-        house.setExit("west", renewableShop);
-        house.setExit("east", fossilShop);
+        BatteryShop batteryShop = new BatteryShop();
+        WindShop windShop = new WindShop();
+        SolarShop solarShop = new SolarShop();
 
-        renewableShop.setExit("east", house);
+        house.setExit("south", crossRoad);
 
-        fossilShop.setExit("west", house);
+        crossRoad.setExit("north", house);
+        crossRoad.setExit("west", buildArea);
+        crossRoad.setExit("east", shopArea);
+        crossRoad.setExit("south", fossilShop);
+
+        buildArea.setExit("east", crossRoad);
+        fossilShop.setExit("north", crossRoad);
+
+        shopArea.setExit("west", crossRoad);
+        shopArea.setExit("north", windShop);
+        shopArea.setExit("east", solarShop);
+        shopArea.setExit("south", batteryShop);
+
+        windShop.setExit("south", shopArea);
+        solarShop.setExit("west", shopArea);
+        batteryShop.setExit("north", shopArea);
 
         currentRoom = house;
     }
@@ -48,9 +70,9 @@ public class Game {
         System.out.println();
         System.out.printf("Welcome to the %s!", nameOfGame);
         System.out.printf("\n%s is a new, incredibly awesome adventure game.", nameOfGame);
-        System.out.println(" Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("\nType '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription()+currentRoom.getExitString());
+        currentRoom.printEnterRoomString(this);
     }
 
     private boolean processCommand(Command command) {
@@ -70,15 +92,23 @@ public class Game {
                     System.out.println("You are not currently in a shop");
                 }
             }
-            case NEXT -> nextYear(command);
+            case LOOK -> lookAt(command);
+            case NEXT -> wantToQuit = nextYear(command);
         }
 
         return wantToQuit;
     }
 
+    private void lookAt(Command command) {
+        if (!command.hasSecondWord()) {
+            currentRoom.printEnterRoomString(this);
+        } else {
+            currentRoom.getInfoAbout(command.getSecondWord());
+        }
+    }
+
     private void printHelp() {
-        System.out.println("You are in your house");
-        System.out.println("now go fight climate change");
+        System.out.println("TODO: Implement help command");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -110,21 +140,18 @@ public class Game {
 
         //Try-catch to handle exceptions that can be created by the user.
         try {
-            String item = command.getSecondWord();
-            EnergySource itemFromShop = currentShop.getShopItem(Integer.parseInt(item) - 1);
+            String itemName = command.getSecondWord();
+            EnergySource item = currentShop.getShopItem(Integer.parseInt(itemName) - 1);
 
-            if (itemFromShop.getEnergyPrice() <= player.getPlayerEconomy()) {
-                //Adds the bought energy source to the players' arraylist.
-                System.out.println("You have bought: " + itemFromShop.getEnergyName());
-                player.addEnergySource(itemFromShop);
-                player.setPlayerEconomy(player.getPlayerEconomy() - itemFromShop.getEnergyPrice());
-                System.out.println(player.getPlayerEconomy());
+            if (player.withdrawMoney(item.getEnergyPrice())) {
+                System.out.println("You have bought: " + item.getEnergyName());
+                System.out.printf("Current balance: $%.2f\n", player.getPlayerEconomy());
+                buildArea.addEnergySource(item);
             } else {
-                System.out.println("Not enough money to buy this item, you need: " + (itemFromShop.getEnergyPrice() - player.getPlayerEconomy()));
+                System.out.printf("Not enough money to buy this item, you need: %.2f\n", (item.getEnergyPrice() - player.getPlayerEconomy()));
             }
-
         } catch (IndexOutOfBoundsException ex) {
-            System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().length);
+            System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().size());
         } catch (NumberFormatException ex) {
             System.out.println("Please enter a valid number");
         }
@@ -134,30 +161,59 @@ public class Game {
         return gameYear;
     }
 
-    public void nextYear(Command command) {
-        if (!command.hasSecondWord()) {
+    public boolean nextYear(Command command) {
+        if (!command.hasSecondWord() || !command.getSecondWord().contains("year")) {
             System.out.println("Next year?");
-            return;
+            return false;
         }
 
-        try {
-            if (command.getSecondWord().contains("year")) {
-                if (player.getTotalEnergyOutput() >= ((House) currentRoom).getEnergyNeed()) {
-                    gameYear++;
-                    System.out.println("You are now in the year: " + (2010 + getGameYear()));
-                    player.clearEnergySources(getGameYear());
-                } else {
-                    System.out.println("Please fulfill the required amount of energy");
-                }
+        // Is energy requirement is fulfilled?
+        if (buildArea.getYearlyEnergyProduction() > house.getEnergyRequirement()) {
+            // Step 0: Are we at 2030
+            if (gameYear == 2030) {
+                printRecap();
+                return true;
             }
-        } catch (ClassCastException ex) {
-            if (currentRoom instanceof Shop) {
-                System.out.println("Unable to do this action, outside of your house");
-            } else {
-                System.out.println("Failure to proceed");
-            }
-        }
 
+            // Step 1: Calculate values
+            double excessEnergy = buildArea.getYearlyEnergyProduction() - house.getEnergyRequirement();
+            double soldEnergyPrice = excessEnergy * buildArea.getEnergySalesPrice();
+            double emissions = buildArea.getYearlyEmissions() + house.getYearlyEmissions();
+
+            // Step 2: Insert yearly salery and energy sales to player balance
+            player.insertMoney(soldEnergyPrice + player.getYearlyIncome());
+            player.withdrawMoney(house.getYearlyCost());
+
+            // Step 3: Log stuff for recap
+            recap.addDataPoint(Recap.DataPoint.Emissions, gameYear, emissions);
+            recap.addDataPoint(Recap.DataPoint.SoldEnergy, gameYear, excessEnergy);
+            recap.addDataPoint(Recap.DataPoint.SoldEnergyPrice, gameYear, soldEnergyPrice);
+
+            // Step 5: Remove fossil fuels
+            buildArea.removeFossilEnergySources();
+
+            // Step 6: Add earned money to each energysource
+            buildArea.addYearlyEnergyProductionToEnergySources();
+
+            // Step 7: Increment year
+            gameYear++;
+
+            // Step 8: Print to the player what happened(money, co2, sold energy, sales price)
+            System.out.println("You are now in the year: " + gameYear);
+            // TODO: Print the rest of what happened
+            return false;
+        } else {
+            System.out.printf("Please fulfill the required amount of energy, missing: %.2fkWh\n", house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction());
+
+            //TODO: Perhaps we should check if it is possible for the player to buy the required energy,
+            // and automatically end the game if they can't
+            return false;
+        }
+    }
+
+    private void printRecap() {
+        System.out.println("Time is up, you have finished the game!");
+        System.out.println("TODO: Implement recap page");
     }
 
     private boolean quit(Command command) {
