@@ -3,8 +3,8 @@ package worldofzuul.Rooms;
 import worldofzuul.Game;
 
 public class Paths extends Room{
-    public Paths(String description) {
-        super(description);
+    public Paths(String description, String name) {
+        super(description, name);
     }
 
     @Override

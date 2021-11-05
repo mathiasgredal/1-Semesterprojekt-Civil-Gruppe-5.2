@@ -6,8 +6,8 @@ import worldofzuul.Game;
 public class Shop extends Room{
     private EnergySource[] shopItems;
 
-    public Shop(String description, EnergySource[] shopItems) {
-        super(description);
+    public Shop(String description, String name, EnergySource[] shopItems) {
+        super(description, name);
         this.shopItems = shopItems;
     }
 
