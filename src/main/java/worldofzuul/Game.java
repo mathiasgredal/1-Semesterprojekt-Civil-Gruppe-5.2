@@ -21,8 +21,8 @@ public class Game {
     private void createRooms() {
         House house = new House("in your house", "House", 1600);
 
-        Paths pathEast = new Paths("You are on a path, where you can go to energy companies, that uses fossil fuels", "Path to energy companies, that uses fossil fuels");
-        Paths pathWest = new Paths("You are on a path, where you can go to energy companies, that uses renewable fuels", "Path to energy companies, that uses renewable fuels");
+        Paths pathEast = new Paths("You are on a path, where you can go to energy companies, that uses fossil fuels", "Path to fossil fuels");
+        Paths pathWest = new Paths("You are on a path, where you can go to energy companies, that uses renewable fuels", "Path to renewable fuels");
 
         Shop gasProvider = new Shop("in a shop, where they sell power from gas energy", "Shop for gas-energy", new EnergySource[]{new GasEnergy()});
         Shop coalProvider = new Shop("in a shop, where they sell power from coal energy", "Shop for coal-energy", new EnergySource[]{new CoalEnergy()});
