@@ -5,8 +5,8 @@ import worldofzuul.*;
 public class House extends Room{
     private int energyNeed;
 
-    public House(String description, int energyNeed){
-        super(description);
+    public House(String description, String name, int energyNeed){
+        super(description, name);
         this.energyNeed = energyNeed;
     }
 
