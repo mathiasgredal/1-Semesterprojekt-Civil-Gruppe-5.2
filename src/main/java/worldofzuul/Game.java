@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Game {
     String nameOfGame = "Greenhouse 'Jazz'";
     Player player = new Player(120000, new ArrayList<>());
-    Property property = new Property("This is your property!");
     private int gameYear = 0;
     private Parser parser;
     private Room currentRoom;
@@ -35,9 +34,6 @@ public class Game {
 
         house.setExit("west", pathWest);
         house.setExit("east", pathEast);
-        house.setExit("north", property);
-
-        property.setExit("south", house);
 
         pathEast.setExit("south",gasProvider);
         pathEast.setExit("east", coalProvider);
@@ -144,7 +140,6 @@ public class Game {
                 //Adds the bought energy source to the players' arraylist.
                 System.out.println("You have bought: " + itemFromShop.getEnergyName());
                 player.addEnergySource(itemFromShop);
-                property.addEnergySources(itemFromShop);
                 player.setPlayerEconomy(player.getPlayerEconomy() - itemFromShop.getEnergyPrice());
                 System.out.println(player.getPlayerEconomy());
             } else {

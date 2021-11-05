@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 public class Property extends Room {
-    private ArrayList<EnergySource> energySources;
+    private ArrayList<EnergySource> energySources = new ArrayList<>();
 
     public Property(String description) {
        super(description);
@@ -22,7 +22,7 @@ public class Property extends Room {
 
    public void viewEnergySources(){
        for (int i = 0; i < energySources.size() ; i++) {
-           System.out.println(energySources.get(i));
+           System.out.println(energySources.get(i).getEnergyName() + ", " + energySources.get(i).getEnergyPrice() + ", " + energySources.get(i).getEnergyEmission() + ", " + energySources.get(i).getEnergyOutput());
        }
    }
 
