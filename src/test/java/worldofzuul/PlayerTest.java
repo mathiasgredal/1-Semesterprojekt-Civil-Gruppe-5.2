@@ -40,8 +40,7 @@ class PlayerTest {
 
     @Test
     void getGameYear(){
-        Game game = new Game();
 
-        assertEquals(0, game.getGameYear());
+        assertEquals(0, Game.instance.getGameYear());
     }
 }
