@@ -58,7 +58,7 @@ public class Game {
     }
 
     public void play() {
-        printWelcome();
+        printIntroduction();
 
         boolean finished = false;
         while (!finished) {
@@ -68,11 +68,27 @@ public class Game {
         System.out.println("Thank you for playing.  Good bye.");
     }
 
-    private void printWelcome() {
+    private void printIntroduction() {
         System.out.println();
-        System.out.printf("Welcome to the %s!", nameOfGame);
-        System.out.printf("\n%s is a new, incredibly awesome adventure game.", nameOfGame);
-        System.out.println(" Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println(" __________________________________________________________________________________________________________________ ");
+        System.out.printf("| Welcome to the %s!                                                                                |", nameOfGame);
+        System.out.println("" +
+                "\n| INTRODUCTION:                                                                                                    |" +
+                "\n| The year is 2010. Everyday greenhouse gasses are being emitted into the atmosphere, resulting in global warming! |" +
+                "\n| The United Nations has come up with a goal to reduce greenhouse gas emissions by producing the majority of elec- |" +
+                "\n| tricity using renewable energy sources before 2030. Right now your energy needs are fulfilled by fossil fuels,   |" +
+                "\n| and that is emitting a lot of CO2 int the atmosphere. Every year you will get a salary and perform actions until |" +
+                "\n| the next year. In the game there will be shops, where you can buy energy from different sources. Excess energy   |" +
+                "\n| created will be added to your total amount of money. You have an energy need you must fulfill to move on the the |" +
+                "\n| next year. If you cannot produce enough energy og run out of money, you lose.                                    |" +
+                "\n|                                                                                                                  |" +
+                "\n| GOALS:                                                                                                           |" +
+                "\n|   - Make the most money of your situation.                                                                       |" +
+                "\n|   - Emmit as little of CO2 as possible.                                                                          |" +
+                "\n|   - Produce as mush energy as possible.                                                                          |" +
+                "\n| Good Luck!                                                                                                       |");
+        System.out.println("|__________________________________________________________________________________________________________________|");
+        System.out.println("\nType '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription()+currentRoom.getExitString());
     }
@@ -140,7 +156,7 @@ public class Game {
             if (itemFromShop.getEnergyPrice() <= player.getPlayerEconomy()) {
                 //Adds the bought energy source to the players' arraylist.
                 System.out.println("You have bought: " + itemFromShop.getEnergyName());
-                player.addEnergySource(itemFromShop);
+                player.addEnergySource(getGameYear(), itemFromShop);
                 player.setPlayerEconomy(player.getPlayerEconomy() - itemFromShop.getEnergyPrice());
                 System.out.println(player.getPlayerEconomy());
             } else {
@@ -159,6 +175,7 @@ public class Game {
     }
 
     public void nextYear(Command command) {
+
         if (!command.hasSecondWord()) {
             System.out.println("Next year?");
             return;
@@ -170,6 +187,9 @@ public class Game {
                     gameYear++;
                     System.out.println("You are now in the year: " + (2010 + getGameYear()));
                     player.clearEnergySources(getGameYear());
+                    if (getGameYear() == 20) {
+                        printRecap();
+                    }
                 } else {
                     System.out.println("Please fulfill the required amount of energy");
                 }
@@ -181,6 +201,28 @@ public class Game {
                 System.out.println("Failure to proceed");
             }
         }
+
+    }
+
+    private void printRecap() {
+        int highScore = 0;
+        highScore += player.getPlayerEconomy()*34+player.getTotalEnergyOutput()*21+player.calculateEmission(getGameYear())*10;
+
+        System.out.println();
+        System.out.println(
+                  " _______________________________________" +
+                "\n|                                       |" +
+                "\n|                 RECAP                 |" +
+                "\n|         Excess Money: " + player.getPlayerEconomy() + "          |" +
+                "\n|                                       |" +
+                "\n|         Total Energy Output: " + player.getTotalEnergyOutput() + "        |" +
+                "\n|                                       |" +
+                "\n|         Total CO2 Emission:" + player.calculateEmission(getGameYear()) + "          |" +
+                "\n|                                       |" +
+                "\n|         High Score: " + highScore + "           |" +
+                "\n|                                       |" +
+                "\n|_______________________________________|" +
+                ""); //39
 
     }
 

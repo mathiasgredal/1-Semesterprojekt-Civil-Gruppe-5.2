@@ -9,6 +9,7 @@ public class Player {
     private int playerEconomy;
     private ArrayList<EnergySource> energySources;
     private HashMap<Integer, ArrayList> recapEnergySources = new HashMap<Integer, ArrayList>();
+    private HashMap<Integer, Integer> recapEnergyEmission = new HashMap<Integer, Integer>();
 
     public Player(int playerEconomy, ArrayList<EnergySource> energySources){
         this.playerEconomy = playerEconomy;
@@ -23,21 +24,27 @@ public class Player {
         this.playerEconomy = playerEconomy;
     }
 
-    public void addEnergySource(EnergySource e){
+    public void addEnergySource(int year, EnergySource e){
         energySources.add(e);
+        recapEnergySources.put(year, energySources);
     }
 
     /**
      * Runs through the length of the instantiated arraylist, adds all the emission ints from the arraylists objects into the totalEmission.
      * @return The total emission
      */
-    public int calculateEmission(){
+    public int calculateEmission(int year){
         int totalEmission = 0;
         for (EnergySource energySource : energySources) {
             totalEmission += energySource.getEnergyEmission();
         }
+        recapEnergyEmission.put(year, totalEmission);
+        for (int i = 0; i < recapEnergyEmission.size(); i++) {
+            System.out.println(recapEnergyEmission.get(i));
+        }
         return totalEmission;
     }
+
 
     public void clearEnergySources(int year){
         recapEnergySources.put(year, energySources);
@@ -51,7 +58,7 @@ public class Player {
     public int getTotalEnergyOutput(){
         int totalOutput = 0;
         for (EnergySource energySource : energySources) {
-            totalOutput = energySource.getEnergyOutput();
+            totalOutput += energySource.getEnergyOutput();
         }
         return totalOutput;
     }
