@@ -28,15 +28,18 @@ public abstract class EnergySource {
     }
 
     public int getEnergyPrice() {
-        Game.instance.getGameYear();
-        if(energyEmission <= 0){
-            int fivePercent = randomPercent(5, 2);
-            setEnergyPrice(energyPrice - fivePercent);
-        } else {
-            int fivePercent = randomPercent(6, 1);
-            setEnergyPrice(energyPrice + fivePercent);
+        double newEnergyPrice = energyPrice;
+
+        for (int i = 0; i < Game.instance.getGameYear(); i++) {
+            if(energyEmission <= 0){
+                int decreasePercent = randomPercent(5, 2);
+                newEnergyPrice -= decreasePercent;
+            } else {
+                int increasePercent = randomPercent(6, 1);
+                newEnergyPrice += increasePercent;
+            }
         }
-        return energyPrice;
+        return (int)Math.round(newEnergyPrice);
     }
 
     public void setEnergyPrice(int energyPrice) {
@@ -63,7 +66,7 @@ public abstract class EnergySource {
         Random rand = new Random();
         double random_int = rand.nextInt(max - min + 1) + 2/100;
         double procent = (random_int/100);
-        int fivePercent = (int)(energyPrice * procent);
+        int fivePercent = (int)Math.round(energyPrice * procent);
         return fivePercent;
     }
 }

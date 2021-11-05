@@ -32,7 +32,7 @@ class PlayerTest {
 
    @Test
     void getShopDetails(){
-        Shop shop = new Shop("A shop test", new EnergySource[]{new CoalEnergy()});
+        Shop shop = new Shop("A shop test", "Shop", new EnergySource[]{new CoalEnergy()});
 
         assertEquals("A shop test", shop.getShortDescription());
         assertEquals(24 ,shop.getShopItem(0).getEnergyEmission());
