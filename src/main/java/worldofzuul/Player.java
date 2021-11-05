@@ -51,7 +51,7 @@ public class Player {
     public int getTotalEnergyOutput(){
         int totalOutput = 0;
         for (EnergySource energySource : energySources) {
-            totalOutput = energySource.getEnergyOutput();
+            totalOutput += energySource.getEnergyOutput();
         }
         return totalOutput;
     }

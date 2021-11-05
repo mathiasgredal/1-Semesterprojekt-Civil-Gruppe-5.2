@@ -7,13 +7,15 @@ import worldofzuul.Rooms.*;
 import java.util.ArrayList;
 
 public class Game {
+    public static final Game instance = new Game(); //Singleton pattern #1
     String nameOfGame = "Greenhouse 'Jazz'";
     Player player = new Player(120000, new ArrayList<>());
     private int gameYear = 0;
     private Parser parser;
     private Room currentRoom;
+    ArrayList<EnergySource> energySourcesPrices = new ArrayList<>();
 
-    public Game() {
+    private Game() {
         createRooms();
         parser = new Parser();
     }
@@ -32,6 +34,9 @@ public class Game {
         Shop windProvider = new Shop("in a shop, where you can buy windmills", "Shop for wind-energy",  new EnergySource[]{new WindEnergy()});
         Shop solarProvider = new Shop("in a shop, where you can buy solar panels", "Shop for solar-energy", new EnergySource[]{new SolarEnergy()});
 
+        energySourcesPrices.add(gasProvider.getShopItem(0));
+        energySourcesPrices.add(coalProvider.getShopItem(0));
+        energySourcesPrices.add(oilProvider.getShopItem(0));
 
         house.setExit("west", pathWest);
         house.setExit("east", pathEast);
