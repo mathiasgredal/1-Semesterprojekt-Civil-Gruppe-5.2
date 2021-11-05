@@ -187,7 +187,7 @@ public class Game {
                     gameYear++;
                     System.out.println("You are now in the year: " + (2010 + getGameYear()));
                     player.clearEnergySources(getGameYear());
-                    if (getGameYear() == 20) {
+                    if (getGameYear() == 2) {
                         printRecap();
                     }
                 } else {

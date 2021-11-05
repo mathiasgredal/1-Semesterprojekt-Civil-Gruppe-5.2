@@ -27,6 +27,7 @@ public class Player {
     public void addEnergySource(int year, EnergySource e){
         energySources.add(e);
         recapEnergySources.put(year, energySources);
+        System.out.println(recapEnergySources.size());
     }
 
     /**
@@ -42,6 +43,7 @@ public class Player {
         for (int i = 0; i < recapEnergyEmission.size(); i++) {
             System.out.println(recapEnergyEmission.get(i));
         }
+        System.out.println(recapEnergyEmission.size());
         return totalEmission;
     }
 
