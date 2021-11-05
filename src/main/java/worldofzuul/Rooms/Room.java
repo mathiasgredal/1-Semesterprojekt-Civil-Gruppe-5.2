@@ -9,11 +9,13 @@ public abstract class Room
 {
     private String description;
     private HashMap<String, Room> exits;
+    private String name;
 
-    public Room(String description) 
+    public Room(String description, String name)
     {
         this.description = description;
-        exits = new HashMap<>();
+        this.exits = new HashMap<>();
+        this.name=name;
     }
 
     public void setExit(String direction, Room neighbor) 
@@ -37,6 +39,7 @@ public abstract class Room
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
             returnString.append(" ").append(exit);
+            returnString.append("(").append(exits.get(exit).name).append(")");
         }
         return returnString.toString();
     }
