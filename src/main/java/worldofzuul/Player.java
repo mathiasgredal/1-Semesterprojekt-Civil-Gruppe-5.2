@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class Player {
     private int playerEconomy;
     private ArrayList<EnergySource> energySources;
-    private HashMap<Integer, ArrayList> recapEnergySources = new HashMap<Integer, ArrayList>();
+    private HashMap<Integer, ArrayList<EnergySource>> recapEnergySources = new HashMap<Integer, ArrayList<EnergySource>>();
     private HashMap<Integer, Integer> recapEnergyEmission = new HashMap<Integer, Integer>();
 
     public Player(int playerEconomy, ArrayList<EnergySource> energySources){
@@ -24,10 +24,28 @@ public class Player {
         this.playerEconomy = playerEconomy;
     }
 
-    public void addEnergySource(int year, EnergySource e){
+    public void addEnergySource(EnergySource e){
         energySources.add(e);
+    }
+
+    public void transferEnergySources(int year){
+        int totalEmissionPerYear = 0;
+
         recapEnergySources.put(year, energySources);
-        System.out.println(recapEnergySources.size());
+
+        //Iterates through the hashmaps keys.
+        for(int i = 0; i < recapEnergySources.size(); i++){
+            //The nested loop sums up the arraylist' energy emission of all energy sources
+            for(int j = 0; j < recapEnergySources.get(i).size(); j++){
+                totalEmissionPerYear += recapEnergySources.get(i).get(j).getEnergyEmission();
+            }
+        }
+
+        //Collects and puts all calculated emission for every year into the hashmap , Used in the recap window.
+        recapEnergyEmission.put(year, totalEmissionPerYear);
+        for(int re : recapEnergyEmission.keySet()){
+            System.out.println(re+ ": " + recapEnergyEmission.get(re));
+        }
     }
 
     /**

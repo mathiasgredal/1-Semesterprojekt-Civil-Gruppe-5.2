@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class Property extends Room {
     private ArrayList<EnergySource> energySources = new ArrayList<>();
 
-    public Property(String description) {
-       super(description);
+    public Property(String description, String name) {
+       super(description, name);
    }
 
    public void addEnergySources(EnergySource e){

@@ -161,7 +161,7 @@ public class Game {
             if (itemFromShop.getEnergyPrice() <= player.getPlayerEconomy()) {
                 //Adds the bought energy source to the players' arraylist.
                 System.out.println("You have bought: " + itemFromShop.getEnergyName());
-                player.addEnergySource(getGameYear(), itemFromShop);
+                player.addEnergySource(itemFromShop);
                 player.setPlayerEconomy(player.getPlayerEconomy() - itemFromShop.getEnergyPrice());
                 System.out.println(player.getPlayerEconomy());
             } else {
@@ -189,6 +189,7 @@ public class Game {
         try {
             if (command.getSecondWord().contains("year")) {
                 if (player.getTotalEnergyOutput() >= ((House) currentRoom).getEnergyNeed()) {
+                    player.transferEnergySources(getGameYear());
                     gameYear++;
                     System.out.println("You are now in the year: " + (2010 + getGameYear()));
                     player.clearEnergySources(getGameYear());
