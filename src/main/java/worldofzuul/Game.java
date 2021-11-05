@@ -23,8 +23,8 @@ public class Game {
     private void createRooms() {
         House house = new House("in your house", "House", 1600);
 
-        Paths pathEast = new Paths("You are on a path, where you can go to energy companies, that uses fossil fuels", "Path to fossil fuels");
-        Paths pathWest = new Paths("You are on a path, where you can go to energy companies, that uses renewable fuels", "Path to renewable fuels");
+        Paths pathEast = new Paths("on a path, where you can go to energy companies, that uses fossil fuels", "Path to fossil fuels");
+        Paths pathWest = new Paths("are on a path, where you can go to energy companies, that uses renewable fuels", "Path to renewable fuels");
 
         Shop gasProvider = new Shop("in a shop, where they sell power from gas energy", "Shop for gas-energy", new EnergySource[]{new GasEnergy()});
         Shop coalProvider = new Shop("in a shop, where they sell power from coal energy", "Shop for coal-energy", new EnergySource[]{new CoalEnergy()});
@@ -70,14 +70,14 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Thank you for playing!.  Good bye.");
     }
 
     private void printWelcome() {
         System.out.println();
         System.out.printf("Welcome to the %s!", nameOfGame);
         System.out.printf("\n%s is a new, incredibly awesome adventure game.", nameOfGame);
-        System.out.println(" Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println(" \nType '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription()+currentRoom.getExitString());
     }
@@ -91,12 +91,12 @@ public class Game {
             case GO -> goRoom(command);
             case QUIT -> wantToQuit = quit(command);
             case HELP -> printHelp();
-            case UNKNOWN -> System.out.println("I don't know what you mean...");
+            case UNKNOWN -> System.out.println("I don't know what you mean...Please try again.");
             case BUY -> {
                 if (currentRoom instanceof Shop) {
                     buyItem(command, (Shop) currentRoom);
                 } else {
-                    System.out.println("You are not currently in a shop");
+                    System.out.println("You are not currently in a shop.");
                 }
             }
             case NEXT -> nextYear(command);
@@ -106,8 +106,8 @@ public class Game {
     }
 
     private void printHelp() {
-        System.out.println("You are in your house");
-        System.out.println("now go fight climate change");
+        System.out.println("You are in your house.");
+        System.out.println("Now go fight climate change and save some moeny!");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -124,7 +124,7 @@ public class Game {
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("There is nothing here.");
         } else {
             currentRoom = nextRoom;
             currentRoom.printEnterRoomString(this);
@@ -149,13 +149,13 @@ public class Game {
                 player.setPlayerEconomy(player.getPlayerEconomy() - itemFromShop.getEnergyPrice());
                 System.out.println(player.getPlayerEconomy());
             } else {
-                System.out.println("Not enough money to buy this item, you need: " + (itemFromShop.getEnergyPrice() - player.getPlayerEconomy()));
+                System.out.println("You do not have enough money to buy this item, you need: " + (itemFromShop.getEnergyPrice() - player.getPlayerEconomy()));
             }
 
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().length);
         } catch (NumberFormatException ex) {
-            System.out.println("Please enter a valid number");
+            System.out.println("Please enter a valid number.");
         }
     }
 
@@ -176,14 +176,14 @@ public class Game {
                     System.out.println("You are now in the year: " + (2010 + getGameYear()));
                     player.clearEnergySources(getGameYear());
                 } else {
-                    System.out.println("Please fulfill the required amount of energy");
+                    System.out.println("Please fulfill the required amount of energy.");
                 }
             }
         } catch (ClassCastException ex) {
             if (currentRoom instanceof Shop) {
-                System.out.println("Unable to do this action, outside of your house");
+                System.out.println("Unable to do this action, outside of your house... Please try again.");
             } else {
-                System.out.println("Failure to proceed");
+                System.out.println("Failure to proceed... Please try again.");
             }
         }
 
