@@ -2,6 +2,7 @@ package worldofzuul;
 
 import org.junit.jupiter.api.Test;
 import worldofzuul.EnergySources.*;
+import worldofzuul.Rooms.Shop;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
