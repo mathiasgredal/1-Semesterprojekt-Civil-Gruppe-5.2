@@ -12,7 +12,7 @@ public class BuildArea extends Room {
     private ArrayList<EnergySource> energySources = new ArrayList<>();
 
     public BuildArea() {
-        super("at the build area, here you find the energy sources you have built");
+        super("at the build area, here you find the energy sources you have built", "build area");
     }
 
     public void addEnergySource(EnergySource e) {
@@ -55,9 +55,9 @@ public class BuildArea extends Room {
             }
         }
 
-        // TODO: Better abstractions would eliminate this mess, sigh...
         if (energySources.stream().anyMatch(EnergySource::isFossil)) {
             System.out.println("Bought fossil based energy: ");
+            // TODO: Better abstractions would eliminate this mess, sigh...
             double coal = getEnergyOutputFrom(CoalEnergy.class);
             double oil = getEnergyOutputFrom(OilEnergy.class);
             double gas = getEnergyOutputFrom(GasEnergy.class);

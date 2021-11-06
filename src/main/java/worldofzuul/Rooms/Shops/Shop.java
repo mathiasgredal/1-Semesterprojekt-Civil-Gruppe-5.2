@@ -9,8 +9,8 @@ import java.util.List;
 public abstract class Shop extends Room {
     protected List<EnergySource> shopItems;
 
-    public Shop(String description) {
-        super(description);
+    public Shop(String description, String name) {
+        super(description, name);
     }
 
     public EnergySource getShopItem(int index) {

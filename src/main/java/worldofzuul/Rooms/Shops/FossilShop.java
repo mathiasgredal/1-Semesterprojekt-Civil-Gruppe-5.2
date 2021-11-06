@@ -7,10 +7,10 @@ import worldofzuul.EnergySources.OilEnergy;
 
 import java.util.List;
 
-public class FossilShop extends Shop{
+public class FossilShop extends Shop {
 
     public FossilShop() {
-        super("at a fossil energy provider, we provide energy from fossil fuels");
+        super("at a fossil energy provider, we provide energy from fossil fuels", "fossil energyshop");
         shopItems = List.of(new CoalEnergy(), new OilEnergy(), new GasEnergy());
     }
 }

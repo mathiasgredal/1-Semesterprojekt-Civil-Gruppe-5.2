@@ -8,8 +8,8 @@ public class House extends Room {
     private Car car;
     private Heating heater;
 
-    public House(double energyRequirement, String name) {
-        super("in your house", name);
+    public House(double energyRequirement) {
+        super("in your house", "house");
         this.energyRequirement = energyRequirement;
         this.car = new InternalCombustionCar();
         this.heater = new GasHeating();

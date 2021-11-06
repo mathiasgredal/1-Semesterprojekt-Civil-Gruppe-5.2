@@ -2,9 +2,9 @@ package worldofzuul.Rooms;
 
 import worldofzuul.Game;
 
-public class CrossRoad extends Room{
+public class CrossRoad extends Room {
     public CrossRoad() {
-        super("a crossroad, where you can travel to different parts of the world");
+        super("a crossroad, where you can travel to different parts of the world", "crossroad");
     }
 
     @Override

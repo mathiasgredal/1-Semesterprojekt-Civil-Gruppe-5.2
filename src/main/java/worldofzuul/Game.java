@@ -14,7 +14,7 @@ public class Game {
     private Room currentRoom;
 
     private BuildArea buildArea = new BuildArea();
-    private House house = new House();
+    private House house = new House(1600);
 
     Recap recap = new Recap();
 

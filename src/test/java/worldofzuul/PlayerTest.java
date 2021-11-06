@@ -7,7 +7,7 @@ import worldofzuul.EnergySources.GasEnergy;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
 import worldofzuul.Input.Parser;
-import worldofzuul.Rooms.Shop;
+import worldofzuul.Rooms.Shops.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -75,7 +75,7 @@ class PlayerTest {
 //    }
 
     @Test
-    void getGameYear(){
+    void getGameYear() {
 
         assertEquals(0, Game.instance.getGameYear());
     }
