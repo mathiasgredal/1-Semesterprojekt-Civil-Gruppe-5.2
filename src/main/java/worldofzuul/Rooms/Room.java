@@ -1,19 +1,19 @@
 package worldofzuul.Rooms;
 
-import worldofzuul.*;
+import worldofzuul.Game;
 
-import java.util.Set;
 import java.util.HashMap;
+import java.util.Set;
 
 public abstract class Room {
-    private String description;
-    private HashMap<String, Room> exits;
-    private String name;
+    private final String description;
+    private final HashMap<String, Room> exits;
+    private final String name;
 
     public Room(String description, String name) {
         this.description = description;
         this.exits = new HashMap<>();
-        this.name=name;
+        this.name = name;
     }
 
     public void setExit(String direction, Room neighbor) {

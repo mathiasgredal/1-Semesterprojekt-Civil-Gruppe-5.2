@@ -1,4 +1,4 @@
 package worldofzuul.EnergyConsumer;
 
-public class Heating extends EnergyConsumer{
+public class Heating extends EnergyConsumer {
 }

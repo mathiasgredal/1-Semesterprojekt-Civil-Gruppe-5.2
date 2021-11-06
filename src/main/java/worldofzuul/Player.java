@@ -1,13 +1,8 @@
 package worldofzuul;
 
-import worldofzuul.EnergySources.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class Player {
     private double playerEconomy = 300000;
-    private double yearlyIncome = 10000;
+    private final double yearlyIncome = 10000;
 
     public Player() {
     }
@@ -18,6 +13,7 @@ public class Player {
 
     /**
      * Gets the amount of money the player has
+     *
      * @return The amount of money
      */
     public double getPlayerEconomy() {

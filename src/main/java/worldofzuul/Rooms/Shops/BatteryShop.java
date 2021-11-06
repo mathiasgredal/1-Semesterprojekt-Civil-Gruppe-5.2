@@ -1,6 +1,7 @@
 package worldofzuul.Rooms.Shops;
 
-import worldofzuul.EnergySources.*;
+import worldofzuul.EnergySources.BatteryEnergy;
+import worldofzuul.EnergySources.EnergySource;
 
 import java.util.List;
 

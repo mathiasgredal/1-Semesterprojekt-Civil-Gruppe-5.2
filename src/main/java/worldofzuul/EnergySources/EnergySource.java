@@ -5,30 +5,9 @@ import worldofzuul.Game;
 import java.util.Random;
 
 public abstract class EnergySource {
-    public enum EnergySourceSize {
-        SMALL("small"), MEDIUM("medium"), LARGE("large");
-        private final String name;
-
-        EnergySourceSize(String name) {
-            this.name = name;
-        }
-
-        public boolean equalsName(String other) {
-            return name.equals(other);
-        }
-
-        public String toString() {
-            return this.name;
-        }
-
-        public String upperCaseName() {
-            return name.substring(0, 1).toUpperCase() + name.substring(1);
-        }
-    }
-
-    private String energyName;
-    private String energyDescription;
     protected EnergySourceSize size;
+    private String energyName;
+    private final String energyDescription;
     private double energyPrice;
     private double energyEmission;
     private double energyOutput;
@@ -131,5 +110,26 @@ public abstract class EnergySource {
         double random_int = rand.nextInt(max - min + 1) + 2.0 / 100.0;
         double procent = (random_int / 100);
         return (int) Math.round(energyPrice * procent);
+    }
+
+    public enum EnergySourceSize {
+        SMALL("small"), MEDIUM("medium"), LARGE("large");
+        private final String name;
+
+        EnergySourceSize(String name) {
+            this.name = name;
+        }
+
+        public boolean equalsName(String other) {
+            return name.equals(other);
+        }
+
+        public String toString() {
+            return this.name;
+        }
+
+        public String upperCaseName() {
+            return name.substring(0, 1).toUpperCase() + name.substring(1);
+        }
     }
 }

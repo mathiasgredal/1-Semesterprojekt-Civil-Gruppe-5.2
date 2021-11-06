@@ -2,7 +2,7 @@ package worldofzuul.Rooms;
 
 import worldofzuul.Game;
 
-public class Paths extends Room{
+public class Paths extends Room {
     public Paths(String description, String name) {
         super(description, name);
     }

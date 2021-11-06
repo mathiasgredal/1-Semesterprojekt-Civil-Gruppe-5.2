@@ -1,12 +1,12 @@
 package worldofzuul.Rooms;
 
-import worldofzuul.*;
 import worldofzuul.EnergyConsumer.*;
+import worldofzuul.Game;
 
 public class House extends Room {
-    private double energyRequirement;
-    private Car car;
-    private Heating heater;
+    private final double energyRequirement;
+    private final Car car;
+    private final Heating heater;
 
     public House(double energyRequirement) {
         super("in your house", "house");

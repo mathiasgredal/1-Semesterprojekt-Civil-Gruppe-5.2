@@ -1,7 +1,9 @@
 package worldofzuul;
 
-import worldofzuul.EnergySources.*;
-import worldofzuul.Input.*;
+import worldofzuul.EnergySources.EnergySource;
+import worldofzuul.Input.Command;
+import worldofzuul.Input.CommandWord;
+import worldofzuul.Input.Parser;
 import worldofzuul.Rooms.*;
 import worldofzuul.Rooms.Shops.*;
 
@@ -9,14 +11,12 @@ public class Game {
     public static final Game instance = new Game(); //Singleton pattern #1
     String nameOfGame = "Greenhouse 'Jazz'";
     Player player = new Player();
-    private int gameYear = 0;
-    private Parser parser;
-    private Room currentRoom;
-
-    private BuildArea buildArea = new BuildArea();
-    private House house = new House(1600);
-
     Recap recap = new Recap();
+    private int gameYear = 0;
+    private final Parser parser;
+    private Room currentRoom;
+    private final BuildArea buildArea = new BuildArea();
+    private final House house = new House(1600);
 
     private Game() {
         createRooms();

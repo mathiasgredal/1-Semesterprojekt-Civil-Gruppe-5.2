@@ -1,7 +1,6 @@
 package worldofzuul.Input;
 
-public enum CommandWord
-{
+public enum CommandWord {
     GO("go"),
     QUIT("quit"),
     HELP("help"),
@@ -9,16 +8,14 @@ public enum CommandWord
     BUY("buy"),
     LOOK("look"),
     NEXT("next");
-    
-    private String commandString;
-    
-    CommandWord(String commandString)
-    {
+
+    private final String commandString;
+
+    CommandWord(String commandString) {
         this.commandString = commandString;
     }
-    
-    public String toString()
-    {
+
+    public String toString() {
         return commandString;
     }
 }

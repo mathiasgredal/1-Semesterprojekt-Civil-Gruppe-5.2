@@ -4,7 +4,7 @@ package worldofzuul.EnergySources;
  * A battery isn't exactly an EnergySource, so this abstraction doens't fit perfectly
  */
 public class BatteryEnergy extends EnergySource {
-    private double energyStorage;
+    private final double energyStorage;
 
     public BatteryEnergy(EnergySourceSize size, double energyPrice, double energyStorage) {
         super("Battery",

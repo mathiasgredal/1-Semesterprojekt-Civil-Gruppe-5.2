@@ -1,7 +1,6 @@
 package worldofzuul.Rooms.Shops;
 
 import worldofzuul.EnergySources.CoalEnergy;
-import worldofzuul.EnergySources.EnergySource;
 import worldofzuul.EnergySources.GasEnergy;
 import worldofzuul.EnergySources.OilEnergy;
 

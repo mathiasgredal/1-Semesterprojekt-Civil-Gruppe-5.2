@@ -1,10 +1,10 @@
 package worldofzuul.EnergySources;
 
 public class GasEnergy extends EnergySource {
-    private static String gasEnergyName = "Gas";
-    private static int gasEnergyPrice = 18;
-    private static int gasEnergyEmission = 27;
-    private static int gasEnergyOutput = 176;
+    private static final String gasEnergyName = "Gas";
+    private static final int gasEnergyPrice = 18;
+    private static final int gasEnergyEmission = 27;
+    private static final int gasEnergyOutput = 176;
 
     public GasEnergy() {
         super(gasEnergyName, "It is energy from natural gas", gasEnergyPrice, gasEnergyEmission, gasEnergyOutput);

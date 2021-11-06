@@ -4,14 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Recap {
-    enum DataPoint {
-        Emissions,
-        SoldEnergy,
-        SoldEnergyPrice
-    }
-
     // This stores all the recap data
-    private Map<DataPoint, Map<Integer, Double>> data;
+    private final Map<DataPoint, Map<Integer, Double>> data;
 
     public Recap() {
         data = new HashMap<>() {{
@@ -31,5 +25,11 @@ public class Recap {
 
     public double sumDataPoint(DataPoint type) {
         return data.get(type).values().stream().mapToDouble(d -> d).sum();
+    }
+
+    enum DataPoint {
+        Emissions,
+        SoldEnergy,
+        SoldEnergyPrice
     }
 }
