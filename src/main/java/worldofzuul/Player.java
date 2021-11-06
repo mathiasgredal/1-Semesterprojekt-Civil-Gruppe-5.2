@@ -18,7 +18,6 @@ public class Player {
 
     /**
      * Gets the amount of money the player has
-     *
      * @return The amount of money
      */
     public double getPlayerEconomy() {

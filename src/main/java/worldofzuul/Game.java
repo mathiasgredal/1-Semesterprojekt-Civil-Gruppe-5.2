@@ -6,20 +6,19 @@ import worldofzuul.Rooms.*;
 import worldofzuul.Rooms.Shops.*;
 
 public class Game {
-    String nameOfGame = "World of Renewable Energy";
+    public static final Game instance = new Game(); //Singleton pattern #1
+    String nameOfGame = "Greenhouse 'Jazz'";
     Player player = new Player();
-
-    private int gameYear = 2010;
-
+    private int gameYear = 0;
     private Parser parser;
     private Room currentRoom;
 
     private BuildArea buildArea = new BuildArea();
-    private House house = new House(1600);
+    private House house = new House();
 
     Recap recap = new Recap();
 
-    public Game() {
+    private Game() {
         createRooms();
         parser = new Parser();
     }

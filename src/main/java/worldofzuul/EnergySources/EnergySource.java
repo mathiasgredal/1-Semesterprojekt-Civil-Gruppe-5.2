@@ -2,6 +2,12 @@ package worldofzuul.EnergySources;
 
 import java.util.Optional;
 
+import worldofzuul.Game;
+import worldofzuul.Rooms.Shop.*;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 public abstract class EnergySource {
     public enum EnergySourceSize {
         SMALL("small"), MEDIUM("medium"), LARGE("large");
@@ -60,7 +66,19 @@ public abstract class EnergySource {
     }
 
     public double getEnergyPrice() {
-        return energyPrice;
+        double newEnergyPrice = energyPrice;
+
+        for (int i = 0; i < Game.instance.getGameYear(); i++) {
+            if(energyEmission <= 0){
+                int decreasePercent = randomPercent(5, 2);
+                newEnergyPrice -= decreasePercent;
+            } else {
+                int increasePercent = randomPercent(6, 1);
+                newEnergyPrice += increasePercent;
+            }
+        }
+
+        return (int)Math.round(newEnergyPrice);
     }
 
     public void setEnergyPrice(int energyPrice) {
@@ -110,5 +128,13 @@ public abstract class EnergySource {
 
     public void printDescription() {
         System.out.println(energyDescription);
+    }
+
+    public int randomPercent(int max, int min){
+        Random rand = new Random();
+        double random_int = rand.nextInt(max - min + 1) + 2/100;
+        double procent = (random_int/100);
+        int fivePercent = (int)Math.round(energyPrice * procent);
+        return fivePercent;
     }
 }
