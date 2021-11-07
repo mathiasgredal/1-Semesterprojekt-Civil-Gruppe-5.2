@@ -4,8 +4,6 @@ import worldofzuul.Exceptions.CannotBuyItemMoreThanOnce;
 import worldofzuul.Items.EnergyConsumer.*;
 import worldofzuul.Game;
 
-import java.util.Locale;
-
 public class House extends Room {
     private final double energyRequirement;
     private Car car;
@@ -55,8 +53,8 @@ public class House extends Room {
         System.out.println("Your house has an annual energy requirement of " + getEnergyRequirement() + "kWh, \n"
                 + "emission of " + getYearlyEmissions() + "g/CO2 and cost of $" + getYearlyCost() + "\n");
 
-        System.out.println("The primary means of transport for your house is an " + car.getName().toLowerCase(Locale.ROOT)
-                + ",\nand heating is provided by a " + heater.getName().toLowerCase(Locale.ROOT) + ".\n");
+        System.out.println("The primary means of transport for your house is an " + car.getName().toLowerCase()
+                + ",\nand heating is provided by a " + heater.getName().toLowerCase() + ".\n");
 
         //Print exits, the rooms you can go to.
         System.out.println(getExitString());

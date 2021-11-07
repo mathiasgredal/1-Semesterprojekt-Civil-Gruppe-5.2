@@ -4,7 +4,6 @@ import worldofzuul.Game;
 import worldofzuul.Items.EnergySource;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class BuildArea extends Room {
@@ -125,7 +124,7 @@ public class BuildArea extends Room {
                         for (var e : v) {
                             totalEnergyOutput += e.getOutput();
                         }
-                        System.out.printf("\t - %.1fkWh of %s energy\n", totalEnergyOutput, k.toLowerCase(Locale.ROOT));
+                        System.out.printf("\t - %.1fkWh of %s energy\n", totalEnergyOutput, k.toLowerCase());
                     });
         }
 
@@ -143,9 +142,9 @@ public class BuildArea extends Room {
     public void getInfoAbout(String secondWord) {
         EnergySource foundEnergySource = null;
         for (var e : energySources) {
-            var energyName = e.getName().toLowerCase(Locale.ROOT);
+            var energyName = e.getName().toLowerCase();
             var firstWord = energyName.contains(" ") ? energyName.split(" ")[0] : energyName;
-            if (firstWord.equals(secondWord.toLowerCase(Locale.ROOT))) {
+            if (firstWord.equals(secondWord.toLowerCase())) {
                 foundEnergySource = e;
             }
         }
