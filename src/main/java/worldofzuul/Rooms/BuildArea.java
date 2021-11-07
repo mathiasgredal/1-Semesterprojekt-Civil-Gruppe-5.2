@@ -50,7 +50,7 @@ public class BuildArea extends Room {
         if (energySources.stream().anyMatch(EnergySource::isRenewable)) {
             System.out.println("Installed renewable capacity: ");
             for (EnergySource e : energySources) {
-                if (e instanceof BatteryEnergy || !e.isRenewable())
+                if (e.isBattery() || !e.isRenewable())
                     continue;
                 System.out.println("\t - " + e.getSize().upperCaseName() + " " + e.getName() + " producing " + e.getOutput() + "kWh pr. year");
             }
@@ -66,7 +66,7 @@ public class BuildArea extends Room {
                             v.stream().mapToDouble(EnergySource::getOutput).sum(),
                             k.toLowerCase(Locale.ROOT)));
         }
-        
+
         System.out.println(getExitString());
     }
 
