@@ -123,7 +123,7 @@ public class Game {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Thank you for playing!.  Good bye.");
     }
 
     /**
@@ -153,12 +153,12 @@ public class Game {
             case GO -> goRoom(command);
             case QUIT -> wantToQuit = quit(command);
             case HELP -> printHelp();
-            case UNKNOWN -> System.out.println("I don't know what you mean...");
+            case UNKNOWN -> System.out.println("I don't know what you mean...Please try again.");
             case BUY -> {
                 if (currentRoom instanceof Shop) {
                     buyItem(command, (Shop) currentRoom);
                 } else {
-                    System.out.println("You are not currently in a shop");
+                    System.out.println("You are not currently in a shop.");
                 }
             }
             case LOOK -> lookAt(command);
@@ -185,7 +185,8 @@ public class Game {
      * Prints the help message
      */
     private void printHelp() {
-        System.out.println("TODO: Implement help command");
+        System.out.println("You are in your house.");
+        System.out.println("Now go fight climate change and save some moeny!");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -207,7 +208,7 @@ public class Game {
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("There is nothing here.");
         } else {
             currentRoom = nextRoom;
             currentRoom.printEnterRoomString(this);
@@ -244,12 +245,12 @@ public class Game {
                     throw new RecieverForBoughtItemNotFound();
                 }
             } else {
-                System.out.printf("Not enough money to buy this item, you need: %.2f\n", (item.getPrice() - player.getPlayerEconomy()));
+                System.out.println("You do not have enough money to buy this item, you need: " + (itemFromShop.getEnergyPrice() - player.getPlayerEconomy()));
             }
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().size());
         } catch (NumberFormatException ex) {
-            System.out.println("Please enter a valid number");
+            System.out.println("Please enter a valid number.");
         } catch (RecieverForBoughtItemNotFound recieverForBoughtItemNotFound) {
             System.out.println("Could not buy that item");
         } catch (CannotBuyItemMoreThanOnce cannotBuyItemMoreThanOnce) {
