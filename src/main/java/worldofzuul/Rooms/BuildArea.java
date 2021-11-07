@@ -66,7 +66,7 @@ public class BuildArea extends Room {
                             v.stream().mapToDouble(EnergySource::getOutput).sum(),
                             k.toLowerCase(Locale.ROOT)));
         }
-
+        
         System.out.println(getExitString());
     }
 
