@@ -6,8 +6,13 @@ import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
 import worldofzuul.Config.*;
-import worldofzuul.EnergySources.*;
+import worldofzuul.Items.Buyable;
+import worldofzuul.Items.EnergyConsumer.ElectricCar;
+import worldofzuul.Items.EnergyConsumer.EnergyConsumer;
+import worldofzuul.Exceptions.RecieverForBoughtItemNotFound;
 import worldofzuul.Input.*;
+import worldofzuul.Items.EnergyConsumer.HeatPump;
+import worldofzuul.Items.EnergySource;
 import worldofzuul.Rooms.*;
 
 
@@ -55,11 +60,13 @@ public class Game {
         CrossRoad crossRoad = new CrossRoad();
         ShopArea shopArea = new ShopArea();
 
-        Shop fossilShop = new Shop("Fossil energyshop", "at a fossil energy provider, we provide energy from fossil fuels");
-        Shop batteryShop = new Shop("Battery shop", "at a battery shop, we sell batteries");
-        Shop windShop = new Shop("Windturbine shop", "at a wind shop, we sell wind turbines");
-        Shop solarShop = new Shop("Solar shop", "at a solar shop, we sell solar panels");
-        Shop retailShop = new Shop("Retail store", "in a general purpose retail store selling everything under the sun.");
+        Shop<EnergySource> fossilShop = new Shop<>("Fossil energyshop", "at a fossil energy provider, we provide energy from fossil fuels");
+        Shop<EnergySource> batteryShop = new Shop<>("Battery shop", "at a battery shop, we sell batteries");
+        Shop<EnergySource> windShop = new Shop<>("Windturbine shop", "at a wind shop, we sell wind turbines");
+        Shop<EnergySource> solarShop = new Shop<>("Solar shop", "at a solar shop, we sell solar panels");
+        Shop<EnergyConsumer> retailShop = new Shop<>("Retail store",
+                "in a general purpose retail store selling everything under the sun.",
+                List.of(new HeatPump(), new ElectricCar()));
 
         house.setExit("south", crossRoad);
         house.setExit("west", buildArea);
@@ -213,7 +220,7 @@ public class Game {
      * @param command     Player input
      * @param currentShop The current shop the player is in
      */
-    private void buyItem(Command command, Shop currentShop) {
+    private void buyItem(Command command, Shop<Buyable> currentShop) {
         if (!command.hasSecondWord()) {
             System.out.println("Buy what?");
             return;
@@ -222,12 +229,20 @@ public class Game {
         //Try-catch to handle exceptions that can be created by the user.
         try {
             String itemName = command.getSecondWord();
-            EnergySource item = currentShop.getShopItem(Integer.parseInt(itemName) - 1);
+            Buyable item = currentShop.getShopItem(Integer.parseInt(itemName) - 1);
 
             if (player.withdrawMoney(item.getPrice())) {
                 System.out.println("You have bought: " + item.getName());
                 System.out.printf("Current balance: $%.2f\n", player.getPlayerEconomy());
-                buildArea.addEnergySource(item);
+
+                if (item instanceof EnergySource) {
+                    buildArea.addEnergySource((EnergySource) item);
+                } else if (item instanceof EnergyConsumer) {
+                    System.out.println("TODO: Support buying from retail store ");
+                } else {
+                    player.insertMoney(item.getPrice());
+                    throw new RecieverForBoughtItemNotFound();
+                }
             } else {
                 System.out.printf("Not enough money to buy this item, you need: %.2f\n", (item.getPrice() - player.getPlayerEconomy()));
             }
@@ -235,6 +250,8 @@ public class Game {
             System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().size());
         } catch (NumberFormatException ex) {
             System.out.println("Please enter a valid number");
+        } catch (RecieverForBoughtItemNotFound recieverForBoughtItemNotFound) {
+            System.out.println("Could not buy that item");
         }
     }
 

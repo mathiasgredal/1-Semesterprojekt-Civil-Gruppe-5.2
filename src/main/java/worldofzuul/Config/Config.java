@@ -1,6 +1,6 @@
 package worldofzuul.Config;
 
-import worldofzuul.EnergySources.EnergySource;
+import worldofzuul.Items.EnergySource;
 
 import java.util.Map;
 

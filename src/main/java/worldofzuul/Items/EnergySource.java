@@ -1,10 +1,10 @@
-package worldofzuul.EnergySources;
+package worldofzuul.Items;
 
 import worldofzuul.Game;
 
 import java.util.Random;
 
-public class EnergySource {
+public class EnergySource implements Buyable {
     private String name;
     private String description;
     private EnergySourceSize size;
@@ -59,6 +59,14 @@ public class EnergySource {
         }
 
         return newEnergyPrice;
+    }
+
+    @Override
+    public String getInfo() {
+        return getName() +
+                ", Costs: " + "$" + getPrice() +
+                ", Emits: " + getEmission() + "g/year CO\u2082" +
+                ", Outputs: " + getOutput() + " kWh.";
     }
 
     public void setPrice(double price) {
@@ -131,6 +139,10 @@ public class EnergySource {
 
     public void setCapacity(double capacity) {
         this.capacity = capacity;
+    }
+
+    public boolean isBattery() {
+        return capacity > 0;
     }
 
     public enum EnergySourceSize {

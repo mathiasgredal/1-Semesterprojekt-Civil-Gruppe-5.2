@@ -1,6 +1,6 @@
 package worldofzuul.Rooms;
 
-import worldofzuul.EnergyConsumer.*;
+import worldofzuul.Items.EnergyConsumer.*;
 import worldofzuul.Game;
 
 public class House extends Room {
