@@ -1,14 +1,22 @@
 package worldofzuul.Rooms;
 
-import worldofzuul.Exceptions.CannotBuyItemMoreThanOnce;
+import worldofzuul.Exceptions.CannotBuyItemMoreThanOnceException;
 import worldofzuul.Items.EnergyConsumer.*;
 import worldofzuul.Game;
 
+/**
+ *
+ */
 public class House extends Room {
-    private final double energyRequirement;
     private Car car;
     private Heating heater;
+    private final double energyRequirement;
 
+    /**
+     * Constructor for the house
+     *
+     * @param energyRequirement The base energy requirement in kWh pr. year
+     */
     public House(double energyRequirement) {
         super("house", "in your house");
         this.energyRequirement = energyRequirement;
@@ -16,14 +24,29 @@ public class House extends Room {
         this.heater = new GasHeating();
     }
 
+    /**
+     * Gets the total energy requirement of house + consumers
+     *
+     * @return Energy requirement in kWh pr. year
+     */
     public double getEnergyRequirement() {
         return energyRequirement + car.getYearlyEnergyConsumption() + heater.getYearlyEnergyConsumption();
     }
 
+    /**
+     * Gets the total emissions for all consumers
+     *
+     * @return Emission in grams of CO2 pr. year
+     */
     public double getYearlyEmissions() {
         return car.getYearlyEmission() + heater.getYearlyEmission();
     }
 
+    /**
+     * Getter for the yearly cost of all consumers
+     *
+     * @return The dollar amount
+     */
     public double getYearlyCost() {
         return car.getYearlyCost() + heater.getYearlyCost();
     }
@@ -32,9 +55,9 @@ public class House extends Room {
      * Upgrades an energy consumer on the house to the provided one
      *
      * @param consumer The new consumer to add to the house
-     * @throws CannotBuyItemMoreThanOnce if the house already has the consumer
+     * @throws CannotBuyItemMoreThanOnceException if the house already has the consumer
      */
-    public void addEnergyConsumer(EnergyConsumer consumer) throws CannotBuyItemMoreThanOnce {
+    public void addEnergyConsumer(EnergyConsumer consumer) throws CannotBuyItemMoreThanOnceException {
         // There are only specific upgrade paths allowed for house,
         // and you should not be able to buy something you already own.
         if (car instanceof InternalCombustionCar && consumer instanceof ElectricCar) {
@@ -42,10 +65,13 @@ public class House extends Room {
         } else if (heater instanceof GasHeating && consumer instanceof HeatPump) {
             heater = (Heating) consumer;
         } else {
-            throw new CannotBuyItemMoreThanOnce();
+            throw new CannotBuyItemMoreThanOnceException();
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printEnterRoomString(Game game) {
         System.out.println(getLongDescription());
@@ -60,6 +86,9 @@ public class House extends Room {
         System.out.println(getExitString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void getInfoAbout(String secondWord) {
         switch (secondWord) {

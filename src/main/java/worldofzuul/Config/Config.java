@@ -18,12 +18,6 @@ public class Config {
     private Map<String, EnergySource[]> shopItems;
 
     /**
-     * A no-arg constructor for the java bean pattern
-     */
-    Config() {
-    }
-
-    /**
      * Getter for shop items
      *
      * @return A map with a key indicating the shop name

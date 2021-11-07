@@ -1,5 +1,7 @@
 package worldofzuul.Config;
 
+import worldofzuul.Exceptions.CannotFindResourceException;
+
 import java.io.*;
 
 
@@ -14,12 +16,12 @@ public class FileResourcesUtils {
      * @return A stream with the file in
      * @author Yong Mook Kim
      */
-    public static InputStream getFileFromResourceAsStream(String fileName) {
+    public static InputStream getFileFromResourceAsStream(String fileName) throws CannotFindResourceException {
         ClassLoader classLoader = FileResourcesUtils.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(fileName);
 
         if (inputStream == null) {
-            throw new IllegalArgumentException("file not found! " + fileName);
+            throw new CannotFindResourceException(fileName);
         } else {
             return inputStream;
         }

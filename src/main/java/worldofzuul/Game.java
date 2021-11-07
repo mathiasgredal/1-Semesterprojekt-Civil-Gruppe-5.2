@@ -45,12 +45,18 @@ public class Game {
         parser = new Parser();
 
         // Load config from file using YAML
-        Constructor constructor = new Constructor(Config.class);
-        Yaml yaml = new Yaml(constructor);
-        config = yaml.load(FileResourcesUtils.getFileFromResourceAsStream("config.yml"));
+        try {
+            Constructor constructor = new Constructor(Config.class);
+            Yaml yaml = new Yaml(constructor);
+            config = yaml.load(FileResourcesUtils.getFileFromResourceAsStream("config.yml"));
 
-        // Load shop data from config file
-        loadShopItems();
+            // Load shop data from config file
+            loadShopItems();
+        } catch (CannotFindResourceException ex) {
+            System.out.println(ex.getMessage());
+            System.exit(1);
+        }
+
     }
 
     /**
@@ -242,7 +248,7 @@ public class Game {
                     house.addEnergyConsumer((EnergyConsumer) item);
                 } else {
                     player.insertMoney(item.getPrice());
-                    throw new RecieverForBoughtItemNotFound();
+                    throw new ReceiverForBoughtItemNotFoundException();
                 }
             } else {
                 System.out.println("You do not have enough money to buy this item, you need: " + (item.getPrice() - player.getPlayerEconomy()));
@@ -251,9 +257,9 @@ public class Game {
             System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().size());
         } catch (NumberFormatException ex) {
             System.out.println("Please enter a valid number.");
-        } catch (RecieverForBoughtItemNotFound recieverForBoughtItemNotFound) {
+        } catch (ReceiverForBoughtItemNotFoundException recieverForBoughtItemNotFound) {
             System.out.println("Could not buy that item");
-        } catch (CannotBuyItemMoreThanOnce cannotBuyItemMoreThanOnce) {
+        } catch (CannotBuyItemMoreThanOnceException cannotBuyItemMoreThanOnce) {
             System.out.println(cannotBuyItemMoreThanOnce.getMessage());
         }
     }

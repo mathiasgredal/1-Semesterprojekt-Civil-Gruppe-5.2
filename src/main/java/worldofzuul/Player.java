@@ -1,12 +1,23 @@
 package worldofzuul;
 
+/**
+ * The player class, used to manage player specific resources mainly ecomony and recap data
+ */
 public class Player {
     private double playerEconomy = 300000;
     private final double yearlyIncome = 10000;
 
+    /**
+     * No-arg constructor for player, using the defined value
+     */
     public Player() {
     }
 
+    /**
+     * Constructs the player with the set economy
+     *
+     * @param playerEconomy The dollar amount the player should start with
+     */
     public Player(int playerEconomy) {
         this.playerEconomy = playerEconomy;
     }
@@ -41,6 +52,11 @@ public class Player {
         playerEconomy += amount;
     }
 
+    /**
+     * Getter for the players yearly income
+     *
+     * @return The dollar amount for the yearly income
+     */
     public double getYearlyIncome() {
         return yearlyIncome;
     }

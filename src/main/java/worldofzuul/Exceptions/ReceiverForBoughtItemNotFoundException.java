@@ -6,8 +6,8 @@ package worldofzuul.Exceptions;
  * Otherwise, we would have to catch all exceptions: try {...} catch(Exception ex) {...}
  * which is considered bad practise
  */
-public class RecieverForBoughtItemNotFound extends Exception {
-    public RecieverForBoughtItemNotFound() {
+public class ReceiverForBoughtItemNotFoundException extends Exception {
+    public ReceiverForBoughtItemNotFoundException() {
         super("Could not find reciever for the bought item");
     }
 }
