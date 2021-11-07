@@ -32,10 +32,9 @@ public class Shop extends Room{
     @Override
     public void printEnterRoomString(Game game) {
         System.out.println(getLongDescription());
-
-        System.out.println("Your available balance: " + "$" + game.getPlayer().getPlayerEconomy());
+        System.out.println("Your available balance: "+ game.getPlayer().getPlayerEconomy()+"Kr.");
         //Lists the available items, that was added in createRoom
-        System.out.println("Available items: ");
+        System.out.println("\nAvailable items: ");
         printShopDetails();
 
         //Gets the exits out of the room.

@@ -2,6 +2,8 @@ package worldofzuul.Rooms;
 
 import worldofzuul.EnergySources.EnergySource;
 import worldofzuul.Game;
+import worldofzuul.Input.CommandWords;
+
 import java.util.ArrayList;
 
 
