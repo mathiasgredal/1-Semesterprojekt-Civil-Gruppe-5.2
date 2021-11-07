@@ -9,7 +9,6 @@ import worldofzuul.Config.*;
 import worldofzuul.EnergySources.*;
 import worldofzuul.Input.*;
 import worldofzuul.Rooms.*;
-import worldofzuul.Rooms.Shops.*;
 
 
 /**
@@ -56,12 +55,14 @@ public class Game {
         CrossRoad crossRoad = new CrossRoad();
         ShopArea shopArea = new ShopArea();
 
-        FossilShop fossilShop = new FossilShop();
-        BatteryShop batteryShop = new BatteryShop();
-        WindShop windShop = new WindShop();
-        SolarShop solarShop = new SolarShop();
+        Shop fossilShop = new Shop("Fossil energyshop", "at a fossil energy provider, we provide energy from fossil fuels");
+        Shop batteryShop = new Shop("Battery shop", "at a battery shop, we sell batteries");
+        Shop windShop = new Shop("Windturbine shop", "at a wind shop, we sell wind turbines");
+        Shop solarShop = new Shop("Solar shop", "at a solar shop, we sell solar panels");
+        Shop retailShop = new Shop("Retail store", "in a general purpose retail store selling everything under the sun.");
 
         house.setExit("south", crossRoad);
+        crossRoad.setExit("west", buildArea);
 
         crossRoad.setExit("north", house);
         crossRoad.setExit("west", buildArea);
@@ -96,7 +97,7 @@ public class Game {
         // Each array of shop items is stored in a map, with a key equaling the classname of the shop
         config.getShopItems().forEach((k, v) -> {
             for (var shop : shops) {
-                if (shop.getClass().getSimpleName().equals(k)) {
+                if (shop.getName().equals(k)) {
                     shop.setShopItems(new ArrayList<>(Arrays.asList(v)));
                     return;
                 }
@@ -223,12 +224,12 @@ public class Game {
             String itemName = command.getSecondWord();
             EnergySource item = currentShop.getShopItem(Integer.parseInt(itemName) - 1);
 
-            if (player.withdrawMoney(item.getEnergyPrice())) {
-                System.out.println("You have bought: " + item.getEnergyName());
+            if (player.withdrawMoney(item.getPrice())) {
+                System.out.println("You have bought: " + item.getName());
                 System.out.printf("Current balance: $%.2f\n", player.getPlayerEconomy());
                 buildArea.addEnergySource(item);
             } else {
-                System.out.printf("Not enough money to buy this item, you need: %.2f\n", (item.getEnergyPrice() - player.getPlayerEconomy()));
+                System.out.printf("Not enough money to buy this item, you need: %.2f\n", (item.getPrice() - player.getPlayerEconomy()));
             }
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().size());

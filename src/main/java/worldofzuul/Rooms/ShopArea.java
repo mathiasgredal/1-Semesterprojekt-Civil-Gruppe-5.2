@@ -4,7 +4,7 @@ import worldofzuul.Game;
 
 public class ShopArea extends Room {
     public ShopArea() {
-        super("a shopping area, where you can enter different shops", "shop area");
+        super("shop area", "a shopping area, where you can enter different shops");
     }
 
     @Override

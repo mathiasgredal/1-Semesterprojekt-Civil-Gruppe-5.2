@@ -4,7 +4,7 @@ import worldofzuul.Game;
 
 public class Paths extends Room {
     public Paths(String description, String name) {
-        super(description, name);
+        super(name, description);
     }
 
     @Override

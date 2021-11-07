@@ -4,7 +4,7 @@ import worldofzuul.Game;
 
 public class CrossRoad extends Room {
     public CrossRoad() {
-        super("a crossroad, where you can travel to different parts of the world", "crossroad");
+        super("crossroad", "a crossroad, where you can travel to different parts of the world");
     }
 
     @Override

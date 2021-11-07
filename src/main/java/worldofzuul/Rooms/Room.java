@@ -8,9 +8,18 @@ import java.util.Set;
 public abstract class Room {
     private final String description;
     private final HashMap<String, Room> exits;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     private final String name;
 
-    public Room(String description, String name) {
+    public Room(String name, String description) {
         this.description = description;
         this.exits = new HashMap<>();
         this.name = name;

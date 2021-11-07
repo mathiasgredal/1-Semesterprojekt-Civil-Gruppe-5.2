@@ -11,7 +11,7 @@ public class BuildArea extends Room {
     private ArrayList<EnergySource> energySources = new ArrayList<>();
 
     public BuildArea() {
-        super("at the build area, here you find the energy sources you have built", "build area");
+        super("build area", "at the build area, here you find the energy sources you have built");
     }
 
     public void addEnergySource(EnergySource e) {
