@@ -24,7 +24,11 @@ public class Recap {
     }
 
     public double sumDataPoint(DataPoint type) {
-        return data.get(type).values().stream().mapToDouble(d -> d).sum();
+        double sum = 0;
+        for (var v : data.get(type).values()) {
+            sum += v;
+        }
+        return sum;
     }
 
     enum DataPoint {

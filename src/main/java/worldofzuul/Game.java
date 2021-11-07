@@ -105,7 +105,6 @@ public class Game {
             for (Shop shop : shops) {
                 if (shop.getName().equals(k)) {
                     shop.setShopItems(new ArrayList<>(Arrays.asList(v)));
-                    return;
                 }
             }
         });

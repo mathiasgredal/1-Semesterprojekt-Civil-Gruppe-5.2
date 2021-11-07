@@ -19,30 +19,59 @@ public class BuildArea extends Room {
     }
 
     public double getYearlyEnergyProduction() {
-        return energySources.stream().mapToDouble(EnergySource::getOutput).sum();
+        double totalEnergyProduction = 0;
+
+        for (var e : energySources) {
+            if (e.isRenewable())
+                totalEnergyProduction += e.getOutput();
+        }
+        return totalEnergyProduction;
     }
 
     public double getYearlyEnergyProductionRenewable() {
-        return energySources.stream().filter(EnergySource::isRenewable).mapToDouble(EnergySource::getOutput).sum();
+        double totalEnergyProduction = 0;
+
+        for (var e : energySources) {
+            if (e.isRenewable())
+                totalEnergyProduction += e.getOutput();
+        }
+        return totalEnergyProduction;
     }
 
     public double getYearlyEnergyProductionFossil() {
-        return energySources.stream().filter(EnergySource::isFossil).mapToDouble(EnergySource::getOutput).sum();
+        double totalEnergyProduction = 0;
+
+        for (var e : energySources) {
+            if (e.isFossil())
+                totalEnergyProduction += e.getOutput();
+        }
+        return totalEnergyProduction;
     }
 
-
     public double getYearlyEmissions() {
-        return energySources.stream().mapToDouble(EnergySource::getEmission).sum();
+        double totalEmission = 0;
+
+        for (var e : energySources) {
+            totalEmission += e.getEmission();
+        }
+
+        return totalEmission;
     }
 
     public void removeFossilEnergySources() {
-        energySources = (ArrayList<EnergySource>) energySources.stream()
-                .filter(EnergySource::isRenewable)
-                .collect(Collectors.toList());
+        ArrayList<EnergySource> renewableEnergySources = new ArrayList<>();
+        for (var e : energySources) {
+            if (e.isRenewable())
+                renewableEnergySources.add(e);
+        }
+
+        this.energySources = renewableEnergySources;
     }
 
     public void addYearlyEnergyProductionToEnergySources() {
-        energySources.forEach(e -> e.addYearlyEnergyProduction(getEnergySalesPricePrkWh()));
+        for (var e : energySources) {
+            e.addYearlyEnergyProduction(getEnergySalesPricePrkWh());
+        }
     }
 
     @Override
@@ -52,7 +81,15 @@ public class BuildArea extends Room {
         System.out.println("There is " + getTotalBatteryCapacity() + "kWh of battery capacity");
 
         // Print renewable energy sources
-        if (energySources.stream().anyMatch(EnergySource::isRenewable)) {
+        boolean hasRenewable = false;
+        for (var e : energySources) {
+            if (e.isRenewable()) {
+                hasRenewable = true;
+                break;
+            }
+        }
+
+        if (hasRenewable) {
             System.out.println("Installed renewable capacity: ");
             for (EnergySource e : energySources) {
                 if (e.isBattery() || !e.isRenewable())
@@ -61,22 +98,46 @@ public class BuildArea extends Room {
             }
         }
 
-        // Print fossil energy status
-        if (energySources.stream().anyMatch(EnergySource::isFossil)) {
+        // Print renewable energy sources
+        boolean hasFossil = false;
+        for (var e : energySources) {
+            if (e.isFossil()) {
+                hasFossil = true;
+                break;
+            }
+        }
+
+        if (hasFossil) {
             System.out.println("Bought fossil based energy: ");
+
+            // This statement does 3 things:
+            //  - Filters the stream, if they are not fossil
+            //  - Collects the filtered stream into a map,
+            //      which has a key based on the energysource name and a value which is the energysource
+            //  - Iterates through the map, and prints how much energy each energysource has.
+            //     the iterator uses a lambda method, where k is the map key and v is the map value
+            // This code is an example of the functional programming paradigm,
+            // and makes a task like grouping an array into a map, a lot simpler.
             energySources.stream()
                     .filter(EnergySource::isFossil)
                     .collect(Collectors.groupingBy(EnergySource::getName))
-                    .forEach((k, v) -> System.out.printf("\t - %.1fkWh of %s energy\n",
-                            v.stream().mapToDouble(EnergySource::getOutput).sum(),
-                            k.toLowerCase(Locale.ROOT)));
+                    .forEach((k, v) -> {
+                        double totalEnergyOutput = 0;
+                        for (var e : v) {
+                            totalEnergyOutput += e.getOutput();
+                        }
+                        System.out.printf("\t - %.1fkWh of %s energy\n", totalEnergyOutput, k.toLowerCase(Locale.ROOT));
+                    });
         }
 
         System.out.println(getExitString());
     }
 
     public double getTotalBatteryCapacity() {
-        return energySources.stream().mapToDouble(EnergySource::getCapacity).sum();
+        double sum = 0;
+        for (var energySource : energySources)
+            sum += energySource.getCapacity();
+        return sum;
     }
 
     @Override
@@ -95,13 +156,6 @@ public class BuildArea extends Room {
         } else {
             super.getInfoAbout(secondWord);
         }
-    }
-
-    public double getEnergyOutputFrom(Class<?> type) {
-        return energySources.stream()
-                .filter(type::isInstance)
-                .mapToDouble(EnergySource::getOutput)
-                .sum();
     }
 
     public double getEnergySalesPricePrkWh() {
