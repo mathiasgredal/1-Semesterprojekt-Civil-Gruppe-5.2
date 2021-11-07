@@ -43,9 +43,6 @@ public class Player {
 
         //Collects and puts all calculated emission for every year into the hashmap , Used in the recap window.
         recapEnergyEmission.put(year, totalEmissionPerYear);
-        for(int re : recapEnergyEmission.keySet()){
-            System.out.println(re+ ": " + recapEnergyEmission.get(re));
-        }
     }
 
     /**
