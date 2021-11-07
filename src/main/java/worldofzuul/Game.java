@@ -330,7 +330,13 @@ public class Game {
      */
     private void printRecap() {
         System.out.println("Time is up, you have finished the game!");
-        System.out.println("TODO: Implement recap page");
+
+        System.out.println("Here is how you did: ");
+        System.out.println("\t - Total player value: ");
+        System.out.println("\t - Total CO2 emitted: ");
+        System.out.println("\t - ROI for energysources: ");
+        System.out.println("\t\t - Breakdown for each energysource...");
+        System.out.println("Overall score: ");
     }
 
     /**
