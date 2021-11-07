@@ -22,6 +22,15 @@ public class BuildArea extends Room {
         return energySources.stream().mapToDouble(EnergySource::getOutput).sum();
     }
 
+    public double getYearlyEnergyProductionRenewable() {
+        return energySources.stream().filter(EnergySource::isRenewable).mapToDouble(EnergySource::getOutput).sum();
+    }
+
+    public double getYearlyEnergyProductionFossil() {
+        return energySources.stream().filter(EnergySource::isFossil).mapToDouble(EnergySource::getOutput).sum();
+    }
+
+
     public double getYearlyEmissions() {
         return energySources.stream().mapToDouble(EnergySource::getEmission).sum();
     }
@@ -33,16 +42,14 @@ public class BuildArea extends Room {
     }
 
     public void addYearlyEnergyProductionToEnergySources() {
-        energySources.forEach(e -> e.addYearlyEnergyProduction(getEnergySalesPrice()));
+        energySources.forEach(e -> e.addYearlyEnergyProduction(getEnergySalesPricePrkWh()));
     }
 
     @Override
     public void printEnterRoomString(Game game) {
         System.out.print(getLongDescription());
         System.out.println("The build area currently has " + getYearlyEnergyProduction() + "kWh pr. year of energy production");
-        System.out.println("There is " + energySources.stream()
-                .mapToDouble(EnergySource::getCapacity)
-                .sum() + "kWh of battery capacity");
+        System.out.println("There is " + getTotalBatteryCapacity() + "kWh of battery capacity");
 
         // Print renewable energy sources
         if (energySources.stream().anyMatch(EnergySource::isRenewable)) {
@@ -66,6 +73,10 @@ public class BuildArea extends Room {
         }
 
         System.out.println(getExitString());
+    }
+
+    public double getTotalBatteryCapacity() {
+        return energySources.stream().mapToDouble(EnergySource::getCapacity).sum();
     }
 
     @Override
@@ -93,9 +104,10 @@ public class BuildArea extends Room {
                 .sum();
     }
 
-    public double getEnergySalesPrice() {
-        // TODO: Make this respond to the installed battery capacity
-        // Im thinking 0.25 * (1 + clamp(battery_capacity/renewable_energy_capacity, 0, 2))
-        return 0.25;
+    public double getEnergySalesPricePrkWh() {
+        // Due to load shifting we store electricity and sell it when the price is higher
+        // the increase sales price is calculated by: 0.25 * (1 + clamp(capacity/renewable_production, 0, 1)
+        double salesPriceFactor = Math.max(1, Math.min(2, 1 + getTotalBatteryCapacity() / getYearlyEnergyProductionRenewable()));
+        return 0.25 * salesPriceFactor;
     }
 }

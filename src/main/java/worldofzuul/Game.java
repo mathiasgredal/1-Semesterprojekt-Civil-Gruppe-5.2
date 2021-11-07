@@ -72,7 +72,7 @@ public class Game {
         crossRoad.setExit("west", retailShop);
         crossRoad.setExit("east", shopArea);
         crossRoad.setExit("south", fossilShop);
-        
+
         buildArea.setExit("east", house);
         retailShop.setExit("east", crossRoad);
         fossilShop.setExit("north", crossRoad);
@@ -290,7 +290,7 @@ public class Game {
 
             // Step 1: Calculate values
             double excessEnergy = buildArea.getYearlyEnergyProduction() - house.getEnergyRequirement();
-            double soldEnergyPrice = excessEnergy * buildArea.getEnergySalesPrice();
+            double soldEnergyPrice = excessEnergy * buildArea.getEnergySalesPricePrkWh();
             double emissions = buildArea.getYearlyEmissions() + house.getYearlyEmissions();
 
             // Step 2: Insert yearly salery and energy sales to player balance
