@@ -1,78 +1,54 @@
 package worldofzuul;
 
 import org.junit.jupiter.api.Test;
-import worldofzuul.EnergySources.CoalEnergy;
-import worldofzuul.EnergySources.EnergySource;
-import worldofzuul.EnergySources.GasEnergy;
-import worldofzuul.Input.Command;
-import worldofzuul.Input.CommandWord;
-import worldofzuul.Input.Parser;
-import worldofzuul.Rooms.Shops.*;
+import worldofzuul.Items.EnergySource;
+import worldofzuul.Rooms.Shop;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
-//    int moneyAmount = 500;
-//    Player player = new Player(moneyAmount);
-//    GasEnergy gasEnergy = new GasEnergy();
-//    CoalEnergy coalEnergy = new CoalEnergy();
-//
-//    @Test
-//    void getPlayerEconomy() {
-//        assertEquals(player.getPlayerEconomy(), moneyAmount);
-//    }
-//
-//    @Test
-//    void setPlayerEconomy() {
-//        moneyAmount = 1000;
-//        player.setPlayerEconomy(moneyAmount);
-//        assertEquals(player.getPlayerEconomy(), moneyAmount);
-//    }
-//
-//    @Test
-//    void getGasEnergyName(){ assertEquals("Gas", gasEnergy.getEnergyName()); }
-//
-//    @Test
-//    void getGasEnergyPrice(){ assertEquals(18, gasEnergy.getEnergyPrice());}
-//
-//    @Test
-//    void getCoalEnergyName(){ assertEquals("Coal", coalEnergy.getEnergyName()); }
-//
-//    @Test
-//    void getCoalEnergyPrice(){ assertEquals(13, coalEnergy.getEnergyPrice());}
-//
-//    @Test
-//    void testCommandClass(){
-//        CommandWord commandWord = CommandWord.GO;
-//        String secondWord = "east";
-//
-//        Command command = new Command(commandWord, secondWord);
-//
-//        if(command.hasSecondWord()){
-//           assertEquals(CommandWord.GO, commandWord);
-//           assertEquals("east", secondWord);
-//        }
-//    }
-//
-//    @Test
-//    void hasSecondWordTest(){
-//        Command command = new Command(CommandWord.BUY, null);
-//
-//        if(command.hasSecondWord()){
-//            assertEquals(false, command.hasSecondWord());
-//        }
-//    }
-//
-//   @Test
-//    void getShopDetails(){
-//        Shop shop = new Shop("A shop test", new EnergySource[]{new CoalEnergy()});
-//
-//        assertEquals("A shop test", shop.getShortDescription());
-//        assertEquals(24 ,shop.getShopItem(0).getEnergyEmission());
-//    }
+    @Test
+    void getPlayerEconomy() {
+        Player player = new Player(500);
+        assertEquals(player.getPlayerEconomy(), 500);
+    }
+
+    @Test
+    void withdrawMoney() {
+        Player player = new Player(500);
+
+        // Should return false when overdrawing
+        assertFalse(player.withdrawMoney(1000));
+
+        // Should return true when drawing allowed amount
+        assertTrue(player.withdrawMoney(1));
+
+        // Should have updated balance after withdrawing
+        assertEquals(player.getPlayerEconomy(), 499);
+    }
+
+    @Test
+    void insertMoney() {
+        Player player = new Player(500);
+        player.insertMoney(1000);
+        assertEquals(player.getPlayerEconomy(), 1500);
+    }
+
+    @Test
+    void getShopDetails() {
+        var myEnergy = new EnergySource(
+                "My energy",
+                "cold fusion", EnergySource.EnergySourceSize.MEDIUM,
+                1000, 24, 1000);
+        
+        Shop<EnergySource> shop = new Shop<>("Magic shop",
+                "A shop test", List.of(myEnergy));
+
+        assertEquals("A shop test", shop.getShortDescription());
+        assertEquals(24, shop.getShopItem(0).getEmission());
+    }
 
     @Test
     void getGameYear() {

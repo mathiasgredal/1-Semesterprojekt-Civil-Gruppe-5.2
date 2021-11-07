@@ -6,13 +6,10 @@ import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
 import worldofzuul.Config.*;
-import worldofzuul.Items.Buyable;
-import worldofzuul.Items.EnergyConsumer.ElectricCar;
-import worldofzuul.Items.EnergyConsumer.EnergyConsumer;
-import worldofzuul.Exceptions.RecieverForBoughtItemNotFound;
+import worldofzuul.Items.*;
+import worldofzuul.Items.EnergyConsumer.*;
+import worldofzuul.Exceptions.*;
 import worldofzuul.Input.*;
-import worldofzuul.Items.EnergyConsumer.HeatPump;
-import worldofzuul.Items.EnergySource;
 import worldofzuul.Rooms.*;
 
 
@@ -35,7 +32,7 @@ public class Game {
 
     private final House house = new House(1600);
     private final BuildArea buildArea = new BuildArea();
-    private final Set<Shop> shops = new HashSet<>();
+    private final ArrayList<Shop> shops = new ArrayList<>();
 
     /**
      * Constructor for the Game class
@@ -100,10 +97,11 @@ public class Game {
     /**
      * Loads the shop items defined in the config yaml file into the shops
      */
+    @SuppressWarnings("unchecked")
     private void loadShopItems() {
         // Each array of shop items is stored in a map, with a key equaling the classname of the shop
         config.getShopItems().forEach((k, v) -> {
-            for (var shop : shops) {
+            for (Shop shop : shops) {
                 if (shop.getName().equals(k)) {
                     shop.setShopItems(new ArrayList<>(Arrays.asList(v)));
                     return;
@@ -144,6 +142,7 @@ public class Game {
      * @param command The tokenized player input
      * @return A boolean indicating whether the program should end
      */
+    @SuppressWarnings("unchecked")
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
