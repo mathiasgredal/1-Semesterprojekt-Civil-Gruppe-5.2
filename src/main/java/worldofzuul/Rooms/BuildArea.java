@@ -19,11 +19,11 @@ public class BuildArea extends Room {
     }
 
     public double getYearlyEnergyProduction() {
-        return energySources.stream().mapToDouble(EnergySource::getEnergyOutput).sum();
+        return energySources.stream().mapToDouble(EnergySource::getOutput).sum();
     }
 
     public double getYearlyEmissions() {
-        return energySources.stream().mapToDouble(EnergySource::getEnergyEmission).sum();
+        return energySources.stream().mapToDouble(EnergySource::getEmission).sum();
     }
 
     public void removeFossilEnergySources() {
@@ -45,15 +45,17 @@ public class BuildArea extends Room {
                 .mapToDouble(e -> ((BatteryEnergy) e).getEnergyStorage())
                 .sum() + "kWh of battery capacity");
 
+        // Print renewable energy sources
         if (energySources.stream().anyMatch(EnergySource::isRenewable)) {
             System.out.println("Installed renewable capacity: ");
             for (EnergySource e : energySources) {
                 if (e instanceof BatteryEnergy || !e.isRenewable())
                     continue;
-                System.out.println("\t - " + e.getSize().upperCaseName() + " " + e.getEnergyName() + " producing " + e.getEnergyOutput() + "kWh pr. year");
+                System.out.println("\t - " + e.getSize().upperCaseName() + " " + e.getName() + " producing " + e.getOutput() + "kWh pr. year");
             }
         }
 
+        // Print fossil energy
         if (energySources.stream().anyMatch(EnergySource::isFossil)) {
             System.out.println("Bought fossil based energy: ");
             // TODO: Better abstractions would eliminate this mess, sigh...
@@ -66,16 +68,14 @@ public class BuildArea extends Room {
             if (gas != 0) System.out.println("\t - " + gas + "kWh of gas energy");
         }
 
-        // Print fossil energy sources
         System.out.println(getExitString());
     }
 
     @Override
     public void getInfoAbout(String secondWord) {
-        boolean foundInfo = false;
         EnergySource foundEnergySource = null;
         for (var e : energySources) {
-            var energyName = e.getEnergyName().toLowerCase(Locale.ROOT);
+            var energyName = e.getName().toLowerCase(Locale.ROOT);
             var firstWord = energyName.contains(" ") ? energyName.split(" ")[0] : energyName;
             if (firstWord.equals(secondWord.toLowerCase(Locale.ROOT))) {
                 foundEnergySource = e;
@@ -92,7 +92,7 @@ public class BuildArea extends Room {
     public double getEnergyOutputFrom(Class<?> type) {
         return energySources.stream()
                 .filter(type::isInstance)
-                .mapToDouble(EnergySource::getEnergyOutput)
+                .mapToDouble(EnergySource::getOutput)
                 .sum();
     }
 

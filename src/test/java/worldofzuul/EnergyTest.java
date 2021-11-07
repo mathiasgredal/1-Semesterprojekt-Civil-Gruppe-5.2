@@ -13,114 +13,114 @@ public class EnergyTest {
 
     @Test
     void setGasEnergyName() {
-        gasEnergy.setEnergyName("Not a gas");
-        assertEquals("Not a gas", gasEnergy.getEnergyName());
+        gasEnergy.setName("Not a gas");
+        assertEquals("Not a gas", gasEnergy.getName());
     }
 
     @Test
     void setGasEnergyPrice() {
-        gasEnergy.setEnergyPrice(999);
-        assertEquals(999, gasEnergy.getEnergyPrice());
+        gasEnergy.setPrice(999);
+        assertEquals(999, gasEnergy.getPrice());
     }
 
     @Test
     void setGasEnergyEmission() {
-        gasEnergy.setEnergyEmission(1010);
-        assertEquals(1010, gasEnergy.getEnergyEmission());
+        gasEnergy.setEmission(1010);
+        assertEquals(1010, gasEnergy.getEmission());
     }
 
     @Test
     void setGasEnergyOutput() {
-        gasEnergy.setEnergyOutput(73);
-        assertEquals(73, gasEnergy.getEnergyOutput());
+        gasEnergy.setOutput(73);
+        assertEquals(73, gasEnergy.getOutput());
     }
 
     //Gas energy tests
 
     @Test
     void getGasEnergyName() {
-        assertEquals("Gas", gasEnergy.getEnergyName());
+        assertEquals("Gas", gasEnergy.getName());
     }
 
     @Test
     void getGasEnergyPrice() {
-        assertEquals(18, gasEnergy.getEnergyPrice());
+        assertEquals(18, gasEnergy.getPrice());
     }
 
     @Test
     void getGasEnergyEmission() {
-        assertEquals(27, gasEnergy.getEnergyEmission());
+        assertEquals(27, gasEnergy.getEmission());
     }
 
     @Test
     void getGasEnergyOutput() {
-        assertEquals(176, gasEnergy.getEnergyOutput());
+        assertEquals(176, gasEnergy.getOutput());
     }
 
     //Coal energy tests
 
     @Test
     void getCoalEnergyName() {
-        assertEquals("Coal", coalEnergy.getEnergyName());
+        assertEquals("Coal", coalEnergy.getName());
     }
 
     @Test
     void getCoalEnergyPrice() {
-        assertEquals(13, coalEnergy.getEnergyPrice());
+        assertEquals(13, coalEnergy.getPrice());
     }
 
     @Test
     void getCoalEnergyEmission() {
-        assertEquals(24, coalEnergy.getEnergyEmission());
+        assertEquals(24, coalEnergy.getEmission());
     }
 
     @Test
     void getCoalEnergyOutput() {
-        assertEquals(90, coalEnergy.getEnergyOutput());
+        assertEquals(90, coalEnergy.getOutput());
     }
 
     //Oil energy tests
 
     @Test
     void getOilEnergyName() {
-        assertEquals("Oil", oilEnergy.getEnergyName());
+        assertEquals("Oil", oilEnergy.getName());
     }
 
     @Test
     void getOilEnergyPrice() {
-        assertEquals(13, oilEnergy.getEnergyPrice());
+        assertEquals(13, oilEnergy.getPrice());
     }
 
     @Test
     void getOilEnergyEmission() {
-        assertEquals(31, oilEnergy.getEnergyEmission());
+        assertEquals(31, oilEnergy.getEmission());
     }
 
     @Test
     void getOilEnergyOutput() {
-        assertEquals(151, oilEnergy.getEnergyOutput());
+        assertEquals(151, oilEnergy.getOutput());
     }
 
     //Wind energy tests
 
     @Test
     void getWindEnergyName() {
-        assertEquals("Wind Energy", windEnergy.getEnergyName());
+        assertEquals("Wind Energy", windEnergy.getName());
     }
 
     @Test
     void getWindEnergyPrice() {
-        assertEquals(163460, windEnergy.getEnergyPrice());
+        assertEquals(163460, windEnergy.getPrice());
     }
 
     @Test
     void getWindEnergyEmission() {
-        assertEquals(0, windEnergy.getEnergyEmission());
+        assertEquals(0, windEnergy.getEmission());
     }
 
     @Test
     void getWindEnergyOutput() {
-        assertEquals(20, windEnergy.getEnergyOutput());
+        assertEquals(20, windEnergy.getOutput());
     }
 
 }

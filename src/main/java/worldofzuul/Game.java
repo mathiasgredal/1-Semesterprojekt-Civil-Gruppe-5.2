@@ -1,33 +1,62 @@
 package worldofzuul;
 
-import worldofzuul.EnergySources.EnergySource;
-import worldofzuul.Input.Command;
-import worldofzuul.Input.CommandWord;
-import worldofzuul.Input.Parser;
+import java.util.*;
+
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+
+import worldofzuul.Config.*;
+import worldofzuul.EnergySources.*;
+import worldofzuul.Input.*;
 import worldofzuul.Rooms.*;
 import worldofzuul.Rooms.Shops.*;
 
+
+/**
+ * The main class for handling game logic
+ */
 public class Game {
-    public static final Game instance = new Game(); //Singleton pattern #1
-    String nameOfGame = "Greenhouse 'Jazz'";
-    Player player = new Player();
-    Recap recap = new Recap();
+    // Singleton pattern for game
+    public static final Game instance = new Game();
+
+    // Other encapsulated game attributes
+    private String nameOfGame = "Greenhouse 'Jazz'";
+    private Player player = new Player();
+    private Recap recap = new Recap();
+    private Config config;
+
     private int gameYear = 0;
     private final Parser parser;
     private Room currentRoom;
-    private final BuildArea buildArea = new BuildArea();
-    private final House house = new House(1600);
 
+    private final House house = new House(1600);
+    private final BuildArea buildArea = new BuildArea();
+    private final Set<Shop> shops = new HashSet<>();
+
+    /**
+     * Constructor for the Game class
+     */
     private Game() {
         createRooms();
         parser = new Parser();
+
+        // Load config from file using YAML
+        Constructor constructor = new Constructor(Config.class);
+        Yaml yaml = new Yaml(constructor);
+        config = yaml.load(FileResourcesUtils.getFileFromResourceAsStream("config.yml"));
+
+        // Load shop data from config file
+        loadShopItems();
     }
 
+    /**
+     * Creates a linked structure of rooms to navigate through
+     */
     private void createRooms() {
         CrossRoad crossRoad = new CrossRoad();
         ShopArea shopArea = new ShopArea();
-        Shop fossilShop = new FossilShop();
 
+        FossilShop fossilShop = new FossilShop();
         BatteryShop batteryShop = new BatteryShop();
         WindShop windShop = new WindShop();
         SolarShop solarShop = new SolarShop();
@@ -51,9 +80,33 @@ public class Game {
         solarShop.setExit("west", shopArea);
         batteryShop.setExit("north", shopArea);
 
+        shops.add(fossilShop);
+        shops.add(windShop);
+        shops.add(batteryShop);
+        shops.add(solarShop);
+        shops.add(retailShop);
+
         currentRoom = house;
     }
 
+    /**
+     * Loads the shop items defined in the config yaml file into the shops
+     */
+    private void loadShopItems() {
+        // Each array of shop items is stored in a map, with a key equaling the classname of the shop
+        config.getShopItems().forEach((k, v) -> {
+            for (var shop : shops) {
+                if (shop.getClass().getSimpleName().equals(k)) {
+                    shop.setShopItems(new ArrayList<>(Arrays.asList(v)));
+                    return;
+                }
+            }
+        });
+    }
+
+    /**
+     * Main entrypoint to game
+     */
     public void play() {
         printWelcome();
 
@@ -65,6 +118,9 @@ public class Game {
         System.out.println("Thank you for playing.  Good bye.");
     }
 
+    /**
+     * Prints the welcome message
+     */
     private void printWelcome() {
         System.out.println();
         System.out.printf("Welcome to the %s!", nameOfGame);
@@ -74,6 +130,12 @@ public class Game {
         currentRoom.printEnterRoomString(this);
     }
 
+    /**
+     * Handles the delegation of logic behind each command from the player
+     *
+     * @param command The tokenized player input
+     * @return A boolean indicating whether the program should end
+     */
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
@@ -98,6 +160,11 @@ public class Game {
         return wantToQuit;
     }
 
+    /**
+     * Allows inspections of rooms and objects in the world
+     *
+     * @param command Player input
+     */
     private void lookAt(Command command) {
         if (!command.hasSecondWord()) {
             currentRoom.printEnterRoomString(this);
@@ -106,6 +173,9 @@ public class Game {
         }
     }
 
+    /**
+     * Prints the help message
+     */
     private void printHelp() {
         System.out.println("TODO: Implement help command");
         System.out.println();
@@ -113,6 +183,11 @@ public class Game {
         parser.showCommands();
     }
 
+    /**
+     * Allows navigation between rooms
+     *
+     * @param command Player input
+     */
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Go where?");
@@ -131,6 +206,12 @@ public class Game {
         }
     }
 
+    /**
+     * Allows the player to buy items from the shop they are currently in
+     *
+     * @param command     Player input
+     * @param currentShop The current shop the player is in
+     */
     private void buyItem(Command command, Shop currentShop) {
         if (!command.hasSecondWord()) {
             System.out.println("Buy what?");
@@ -156,10 +237,23 @@ public class Game {
         }
     }
 
+    /**
+     * Getter for the main game year
+     *
+     * @return The current game year/round starting from 0
+     */
     public int getGameYear() {
         return gameYear;
     }
 
+    /**
+     * Allows the player to progress to the next year,
+     * assuming they have fulfilled the requirements
+     * to do so.
+     *
+     * @param command The player input
+     * @return A boolean value indicating whether the game has finished
+     */
     public boolean nextYear(Command command) {
         if (!command.hasSecondWord() || !command.getSecondWord().contains("year")) {
             System.out.println("Next year?");
@@ -210,11 +304,20 @@ public class Game {
         }
     }
 
+    /**
+     * Allows printing of the recap message, when the game has ended
+     */
     private void printRecap() {
         System.out.println("Time is up, you have finished the game!");
         System.out.println("TODO: Implement recap page");
     }
 
+    /**
+     * Allows the player to quit the game with the quit command
+     *
+     * @param command player input
+     * @return A boolean value indicating whether the game should end
+     */
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
@@ -224,6 +327,11 @@ public class Game {
         }
     }
 
+    /**
+     * A getter for the player attribute
+     *
+     * @return A reference to the player object
+     */
     public Player getPlayer() {
         return player;
     }

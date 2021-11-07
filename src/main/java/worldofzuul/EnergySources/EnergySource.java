@@ -4,47 +4,52 @@ import worldofzuul.Game;
 
 import java.util.Random;
 
-public abstract class EnergySource {
-    protected EnergySourceSize size;
-    private String energyName;
-    private final String energyDescription;
-    private double energyPrice;
-    private double energyEmission;
-    private double energyOutput;
+public class EnergySource {
+    private String name;
+    private String description;
+    private EnergySourceSize size;
+    private double price;
+    private double emission;
+    private double output = 0;
+    private double capacity = 0;
+
     private double totalGeneratedEnergy = 0;
     private double totalGeneratedMoney = 0;
 
+    public EnergySource() {
+    }
+
     public EnergySource(String energyName, String energyDescription, double energyPrice, double energyEmission, double energyOutput) {
-        this.energyName = energyName;
-        this.energyDescription = energyDescription;
+        this.name = energyName;
+        this.description = energyDescription;
         this.size = EnergySourceSize.MEDIUM;
-        this.energyPrice = energyPrice;
-        this.energyEmission = energyEmission;
-        this.energyOutput = energyOutput;
+        this.price = energyPrice;
+        this.emission = energyEmission;
+        this.output = energyOutput;
     }
 
     public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput) {
-        this.energyName = energyName;
-        this.energyDescription = energyDescription;
+        this.name = energyName;
+        this.description = energyDescription;
         this.size = size;
-        this.energyPrice = energyPrice;
-        this.energyEmission = energyEmission;
-        this.energyOutput = energyOutput;
+        this.price = energyPrice;
+        this.emission = energyEmission;
+        this.output = energyOutput;
     }
 
-    public String getEnergyName() {
-        return energyName;
+    public String getName() {
+        return name;
     }
 
-    public void setEnergyName(String energyName) {
-        this.energyName = energyName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getEnergyPrice() {
-        double newEnergyPrice = energyPrice;
+    public double getPrice() {
+        double newEnergyPrice = price;
 
         for (int i = 0; i < Game.instance.getGameYear(); i++) {
-            if (energyEmission <= 0) {
+            if (emission <= 0) {
                 int decreasePercent = randomPercent(5, 2);
                 newEnergyPrice -= decreasePercent;
             } else {
@@ -53,32 +58,32 @@ public abstract class EnergySource {
             }
         }
 
-        return (int) Math.round(newEnergyPrice);
+        return newEnergyPrice;
     }
 
-    public void setEnergyPrice(int energyPrice) {
-        this.energyPrice = energyPrice;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public double getEnergyEmission() {
-        return energyEmission;
+    public double getEmission() {
+        return emission;
     }
 
-    public void setEnergyEmission(int energyEmission) {
-        this.energyEmission = energyEmission;
+    public void setEmission(double emission) {
+        this.emission = emission;
     }
 
-    public double getEnergyOutput() {
-        return energyOutput;
+    public double getOutput() {
+        return output;
     }
 
-    public void setEnergyOutput(int energyOutput) {
-        this.energyOutput = energyOutput;
+    public void setOutput(double output) {
+        this.output = output;
     }
 
     public void addYearlyEnergyProduction(double electricityPrice) {
-        totalGeneratedEnergy += energyOutput;
-        totalGeneratedMoney += energyOutput * electricityPrice;
+        totalGeneratedEnergy += output;
+        totalGeneratedMoney += output * electricityPrice;
     }
 
     public double getTotalGeneratedEnergy() {
@@ -94,22 +99,38 @@ public abstract class EnergySource {
     }
 
     public boolean isRenewable() {
-        return !(energyEmission > 0);
+        return !(emission > 0);
     }
 
     public boolean isFossil() {
-        return energyEmission > 0;
+        return emission > 0;
     }
 
     public void printDescription() {
-        System.out.println(energyDescription);
+        System.out.println(description);
     }
 
     public int randomPercent(int max, int min) {
         Random rand = new Random();
         double random_int = rand.nextInt(max - min + 1) + 2.0 / 100.0;
         double procent = (random_int / 100);
-        return (int) Math.round(energyPrice * procent);
+        return (int) Math.round(price * procent);
+    }
+
+    public void setSize(EnergySourceSize size) {
+        this.size = size;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(double capacity) {
+        this.capacity = capacity;
     }
 
     public enum EnergySourceSize {

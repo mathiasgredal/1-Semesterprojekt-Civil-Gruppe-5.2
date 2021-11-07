@@ -1,0 +1,53 @@
+shopItems:
+  Battery Shop:
+    - name: "Battery"
+      description: "Battery to save excess energy from renewables and use it later when it is needed more"
+      size: "SMALL"
+      price: 1000
+      emission: 0
+      capacity: 100
+    - name: "Battery"
+      description: "Battery to save excess energy from renewables and use it later when it is needed more"
+      size: "MEDIUM"
+      price: 5000
+      emission: 0
+      capacity: 800
+    - name: "Battery"
+      description: "Battery to save excess energy from renewables and use it later when it is needed more"
+      size: "LARGE"
+      price: 10000
+      emission: 0
+      capacity: 2000
+  FossilShop:
+    - name: "Coal"
+      description: "It is energy from coal"
+      size: "MEDIUM"
+      price: 13
+      emission: 24
+      output: 90
+    - name: "Oil"
+      description: "It is energy from oil"
+      size: "MEDIUM"
+      price: 13
+      emission: 31
+      output: 151
+    - name: "Gas"
+      description: "It is energy from natural gas"
+      size: "MEDIUM"
+      price: 18
+      emission: 27
+      output: 176
+  SolarShop:
+    - name: "Solar Energy"
+      description: "Photovoltaic solar panel array producing energy from sunlight"
+      size: "MEDIUM"
+      price: 30900
+      emission: 0
+      output: 1
+  WindShop:
+    - name: "Wind Energy"
+      description: "Wind turbine producing energy from the wind"
+      size: "MEDIUM"
+      price: 163460
+      emission: 0
+      output: 20
