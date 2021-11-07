@@ -3,7 +3,7 @@ package worldofzuul;
 import worldofzuul.EnergySources.*;
 import worldofzuul.Input.*;
 import worldofzuul.Rooms.*;
-
+import java.util.Collections;
 import java.util.ArrayList;
 
 public class Game {
@@ -64,7 +64,6 @@ public class Game {
 
     public void play() {
         printIntroduction();
-
         boolean finished = false;
         while (!finished) {
             Command command = parser.getCommand();
@@ -193,7 +192,7 @@ public class Game {
                     gameYear++;
                     System.out.println("You are now in the year: " + (2010 + getGameYear()));
                     player.clearEnergySources(getGameYear());
-                    if (getGameYear() == 2) {
+                    if (getGameYear() == 20) {
                         printRecap();
                     }
                 } else {
@@ -210,26 +209,145 @@ public class Game {
 
     }
 
+
     private void printRecap() {
         int highScore = 0;
         highScore += player.getPlayerEconomy()*34+player.getTotalEnergyOutput()*21+player.calculateEmission()*10;
 
-        System.out.println();
-        System.out.println(
-                  " _______________________________________" +
-                "\n|                                       |" +
-                "\n|                 RECAP                 |" +
-                "\n|         Excess Money: " + player.getPlayerEconomy() + "          |" +
-                "\n|                                       |" +
-                "\n|         Total Energy Output: " + player.getTotalEnergyOutput() + "        |" +
-                "\n|                                       |" +
-                "\n|         Total CO2 Emission:" + player.calculateEmission() + "          |" +
-                "\n|                                       |" +
-                "\n|         High Score: " + highScore + "           |" +
-                "\n|                                       |" +
-                "\n|_______________________________________|" +
-                ""); //39
+        String recapString = "RECAP";
+        String eMoney = "Excess Money: ";
+        String energyOutputString = "Total Energy Output: ";
+        String emissionString = "Total CO2 Emission: ";
+        String hsString = "High Score: ";
 
+        ArrayList<Integer> textLengths = new ArrayList<>();
+
+        textLengths.add(recapString.length());
+        textLengths.add(eMoney.length() + String.valueOf(player.getPlayerEconomy()).length());
+        textLengths.add(energyOutputString.length()+String.valueOf(player.getTotalEnergyOutput()).length());
+        textLengths.add(emissionString.length() + String.valueOf(player.calculateEmission()).length());
+        textLengths.add(hsString.length() + String.valueOf(highScore).length());
+
+
+        int longestString = Collections.max(textLengths)+4;
+        int distToEdge = longestString/3;
+        int lineLength = longestString+distToEdge*2-2;
+
+        int counter;
+        System.out.println(longestString);
+        for (int i = 0; i <= 12; i++) {
+
+            switch (i) {
+
+                case 0:
+                    System.out.print(" ");
+
+                    for (counter = 0; counter <= lineLength; counter++) {
+                        System.out.print("_");
+                    }
+                    System.out.println();
+                    break;
+
+                case 1:
+                case 4:
+                case 6:
+                case 8:
+                case 10:
+                    System.out.print("|");
+                    for (counter = 0; counter <= lineLength; counter++) {
+                        System.out.print(" ");
+                    }
+                    System.out.println("|");
+                    break;
+
+                case 2:
+                    System.out.print("|");
+                    for (counter = 0; counter < lineLength/2-recapString.length()/2; counter++) {
+                        System.out.print(" ");
+                    }
+
+                    System.out.print(recapString);
+
+                    for (counter = 0; counter < lineLength/2-recapString.length()/2; counter++) {
+                        System.out.print(" ");
+                    }
+                    System.out.println("|");
+                    break;
+
+                case 3:
+                    int eMoneyAndNr = eMoney.length()+String.valueOf(player.getPlayerEconomy()).length();
+                    System.out.print("|");
+                    for (counter = 0; counter <= distToEdge; counter++){
+                        System.out.print(" ");
+                    }
+
+                    System.out.print(eMoney + player.getPlayerEconomy());
+
+
+                    for (counter = 0; counter < lineLength-eMoneyAndNr-distToEdge; counter++){
+                        System.out.print(" ");
+                    }
+                    System.out.println("|");
+                    break;
+
+
+                case 5:
+                    System.out.print("|");
+                    for (counter = 0; counter <= distToEdge; counter++){
+                        System.out.print(" ");
+                    }
+
+                    System.out.print(energyOutputString + player.getTotalEnergyOutput());
+
+                    int energyAndNr = energyOutputString.length()+String.valueOf(player.getTotalEnergyOutput()).length();
+                    for (counter = 0; counter < lineLength-energyAndNr-distToEdge; counter++){
+                        System.out.print(" ");
+                    }
+                    System.out.println("|");
+                    break;
+
+
+                case 7:
+                    System.out.print("|");
+                    for (counter = 0; counter <= distToEdge; counter++){
+                        System.out.print(" ");
+                    }
+
+                    System.out.print(emissionString + player.calculateEmission());
+
+                    int emissionAndNr = emissionString.length()+String.valueOf(player.calculateEmission()).length();
+                    for (counter = 0; counter < lineLength-emissionAndNr-distToEdge; counter++){
+                        System.out.print(" ");
+                    }
+                    System.out.println("|");
+                    break;
+
+                case 9:
+                    System.out.print("|");
+                    for (counter = 0; counter <= distToEdge; counter++){
+                        System.out.print(" ");
+                    }
+
+                    System.out.print(hsString + highScore);
+
+                    int hsStringAndNr = hsString.length()+String.valueOf(highScore).length();
+                    for (counter = 0; counter < lineLength-hsStringAndNr-distToEdge; counter++){
+                        System.out.print(" ");
+                    }
+                    System.out.println("|");
+                    break;
+
+                case 11:
+                    System.out.print("|");
+
+                    for (counter = 0; counter <= lineLength; counter++) {
+                        System.out.print("_");
+                    }
+                    System.out.println("|");
+                    break;
+            }
+
+        }
     }
 
     private boolean quit(Command command) {
