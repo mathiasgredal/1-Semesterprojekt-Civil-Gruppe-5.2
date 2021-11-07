@@ -1,5 +1,6 @@
 package worldofzuul.Rooms;
 
+import worldofzuul.Exceptions.CannotBuyItemMoreThanOnce;
 import worldofzuul.Items.EnergyConsumer.*;
 import worldofzuul.Game;
 
@@ -7,8 +8,8 @@ import java.util.Locale;
 
 public class House extends Room {
     private final double energyRequirement;
-    private final Car car;
-    private final Heating heater;
+    private Car car;
+    private Heating heater;
 
     public House(double energyRequirement) {
         super("house", "in your house");
@@ -27,6 +28,24 @@ public class House extends Room {
 
     public double getYearlyCost() {
         return car.getYearlyCost() + heater.getYearlyCost();
+    }
+
+    /**
+     * Upgrades an energy consumer on the house to the provided one
+     *
+     * @param consumer The new consumer to add to the house
+     * @throws CannotBuyItemMoreThanOnce if the house already has the consumer
+     */
+    public void addEnergyConsumer(EnergyConsumer consumer) throws CannotBuyItemMoreThanOnce {
+        // There are only specific upgrade paths allowed for house,
+        // and you should not be able to buy something you already own.
+        if (car instanceof InternalCombustionCar && consumer instanceof ElectricCar) {
+            car = (Car) consumer;
+        } else if (heater instanceof GasHeating && consumer instanceof HeatPump) {
+            heater = (Heating) consumer;
+        } else {
+            throw new CannotBuyItemMoreThanOnce();
+        }
     }
 
     @Override
@@ -68,8 +87,8 @@ public class House extends Room {
                             "you can use your excess renewable energy to heat your house\n" +
                             "and save money on natural gas, while emitting less CO2");
                 } else if (heater instanceof HeatPump) {
-                    System.out.println("This is your electric car, which runs purely on electricity\n" +
-                            " and consumes " + car.getYearlyEnergyConsumption() +
+                    System.out.println("Your house is heated by a heat pump\n" +
+                            " and consumes " + heater.getYearlyEnergyConsumption() +
                             "kWh annualy. \n By having this you are both saving money and emitting less CO2");
                 }
             }

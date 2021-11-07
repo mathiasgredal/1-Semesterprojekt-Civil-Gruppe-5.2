@@ -72,8 +72,9 @@ public class Game {
         crossRoad.setExit("west", retailShop);
         crossRoad.setExit("east", shopArea);
         crossRoad.setExit("south", fossilShop);
-
-        buildArea.setExit("east", crossRoad);
+        
+        buildArea.setExit("east", house);
+        retailShop.setExit("east", crossRoad);
         fossilShop.setExit("north", crossRoad);
 
         shopArea.setExit("west", crossRoad);
@@ -237,7 +238,7 @@ public class Game {
                 if (item instanceof EnergySource) {
                     buildArea.addEnergySource((EnergySource) item);
                 } else if (item instanceof EnergyConsumer) {
-                    System.out.println("TODO: Support buying from retail store ");
+                    house.addEnergyConsumer((EnergyConsumer) item);
                 } else {
                     player.insertMoney(item.getPrice());
                     throw new RecieverForBoughtItemNotFound();
@@ -251,6 +252,8 @@ public class Game {
             System.out.println("Please enter a valid number");
         } catch (RecieverForBoughtItemNotFound recieverForBoughtItemNotFound) {
             System.out.println("Could not buy that item");
+        } catch (CannotBuyItemMoreThanOnce cannotBuyItemMoreThanOnce) {
+            System.out.println(cannotBuyItemMoreThanOnce.getMessage());
         }
     }
 
