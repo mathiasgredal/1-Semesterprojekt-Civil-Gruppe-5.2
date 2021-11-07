@@ -22,8 +22,7 @@ public class BuildArea extends Room {
         double totalEnergyProduction = 0;
 
         for (var e : energySources) {
-            if (e.isRenewable())
-                totalEnergyProduction += e.getOutput();
+            totalEnergyProduction += e.getOutput();
         }
         return totalEnergyProduction;
     }
