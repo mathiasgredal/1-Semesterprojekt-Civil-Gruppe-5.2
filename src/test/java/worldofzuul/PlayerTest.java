@@ -2,6 +2,7 @@ package worldofzuul;
 
 import org.junit.jupiter.api.Test;
 import worldofzuul.Items.EnergySource;
+import worldofzuul.Items.EnergySourceSize;
 import worldofzuul.Rooms.Shops.EnergyShop;
 import worldofzuul.Rooms.Shops.Shop;
 
@@ -41,7 +42,7 @@ class PlayerTest {
     void getShopDetails() {
         var myEnergy = new EnergySource(
                 "My energy",
-                "cold fusion", EnergySource.EnergySourceSize.MEDIUM,
+                "cold fusion", EnergySourceSize.MEDIUM,
                 1000, 24, 1000);
 
         Shop shop = new EnergyShop("Magic shop",

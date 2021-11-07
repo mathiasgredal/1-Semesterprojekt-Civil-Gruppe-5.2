@@ -19,15 +19,6 @@ public class EnergySource implements Buyable {
     public EnergySource() {
     }
 
-    public EnergySource(String energyName, String energyDescription, double energyPrice, double energyEmission, double energyOutput) {
-        this.name = energyName;
-        this.description = energyDescription;
-        this.size = EnergySourceSize.MEDIUM;
-        this.price = energyPrice;
-        this.emission = energyEmission;
-        this.output = energyOutput;
-    }
-
     public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput) {
         this.name = energyName;
         this.description = energyDescription;
@@ -143,26 +134,5 @@ public class EnergySource implements Buyable {
 
     public boolean isBattery() {
         return capacity > 0;
-    }
-
-    public enum EnergySourceSize {
-        SMALL("small"), MEDIUM("medium"), LARGE("large");
-        private final String name;
-
-        EnergySourceSize(String name) {
-            this.name = name;
-        }
-
-        public boolean equalsName(String other) {
-            return name.equals(other);
-        }
-
-        public String toString() {
-            return this.name;
-        }
-
-        public String upperCaseName() {
-            return name.substring(0, 1).toUpperCase() + name.substring(1);
-        }
     }
 }
