@@ -12,7 +12,7 @@ import worldofzuul.Rooms.*;
 
 
 /**
- * The main class for handling game logic
+ * The primary class for handling game logic
  */
 public class Game {
     // Singleton pattern for game
@@ -62,10 +62,10 @@ public class Game {
         Shop retailShop = new Shop("Retail store", "in a general purpose retail store selling everything under the sun.");
 
         house.setExit("south", crossRoad);
-        crossRoad.setExit("west", buildArea);
+        house.setExit("west", buildArea);
 
         crossRoad.setExit("north", house);
-        crossRoad.setExit("west", buildArea);
+        crossRoad.setExit("west", retailShop);
         crossRoad.setExit("east", shopArea);
         crossRoad.setExit("south", fossilShop);
 

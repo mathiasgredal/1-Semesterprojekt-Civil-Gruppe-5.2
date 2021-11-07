@@ -4,7 +4,9 @@ import worldofzuul.EnergySources.*;
 import worldofzuul.Game;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class BuildArea extends Room {
@@ -41,8 +43,7 @@ public class BuildArea extends Room {
         System.out.print(getLongDescription());
         System.out.println("The build area currently has " + getYearlyEnergyProduction() + "kWh pr. year of energy production");
         System.out.println("There is " + energySources.stream()
-                .filter(e -> e instanceof BatteryEnergy)
-                .mapToDouble(e -> ((BatteryEnergy) e).getEnergyStorage())
+                .mapToDouble(EnergySource::getCapacity)
                 .sum() + "kWh of battery capacity");
 
         // Print renewable energy sources
@@ -55,17 +56,15 @@ public class BuildArea extends Room {
             }
         }
 
-        // Print fossil energy
+        // Print fossil energy status
         if (energySources.stream().anyMatch(EnergySource::isFossil)) {
             System.out.println("Bought fossil based energy: ");
-            // TODO: Better abstractions would eliminate this mess, sigh...
-            double coal = getEnergyOutputFrom(CoalEnergy.class);
-            double oil = getEnergyOutputFrom(OilEnergy.class);
-            double gas = getEnergyOutputFrom(GasEnergy.class);
-
-            if (coal != 0) System.out.println("\t - " + coal + "kWh of coal energy");
-            if (oil != 0) System.out.println("\t - " + oil + "kWh of oil energy");
-            if (gas != 0) System.out.println("\t - " + gas + "kWh of gas energy");
+            energySources.stream()
+                    .filter(EnergySource::isFossil)
+                    .collect(Collectors.groupingBy(EnergySource::getName))
+                    .forEach((k, v) -> System.out.printf("\t - %.1fkWh of %s energy\n",
+                            v.stream().mapToDouble(EnergySource::getOutput).sum(),
+                            k.toLowerCase(Locale.ROOT)));
         }
 
         System.out.println(getExitString());
