@@ -245,7 +245,7 @@ public class Game {
                     throw new RecieverForBoughtItemNotFound();
                 }
             } else {
-                System.out.println("You do not have enough money to buy this item, you need: " + (itemFromShop.getEnergyPrice() - player.getPlayerEconomy()));
+                System.out.println("You do not have enough money to buy this item, you need: " + (item.getPrice() - player.getPlayerEconomy()));
             }
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().size());
