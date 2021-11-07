@@ -1,5 +1,5 @@
 shopItems:
-  Battery Shop:
+  BatteryShop:
     - name: "Battery"
       description: "Battery to save excess energy from renewables and use it later when it is needed more"
       size: "SMALL"
