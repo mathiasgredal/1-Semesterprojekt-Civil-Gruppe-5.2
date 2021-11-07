@@ -2,7 +2,8 @@ package worldofzuul;
 
 import org.junit.jupiter.api.Test;
 import worldofzuul.Items.EnergySource;
-import worldofzuul.Rooms.Shop;
+import worldofzuul.Rooms.Shops.EnergyShop;
+import worldofzuul.Rooms.Shops.Shop;
 
 import java.util.List;
 
@@ -42,12 +43,12 @@ class PlayerTest {
                 "My energy",
                 "cold fusion", EnergySource.EnergySourceSize.MEDIUM,
                 1000, 24, 1000);
-        
-        Shop<EnergySource> shop = new Shop<>("Magic shop",
+
+        Shop shop = new EnergyShop("Magic shop",
                 "A shop test", List.of(myEnergy));
 
         assertEquals("A shop test", shop.getShortDescription());
-        assertEquals(24, shop.getShopItem(0).getEmission());
+        assertEquals(24, ((EnergySource) shop.getShopItem(0)).getEmission());
     }
 
     @Test

@@ -77,7 +77,7 @@ public class BuildArea extends Room {
     @Override
     public void printEnterRoomString(Game game) {
         System.out.print(getLongDescription());
-        System.out.println("The build area currently has " + getYearlyEnergyProduction() + "kWh pr. year of energy production");
+        System.out.println("The build area currently has " + getYearlyEnergyProduction() + "kWh pr. year of renewable energy production");
         System.out.println("There is " + getTotalBatteryCapacity() + "kWh of battery capacity");
 
         // Print renewable energy sources

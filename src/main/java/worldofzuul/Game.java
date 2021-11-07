@@ -11,6 +11,9 @@ import worldofzuul.Items.EnergyConsumer.*;
 import worldofzuul.Exceptions.*;
 import worldofzuul.Input.*;
 import worldofzuul.Rooms.*;
+import worldofzuul.Rooms.Shops.EnergyShop;
+import worldofzuul.Rooms.Shops.RetailShop;
+import worldofzuul.Rooms.Shops.Shop;
 
 
 /**
@@ -57,11 +60,11 @@ public class Game {
         CrossRoad crossRoad = new CrossRoad();
         ShopArea shopArea = new ShopArea();
 
-        Shop<EnergySource> fossilShop = new Shop<>("Fossil energyshop", "at a fossil energy provider, we provide energy from fossil fuels");
-        Shop<EnergySource> batteryShop = new Shop<>("Battery shop", "at a battery shop, we sell batteries");
-        Shop<EnergySource> windShop = new Shop<>("Windturbine shop", "at a wind shop, we sell wind turbines");
-        Shop<EnergySource> solarShop = new Shop<>("Solar shop", "at a solar shop, we sell solar panels");
-        Shop<EnergyConsumer> retailShop = new Shop<>("Retail store",
+        Shop fossilShop = new EnergyShop("Fossil energyshop", "at a fossil energy provider, we provide energy from fossil fuels");
+        Shop batteryShop = new EnergyShop("Battery shop", "at a battery shop, we sell batteries");
+        Shop windShop = new EnergyShop("Windturbine shop", "at a wind shop, we sell wind turbines");
+        Shop solarShop = new EnergyShop("Solar shop", "at a solar shop, we sell solar panels");
+        Shop retailShop = new RetailShop("Retail store",
                 "in a general purpose retail store selling everything under the sun.",
                 List.of(new HeatPump(), new ElectricCar()));
 
@@ -98,7 +101,6 @@ public class Game {
     /**
      * Loads the shop items defined in the config yaml file into the shops
      */
-    @SuppressWarnings("unchecked")
     private void loadShopItems() {
         // Each array of shop items is stored in a map, with a key equaling the classname of the shop
         config.getShopItems().forEach((k, v) -> {
@@ -142,7 +144,6 @@ public class Game {
      * @param command The tokenized player input
      * @return A boolean indicating whether the program should end
      */
-    @SuppressWarnings("unchecked")
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
@@ -219,7 +220,7 @@ public class Game {
      * @param command     Player input
      * @param currentShop The current shop the player is in
      */
-    private void buyItem(Command command, Shop<Buyable> currentShop) {
+    private void buyItem(Command command, Shop currentShop) {
         if (!command.hasSecondWord()) {
             System.out.println("Buy what?");
             return;

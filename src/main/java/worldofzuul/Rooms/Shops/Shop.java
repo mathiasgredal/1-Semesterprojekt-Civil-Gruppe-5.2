@@ -1,15 +1,15 @@
-package worldofzuul.Rooms;
+package worldofzuul.Rooms.Shops;
 
 import worldofzuul.Items.Buyable;
 import worldofzuul.Game;
+import worldofzuul.Rooms.Room;
 
 import java.util.List;
 
-public class Shop<T extends Buyable> extends Room {
-    private String shopName;
-    protected List<T> shopItems;
+public abstract class Shop extends Room {
+    protected List<Buyable> shopItems;
 
-    public Shop(String name, String description, List<T> shopItems) {
+    public Shop(String name, String description, List<Buyable> shopItems) {
         super(name, description);
         this.shopItems = shopItems;
     }
@@ -18,15 +18,15 @@ public class Shop<T extends Buyable> extends Room {
         this(name, description, List.of());
     }
 
-    public T getShopItem(int index) {
+    public Buyable getShopItem(int index) {
         return shopItems.get(index);
     }
 
-    public void setShopItems(List<T> shopItems) {
+    public void setShopItems(List<Buyable> shopItems) {
         this.shopItems = shopItems;
     }
 
-    public List<T> getShopItems() {
+    public List<Buyable> getShopItems() {
         return shopItems;
     }
 
