@@ -3,6 +3,8 @@ package worldofzuul.Rooms;
 import worldofzuul.Items.EnergyConsumer.*;
 import worldofzuul.Game;
 
+import java.util.Locale;
+
 public class House extends Room {
     private final double energyRequirement;
     private final Car car;
@@ -30,9 +32,12 @@ public class House extends Room {
     @Override
     public void printEnterRoomString(Game game) {
         System.out.println(getLongDescription());
-        System.out.println("TODO: Create better description of house(mention car and house heating)");
 
-        // TODO: Should print something about the energyconsumers and if the energyrequirement is fulfilled
+        System.out.println("Your house has an annual energy requirement of " + getEnergyRequirement() + "kWh, \n"
+                + "emission of " + getYearlyEmissions() + "g/CO2 and cost of $" + getYearlyCost() + "\n");
+
+        System.out.println("The primary means of transport for your house is an " + car.getName().toLowerCase(Locale.ROOT)
+                + ",\nand heating is provided by a " + heater.getName().toLowerCase(Locale.ROOT) + ".\n");
 
         //Print exits, the rooms you can go to.
         System.out.println(getExitString());
@@ -58,7 +63,7 @@ public class House extends Room {
                 // TODO: Perhaps move this to the heating class
                 if (heater instanceof GasHeating) {
                     System.out.println("Your house is heated by natural gas" +
-                            "and costs you annualy $" + heater.getYearlyCost() +
+                            " and costs you annualy $" + heater.getYearlyCost() +
                             "\nBy buying a heatpump, whose price is partially subsidized by the government,\n" +
                             "you can use your excess renewable energy to heat your house\n" +
                             "and save money on natural gas, while emitting less CO2");
