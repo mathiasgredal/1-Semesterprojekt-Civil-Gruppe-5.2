@@ -17,6 +17,10 @@ public class BuildArea extends Room {
         energySources.add(e);
     }
 
+    public ArrayList<EnergySource> getEnergySources() {
+        return energySources;
+    }
+    
     public double getYearlyEnergyProduction() {
         double totalEnergyProduction = 0;
 

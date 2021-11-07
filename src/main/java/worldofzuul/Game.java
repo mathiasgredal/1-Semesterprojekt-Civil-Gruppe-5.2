@@ -11,8 +11,10 @@ import worldofzuul.Items.EnergyConsumer.*;
 import worldofzuul.Exceptions.*;
 import worldofzuul.Input.*;
 import worldofzuul.Rooms.*;
+
 import java.util.Collections;
 import java.util.ArrayList;
+
 import worldofzuul.Rooms.Shops.EnergyShop;
 import worldofzuul.Rooms.Shops.RetailShop;
 import worldofzuul.Rooms.Shops.Shop;
@@ -139,21 +141,22 @@ public class Game {
         System.out.println();
         System.out.println(" __________________________________________________________________________________________________________________ ");
         System.out.printf("| Welcome to the %s!                                                                                |", nameOfGame);
-        System.out.println("" +
-                "\n| INTRODUCTION:                                                                                                    |" +
-                "\n| The year is 2010. Everyday greenhouse gasses are being emitted into the atmosphere, resulting in global warming! |" +
-                "\n| The United Nations has come up with a goal to reduce greenhouse gas emissions by producing the majority of elec- |" +
-                "\n| tricity using renewable energy sources before 2030. Right now your energy needs are fulfilled by fossil fuels,   |" +
-                "\n| and that is emitting a lot of CO2 int the atmosphere. Every year you will get a salary and perform actions until |" +
-                "\n| the next year. In the game there will be shops, where you can buy energy from different sources. Excess energy   |" +
-                "\n| created will be added to your total amount of money. You have an energy need you must fulfill to move on the the |" +
-                "\n| next year. If you cannot produce enough energy og run out of money, you lose.                                    |" +
-                "\n|                                                                                                                  |" +
-                "\n| GOALS:                                                                                                           |" +
-                "\n|   - Make the most money of your situation.                                                                       |" +
-                "\n|   - Emmit as little of CO2 as possible.                                                                          |" +
-                "\n|   - Produce as mush energy as possible.                                                                          |" +
-                "\n| Good Luck!                                                                                                       |");
+        System.out.println("""
+
+                | INTRODUCTION:                                                                                                    |
+                | The year is 2010. Everyday greenhouse gasses are being emitted into the atmosphere, resulting in global warming! |
+                | The United Nations has come up with a goal to reduce greenhouse gas emissions by producing the majority of elec- |
+                | tricity using renewable energy sources before 2030. Right now your energy needs are fulfilled by fossil fuels,   |
+                | and that is emitting a lot of CO2 int the atmosphere. Every year you will get a salary and perform actions until |
+                | the next year. In the game there will be shops, where you can buy energy from different sources. Excess energy   |
+                | created will be added to your total amount of money. You have an energy need you must fulfill to move on the the |
+                | next year. If you cannot produce enough energy og run out of money, you lose.                                    |
+                |                                                                                                                  |
+                | GOALS:                                                                                                           |
+                |   - Make the most money of your situation.                                                                       |
+                |   - Emmit as little of CO2 as possible.                                                                          |
+                |   - Produce as mush energy as possible.                                                                          |
+                | Good Luck!                                                                                                       |""");
         System.out.println("|__________________________________________________________________________________________________________________|");
         System.out.println("\nType '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
@@ -306,7 +309,7 @@ public class Game {
         // Is energy requirement is fulfilled?
         if (buildArea.getYearlyEnergyProduction() > house.getEnergyRequirement()) {
             // Step 0: Are we at 2030
-            if (gameYear == 2030) {
+            if (gameYear == 20) {
                 printRecap();
                 return true;
             }
@@ -321,7 +324,7 @@ public class Game {
             player.withdrawMoney(house.getYearlyCost());
 
             // Step 3: Log stuff for recap
-            player.transferEnergySources(getGameYear());
+            player.transferEnergySources(getGameYear(), buildArea.getEnergySources());
 
             // Step 5: Remove fossil fuels
             buildArea.removeFossilEnergySources();
@@ -348,7 +351,7 @@ public class Game {
 
     private void printRecap() {
         int highScore = 0;
-        highScore += player.getPlayerEconomy()*34+player.getTotalEnergyOutput()*21+player.calculateEmission()*10;
+        highScore += player.getPlayerEconomy() * 34 + buildArea.getYearlyEnergyProductionRenewable() * 21 + player.calculateEmission() * 10;
 
         String recapString = "RECAP";
         String eMoney = "Excess Money: ";
@@ -360,127 +363,100 @@ public class Game {
 
         textLengths.add(recapString.length());
         textLengths.add(eMoney.length() + String.valueOf(player.getPlayerEconomy()).length());
-        textLengths.add(energyOutputString.length()+String.valueOf(player.getTotalEnergyOutput()).length());
+        textLengths.add(energyOutputString.length() + String.valueOf(buildArea.getYearlyEnergyProductionRenewable()).length());
         textLengths.add(emissionString.length() + String.valueOf(player.calculateEmission()).length());
         textLengths.add(hsString.length() + String.valueOf(highScore).length());
 
 
-        int longestString = Collections.max(textLengths)+4;
-        int distToEdge = longestString/3;
-        int lineLength = longestString+distToEdge*2-2;
+        int longestString = Collections.max(textLengths) + 4;
+        int distToEdge = longestString / 3;
+        int lineLength = longestString + distToEdge * 2 - 2;
 
         int counter;
         System.out.println(longestString);
         for (int i = 0; i <= 12; i++) {
 
             switch (i) {
-
-                case 0:
+                case 0 -> {
                     System.out.print(" ");
-
                     for (counter = 0; counter <= lineLength; counter++) {
                         System.out.print("_");
                     }
                     System.out.println();
-                    break;
-
-                case 1:
-                case 4:
-                case 6:
-                case 8:
-                case 10:
+                }
+                case 1, 4, 6, 8, 10 -> {
                     System.out.print("|");
                     for (counter = 0; counter <= lineLength; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-                case 2:
+                }
+                case 2 -> {
                     System.out.print("|");
-                    for (counter = 0; counter < lineLength/2-recapString.length()/2; counter++) {
+                    for (counter = 0; counter < lineLength / 2 - recapString.length() / 2; counter++) {
                         System.out.print(" ");
                     }
-
                     System.out.print(recapString);
-
-                    for (counter = 0; counter < lineLength/2-recapString.length()/2; counter++) {
+                    for (counter = 0; counter < lineLength / 2 - recapString.length() / 2; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-                case 3:
-                    int eMoneyAndNr = eMoney.length()+String.valueOf(player.getPlayerEconomy()).length();
+                }
+                case 3 -> {
+                    int eMoneyAndNr = eMoney.length() + String.valueOf(player.getPlayerEconomy()).length();
                     System.out.print("|");
-                    for (counter = 0; counter <= distToEdge; counter++){
+                    for (counter = 0; counter <= distToEdge; counter++) {
                         System.out.print(" ");
                     }
-
                     System.out.print(eMoney + player.getPlayerEconomy());
-
-
-                    for (counter = 0; counter < lineLength-eMoneyAndNr-distToEdge; counter++){
+                    for (counter = 0; counter < lineLength - eMoneyAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-
-                case 5:
+                }
+                case 5 -> {
                     System.out.print("|");
-                    for (counter = 0; counter <= distToEdge; counter++){
+                    for (counter = 0; counter <= distToEdge; counter++) {
                         System.out.print(" ");
                     }
-
-                    System.out.print(energyOutputString + player.getTotalEnergyOutput());
-
-                    int energyAndNr = energyOutputString.length()+String.valueOf(player.getTotalEnergyOutput()).length();
-                    for (counter = 0; counter < lineLength-energyAndNr-distToEdge; counter++){
+                    System.out.print(energyOutputString + buildArea.getYearlyEnergyProductionRenewable());
+                    int energyAndNr = energyOutputString.length() + String.valueOf(buildArea.getYearlyEnergyProductionRenewable()).length();
+                    for (counter = 0; counter < lineLength - energyAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-
-                case 7:
+                }
+                case 7 -> {
                     System.out.print("|");
-                    for (counter = 0; counter <= distToEdge; counter++){
+                    for (counter = 0; counter <= distToEdge; counter++) {
                         System.out.print(" ");
                     }
-
                     System.out.print(emissionString + player.calculateEmission());
-
-                    int emissionAndNr = emissionString.length()+String.valueOf(player.calculateEmission()).length();
-                    for (counter = 0; counter < lineLength-emissionAndNr-distToEdge; counter++){
+                    int emissionAndNr = emissionString.length() + String.valueOf(player.calculateEmission()).length();
+                    for (counter = 0; counter < lineLength - emissionAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-                case 9:
+                }
+                case 9 -> {
                     System.out.print("|");
-                    for (counter = 0; counter <= distToEdge; counter++){
+                    for (counter = 0; counter <= distToEdge; counter++) {
                         System.out.print(" ");
                     }
-
                     System.out.print(hsString + highScore);
-
-                    int hsStringAndNr = hsString.length()+String.valueOf(highScore).length();
-                    for (counter = 0; counter < lineLength-hsStringAndNr-distToEdge; counter++){
+                    int hsStringAndNr = hsString.length() + String.valueOf(highScore).length();
+                    for (counter = 0; counter < lineLength - hsStringAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-                case 11:
+                }
+                case 11 -> {
                     System.out.print("|");
-
                     for (counter = 0; counter <= lineLength; counter++) {
                         System.out.print("_");
                     }
                     System.out.println("|");
-                    break;
+                }
             }
 
         }
