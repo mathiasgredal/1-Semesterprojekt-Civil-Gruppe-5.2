@@ -52,16 +52,13 @@ public class Player {
      * Runs through the length of the instantiated arraylist, adds all the emission ints from the arraylists objects into the totalEmission.
      * @return The total emission
      */
-    public int calculateEmission(int year){
+    public int calculateEmission(){
         int totalEmission = 0;
-        for (EnergySource energySource : energySources) {
-            totalEmission += energySource.getEnergyEmission();
+
+        for(int re : recapEnergyEmission.keySet()){
+            totalEmission += recapEnergyEmission.get(re);
         }
-        recapEnergyEmission.put(year, totalEmission);
-        for (int i = 0; i < recapEnergyEmission.size(); i++) {
-            System.out.println(recapEnergyEmission.get(i));
-        }
-        System.out.println(recapEnergyEmission.size());
+
         return totalEmission;
     }
 

@@ -212,7 +212,7 @@ public class Game {
 
     private void printRecap() {
         int highScore = 0;
-        highScore += player.getPlayerEconomy()*34+player.getTotalEnergyOutput()*21+player.calculateEmission(getGameYear())*10;
+        highScore += player.getPlayerEconomy()*34+player.getTotalEnergyOutput()*21+player.calculateEmission()*10;
 
         System.out.println();
         System.out.println(
@@ -223,7 +223,7 @@ public class Game {
                 "\n|                                       |" +
                 "\n|         Total Energy Output: " + player.getTotalEnergyOutput() + "        |" +
                 "\n|                                       |" +
-                "\n|         Total CO2 Emission:" + player.calculateEmission(getGameYear()) + "          |" +
+                "\n|         Total CO2 Emission:" + player.calculateEmission() + "          |" +
                 "\n|                                       |" +
                 "\n|         High Score: " + highScore + "           |" +
                 "\n|                                       |" +
