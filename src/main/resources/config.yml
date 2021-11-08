@@ -1,53 +1,68 @@
 shopItems:
   Battery shop:
     - name: "Battery"
-      description: "Battery to save excess energy from renewables and use it later when it is needed more"
+      description: "BYD dual-panel LiFePo4 battery"
       size: "SMALL"
-      price: 1000
-      emission: 0
-      capacity: 100
+      price: 36375
+      capacity: 5.12
     - name: "Battery"
-      description: "Battery to save excess energy from renewables and use it later when it is needed more"
+      description: "BYD penta-panel LiFePo4 battery"
       size: "MEDIUM"
-      price: 5000
-      emission: 0
-      capacity: 800
+      price: 81250
+      capacity: 12.8
     - name: "Battery"
-      description: "Battery to save excess energy from renewables and use it later when it is needed more"
+      description: "BYD octa-panel LiFePo4 battery"
       size: "LARGE"
-      price: 10000
-      emission: 0
-      capacity: 2000
-  Fossil energyshop:
+      price: 127250
+      capacity: 22.1
+  Fossil energyshop: # Estimated energy prices, due to lack of sources
     - name: "Coal"
-      description: "It is energy from coal"
+      description: "Energy from 1kg coal"
       size: "MEDIUM"
-      price: 13
-      emission: 24
-      output: 90
+      price: 1.28
+      emission: 2.4 # kg co2
+      output: 90 # kwh
     - name: "Oil"
       description: "It is energy from oil"
       size: "MEDIUM"
-      price: 13
-      emission: 31
+      price: 13.3
+      emission: 3.1
       output: 151
-    - name: "Gas"
+    - name: "Natural gas"
       description: "It is energy from natural gas"
       size: "MEDIUM"
-      price: 18
-      emission: 27
+      price: 1.83
+      emission: 2.7
       output: 176
   Solar shop:
     - name: "Solar Energy"
-      description: "Photovoltaic solar panel array producing energy from sunlight"
-      size: "MEDIUM"
-      price: 30900
+      description: "Photovoltaic solar panel array of 13sqm"
+      size: "SMALL"
+      price: 2023
       emission: 0
-      output: 1
+      output: 169.76
+    - name: "Solar Energy"
+      description: "Photovoltaic solar panel array of 32sqm"
+      size: "MEDIUM"
+      price: 52000
+      emission: 0
+      output: 5926
+    - name: "Solar Energy"
+      description: "Photovoltaic solar panel array of 65sqm"
+      size: "LARGE"
+      price: 91579
+      emission: 0
+      output: 12033
   Windturbine shop:
     - name: "Wind Energy"
-      description: "Wind turbine producing energy from the wind"
+      description: "Gaia 10kW wind turbine"
+      size: "SMALL"
+      price: 73557
+      emission: 0
+      output: 32000
+    - name: "Wind Energy"
+      description: "Power 20kW wind generator"
       size: "MEDIUM"
       price: 163460
       emission: 0
-      output: 20
+      output: 122640

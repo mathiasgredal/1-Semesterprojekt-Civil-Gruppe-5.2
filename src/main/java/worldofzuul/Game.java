@@ -154,8 +154,8 @@ public class Game {
                 |                                                                                                                  |
                 | GOALS:                                                                                                           |
                 |   - Make the most money of your situation.                                                                       |
-                |   - Emmit as little of CO2 as possible.                                                                          |
-                |   - Produce as mush energy as possible.                                                                          |
+                |   - Emit as little of CO2 as possible.                                                                          |
+                |   - Produce as much energy as possible.                                                                          |
                 | Good Luck!                                                                                                       |""");
         System.out.println("|__________________________________________________________________________________________________________________|");
         System.out.println("\nType '" + CommandWord.HELP + "' if you need help.");
