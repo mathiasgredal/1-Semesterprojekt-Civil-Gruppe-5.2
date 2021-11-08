@@ -5,7 +5,7 @@ import worldofzuul.Items.EnergyConsumer.*;
 import worldofzuul.Game;
 
 /**
- *
+ * The player house
  */
 public class House extends Room {
     private Car car;

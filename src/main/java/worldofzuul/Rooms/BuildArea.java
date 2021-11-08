@@ -13,14 +13,25 @@ public class BuildArea extends Room {
         super("build area", "at the build area, here you find the energy sources you have built");
     }
 
+    /**
+     * Adds an energysource to the list of energysources
+     */
     public void addEnergySource(EnergySource e) {
         energySources.add(e);
     }
 
+    /**
+     * Gets a copy of the list of energysources
+     */
     public ArrayList<EnergySource> getEnergySources() {
-        return energySources;
+        return new ArrayList<>(energySources);
     }
-    
+
+    /**
+     * Gets the total energyproduction this year for all the energysources
+     *
+     * @return kWh
+     */
     public double getYearlyEnergyProduction() {
         double totalEnergyProduction = 0;
 
@@ -30,6 +41,11 @@ public class BuildArea extends Room {
         return totalEnergyProduction;
     }
 
+    /**
+     * Gets the total energyproduction this year for the renewable energysources
+     *
+     * @return kWh
+     */
     public double getYearlyEnergyProductionRenewable() {
         double totalEnergyProduction = 0;
 
@@ -40,6 +56,11 @@ public class BuildArea extends Room {
         return totalEnergyProduction;
     }
 
+    /**
+     * Gets the total energyproduction this year for the fossil energysources
+     *
+     * @return kWh
+     */
     public double getYearlyEnergyProductionFossil() {
         double totalEnergyProduction = 0;
 
@@ -50,6 +71,11 @@ public class BuildArea extends Room {
         return totalEnergyProduction;
     }
 
+    /**
+     * Gets the total emissions for this year
+     *
+     * @return emission in kg CO2
+     */
     public double getYearlyEmissions() {
         double totalEmission = 0;
 
@@ -60,6 +86,9 @@ public class BuildArea extends Room {
         return totalEmission;
     }
 
+    /**
+     * Removes fossil energysources from the energysource list
+     */
     public void removeFossilEnergySources() {
         ArrayList<EnergySource> renewableEnergySources = new ArrayList<>();
         for (var e : energySources) {
@@ -70,12 +99,18 @@ public class BuildArea extends Room {
         this.energySources = renewableEnergySources;
     }
 
+    /**
+     * Logs the produced energy and sales from each energysource to them self
+     */
     public void addYearlyEnergyProductionToEnergySources() {
         for (var e : energySources) {
             e.addYearlyEnergyProduction(getEnergySalesPricePrkWh());
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printEnterRoomString(Game game) {
         System.out.print(getLongDescription());
@@ -135,6 +170,11 @@ public class BuildArea extends Room {
         System.out.println(getExitString());
     }
 
+    /**
+     * Gets the battery capacity
+     *
+     * @return Total stored energy in kWh
+     */
     public double getTotalBatteryCapacity() {
         double sum = 0;
         for (var energySource : energySources)
@@ -142,6 +182,9 @@ public class BuildArea extends Room {
         return sum;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void getInfoAbout(String secondWord) {
         EnergySource foundEnergySource = null;
@@ -160,10 +203,25 @@ public class BuildArea extends Room {
         }
     }
 
+    /**
+     * Energy sales price varies with the players installed battery capacity
+     * Due to load shifting we store electricity when price is low and sell it when the price is higher
+     * This method uses a formula to estimate this price
+     * 0.25 * (1 + clamp(capacity/renewable_production, 0, 1)
+     *
+     * @return The sales price in $ pr. kWh
+     */
     public double getEnergySalesPricePrkWh() {
-        // Due to load shifting we store electricity and sell it when the price is higher
-        // the increase sales price is calculated by: 0.25 * (1 + clamp(capacity/renewable_production, 0, 1)
-        double salesPriceFactor = Math.max(1, Math.min(2, 1 + getTotalBatteryCapacity() / getYearlyEnergyProductionRenewable()));
-        return 0.25 * salesPriceFactor;
+        // TODO: Perhaps this should be configurable through the config file
+        double baseSalesPrice = 0.25;
+
+        // Prevent a divide by zero
+        if (getYearlyEnergyProductionRenewable() == 0) {
+            return baseSalesPrice;
+        } else {
+            // Use the previously defined formula, for sales price estimation
+            double salesPriceFactor = Math.max(1, Math.min(2, 1 + getTotalBatteryCapacity() / getYearlyEnergyProductionRenewable()));
+            return baseSalesPrice * salesPriceFactor;
+        }
     }
 }

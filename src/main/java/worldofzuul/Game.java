@@ -12,9 +12,6 @@ import worldofzuul.Exceptions.*;
 import worldofzuul.Input.*;
 import worldofzuul.Rooms.*;
 
-import java.util.Collections;
-import java.util.ArrayList;
-
 import worldofzuul.Rooms.Shops.EnergyShop;
 import worldofzuul.Rooms.Shops.RetailShop;
 import worldofzuul.Rooms.Shops.Shop;
@@ -258,9 +255,6 @@ public class Game {
             Buyable item = currentShop.getShopItem(Integer.parseInt(itemName) - 1);
 
             if (player.withdrawMoney(item.getPrice())) {
-                System.out.println("You have bought: " + item.getName());
-                System.out.printf("Current balance: $%.2f\n", player.getPlayerEconomy());
-
                 if (item instanceof EnergySource) {
                     buildArea.addEnergySource((EnergySource) item);
                 } else if (item instanceof EnergyConsumer) {
@@ -269,6 +263,8 @@ public class Game {
                     player.insertMoney(item.getPrice());
                     throw new ReceiverForBoughtItemNotFoundException();
                 }
+                System.out.println("You have bought: " + item.getName());
+                System.out.printf("Current balance: $%.2f\n", player.getPlayerEconomy());
             } else {
                 System.out.println("You do not have enough money to buy this item, you need: " + (item.getPrice() - player.getPlayerEconomy()));
             }
