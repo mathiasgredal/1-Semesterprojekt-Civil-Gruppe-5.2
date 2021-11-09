@@ -304,7 +304,7 @@ public class Game {
         // Is energy requirement is fulfilled?
         if (buildArea.getYearlyEnergyProduction() > house.getEnergyRequirement()) {
             // Step 0: Are we at 2030
-            if (gameYear == 20) {
+            if (gameYear == 2) {
                 printRecap();
                 return true;
             }
