@@ -66,7 +66,9 @@ public class Player {
 
     public void transferEnergySources(int year, ArrayList<EnergySource> energySources, double houseEmissions) {
         recapEnergySources.put(year, energySources);
-        int totalEmissionPerYear = recapEnergyEmission.get(year - 1) == null ? 0 : recapEnergyEmission.get(year - 1);
+        int totalEmissionPerYear = 0;
+        if (recapEnergyEmission.get(year - 1) != null)
+            totalEmissionPerYear = recapEnergyEmission.get(year - 1);
 
         //Iterates through the hashmaps keys.
         for (int i = 0; i < energySources.size(); i++) {
