@@ -1,6 +1,7 @@
 package worldofzuul;
 
 import worldofzuul.Items.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -51,10 +52,11 @@ public class Player {
         }
 
     }
-    public int calculateEmission(){
+
+    public int calculateEmission() {
         int totalEmission = 0;
 
-        for(int re : recapEnergyEmission.keySet()){
+        for (int re : recapEnergyEmission.keySet()) {
             totalEmission += recapEnergyEmission.get(re);
         }
 
@@ -62,25 +64,21 @@ public class Player {
     }
 
 
-    public void transferEnergySources(int year, ArrayList<EnergySource> energySources){
+    public void transferEnergySources(int year, ArrayList<EnergySource> energySources) {
         int totalEmissionPerYear = 0;
 
         recapEnergySources.put(year, energySources);
 
         //Iterates through the hashmaps keys.
-        for(int i = 0; i < recapEnergySources.size(); i++){
+        for (int i = 0; i < recapEnergySources.size(); i++) {
             //The nested loop sums up the arraylist' energy emission of all energy sources
-            for(int j = 0; j < recapEnergySources.get(i).size(); j++){
+            for (int j = 0; j < recapEnergySources.get(i).size(); j++) {
                 totalEmissionPerYear += recapEnergySources.get(i).get(j).getEmission();
             }
         }
 
         //Collects and puts all calculated emission for every year into the hashmap , Used in the recap window.
         recapEnergyEmission.put(year, totalEmissionPerYear);
-    }
-
-    public void saveRecapData(int year, ArrayList<EnergySource> energySources){
-        recapEnergySources.put(year, energySources);
     }
 
     /**
