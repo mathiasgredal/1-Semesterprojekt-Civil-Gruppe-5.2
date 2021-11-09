@@ -56,7 +56,6 @@ public class Game {
             System.out.println(ex.getMessage());
             System.exit(1);
         }
-
     }
 
     /**
@@ -305,7 +304,7 @@ public class Game {
         // Is energy requirement is fulfilled?
         if (buildArea.getYearlyEnergyProduction() > house.getEnergyRequirement()) {
             // Step 0: Are we at 2030
-            if (gameYear == 20) {
+            if (gameYear == 2) {
                 printRecap();
                 return true;
             }
@@ -320,7 +319,7 @@ public class Game {
             player.withdrawMoney(house.getYearlyCost());
 
             // Step 3: Log stuff for recap
-            player.transferEnergySources(getGameYear(), buildArea.getEnergySources());
+            player.transferEnergySources(getGameYear(), buildArea.getEnergySources(), house.getYearlyEmissions());
 
             // Step 5: Remove fossil fuels
             buildArea.removeFossilEnergySources();
@@ -427,6 +426,7 @@ public class Game {
                     for (counter = 0; counter <= distToEdge; counter++) {
                         System.out.print(" ");
                     }
+
                     System.out.print(emissionString + player.calculateEmission());
                     int emissionAndNr = emissionString.length() + String.valueOf(player.calculateEmission()).length();
                     for (counter = 0; counter < lineLength - emissionAndNr - distToEdge; counter++) {
