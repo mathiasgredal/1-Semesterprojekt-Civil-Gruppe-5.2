@@ -1,67 +1,126 @@
 package worldofzuul;
 
-import worldofzuul.EnergySources.*;
+import java.util.*;
+
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+
+import worldofzuul.Config.*;
+import worldofzuul.Items.*;
+import worldofzuul.Items.EnergyConsumer.*;
+import worldofzuul.Exceptions.*;
 import worldofzuul.Input.*;
 import worldofzuul.Rooms.*;
-import java.util.Collections;
-import java.util.ArrayList;
 
+import worldofzuul.Rooms.Shops.EnergyShop;
+import worldofzuul.Rooms.Shops.RetailShop;
+import worldofzuul.Rooms.Shops.Shop;
+
+
+/**
+ * The primary class for handling game logic
+ */
 public class Game {
-    public static final Game instance = new Game(); //Singleton pattern #1
-    String nameOfGame = "Greenhouse 'Jazz'";
-    Player player = new Player(120000, new ArrayList<>());
-    private int gameYear = 0;
-    private Parser parser;
-    private Room currentRoom;
-    ArrayList<EnergySource> energySourcesPrices = new ArrayList<>();
+    // Singleton pattern for game
+    public static final Game instance = new Game();
 
+    // Other encapsulated game attributes
+    private String nameOfGame = "Greenhouse 'Jazz'";
+    private Player player = new Player();
+    private Config config;
+
+    private int gameYear = 0;
+    private final Parser parser;
+    private Room currentRoom;
+
+    private final House house = new House(1600);
+    private final BuildArea buildArea = new BuildArea();
+    private final ArrayList<Shop> shops = new ArrayList<>();
+
+    /**
+     * Constructor for the Game class
+     */
     private Game() {
         createRooms();
         parser = new Parser();
+
+        // Load config from file using YAML
+        try {
+            Constructor constructor = new Constructor(Config.class);
+            Yaml yaml = new Yaml(constructor);
+            config = yaml.load(FileResourcesUtils.getFileFromResourceAsStream("config.yml"));
+
+            // Load shop data from config file
+            loadShopItems();
+        } catch (CannotFindResourceException ex) {
+            System.out.println(ex.getMessage());
+            System.exit(1);
+        }
+
     }
 
+    /**
+     * Creates a linked structure of rooms to navigate through
+     */
     private void createRooms() {
-        House house = new House("in your house", "House", 1600);
+        CrossRoad crossRoad = new CrossRoad();
+        ShopArea shopArea = new ShopArea();
 
-        Paths pathEast = new Paths("on a path, where you can go to energy companies, that uses fossil fuels", "Path to fossil fuels");
-        Paths pathWest = new Paths("are on a path, where you can go to energy companies, that uses renewable fuels", "Path to renewable fuels");
+        Shop fossilShop = new EnergyShop("Fossil energyshop", "at a fossil energy provider, we provide energy from fossil fuels");
+        Shop batteryShop = new EnergyShop("Battery shop", "at a battery shop, we sell batteries");
+        Shop windShop = new EnergyShop("Windturbine shop", "at a wind shop, we sell wind turbines");
+        Shop solarShop = new EnergyShop("Solar shop", "at a solar shop, we sell solar panels");
+        Shop retailShop = new RetailShop("Retail store",
+                "in a general purpose retail store selling everything under the sun.",
+                List.of(new HeatPump(), new ElectricCar()));
 
-        Shop gasProvider = new Shop("in a shop, where they sell power from gas energy", "Shop for gas-energy", new EnergySource[]{new GasEnergy()});
-        Shop coalProvider = new Shop("in a shop, where they sell power from coal energy", "Shop for coal-energy", new EnergySource[]{new CoalEnergy()});
-        Shop oilProvider = new Shop("in a shop, where they sell power from oil energy", "Shop for oil-energy", new EnergySource[]{new OilEnergy()});
+        house.setExit("south", crossRoad);
+        house.setExit("west", buildArea);
 
-        //Shop hydroProvider = new Shop("in a shop, where you can buy renewable energy sources", new EnergySource[]{new HydroEnergy(), new SolarEnergy()});
-        Shop windProvider = new Shop("in a shop, where you can buy windmills", "Shop for wind-energy",  new EnergySource[]{new WindEnergy()});
-        Shop solarProvider = new Shop("in a shop, where you can buy solar panels", "Shop for solar-energy", new EnergySource[]{new SolarEnergy()});
+        crossRoad.setExit("north", house);
+        crossRoad.setExit("west", retailShop);
+        crossRoad.setExit("east", shopArea);
+        crossRoad.setExit("south", fossilShop);
 
-        energySourcesPrices.add(gasProvider.getShopItem(0));
-        energySourcesPrices.add(coalProvider.getShopItem(0));
-        energySourcesPrices.add(oilProvider.getShopItem(0));
+        buildArea.setExit("east", house);
+        retailShop.setExit("east", crossRoad);
+        fossilShop.setExit("north", crossRoad);
 
-        house.setExit("west", pathWest);
-        house.setExit("east", pathEast);
+        shopArea.setExit("west", crossRoad);
+        shopArea.setExit("north", windShop);
+        shopArea.setExit("east", solarShop);
+        shopArea.setExit("south", batteryShop);
 
-        pathEast.setExit("south",gasProvider);
-        pathEast.setExit("east", coalProvider);
-        pathEast.setExit("north",oilProvider);
-        pathEast.setExit("west", house);
+        windShop.setExit("south", shopArea);
+        solarShop.setExit("west", shopArea);
+        batteryShop.setExit("north", shopArea);
 
-        pathWest.setExit("south",windProvider);
-        pathWest.setExit("east", house);
-        pathWest.setExit("north",solarProvider);
-
-
-        gasProvider.setExit("north", pathEast);
-        coalProvider.setExit("west", pathEast);
-        oilProvider.setExit("south", pathEast);
-
-        windProvider.setExit("north", pathWest);
-        solarProvider.setExit("south", pathWest);
-
+        shops.add(fossilShop);
+        shops.add(windShop);
+        shops.add(batteryShop);
+        shops.add(solarShop);
+        shops.add(retailShop);
 
         currentRoom = house;
     }
 
+    /**
+     * Loads the shop items defined in the config yaml file into the shops
+     */
+    private void loadShopItems() {
+        // Each array of shop items is stored in a map, with a key equaling the classname of the shop
+        config.getShopItems().forEach((k, v) -> {
+            for (Shop shop : shops) {
+                if (shop.getName().equals(k)) {
+                    shop.setShopItems(new ArrayList<>(Arrays.asList(v)));
+                }
+            }
+        });
+    }
+
+    /**
+     * Main entrypoint to game
+     */
     public void play() {
         printIntroduction();
         boolean finished = false;
@@ -72,31 +131,41 @@ public class Game {
         System.out.println("Thank you for playing!.  Good bye.");
     }
 
+    /**
+     * Prints the introduction message
+     */
     private void printIntroduction() {
         System.out.println();
         System.out.println(" __________________________________________________________________________________________________________________ ");
         System.out.printf("| Welcome to the %s!                                                                                |", nameOfGame);
-        System.out.println("" +
-                "\n| INTRODUCTION:                                                                                                    |" +
-                "\n| The year is 2010. Everyday greenhouse gasses are being emitted into the atmosphere, resulting in global warming! |" +
-                "\n| The United Nations has come up with a goal to reduce greenhouse gas emissions by producing the majority of elec- |" +
-                "\n| tricity using renewable energy sources before 2030. Right now your energy needs are fulfilled by fossil fuels,   |" +
-                "\n| and that is emitting a lot of CO2 int the atmosphere. Every year you will get a salary and perform actions until |" +
-                "\n| the next year. In the game there will be shops, where you can buy energy from different sources. Excess energy   |" +
-                "\n| created will be added to your total amount of money. You have an energy need you must fulfill to move on the the |" +
-                "\n| next year. If you cannot produce enough energy og run out of money, you lose.                                    |" +
-                "\n|                                                                                                                  |" +
-                "\n| GOALS:                                                                                                           |" +
-                "\n|   - Make the most money of your situation.                                                                       |" +
-                "\n|   - Emmit as little of CO2 as possible.                                                                          |" +
-                "\n|   - Produce as mush energy as possible.                                                                          |" +
-                "\n| Good Luck!                                                                                                       |");
+        System.out.println("""
+
+                | INTRODUCTION:                                                                                                    |
+                | The year is 2010. Everyday greenhouse gasses are being emitted into the atmosphere, resulting in global warming! |
+                | The United Nations has come up with a goal to reduce greenhouse gas emissions by producing the majority of elec- |
+                | tricity using renewable energy sources before 2030. Right now your energy needs are fulfilled by fossil fuels,   |
+                | and that is emitting a lot of CO2 int the atmosphere. Every year you will get a salary and perform actions until |
+                | the next year. In the game there will be shops, where you can buy energy from different sources. Excess energy   |
+                | created will be added to your total amount of money. You have an energy need you must fulfill to move on the the |
+                | next year. If you cannot produce enough energy og run out of money, you lose.                                    |
+                |                                                                                                                  |
+                | GOALS:                                                                                                           |
+                |   - Make the most money of your situation.                                                                       |
+                |   - Emit as little of CO2 as possible.                                                                          |
+                |   - Produce as much energy as possible.                                                                          |
+                | Good Luck!                                                                                                       |""");
         System.out.println("|__________________________________________________________________________________________________________________|");
         System.out.println("\nType '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription()+currentRoom.getExitString());
+        currentRoom.printEnterRoomString(this);
     }
 
+    /**
+     * Handles the delegation of logic behind each command from the player
+     *
+     * @param command The tokenized player input
+     * @return A boolean indicating whether the program should end
+     */
     private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
@@ -114,12 +183,29 @@ public class Game {
                     System.out.println("You are not currently in a shop.");
                 }
             }
-            case NEXT -> nextYear(command);
+            case LOOK -> lookAt(command);
+            case NEXT -> wantToQuit = nextYear(command);
         }
 
         return wantToQuit;
     }
 
+    /**
+     * Allows inspections of rooms and objects in the world
+     *
+     * @param command Player input
+     */
+    private void lookAt(Command command) {
+        if (!command.hasSecondWord()) {
+            currentRoom.printEnterRoomString(this);
+        } else {
+            currentRoom.getInfoAbout(command.getSecondWord());
+        }
+    }
+
+    /**
+     * Prints the help message
+     */
     private void printHelp() {
         System.out.println("You are in your house.");
         System.out.println("Now go fight climate change and save some moeny!");
@@ -128,6 +214,11 @@ public class Game {
         parser.showCommands();
     }
 
+    /**
+     * Allows navigation between rooms
+     *
+     * @param command Player input
+     */
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Go where?");
@@ -146,6 +237,12 @@ public class Game {
         }
     }
 
+    /**
+     * Allows the player to buy items from the shop they are currently in
+     *
+     * @param command     Player input
+     * @param currentShop The current shop the player is in
+     */
     private void buyItem(Command command, Shop currentShop) {
         if (!command.hasSecondWord()) {
             System.out.println("Buy what?");
@@ -154,65 +251,103 @@ public class Game {
 
         //Try-catch to handle exceptions that can be created by the user.
         try {
-            String item = command.getSecondWord();
-            EnergySource itemFromShop = currentShop.getShopItem(Integer.parseInt(item) - 1);
+            String itemName = command.getSecondWord();
+            Buyable item = currentShop.getShopItem(Integer.parseInt(itemName) - 1);
 
-            if (itemFromShop.getEnergyPrice() <= player.getPlayerEconomy()) {
-                //Adds the bought energy source to the players' arraylist.
-                System.out.println("You have bought: " + itemFromShop.getEnergyName());
-                player.addEnergySource(itemFromShop);
-                player.setPlayerEconomy(player.getPlayerEconomy() - itemFromShop.getEnergyPrice());
-                System.out.println(player.getPlayerEconomy());
+            if (player.withdrawMoney(item.getPrice())) {
+                if (item instanceof EnergySource) {
+                    buildArea.addEnergySource((EnergySource) item);
+                } else if (item instanceof EnergyConsumer) {
+                    house.addEnergyConsumer((EnergyConsumer) item);
+                } else {
+                    player.insertMoney(item.getPrice());
+                    throw new ReceiverForBoughtItemNotFoundException();
+                }
+                System.out.println("You have bought: " + item.getName());
+                System.out.printf("Current balance: $%.2f\n", player.getPlayerEconomy());
             } else {
-                System.out.println("You do not have enough money to buy this item, you need: " + (itemFromShop.getEnergyPrice() - player.getPlayerEconomy()));
+                System.out.println("You do not have enough money to buy this item, you need: " + (item.getPrice() - player.getPlayerEconomy()));
             }
-
         } catch (IndexOutOfBoundsException ex) {
-            System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().length);
+            System.out.println("Please insert a number between," + " 1 and " + currentShop.getShopItems().size());
         } catch (NumberFormatException ex) {
             System.out.println("Please enter a valid number.");
+        } catch (ReceiverForBoughtItemNotFoundException recieverForBoughtItemNotFound) {
+            System.out.println("Could not buy that item");
+        } catch (CannotBuyItemMoreThanOnceException cannotBuyItemMoreThanOnce) {
+            System.out.println(cannotBuyItemMoreThanOnce.getMessage());
         }
     }
 
+    /**
+     * Getter for the main game year
+     *
+     * @return The current game year/round starting from 0
+     */
     public int getGameYear() {
         return gameYear;
     }
 
-    public void nextYear(Command command) {
-
-        if (!command.hasSecondWord()) {
+    /**
+     * Allows the player to progress to the next year,
+     * assuming they have fulfilled the requirements
+     * to do so.
+     *
+     * @param command The player input
+     * @return A boolean value indicating whether the game has finished
+     */
+    public boolean nextYear(Command command) {
+        if (!command.hasSecondWord() || !command.getSecondWord().contains("year")) {
             System.out.println("Next year?");
-            return;
+            return false;
         }
 
-        try {
-            if (command.getSecondWord().contains("year")) {
-                if (player.getTotalEnergyOutput() >= ((House) currentRoom).getEnergyNeed()) {
-                    player.transferEnergySources(getGameYear());
-                    gameYear++;
-                    System.out.println("You are now in the year: " + (2010 + getGameYear()));
-                    player.clearEnergySources(getGameYear());
-                    if (getGameYear() == 20) {
-                        printRecap();
-                    }
-                } else {
-                    System.out.println("Please fulfill the required amount of energy.");
-                }
+        // Is energy requirement is fulfilled?
+        if (buildArea.getYearlyEnergyProduction() > house.getEnergyRequirement()) {
+            // Step 0: Are we at 2030
+            if (gameYear == 20) {
+                printRecap();
+                return true;
             }
-        } catch (ClassCastException ex) {
-            if (currentRoom instanceof Shop) {
-                System.out.println("Unable to do this action, outside of your house... Please try again.");
-            } else {
-                System.out.println("Failure to proceed... Please try again.");
-            }
-        }
 
+            // Step 1: Calculate values
+            double excessEnergy = buildArea.getYearlyEnergyProduction() - house.getEnergyRequirement();
+            double soldEnergyPrice = excessEnergy * buildArea.getEnergySalesPricePrkWh();
+            double emissions = buildArea.getYearlyEmissions() + house.getYearlyEmissions();
+
+            // Step 2: Insert yearly salery and energy sales to player balance
+            player.insertMoney(soldEnergyPrice + player.getYearlyIncome());
+            player.withdrawMoney(house.getYearlyCost());
+
+            // Step 3: Log stuff for recap
+            player.transferEnergySources(getGameYear(), buildArea.getEnergySources());
+
+            // Step 5: Remove fossil fuels
+            buildArea.removeFossilEnergySources();
+
+            // Step 6: Add earned money to each energysource
+            buildArea.addYearlyEnergyProductionToEnergySources();
+
+            // Step 7: Increment year
+            gameYear++;
+
+            // Step 8: Print to the player what happened(money, co2, sold energy, sales price)
+            System.out.println("You are now in the year: " + gameYear);
+            // TODO: Print the rest of what happened
+            return false;
+        } else {
+            System.out.printf("Please fulfill the required amount of energy, missing: %.2fkWh\n", house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction());
+
+            //TODO: Perhaps we should check if it is possible for the player to buy the required energy,
+            // and automatically end the game if they can't
+            return false;
+        }
     }
 
 
     private void printRecap() {
         int highScore = 0;
-        highScore += player.getPlayerEconomy()*34+player.getTotalEnergyOutput()*21+player.calculateEmission()*10;
+        highScore += player.getPlayerEconomy() * 34 + buildArea.getYearlyEnergyProductionRenewable() * 21 + player.calculateEmission() * 10;
 
         String recapString = "RECAP";
         String eMoney = "Excess Money: ";
@@ -224,132 +359,111 @@ public class Game {
 
         textLengths.add(recapString.length());
         textLengths.add(eMoney.length() + String.valueOf(player.getPlayerEconomy()).length());
-        textLengths.add(energyOutputString.length()+String.valueOf(player.getTotalEnergyOutput()).length());
+        textLengths.add(energyOutputString.length() + String.valueOf(buildArea.getYearlyEnergyProductionRenewable()).length());
         textLengths.add(emissionString.length() + String.valueOf(player.calculateEmission()).length());
         textLengths.add(hsString.length() + String.valueOf(highScore).length());
 
 
-        int longestString = Collections.max(textLengths)+4;
-        int distToEdge = longestString/3;
-        int lineLength = longestString+distToEdge*2-2;
+        int longestString = Collections.max(textLengths) + 4;
+        int distToEdge = longestString / 3;
+        int lineLength = longestString + distToEdge * 2 - 2;
 
         int counter;
         System.out.println(longestString);
         for (int i = 0; i <= 12; i++) {
 
             switch (i) {
-
-                case 0:
+                case 0 -> {
                     System.out.print(" ");
-
                     for (counter = 0; counter <= lineLength; counter++) {
                         System.out.print("_");
                     }
                     System.out.println();
-                    break;
-
-                case 1:
-                case 4:
-                case 6:
-                case 8:
-                case 10:
+                }
+                case 1, 4, 6, 8, 10 -> {
                     System.out.print("|");
                     for (counter = 0; counter <= lineLength; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-                case 2:
+                }
+                case 2 -> {
                     System.out.print("|");
-                    for (counter = 0; counter < lineLength/2-recapString.length()/2; counter++) {
+                    for (counter = 0; counter < lineLength / 2 - recapString.length() / 2; counter++) {
                         System.out.print(" ");
                     }
-
                     System.out.print(recapString);
-
-                    for (counter = 0; counter < lineLength/2-recapString.length()/2; counter++) {
+                    for (counter = 0; counter < lineLength / 2 - recapString.length() / 2; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-                case 3:
-                    int eMoneyAndNr = eMoney.length()+String.valueOf(player.getPlayerEconomy()).length();
+                }
+                case 3 -> {
+                    int eMoneyAndNr = eMoney.length() + String.valueOf(player.getPlayerEconomy()).length();
                     System.out.print("|");
-                    for (counter = 0; counter <= distToEdge; counter++){
+                    for (counter = 0; counter <= distToEdge; counter++) {
                         System.out.print(" ");
                     }
-
                     System.out.print(eMoney + player.getPlayerEconomy());
-
-
-                    for (counter = 0; counter < lineLength-eMoneyAndNr-distToEdge; counter++){
+                    for (counter = 0; counter < lineLength - eMoneyAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-
-                case 5:
+                }
+                case 5 -> {
                     System.out.print("|");
-                    for (counter = 0; counter <= distToEdge; counter++){
+                    for (counter = 0; counter <= distToEdge; counter++) {
                         System.out.print(" ");
                     }
-
-                    System.out.print(energyOutputString + player.getTotalEnergyOutput());
-
-                    int energyAndNr = energyOutputString.length()+String.valueOf(player.getTotalEnergyOutput()).length();
-                    for (counter = 0; counter < lineLength-energyAndNr-distToEdge; counter++){
+                    System.out.print(energyOutputString + buildArea.getYearlyEnergyProductionRenewable());
+                    int energyAndNr = energyOutputString.length() + String.valueOf(buildArea.getYearlyEnergyProductionRenewable()).length();
+                    for (counter = 0; counter < lineLength - energyAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-
-                case 7:
+                }
+                case 7 -> {
                     System.out.print("|");
-                    for (counter = 0; counter <= distToEdge; counter++){
+                    for (counter = 0; counter <= distToEdge; counter++) {
                         System.out.print(" ");
                     }
-
                     System.out.print(emissionString + player.calculateEmission());
-
-                    int emissionAndNr = emissionString.length()+String.valueOf(player.calculateEmission()).length();
-                    for (counter = 0; counter < lineLength-emissionAndNr-distToEdge; counter++){
+                    int emissionAndNr = emissionString.length() + String.valueOf(player.calculateEmission()).length();
+                    for (counter = 0; counter < lineLength - emissionAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-                case 9:
+                }
+                case 9 -> {
                     System.out.print("|");
-                    for (counter = 0; counter <= distToEdge; counter++){
+                    for (counter = 0; counter <= distToEdge; counter++) {
                         System.out.print(" ");
                     }
-
                     System.out.print(hsString + highScore);
-
-                    int hsStringAndNr = hsString.length()+String.valueOf(highScore).length();
-                    for (counter = 0; counter < lineLength-hsStringAndNr-distToEdge; counter++){
+                    int hsStringAndNr = hsString.length() + String.valueOf(highScore).length();
+                    for (counter = 0; counter < lineLength - hsStringAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }
                     System.out.println("|");
-                    break;
-
-                case 11:
+                }
+                case 11 -> {
                     System.out.print("|");
-
                     for (counter = 0; counter <= lineLength; counter++) {
                         System.out.print("_");
                     }
                     System.out.println("|");
-                    break;
+                }
             }
 
         }
     }
 
+    /**
+     * Allows the player to quit the game with the quit command
+     *
+     * @param command player input
+     * @return A boolean value indicating whether the game should end
+     */
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
@@ -359,6 +473,11 @@ public class Game {
         }
     }
 
+    /**
+     * A getter for the player attribute
+     *
+     * @return A reference to the player object
+     */
     public Player getPlayer() {
         return player;
     }

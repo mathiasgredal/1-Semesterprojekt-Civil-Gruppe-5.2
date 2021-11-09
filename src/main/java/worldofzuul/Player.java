@@ -1,43 +1,79 @@
 package worldofzuul;
 
-import worldofzuul.EnergySources.*;
+import worldofzuul.Items.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The player class, used to manage player specific resources mainly ecomony and recap data
+ */
 public class Player {
-    private int playerEconomy;
-    private ArrayList<EnergySource> energySources;
+    private double playerEconomy = 300000;
+    private final double yearlyIncome = 10000;
     private HashMap<Integer, ArrayList<EnergySource>> recapEnergySources = new HashMap<Integer, ArrayList<EnergySource>>();
     private HashMap<Integer, Integer> recapEnergyEmission = new HashMap<Integer, Integer>();
 
-    public Player(int playerEconomy, ArrayList<EnergySource> energySources){
-        this.playerEconomy = playerEconomy;
-        this.energySources = energySources;
+    /**
+     * No-arg constructor for player, using the defined value
+     */
+    public Player() {
     }
 
-    public int getPlayerEconomy() {
+    /**
+     * Constructs the player with the set economy
+     *
+     * @param playerEconomy The dollar amount the player should start with
+     */
+    public Player(int playerEconomy) {
+        this.playerEconomy = playerEconomy;
+    }
+
+    /**
+     * Gets the amount of money the player has
+     *
+     * @return The amount of money
+     */
+    public double getPlayerEconomy() {
         return playerEconomy;
     }
 
-    public void setPlayerEconomy(int playerEconomy) {
-        this.playerEconomy = playerEconomy;
+    /**
+     * Withdraws money from account
+     *
+     * @return Returns true if withdrawal was successful
+     */
+    public boolean withdrawMoney(double amount) {
+        if (playerEconomy > amount) {
+            playerEconomy -= amount;
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
-    public void addEnergySource(EnergySource e){
-        energySources.add(e);
+    public int calculateEmission() {
+        int totalEmission = 0;
+
+        for (int re : recapEnergyEmission.keySet()) {
+            totalEmission += recapEnergyEmission.get(re);
+        }
+
+        return totalEmission;
     }
 
-    public void transferEnergySources(int year){
+
+    public void transferEnergySources(int year, ArrayList<EnergySource> energySources) {
         int totalEmissionPerYear = 0;
 
         recapEnergySources.put(year, energySources);
 
         //Iterates through the hashmaps keys.
-        for(int i = 0; i < recapEnergySources.size(); i++){
+        for (int i = 0; i < recapEnergySources.size(); i++) {
             //The nested loop sums up the arraylist' energy emission of all energy sources
-            for(int j = 0; j < recapEnergySources.get(i).size(); j++){
-                totalEmissionPerYear += recapEnergySources.get(i).get(j).getEnergyEmission();
+            for (int j = 0; j < recapEnergySources.get(i).size(); j++) {
+                totalEmissionPerYear += recapEnergySources.get(i).get(j).getEmission();
             }
         }
 
@@ -46,40 +82,18 @@ public class Player {
     }
 
     /**
-     * Runs through the length of the instantiated arraylist, adds all the emission ints from the arraylists objects into the totalEmission.
-     * @return The total emission
+     * Inserts money into account
      */
-    public int calculateEmission(){
-        int totalEmission = 0;
-
-        for(int re : recapEnergyEmission.keySet()){
-            totalEmission += recapEnergyEmission.get(re);
-        }
-
-        return totalEmission;
-    }
-
-
-    public void clearEnergySources(int year){
-        recapEnergySources.put(year, energySources);
-        energySources.removeIf(s -> s.getEnergyEmission() > 0);
+    public void insertMoney(double amount) {
+        playerEconomy += amount;
     }
 
     /**
-     * Runs through the length of the instantiated arraylist, adds all the energy output ints from the arraylists objects into the totalOutput variable.
-     * @return The total energy output
+     * Getter for the players yearly income
+     *
+     * @return The dollar amount for the yearly income
      */
-    public int getTotalEnergyOutput(){
-        int totalOutput = 0;
-        for (EnergySource energySource : energySources) {
-            totalOutput += energySource.getEnergyOutput();
-        }
-        return totalOutput;
-    }
-
-    public void printEnergySources(){
-        for (EnergySource energySource : energySources) {
-            System.out.println(energySource.getEnergyName() + ", " + energySource.getEnergyPrice() + ", " + energySource.getEnergyEmission() + ", " + energySource.getEnergyOutput());
-        }
+    public double getYearlyIncome() {
+        return yearlyIncome;
     }
 }

@@ -1,7 +1,10 @@
 package worldofzuul;
 
 public class Main {
-    public static void main(String[] args){
+    /**
+     * The main method entrypoint for the game
+     */
+    public static void main(String[] args) {
         Game.instance.play();
     }
 }

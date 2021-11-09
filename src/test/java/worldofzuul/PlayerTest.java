@@ -1,45 +1,59 @@
 package worldofzuul;
 
 import org.junit.jupiter.api.Test;
-import worldofzuul.EnergySources.CoalEnergy;
-import worldofzuul.EnergySources.EnergySource;
-import worldofzuul.EnergySources.GasEnergy;
-import worldofzuul.Input.Command;
-import worldofzuul.Input.CommandWord;
-import worldofzuul.Input.Parser;
-import worldofzuul.Rooms.Shop;
+import worldofzuul.Items.EnergySource;
+import worldofzuul.Items.EnergySourceSize;
+import worldofzuul.Rooms.Shops.EnergyShop;
+import worldofzuul.Rooms.Shops.Shop;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
-    int moneyAmount = 500;
-    Player player = new Player(moneyAmount, new ArrayList<>());
-
     @Test
     void getPlayerEconomy() {
-        assertEquals(player.getPlayerEconomy(), moneyAmount);
+        Player player = new Player(500);
+        assertEquals(player.getPlayerEconomy(), 500);
     }
 
     @Test
-    void setPlayerEconomy() {
-        moneyAmount = 1000;
-        player.setPlayerEconomy(moneyAmount);
-        assertEquals(player.getPlayerEconomy(), moneyAmount);
+    void withdrawMoney() {
+        Player player = new Player(500);
+
+        // Should return false when overdrawing
+        assertFalse(player.withdrawMoney(1000));
+
+        // Should return true when drawing allowed amount
+        assertTrue(player.withdrawMoney(1));
+
+        // Should have updated balance after withdrawing
+        assertEquals(player.getPlayerEconomy(), 499);
     }
 
-   @Test
-    void getShopDetails(){
-        Shop shop = new Shop("A shop test", "Shop", new EnergySource[]{new CoalEnergy()});
+    @Test
+    void insertMoney() {
+        Player player = new Player(500);
+        player.insertMoney(1000);
+        assertEquals(player.getPlayerEconomy(), 1500);
+    }
+
+    @Test
+    void getShopDetails() {
+        var myEnergy = new EnergySource(
+                "My energy",
+                "cold fusion", EnergySourceSize.MEDIUM,
+                1000, 24, 1000);
+
+        Shop shop = new EnergyShop("Magic shop",
+                "A shop test", List.of(myEnergy));
 
         assertEquals("A shop test", shop.getShortDescription());
-        assertEquals(24 ,shop.getShopItem(0).getEnergyEmission());
+        assertEquals(24, ((EnergySource) shop.getShopItem(0)).getEmission());
     }
 
     @Test
-    void getGameYear(){
+    void getGameYear() {
 
         assertEquals(0, Game.instance.getGameYear());
     }
