@@ -64,18 +64,16 @@ public class Player {
     }
 
 
-    public void transferEnergySources(int year, ArrayList<EnergySource> energySources) {
-        int totalEmissionPerYear = 0;
-
+    public void transferEnergySources(int year, ArrayList<EnergySource> energySources, double houseEmissions) {
         recapEnergySources.put(year, energySources);
+        int totalEmissionPerYear = recapEnergyEmission.get(year - 1) == null ? 0 : recapEnergyEmission.get(year - 1);
 
         //Iterates through the hashmaps keys.
-        for (int i = 0; i < recapEnergySources.size(); i++) {
-            //The nested loop sums up the arraylist' energy emission of all energy sources
-            for (int j = 0; j < recapEnergySources.get(i).size(); j++) {
-                totalEmissionPerYear += recapEnergySources.get(i).get(j).getEmission();
-            }
+        for (int i = 0; i < energySources.size(); i++) {
+            totalEmissionPerYear += energySources.get(i).getEmission();
         }
+
+        totalEmissionPerYear += houseEmissions;
 
         //Collects and puts all calculated emission for every year into the hashmap , Used in the recap window.
         recapEnergyEmission.put(year, totalEmissionPerYear);
