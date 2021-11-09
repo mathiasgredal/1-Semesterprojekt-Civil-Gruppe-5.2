@@ -34,6 +34,7 @@ public class EnergyShop extends Shop {
     /**
      * {@inheritDoc}
      */
+    @Override
     public EnergySource getShopItem(int index) {
         return (EnergySource) super.getShopItem(index);
     }
