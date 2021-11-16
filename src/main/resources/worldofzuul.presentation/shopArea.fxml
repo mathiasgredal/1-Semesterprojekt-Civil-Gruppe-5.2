@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
+    <children>
+        <Button fx:id="btnEnergyShop" layoutX="301.0" layoutY="188.0" mnemonicParsing="false" onAction="#handelBtnEnergyShop" prefHeight="25.0" prefWidth="95.0" text="Energy shop" />
+        <Label layoutX="286.0" layoutY="35.0" text="Shop Area" />
+      <Button fx:id="btnRetailShop" layoutX="213.0" layoutY="188.0" mnemonicParsing="false" onAction="#handelBtnRetailShop" text="Retail Shop" />
+        <Button fx:id="btnCrossRoad" layoutX="276.0" layoutY="222.0" mnemonicParsing="false" onAction="#handelBtnCrossRoad" text="Cross Road" />
+    </children>
+
+</AnchorPane>
