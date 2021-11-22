@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handelBtnHouse" onTouchPressed="#handelBtnHouse" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
    <children>
       <Button fx:id="btnHouse" layoutX="274.0" layoutY="188.0" mnemonicParsing="false" onAction="#handelBtnHouse" text="Start Game" />
       <Label layoutX="286.0" layoutY="35.0" text="Introduction" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="66.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

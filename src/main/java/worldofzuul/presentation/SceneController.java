@@ -65,10 +65,11 @@ public class SceneController {
     @FXML
     public void handleImageSky() throws FileNotFoundException {
         //Creating an image
-        Image image = new Image(new FileInputStream("Himmel.jpg"));
+        Image image = new Image(new FileInputStream("@/worldofzuul/images/Himmel.jpg"));
 
         //Setting the image view
         ImageView imageSky = new ImageView(image);
+
     }
 
 }
