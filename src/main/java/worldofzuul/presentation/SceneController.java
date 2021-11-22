@@ -6,7 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class SceneController {
     @FXML
@@ -54,4 +59,16 @@ public class SceneController {
         Stage window = (Stage) btnRetailShop.getScene().getWindow();
         window.setScene(new Scene(root, 750, 500));
     }
+
+    /*@FXML
+    //Images
+    private ImageView skyImage;
+
+
+    public void handleImageSky(URL url, ResourceBundle rb) {
+        Image sky = new Image(getClass().getResourceAsStream("scr/images/Himmel.jpg"));
+        skyImage.setImage(sky);
+    }
+
+     */
 }
