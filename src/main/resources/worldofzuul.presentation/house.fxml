@@ -8,6 +8,5 @@
    <children>
       <Button fx:id="btnBuildArea" layoutX="261.0" layoutY="360.0" mnemonicParsing="false" onAction="#handelBtnBuildArea" text="Build Area" />
       <Label layoutX="279.0" layoutY="191.0" text="House" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="161.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
+      </children>
 </AnchorPane>

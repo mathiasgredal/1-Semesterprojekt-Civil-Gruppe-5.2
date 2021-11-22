@@ -30,6 +30,12 @@ public class SceneController {
     public void handelBtnBuildArea() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/buildArea.fxml")));
 
+        //Creating an image
+        Image image = new Image(new FileInputStream("@/worldofzuul/images/Himmel.jpg"));
+
+        //Setting the image view
+        ImageView imageSky = new ImageView(image);
+
         Stage window = (Stage) btnBuildArea.getScene().getWindow();
         window.setScene(new Scene(root, 750, 500));
     }
@@ -63,6 +69,7 @@ public class SceneController {
     }
 
     @FXML
+    //det kan godt være den ikke skal være en metode men den virkede ikke på nogen måde alligvel så nu står den bare lige sådan
     public void handleImageSky() throws FileNotFoundException {
         //Creating an image
         Image image = new Image(new FileInputStream("@/worldofzuul/images/Himmel.jpg"));
