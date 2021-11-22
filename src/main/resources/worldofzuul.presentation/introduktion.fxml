@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handelBtnHouse" onTouchPressed="#handelBtnHouse" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
+<AnchorPane fx:id="interduction" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handelBtnHouse" onTouchPressed="#handelBtnHouse" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
    <children>
-      <Button fx:id="btnHouse" layoutX="248.0" layoutY="187.0" mnemonicParsing="false" onAction="#handelBtnHouse" text="Start Game" />
-      <Label layoutX="253.0" layoutY="142.0" text="Introduction" />
+      <Button fx:id="btnHouse" layoutX="262.0" layoutY="339.0" mnemonicParsing="false" onAction="#handelBtnHouse" text="Start Game" />
+      <Label layoutX="267.0" layoutY="33.0" text="Introduction" />
+      <TextArea layoutX="34.0" layoutY="100.0" prefHeight="200.0" prefWidth="528.0" promptText="Text???">
+         INTRODUCTION:
+         The year is 2010. Everyday greenhouse gasses are being emitted into the atmosphere, resulting in global warming!
+         The United Nations has come up with a goal to reduce greenhouse gas emissions by producing the majority of electricity using renewable energy sources before 2030.
+         Right now, your energy needs are fulfilled by fossil fuels, which are emitting a lot of CO2 int the atmosphere.
+         Every year you will get a salary and perform actions until the next year.
+         In the game there will be shops, where you can buy energy from different sources.
+         Excess energy created will be added to your total amount of money. You have an energy need you must fulfill to move on to the next year.
+         If you cannot produce enough energy, and you run out of money, you lose.                                    |
+
+         GOALS:
+         - Make the most money of your situation.
+         - Emit as little of CO2 as possible.
+         - Produce as much energy as possible.
+
+         Good Luck!"
+      </TextArea>
    </children>
 </AnchorPane>
