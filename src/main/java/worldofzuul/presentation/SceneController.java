@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -60,15 +62,13 @@ public class SceneController {
         window.setScene(new Scene(root, 750, 500));
     }
 
-    /*@FXML
-    //Images
-    private ImageView skyImage;
+    @FXML
+    public void handleImageSky() throws FileNotFoundException {
+        //Creating an image
+        Image image = new Image(new FileInputStream("Himmel.jpg"));
 
-
-    public void handleImageSky(URL url, ResourceBundle rb) {
-        Image sky = new Image(getClass().getResourceAsStream("scr/images/Himmel.jpg"));
-        skyImage.setImage(sky);
+        //Setting the image view
+        ImageView imageSky = new ImageView(image);
     }
 
-     */
 }
