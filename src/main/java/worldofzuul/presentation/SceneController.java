@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class SceneController {
     @FXML
-    Button btnHouse, btnBuildArea, btnShopArea, btnEnergyShop, btnRetailShop;
+    Button btnHouse, btnBuildArea, btnShopArea, btnEnergyShop, btnRetailShop, btnHelp, btnShow;
 
     //methods for window change
     public void handleBtnHouse() throws Exception{
@@ -63,6 +63,15 @@ public class SceneController {
         Stage window = (Stage) btnRetailShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
+
+    public void handleBtnHelp() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/help.fxml")));
+
+        Stage window = (Stage) btnHelp.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
+
+    public void handleShow() throws Exception{}
 
 }
 

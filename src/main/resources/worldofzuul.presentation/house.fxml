@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,5 +23,11 @@
             <Image url="@../images/Hus.png" />
          </image>
       </ImageView>
+      <ButtonBar layoutX="379.0" layoutY="14.0" prefHeight="40.0" prefWidth="200.0">
+         <buttons>
+            <Button fx:id="btnShow" mnemonicParsing="false" onAction="#handleShow" text="Show" />
+            <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#handleBtnHelp" text="Help" />
+         </buttons>
+      </ButtonBar>
       </children>
 </AnchorPane>
