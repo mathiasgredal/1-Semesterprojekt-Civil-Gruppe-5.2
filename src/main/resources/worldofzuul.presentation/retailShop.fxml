@@ -5,5 +5,5 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
     <Label layoutX="270.0" layoutY="178.0" text="Retail Shop" />
-    <Button fx:id="btnShopArea" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#handelBtnShopArea" text="Shop Area" />
+    <Button fx:id="btnShopArea" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnShopArea" text="Shop Area" />
 </AnchorPane>
