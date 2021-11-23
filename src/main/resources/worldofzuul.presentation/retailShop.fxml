@@ -14,4 +14,6 @@
          <Font size="26.0" />
       </font></Label>
     <Button fx:id="btnShopArea" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnShopArea" text="Shop Area" />
+   <Button layoutX="104.0" layoutY="288.0" mnemonicParsing="false" text="Pump" />
+   <Button layoutX="460.0" layoutY="288.0" mnemonicParsing="false" text="Car" />
 </AnchorPane>
