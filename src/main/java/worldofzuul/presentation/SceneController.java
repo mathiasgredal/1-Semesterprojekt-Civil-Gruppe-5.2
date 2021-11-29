@@ -3,23 +3,15 @@ package worldofzuul.presentation;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class SceneController {
     @FXML
-    Button btnHouse, btnBuildArea, btnShopArea, btnEnergyShop, btnRetailShop, btnHelp, btnShow;
+    Button btnHouse, /*btnBuildArea, btnShopArea,*/ btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, /*btnRetailShop,*/ btnHelp, btnShow;
 
     //methods for window change
     public void handleBtnHouse() throws Exception{
@@ -29,12 +21,12 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    public void handleBtnBuildArea() throws Exception{
+    /*public void handleBtnBuildArea() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/buildArea.fxml")));
 
         Stage window = (Stage) btnBuildArea.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
-    }
+    }*/
 
     /*public void handelBtnCrossRoad() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/crossRoad.fxml")));
@@ -43,14 +35,28 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }*/
 
-    public void handleBtnShopArea() throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/shopArea.fxml")));
+    public void handleBtnEnergyShop() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShop.fxml")));
 
-        Stage window = (Stage) btnShopArea.getScene().getWindow();
+        Stage window = (Stage) btnEnergyShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
 
-    public void handleBtnEnergyShop() throws Exception{
+    public void handleBtnSolarShop() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShopSolar.fxml")));
+
+        Stage window = (Stage) btnSolarEnergyShop.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
+
+    public void handleBtnWindShop() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShopWind.fxml")));
+
+        Stage window = (Stage) btnWindEnergyShop.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
+
+    /*public void handleBtnEnergyShop() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShop.fxml")));
 
         Stage window = (Stage) btnEnergyShop.getScene().getWindow();
@@ -62,7 +68,7 @@ public class SceneController {
 
         Stage window = (Stage) btnRetailShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
-    }
+    }*/
 
     public void handleBtnHelp() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/help.fxml")));
@@ -73,6 +79,22 @@ public class SceneController {
 
     public void handleShow() throws Exception{}
 
+    @FXML
+    Label lableEnergyShop, lableRetailShop;
+
+    public void handleLableEnergyShop() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShop.fxml")));
+
+        Stage window = (Stage) lableEnergyShop.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
+
+    public void handleLableRetailShop() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/retailShop.fxml")));
+
+        Stage window = (Stage) lableRetailShop.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
 }
 
 
