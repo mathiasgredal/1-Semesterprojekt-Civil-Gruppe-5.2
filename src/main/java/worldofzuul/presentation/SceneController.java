@@ -42,6 +42,13 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
+    public void handleBtnFossilShop() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShopFossil.fxml")));
+
+        Stage window = (Stage) FossilShop.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
+
     public void handleBtnSolarShop() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShopSolar.fxml")));
 
