@@ -30,4 +30,5 @@
    <Label layoutX="175.0" layoutY="91.0" text="&quot;Bæredygtig&quot;" textFill="#fffdfd" />
    <Button fx:id="btnSolarEnergyShop" layoutX="158.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleBtnSolarShop" text="Solar Panel Shop" />
    <Button fx:id="btnWindEnergyShop" layoutX="164.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleBtnWindShop" text="Windmill Shop" />
+   <Button fx:id="FossilShop" layoutX="353.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleBtnFossilShop" text="Fossil Fuels Shop" />
 </AnchorPane>

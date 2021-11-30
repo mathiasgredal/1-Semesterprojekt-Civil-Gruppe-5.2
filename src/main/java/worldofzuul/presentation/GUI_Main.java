@@ -6,7 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class GUI_Main extends Application {
+
+    private static Scene scene;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -14,6 +18,14 @@ public class GUI_Main extends Application {
         primaryStage.setTitle("Green House Jazz");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
+    }
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(GUI_Main.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
     }
 
     public static void main(String[] args) {

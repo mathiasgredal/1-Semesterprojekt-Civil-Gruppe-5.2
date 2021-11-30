@@ -52,19 +52,19 @@
    <Label layoutX="130.0" layoutY="245.0" text="Label" />
    <Label layoutX="285.0" layoutY="245.0" text="Label" />
    <Label layoutX="466.0" layoutY="246.0" text="Label" />
-   <ImageView fitHeight="70.0" fitWidth="99.0" layoutX="419.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="40.0" fitWidth="126.0" layoutX="403.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../images/solar.png" />
+         <Image url="@../images/StoreSolcelle.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="70.0" fitWidth="99.0" layoutX="258.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="40.0" fitWidth="108.0" layoutX="258.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../images/solar.png" />
+         <Image url="@../images/MellemSolcelle.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="70.0" fitWidth="99.0" layoutX="96.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="40.0" fitWidth="83.0" layoutX="109.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../images/solar.png" />
+         <Image url="@../images/LilleSolcelle.png" />
       </image>
    </ImageView>
 </AnchorPane>
