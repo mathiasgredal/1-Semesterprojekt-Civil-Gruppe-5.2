@@ -14,7 +14,7 @@
          <font>
             <Font size="11.0" />
          </font></Label>
-      <Label layoutX="14.0" layoutY="95.0" prefWidth="809.0" text="The United Nations has come up with a goal to reduce greenhouse gas emissions by producing the majority of electricity using renewable energy sources before 2030.">
+      <Label layoutX="14.0" layoutY="95.0" prefWidth="809.0" text="The United Nations has come up with a goal to reduce greenhouse gas emissions by producing the majority of">
          <font>
             <Font size="11.0" />
          </font></Label>
@@ -30,7 +30,7 @@
          <font>
             <Font size="11.0" />
          </font></Label>
-      <Label ellipsisString="move on to the next year" layoutX="13.0" layoutY="195.0" prefWidth="669.0" text="Excess energy created will be added to your total amount of money. You have an energy need you must fulfill tomove on to the next year.">
+      <Label ellipsisString="move on to the next year" layoutX="13.0" layoutY="195.0" prefWidth="669.0" text="Excess energy created will be added to your total amount of money. You have an energy need you must fulfill tomove">
          <font>
             <Font size="11.0" />
          </font></Label>
@@ -52,6 +52,8 @@
             <Font size="11.0" />
          </font></Label>
       <Label layoutX="14.0" layoutY="355.0" text="Good Luck!" underline="true" />
+      <Label layoutX="20.0" layoutY="111.0" text="electricity using renewable energy sources before 2030.&quot;" />
+      <Label layoutX="20.0" layoutY="211.0" text="to the next year." />
 
 
    </children>
