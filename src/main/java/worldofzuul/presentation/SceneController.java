@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class SceneController {
     @FXML
-    Button btnHouse, /*btnBuildArea, btnShopArea,*/ btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, /*btnRetailShop,*/ btnHelp, btnShow, btnBatteryShop, btnRetailShop;
+    Button btnHouse, /*btnBuildArea, btnShopArea,*/ btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, /*btnRetailShop,*/ btnHelp, btnNextYear, btnBatteryShop, btnRetailShop;
 
     //methods for window change
     public void handleBtnHouse() throws Exception{
@@ -77,7 +77,7 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    public void handleShow() throws Exception{}
+    public void handleBtnNextYear() throws Exception{}
 
     public void handleBtnBatteryShop() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/batteryShop.fxml")));
