@@ -69,5 +69,5 @@
       </image>
    </ImageView>
    <Label layoutX="440.0" layoutY="86.0" text="Battery shop" textFill="#f4efef" />
-   <Button fx:id="btnBatteryShop" layoutX="431.0" layoutY="127.0" mnemonicParsing="false" onAction="#handleBtnBatteryShop" text="Battery Shop" />
+   <Button fx:id="btnBatteryShop" layoutX="431.0" layoutY="127.0" mnemonicParsing="false" text="Battery Shop" />
 </AnchorPane>

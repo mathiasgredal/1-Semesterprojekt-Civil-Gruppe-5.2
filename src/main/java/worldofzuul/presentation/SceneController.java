@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
+import worldofzuul.Input.CommandWords;
 import worldofzuul.Rooms.Shops.Shop;
 
 import java.net.URL;
@@ -21,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 
 public class SceneController {
     @FXML
-    Button btnHouse, /*btnBuildArea, btnShopArea,*/ btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, /*btnRetailShop,*/ btnHelp, btnShow, btnTest;
+    Button btnHouse, btnBuildArea, btnShopArea, btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, btnRetailShop, btnHelp, btnShow;
 
     @FXML
     private URL location;
@@ -32,10 +33,6 @@ public class SceneController {
 
         Stage window = (Stage) btnHouse.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
-    }
-
-    public void handleBtnTest() throws Exception{
-        Game.instance.nextYear(new Command(CommandWord.NEXT, "year"));
     }
 
     /*public void handleBtnBuildArea() throws Exception{
@@ -57,6 +54,7 @@ public class SceneController {
 
         Stage window = (Stage) btnEnergyShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
+        Game.instance.goRoom(new Command(CommandWord.GO, "south"));
     }
 
     public void handleBtnSolarShop() throws Exception{
@@ -73,19 +71,12 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    /*public void handleBtnEnergyShop() throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShop.fxml")));
-
-        Stage window = (Stage) btnEnergyShop.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
-    }
-
     public void handleBtnRetailShop() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Retail store.fxml")));
 
         Stage window = (Stage) btnRetailShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
-    }*/
+    }
 
     public void handleBtnHelp() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/help.fxml")));
