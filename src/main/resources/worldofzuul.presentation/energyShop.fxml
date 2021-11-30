@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
+   <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+      <image>
+         <Image url="@../images/ShopOutline.png" />
+      </image>
+   </ImageView>
+    <Label layoutX="237.0" layoutY="14.0" text="Energy Shop ">
+      <font>
+         <Font size="26.0" />
+      </font></Label>
+    <Button fx:id="btnHouse" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House area" />
+   <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="137.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/ShopBoxes.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="332.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/ShopBoxes.png" />
+      </image>
+   </ImageView>
+   <Label layoutX="384.0" layoutY="91.0" text="&quot;Fosille&quot;" textFill="#ede9e9" />
+   <Label layoutX="175.0" layoutY="91.0" text="&quot;Bæredygtig&quot;" textFill="#fffdfd" />
+   <Button fx:id="btnSolarEnergyShop" layoutX="158.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleBtnSolarShop" text="Solar Panle Shop" />
+   <Button fx:id="btnWindEnergyShop" layoutX="164.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleBtnWindShop" text="Windmill Shop" />
+</AnchorPane>

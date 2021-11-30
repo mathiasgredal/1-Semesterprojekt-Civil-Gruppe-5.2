@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="interduction" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleBtnHouse" onTouchPressed="#handleBtnHouse" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
+   <children>
+      <Button fx:id="btnHouse" layoutX="262.0" layoutY="359.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="Start Game" />
+      <Label layoutX="207.0" layoutY="41.0" text="WELCOME TIL GREEN HOUSE JAZZ" />
+      <Label layoutX="14.0" layoutY="58.0" prefHeight="17.0" prefWidth="94.0" text="INTRODUCTION:" underline="true" />
+      <Label layoutX="14.0" layoutY="75.0" text="The year is 2010. Everyday greenhouse gasses are being emitted into the atmosphere, resulting in global warming!">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="95.0" prefWidth="809.0" text="The United Nations has come up with a goal to reduce greenhouse gas emissions by producing the majority of">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="13.0" layoutY="135.0" text="Right now, your energy needs are fulfilled by fossil fuels, which are emitting a lot of CO2 int the atmosphere.">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="155.0" text="Every year you will get a salary and perform actions until the next year.">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="175.0" text="In the game there will be shops, where you can buy energy from different sources.">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label ellipsisString="move on to the next year" layoutX="13.0" layoutY="195.0" prefWidth="669.0" text="Excess energy created will be added to your total amount of money. You have an energy need you must fulfill to move">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="13.0" layoutY="235.0" text="If you cannot produce enough energy, and you run out of money, you lose.">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="266.0" text="GOALS:" underline="true" />
+      <Label layoutX="34.0" layoutY="289.0" text="- Make the most money of your situation.">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="33.0" layoutY="323.0" text="- Emit as little of CO2 as possible.">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="34.0" layoutY="306.0" text="- Produce as much energy as possible.">
+         <font>
+            <Font size="11.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="355.0" text="Good Luck!" underline="true" />
+      <Label layoutX="20.0" layoutY="111.0" text="electricity using renewable energy sources before 2030.&quot;" />
+      <Label layoutX="20.0" layoutY="211.0" text="to the next year." />
+
+
+   </children>
+</AnchorPane>
