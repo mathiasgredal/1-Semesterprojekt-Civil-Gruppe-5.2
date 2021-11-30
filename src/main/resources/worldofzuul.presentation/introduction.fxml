@@ -30,7 +30,7 @@
          <font>
             <Font size="11.0" />
          </font></Label>
-      <Label ellipsisString="move on to the next year" layoutX="13.0" layoutY="195.0" prefWidth="669.0" text="Excess energy created will be added to your total amount of money. You have an energy need you must fulfill tomove">
+      <Label ellipsisString="move on to the next year" layoutX="13.0" layoutY="195.0" prefWidth="669.0" text="Excess energy created will be added to your total amount of money. You have an energy need you must fulfill to move">
          <font>
             <Font size="11.0" />
          </font></Label>
