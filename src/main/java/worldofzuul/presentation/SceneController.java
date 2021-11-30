@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class SceneController {
     @FXML
-    Button btnHouse, /*btnBuildArea, btnShopArea,*/ btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, /*btnRetailShop,*/ btnHelp, btnShow;
+    Button btnHouse, /*btnBuildArea, btnShopArea,*/ btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, FossilShop, /*btnRetailShop,*/ btnHelp, btnShow;
 
     //methods for window change
     public void handleBtnHouse() throws Exception{
@@ -39,6 +39,13 @@ public class SceneController {
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShop.fxml")));
 
         Stage window = (Stage) btnEnergyShop.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
+
+    public void handleBtnFossilShop() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShopFossil.fxml")));
+
+        Stage window = (Stage) FossilShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
 
