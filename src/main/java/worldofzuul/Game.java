@@ -35,6 +35,11 @@ public class Game {
 
     private final House house = new House(1600);
     private final BuildArea buildArea = new BuildArea();
+
+    public ArrayList<Shop> getShops() {
+        return shops;
+    }
+
     private final ArrayList<Shop> shops = new ArrayList<>();
 
     /**
@@ -165,7 +170,7 @@ public class Game {
      * @param command The tokenized player input
      * @return A boolean indicating whether the program should end
      */
-    private boolean processCommand(Command command) {
+    public boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
@@ -194,7 +199,7 @@ public class Game {
      *
      * @param command Player input
      */
-    private void lookAt(Command command) {
+    public void lookAt(Command command) {
         if (!command.hasSecondWord()) {
             currentRoom.printEnterRoomString(this);
         } else {
@@ -218,7 +223,7 @@ public class Game {
      *
      * @param command Player input
      */
-    private void goRoom(Command command) {
+    public void goRoom(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Go where?");
             return;
@@ -242,7 +247,7 @@ public class Game {
      * @param command     Player input
      * @param currentShop The current shop the player is in
      */
-    private void buyItem(Command command, Shop currentShop) {
+    public void buyItem(Command command, Shop currentShop) {
         if (!command.hasSecondWord()) {
             System.out.println("Buy what?");
             return;
@@ -464,7 +469,7 @@ public class Game {
      * @param command player input
      * @return A boolean value indicating whether the game should end
      */
-    private boolean quit(Command command) {
+    public boolean quit(Command command) {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
             return false;
