@@ -314,7 +314,7 @@ public class Game {
             double soldEnergyPrice = excessEnergy * buildArea.getEnergySalesPricePrkWh();
             double emissions = buildArea.getYearlyEmissions() + house.getYearlyEmissions();
 
-            // Step 2: Insert yearly salery and energy sales to player balance
+            // Step 2: Insert yearly salary and energy sales to player balance
             player.insertMoney(soldEnergyPrice + player.getYearlyIncome());
             player.withdrawMoney(house.getYearlyCost());
 
@@ -338,25 +338,26 @@ public class Game {
             System.out.println("Your balance are:" + player.getPlayerEconomy());
             return false;
         } else {
-            int requiredAmount = ;
             //checks if it is possible for the player to buy the required energy
-            for (int i = 0; i < shops.size(); i++) {
-                for (int j = 0; j < shops.get(i).getShopItems().size(); j++) {
-                    if(player.getPlayerEconomy() >= shops.get(i).getShopItem(j).getPrice()){
-                        if(shops.get(i).getShopItem(j).getOutput() >= house.getEnergyRequirement()){
+            double energyDeficit = house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction();
 
-                            System.out.printf("Please fulfill the required amount of energy, missing: %.2fkWh\n", house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction());
-                        }
-                }else{
-                        printRecap();
+            boolean foundSolution = false;
+            for (var shop : shops) {
+                for (var source : shop.getShopItems()) {
+                    if (source instanceof EnergySource) {
+                        double maxOutput = ((EnergySource) source).getOutput() * player.getPlayerEconomy() / source.getPrice();
+                        if (maxOutput > energyDeficit)
+                            foundSolution = true;
                     }
                 }
             }
+
+            if (!foundSolution) {
+                System.out.println("You have died!");
+                return true;
+            }
         }
         return false;
-
-            //TODO: Perhaps we should check if it is possible for the player to buy the required energy,
-            // and automatically end the game if they can't
     }
 
 

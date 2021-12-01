@@ -12,12 +12,8 @@ public class Player {
     private double playerEconomy = 300000;
     private final double yearlyIncome = 10000;
     private HashMap<Integer, ArrayList<EnergySource>> recapEnergySources = new HashMap<Integer, ArrayList<EnergySource>>();
-
-    public HashMap<Integer, Integer> getRecapEnergyEmission() {
-        return recapEnergyEmission;
-    }
-
     private HashMap<Integer, Integer> recapEnergyEmission = new HashMap<Integer, Integer>();
+
 
     /**
      * No-arg constructor for player, using the defined value
@@ -100,6 +96,14 @@ public class Player {
      */
     public double getYearlyIncome() {
         return yearlyIncome;
+    }
+
+    public HashMap<Integer, Integer> getRecapEnergyEmission() {
+        return recapEnergyEmission;
+    }
+
+    public HashMap<Integer, ArrayList<EnergySource>> getRecapEnergySources() {
+        return recapEnergySources;
     }
 
 }
