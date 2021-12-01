@@ -15,11 +15,6 @@ public class SceneController {
     @FXML
     Button btnHouse, btnBuildArea, btnShopArea, btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, btnRetailShop, btnHelp, btnNextYear, btnBatteryShop;
 
-    @FXML
-    Label solarPrice1, solarPrice2, solarPrice3;
-
-
-
     //methods for window change
     public void handleBtnHouse() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/house.fxml")));
@@ -40,12 +35,10 @@ public class SceneController {
 
         Stage window = (Stage) btnSolarEnergyShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
-
-        solarPrice1.getText();
     }
 
     public void handleBtnWindShop() throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShopWind.fxml")));
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Windturbine shop.fxml")));
 
         Stage window = (Stage) btnWindEnergyShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
