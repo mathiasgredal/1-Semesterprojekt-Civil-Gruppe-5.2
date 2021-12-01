@@ -1,4 +1,4 @@
-module worldofzuul.presentation {
+module worldofzuul {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -7,6 +7,11 @@ module worldofzuul.presentation {
     requires org.kordamp.bootstrapfx.core;
     requires org.yaml.snakeyaml;
 
-    opens worldofzuul.presentation to javafx.fxml;
-    exports worldofzuul.presentation;
+    opens worldofzuul.presentation to javafx.fxml, javafx.graphics;
+
+    exports worldofzuul.Config to org.yaml.snakeyaml;
+    exports worldofzuul.Items to org.yaml.snakeyaml;
+
+    exports worldofzuul.Rooms;
+    exports worldofzuul;
 }

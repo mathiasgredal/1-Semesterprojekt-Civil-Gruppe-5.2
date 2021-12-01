@@ -481,4 +481,11 @@ public class Game {
     public Player getPlayer() {
         return player;
     }
+
+    /**
+     * A getter for the build area
+     */
+    public BuildArea getBuildArea() {
+        return buildArea;
+    }
 }

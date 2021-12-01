@@ -1,5 +1,7 @@
 package worldofzuul.Rooms;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import worldofzuul.Game;
 import worldofzuul.Items.EnergySource;
 
@@ -7,7 +9,8 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class BuildArea extends Room {
-    private ArrayList<EnergySource> energySources = new ArrayList<>();
+
+    private ObservableList<EnergySource> energySources = FXCollections.observableArrayList();
 
     public BuildArea() {
         super("build area", "at the build area, here you find the energy sources you have built");
@@ -23,8 +26,8 @@ public class BuildArea extends Room {
     /**
      * Gets a copy of the list of energysources
      */
-    public ArrayList<EnergySource> getEnergySources() {
-        return new ArrayList<>(energySources);
+    public ObservableList<EnergySource> getEnergySources() {
+        return energySources;
     }
 
     /**
@@ -96,7 +99,8 @@ public class BuildArea extends Room {
                 renewableEnergySources.add(e);
         }
 
-        this.energySources = renewableEnergySources;
+        this.energySources.clear();
+        this.energySources.addAll(renewableEnergySources);
     }
 
     /**

@@ -17,6 +17,12 @@ public class EnergySource implements Buyable {
     private double capacity = 0;
 
     /**
+     * This is the physical size of the object in the build area
+     */
+    private int width = 1;
+    private int height = 1;
+
+    /**
      * These values are logged each year for an eventual calculation of ROI
      */
     private double totalGeneratedEnergy = 0;
@@ -233,5 +239,13 @@ public class EnergySource implements Buyable {
      */
     public void setCapacity(double capacity) {
         this.capacity = capacity;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
