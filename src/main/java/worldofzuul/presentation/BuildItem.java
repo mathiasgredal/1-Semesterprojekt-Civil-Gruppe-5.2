@@ -9,6 +9,8 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import worldofzuul.Items.EnergySource;
 
+import java.util.Objects;
+
 public class BuildItem extends Rectangle {
     int x, y;
     int width, height;
@@ -19,44 +21,64 @@ public class BuildItem extends Rectangle {
     EnergySource source;
 
 
-    public BuildItem(Color color, EnergySource source) {
+    public BuildItem(EnergySource source) {
+        this.source = source;
         this.x = source.getPosX();
         this.y = source.getPosY();
 
+        // Set tooltip for the item
         Tooltip t = new Tooltip(source.getDescription());
         Tooltip.install(this, t);
 
+        // Set predefined sizes for the energysource depending on the size of the energysource
         switch (source.getSize()) {
             case SMALL -> {
                 this.width = 1;
                 this.height = 1;
-                Image img = new Image(getClass().getResource("/images/LilleSolcelle.png").toExternalForm());
-                setFill(new ImagePattern(img));
             }
             case MEDIUM -> {
                 this.width = 2;
                 this.height = 1;
-                Image img = new Image(getClass().getResource("/images/MellemSolcelle.png").toExternalForm());
-                setFill(new ImagePattern(img));
             }
             case LARGE -> {
                 this.width = 3;
                 this.height = 1;
-                Image img = new Image(getClass().getResource("/images/StoreSolcelle.png").toExternalForm());
-                setFill(new ImagePattern(img));
-
             }
         }
 
-        this.source = source;
+        // Load energysource texture
+        if (Objects.equals(source.getTextureURL(), "")) {
+            setFill(Color.PINK);
+        } else {
+            Image img = new Image(getClass().getResource(source.getTextureURL()).toExternalForm());
+            setFill(new ImagePattern(img));
+        }
 
 
         setWidth(this.width * gridSize);
         setHeight(this.height * gridSize);
 
+        // If the source is colliding with an existing energysource, we should find another suitable spot
+        parentProperty().addListener(e -> {
+            // If the energysource has been moved, then we don't need to give it a position
+            if (source.getPosX() != -1 || source.getPosY() != -1)
+                return;
+            BoundingBox bounds = (BoundingBox) getParent().getUserData();
+            outerloop:
+            for (int col = 0; col < bounds.getWidth() / gridSize; col++) {
+                for (int row = 0; row < bounds.getWidth() / gridSize; row++) {
+                    if (setPositionGridFromScene(col * gridSize, row * gridSize)) {
+                        // We have found a suitable spot
+                        break outerloop;
+                    }
+                }
+            }
+        });
+
         setTranslateX(this.x * gridSize);
         setTranslateY(this.y * gridSize);
 
+        // Installs the correct event handlers to enable dragging sources around in the grid
         enableDrag();
     }
 
@@ -69,7 +91,7 @@ public class BuildItem extends Rectangle {
         source.setPosY(this.y);
     }
 
-    public void setPositionGridFromScene(double sceneX, double sceneY) {
+    public boolean setPositionGridFromScene(double sceneX, double sceneY) {
         // Save old position, for reverting in case of collision
         int oldX = this.x;
         int oldY = this.y;
@@ -109,7 +131,10 @@ public class BuildItem extends Rectangle {
         // Revert move if there was a collision
         if (collision) {
             setPosition(oldX, oldY);
+            return false;
         }
+
+        return true;
     }
 
     private void enableDrag() {

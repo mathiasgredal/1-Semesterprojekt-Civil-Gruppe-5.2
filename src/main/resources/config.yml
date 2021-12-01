@@ -29,7 +29,6 @@ shopItems:
       emission: 3.1
       output: 151
     - name: "Natural gas"
-      description: "It is energy from natural gas"
       size: "MEDIUM"
       price: 1.83
       emission: 2.7
@@ -41,18 +40,21 @@ shopItems:
       price: 2023
       emission: 0
       output: 169.76
+      textureURL: "/images/LilleSolcelle.png"
     - name: "Solar Energy"
       description: "Photovoltaic solar panel array of 32sqm"
       size: "MEDIUM"
       price: 52000
       emission: 0
       output: 5926
+      textureURL: "/images/MellemSolcelle.png"
     - name: "Solar Energy"
       description: "Photovoltaic solar panel array of 65sqm"
       size: "LARGE"
       price: 91579
       emission: 0
       output: 12033
+      textureURL: "/images/StoreSolcelle.png"
   Windturbine shop:
     - name: "Wind Energy"
       description: "Gaia 10kW wind turbine"

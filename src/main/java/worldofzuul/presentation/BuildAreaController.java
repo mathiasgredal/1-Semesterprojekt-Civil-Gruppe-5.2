@@ -29,26 +29,28 @@ public class BuildAreaController {
     ObservableList<BuildItem> buildItems = FXCollections.observableArrayList();
 
     // Size and position of buildarea
-    private Point2D gridOffset = new Point2D(70, 70);
-    private int gridWidth = 20;
-    private int gridHeight = 10;
+    private Point2D gridOffset = new Point2D(18, 36);
+    private int gridWidth = 27;
+    private int gridHeight = 17;
     private BoundingBox buildAreaBounds = new BoundingBox(gridOffset.getX(), gridOffset.getY(), gridWidth * BuildItem.gridSize, gridHeight * BuildItem.gridSize);
 
     @FXML
     public void initialize() {
+        // Setup build area component
         buildArea.setTranslateX(gridOffset.getX());
         buildArea.setTranslateY(gridOffset.getY());
         buildArea.setUserData(buildAreaBounds);
 
-        background.setX(gridOffset.getX());
-        background.setY(gridOffset.getY());
-        background.setWidth(buildAreaBounds.getWidth());
-        background.setHeight(buildAreaBounds.getHeight());
-        background.setFill(Color.RED);
-        
+        // Setup background
+//        background.setX(gridOffset.getX());
+//        background.setY(gridOffset.getY());
+//        background.setWidth(buildAreaBounds.getWidth());
+//        background.setHeight(buildAreaBounds.getHeight());
+//        background.setFill(Color.RED);
+
         // Load in energysources from build area
         for (var source : Game.instance.getBuildArea().getEnergySources()) {
-            buildItems.add(new BuildItem(Color.GREEN, source));
+            buildItems.add(new BuildItem(source));
         }
 
         // Make sure changes in buildItems are reflected in GUI

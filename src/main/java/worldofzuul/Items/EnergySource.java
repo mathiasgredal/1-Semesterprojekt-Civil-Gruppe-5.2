@@ -19,8 +19,13 @@ public class EnergySource implements Buyable {
     /**
      * This is the physical size and position of the object in the build area
      */
-    private int posX = 0;
-    private int posY = 0;
+    private int posX = -1;
+    private int posY = -1;
+
+    /**
+     * URL to texture/image for energysource
+     */
+    private String textureURL = "";
 
     /**
      * These values are logged each year for an eventual calculation of ROI
@@ -37,7 +42,7 @@ public class EnergySource implements Buyable {
     /**
      * Constructor for initializing values in energysource
      */
-    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput, double energyCapacity) {
+    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput, double energyCapacity, String textureURL) {
         this.name = energyName;
         this.description = energyDescription;
         this.size = size;
@@ -45,6 +50,7 @@ public class EnergySource implements Buyable {
         this.emission = energyEmission;
         this.output = energyOutput;
         this.capacity = energyCapacity;
+        this.textureURL = textureURL;
     }
 
     /**
@@ -218,6 +224,21 @@ public class EnergySource implements Buyable {
         double procent = (random_int / 100);
         return (int) Math.round(price * procent);
     }
+
+    /**
+     * Gets the url for the energysource texture
+     */
+    public String getTextureURL() {
+        return textureURL;
+    }
+
+    /**
+     * Sets a new url for the energysource texture
+     */
+    public void setTextureURL(String textureURL) {
+        this.textureURL = textureURL;
+    }
+
 
     /**
      * Setter for energysource size
