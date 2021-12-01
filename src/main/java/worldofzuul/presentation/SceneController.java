@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 
 public class SceneController {
     @FXML
-    Button btnHouse, btnBuildArea, btnShopArea, btnWindturbineShop, btnSolarPanelShop, btnEnergyShop, btnRetailShop, btnHelp, btnShow, btnBatteryShop;
+    Button btnHouse, btnBuildArea, btnShopArea, btnWindturbineShop, btnSolarPanelShop, btnEnergyShop, btnRetailShop, btnHelp, btnNextYear, btnBatteryShop;
 
     @FXML
     private URL location;
@@ -92,7 +92,7 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    public void handleShow() throws Exception{}
+    public void handleBtnNextYear() throws Exception{}
 
     public void handleBuyItem(MouseEvent mouseEvent) throws Exception{
         String[] arrOfLocation = location.getFile().split("/");
