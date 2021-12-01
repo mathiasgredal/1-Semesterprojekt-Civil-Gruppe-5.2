@@ -16,8 +16,8 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button fx:id="btnShow" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleShow" text="Show" />
-      <Button fx:id="btnHelp" layoutX="68.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnHelp" text="Help" />
+      <Button fx:id="btnNextYear" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnNextYear" text="Next Year" />
+      <Button fx:id="btnHelp" layoutX="100.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnHelp" text="Help" />
       <Label layoutX="68.0" layoutY="235.0" text="Build Area">
          <font>
             <Font size="14.0" />
