@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 
 public class SceneController {
     @FXML
-    Button btnHouse, btnBuildArea, btnShopArea, btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, btnRetailShop, btnHelp, btnShow;
+    Button btnHouse, btnBuildArea, btnShopArea, btnWindturbineShop, btnSolarPanelShop, btnEnergyShop, btnRetailShop, btnHelp, btnShow, btnBatteryShop;
 
     @FXML
     private URL location;
@@ -49,25 +49,25 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }*/
 
-    public void handleBtnEnergyShop() throws Exception{
+    /*public void handleBtnEnergyShop() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/energyShop.fxml")));
 
         Stage window = (Stage) btnEnergyShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
         Game.instance.goRoom(new Command(CommandWord.GO, "south"));
-    }
+    }*/
 
-    public void handleBtnSolarShop() throws Exception{
+    public void handleBtnSolarPanelShop() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Solar shop.fxml")));
 
-        Stage window = (Stage) btnSolarEnergyShop.getScene().getWindow();
+        Stage window = (Stage) btnSolarPanelShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
 
-    public void handleBtnWindShop() throws Exception{
+    public void handleBtnWindturbineShop() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Windturbine shop.fxml")));
 
-        Stage window = (Stage) btnWindEnergyShop.getScene().getWindow();
+        Stage window = (Stage) btnWindturbineShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
 
@@ -75,6 +75,13 @@ public class SceneController {
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Retail store.fxml")));
 
         Stage window = (Stage) btnRetailShop.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
+
+    public void handleBtnBatteryShop() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Battery Shop.fxml")));
+
+        Stage window = (Stage) btnBatteryShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
 
