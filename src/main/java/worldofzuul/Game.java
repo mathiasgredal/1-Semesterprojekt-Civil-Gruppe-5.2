@@ -332,15 +332,31 @@ public class Game {
 
             // Step 8: Print to the player what happened(money, co2, sold energy, sales price)
             System.out.println("You are now in the year: " + gameYear);
-            // TODO: Print the rest of what happened
+            System.out.println("Your emission for this year is: " + player.getRecapEnergyEmission().get(gameYear-1));
+            System.out.println("Your total emission is: " + player.calculateEmission());
+            System.out.println("Your earned money on sold energy: " + soldEnergyPrice);
+            System.out.println("Your balance are:" + player.getPlayerEconomy());
             return false;
         } else {
-            System.out.printf("Please fulfill the required amount of energy, missing: %.2fkWh\n", house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction());
+            int requiredAmount = ;
+            //checks if it is possible for the player to buy the required energy
+            for (int i = 0; i < shops.size(); i++) {
+                for (int j = 0; j < shops.get(i).getShopItems().size(); j++) {
+                    if(player.getPlayerEconomy() >= shops.get(i).getShopItem(j).getPrice()){
+                        if(shops.get(i).getShopItem(j).getOutput() >= house.getEnergyRequirement()){
+
+                            System.out.printf("Please fulfill the required amount of energy, missing: %.2fkWh\n", house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction());
+                        }
+                }else{
+                        printRecap();
+                    }
+                }
+            }
+        }
+        return false;
 
             //TODO: Perhaps we should check if it is possible for the player to buy the required energy,
             // and automatically end the game if they can't
-            return false;
-        }
     }
 
 

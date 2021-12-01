@@ -20,4 +20,9 @@ public interface Buyable {
      * Used as a store label for listing shop items
      */
     String getInfo();
+
+    /**
+     *Gets the output in kwh for an item
+     */
+    double getOutput();
 }

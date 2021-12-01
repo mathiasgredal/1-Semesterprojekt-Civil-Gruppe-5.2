@@ -8,5 +8,7 @@ module worldofzuul.presentation {
     requires org.yaml.snakeyaml;
 
     opens worldofzuul.presentation to javafx.fxml;
+    exports worldofzuul.Config to org.yaml.snakeyaml;
+    exports worldofzuul.Items to org.yaml.snakeyaml;
     exports worldofzuul.presentation;
 }
