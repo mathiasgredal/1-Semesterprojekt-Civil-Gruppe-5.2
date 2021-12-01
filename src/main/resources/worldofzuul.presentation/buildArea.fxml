@@ -4,13 +4,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <?import javafx.scene.Group?>
+<?import javafx.scene.shape.Rectangle?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="400.0"
             prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="worldofzuul.presentation.BuildAreaController">
     <Button fx:id="btnHouse" layoutX="533.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnHouse"
             text="House"/>
-    <Button layoutX="333.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddItem"
-            text="AddItem"/>
-    <Group fx:id="buildArea"/>
+    <Group>
+        <Rectangle fx:id="background"/>
+        <Group fx:id="buildArea"/>
+    </Group>
 </AnchorPane>

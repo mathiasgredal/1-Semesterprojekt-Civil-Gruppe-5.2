@@ -20,7 +20,9 @@ public class BuildArea extends Room {
      * Adds an energysource to the list of energysources
      */
     public void addEnergySource(EnergySource e) {
-        energySources.add(e);
+        // Clone the energysource, to prevent mutation when setting a new position
+        var energySourceClone = new EnergySource(e.getName(), e.getDescription(), e.getSize(), e.getPrice(), e.getEmission(), e.getOutput(), e.getCapacity());
+        energySources.add(energySourceClone);
     }
 
     /**

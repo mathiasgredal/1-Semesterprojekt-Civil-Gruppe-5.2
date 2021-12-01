@@ -1,33 +1,58 @@
 package worldofzuul.presentation;
 
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
+import javafx.geometry.BoundingBox;
 import javafx.scene.Cursor;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import worldofzuul.Items.EnergySource;
 
 public class BuildItem extends Rectangle {
     int x, y;
     int width, height;
     double deltaX, deltaY;
 
-    final int gridSize = 20;
+    public static final int gridSize = 20;
+
+    EnergySource source;
 
 
-    public BuildItem(int x, int y, int width, int height, Color color) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public BuildItem(Color color, EnergySource source) {
+        this.x = source.getPosX();
+        this.y = source.getPosY();
 
-        setFill(color);
+        Tooltip t = new Tooltip(source.getDescription());
+        Tooltip.install(this, t);
 
-        setWidth(width * gridSize);
-        setHeight(height * gridSize);
+        switch (source.getSize()) {
+            case SMALL -> {
+                this.width = 1;
+                this.height = 1;
+                Image img = new Image(getClass().getResource("/images/LilleSolcelle.png").toExternalForm());
+                setFill(new ImagePattern(img));
+            }
+            case MEDIUM -> {
+                this.width = 2;
+                this.height = 1;
+                Image img = new Image(getClass().getResource("/images/MellemSolcelle.png").toExternalForm());
+                setFill(new ImagePattern(img));
+            }
+            case LARGE -> {
+                this.width = 3;
+                this.height = 1;
+                Image img = new Image(getClass().getResource("/images/StoreSolcelle.png").toExternalForm());
+                setFill(new ImagePattern(img));
+
+            }
+        }
+
+        this.source = source;
+
+
+        setWidth(this.width * gridSize);
+        setHeight(this.height * gridSize);
 
         setTranslateX(this.x * gridSize);
         setTranslateY(this.y * gridSize);
@@ -40,11 +65,10 @@ public class BuildItem extends Rectangle {
         this.y = y;
         setTranslateX(this.x * gridSize);
         setTranslateY(this.y * gridSize);
+        source.setPosX(this.x);
+        source.setPosY(this.y);
     }
 
-    /**
-     *
-     */
     public void setPositionGridFromScene(double sceneX, double sceneY) {
         // Save old position, for reverting in case of collision
         int oldX = this.x;
@@ -72,6 +96,11 @@ public class BuildItem extends Rectangle {
             if (child.getBoundsInParent().intersects(this.getBoundsInParent()))
                 collision = true;
         }
+
+        // Check if new position is out of bounds
+        var bounds = (BoundingBox) getParent().getUserData();
+        if (!sceneToLocal(bounds).contains(getBoundsInLocal()))
+            collision = true;
 
         // Revert scale
         setScaleX(1);

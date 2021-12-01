@@ -17,10 +17,10 @@ public class EnergySource implements Buyable {
     private double capacity = 0;
 
     /**
-     * This is the physical size of the object in the build area
+     * This is the physical size and position of the object in the build area
      */
-    private int width = 1;
-    private int height = 1;
+    private int posX = 0;
+    private int posY = 0;
 
     /**
      * These values are logged each year for an eventual calculation of ROI
@@ -37,13 +37,14 @@ public class EnergySource implements Buyable {
     /**
      * Constructor for initializing values in energysource
      */
-    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput) {
+    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput, double energyCapacity) {
         this.name = energyName;
         this.description = energyDescription;
         this.size = size;
         this.price = energyPrice;
         this.emission = energyEmission;
         this.output = energyOutput;
+        this.capacity = energyCapacity;
     }
 
     /**
@@ -198,6 +199,13 @@ public class EnergySource implements Buyable {
     }
 
     /**
+     * Getter for energy source description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
      * A utility function for generating a random percentage
      *
      * @param max The maximum percentage to increase price by
@@ -241,11 +249,19 @@ public class EnergySource implements Buyable {
         this.capacity = capacity;
     }
 
-    public int getWidth() {
-        return width;
+    public void setPosX(int posX) {
+        this.posX = posX;
     }
 
-    public int getHeight() {
-        return height;
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
     }
 }
