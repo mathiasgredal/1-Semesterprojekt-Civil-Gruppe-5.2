@@ -33,9 +33,9 @@
          <Image url="@../images/ShopBoxes.png" />
       </image>
    </ImageView>
-   <Label layoutX="113.0" layoutY="83.0" text="Solar Panel 1" textFill="#ede9e9" />
-   <Label layoutX="275.0" layoutY="83.0" text="Solar Panel 2" textFill="#ede9e9" />
-   <Label layoutX="437.0" layoutY="83.0" text="Solar Panel 3" textFill="#ede9e9" />
+   <Label layoutX="79.0" layoutY="74.0" text="Photovoltaic solar panel " textFill="#ede9e9" />
+   <Label layoutX="242.0" layoutY="74.0" text="Photovoltaic solar panel " textFill="#ede9e9" />
+   <Label layoutX="403.0" layoutY="74.0" text="Photovoltaic solar panel " textFill="#ede9e9" />
    <ImageView fitHeight="38.0" fitWidth="108.0" layoutX="100.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/BuyButton.png" />
@@ -51,22 +51,36 @@
          <Image url="@../images/BuyButton.png" />
       </image>
    </ImageView>
-   <Label layoutX="130.0" layoutY="245.0" text="Label" />
-   <Label layoutX="285.0" layoutY="245.0" text="Label" />
-   <Label layoutX="466.0" layoutY="246.0" text="Label" />
-   <ImageView fitHeight="40.0" fitWidth="126.0" layoutX="403.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="40.0" fitWidth="126.0" layoutX="409.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/StoreSolcelle.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="40.0" fitWidth="108.0" layoutX="258.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="40.0" fitWidth="108.0" layoutX="257.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/MellemSolcelle.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="40.0" fitWidth="83.0" layoutX="109.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="40.0" fitWidth="83.0" layoutX="109.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/LilleSolcelle.png" />
       </image>
    </ImageView>
+   <Label layoutX="98.0" layoutY="220.0" text="Size: Small" textFill="WHITE" />
+   <Label layoutX="98.0" layoutY="260.0" text="Price: 2023" textFill="#fffefe" />
+   <Label layoutX="98.0" layoutY="240.0" text="Emission: 0" textFill="WHITE" />
+   <Label layoutX="98.0" layoutY="280.0" text="Output: 169.76" textFill="WHITE" />
+
+   <Label layoutX="260.0" layoutY="220.0" text="Size: Medium" textFill="WHITE" />
+   <Label layoutX="260.0" layoutY="260.0" text="Price: 52000" textFill="WHITE" />
+   <Label layoutX="260.0" layoutY="240.0" text="Emission: 0" textFill="WHITE" />
+   <Label layoutX="260.0" layoutY="280.0" text="Output: 5926" textFill="WHITE" />
+
+   <Label layoutX="415.0" layoutY="220.0" text="Size: Large" textFill="WHITE" />
+   <Label layoutX="415.0" layoutY="260.0" text="Price: 91579" textFill="WHITE" />
+   <Label layoutX="415.0" layoutY="240.0" text="Emission: 0" textFill="WHITE" />
+   <Label layoutX="415.0" layoutY="280.0" text="Output: 12033" textFill="WHITE" />
+   <Label layoutX="108.0" layoutY="91.0" text="array of 13sqm" textFill="WHITE" />
+   <Label layoutX="267.0" layoutY="91.0" text="array of 32sqm" textFill="WHITE" />
+   <Label layoutX="432.0" layoutY="91.0" text="array of 65sqm" textFill="WHITE" />
 </AnchorPane>
