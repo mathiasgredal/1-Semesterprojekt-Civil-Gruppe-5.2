@@ -29,6 +29,7 @@ shopItems:
       emission: 3.1
       output: 151
     - name: "Natural gas"
+      description: "It is energy from natural gas"
       size: "MEDIUM"
       price: 1.83
       emission: 2.7
