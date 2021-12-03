@@ -7,94 +7,80 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="worldofzuul.presentation.SceneController">
-    <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
-        <image>
-            <Image url="@../images/ShopOutline.png"/>
-        </image>
-    </ImageView>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
+   <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+      <image>
+         <Image url="@../images/ShopOutline.png" />
+      </image>
+   </ImageView>
     <Label layoutX="168.0" layoutY="14.0" text="Energy Shop Solar Panles">
-        <font>
-            <Font size="26.0"/>
-        </font>
-    </Label>
-    <Button fx:id="btnEnergyShop" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnEnergyShop"
-            text="Energy Shop"/>
-    <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="71.0" layoutY="66.0" pickOnBounds="true"
-               preserveRatio="true">
-        <image>
-            <Image url="@../images/ShopBoxes.png"/>
-        </image>
-    </ImageView>
-    <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="233.0" layoutY="66.0" pickOnBounds="true"
-               preserveRatio="true">
-        <image>
-            <Image url="@../images/ShopBoxes.png"/>
-        </image>
-    </ImageView>
-    <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="395.0" layoutY="66.0" pickOnBounds="true"
-               preserveRatio="true">
-        <image>
-            <Image url="@../images/ShopBoxes.png"/>
-        </image>
-    </ImageView>
-    <Label layoutX="79.0" layoutY="74.0" text="Photovoltaic solar panel " textFill="#ede9e9"/>
-    <Label layoutX="242.0" layoutY="74.0" text="Photovoltaic solar panel " textFill="#ede9e9"/>
-    <Label layoutX="403.0" layoutY="74.0" text="Photovoltaic solar panel " textFill="#ede9e9"/>
-    <ImageView onMouseClicked="#buySolar1" fitHeight="38.0" fitWidth="108.0" layoutX="100.0" layoutY="318.0"
-               pickOnBounds="true" preserveRatio="true">
-        <image>
-            <Image url="@../images/BuyButton.png"/>
-        </image>
-    </ImageView>
-    <ImageView onMouseClicked="#buySolar2" fitHeight="38.0" fitWidth="108.0" layoutX="255.0" layoutY="318.0"
-               pickOnBounds="true"
-               preserveRatio="true">
-        <image>
-            <Image url="@../images/BuyButton.png"/>
-        </image>
-    </ImageView>
-    <ImageView onMouseClicked="#buySolar3" fitHeight="38.0" fitWidth="108.0" layoutX="424.0" layoutY="318.0"
-               pickOnBounds="true"
-               preserveRatio="true">
-        <image>
-            <Image url="@../images/BuyButton.png"/>
-        </image>
-    </ImageView>
-    <ImageView fitHeight="40.0" fitWidth="126.0" layoutX="409.0" layoutY="143.0" pickOnBounds="true"
-               preserveRatio="true">
-        <image>
-            <Image url="@../images/StoreSolcelle.png"/>
-        </image>
-    </ImageView>
-    <ImageView fitHeight="40.0" fitWidth="108.0" layoutX="257.0" layoutY="142.0" pickOnBounds="true"
-               preserveRatio="true">
-        <image>
-            <Image url="@../images/MellemSolcelle.png"/>
-        </image>
-    </ImageView>
-    <ImageView fitHeight="40.0" fitWidth="83.0" layoutX="109.0" layoutY="142.0" pickOnBounds="true"
-               preserveRatio="true">
-        <image>
-            <Image url="@../images/LilleSolcelle.png"/>
-        </image>
-    </ImageView>
-    <Label layoutX="98.0" layoutY="220.0" text="Size: Small" textFill="WHITE"/>
-    <Label layoutX="98.0" layoutY="260.0" text="Price: 2023" textFill="#fffefe"/>
-    <Label layoutX="98.0" layoutY="240.0" text="Emission: 0" textFill="WHITE"/>
-    <Label layoutX="98.0" layoutY="280.0" text="Output: 169.76" textFill="WHITE"/>
+      <font>
+         <Font size="26.0" />
+      </font></Label>
+   <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="71.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/ShopBoxes.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="233.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/ShopBoxes.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="395.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/ShopBoxes.png" />
+      </image>
+   </ImageView>
+   <Label layoutX="79.0" layoutY="74.0" text="Photovoltaic solar panel " textFill="#ede9e9" />
+   <Label layoutX="242.0" layoutY="74.0" text="Photovoltaic solar panel " textFill="#ede9e9" />
+   <Label layoutX="403.0" layoutY="74.0" text="Photovoltaic solar panel " textFill="#ede9e9" />
+   <ImageView fx:id="1" fitHeight="38.0" fitWidth="108.0" layoutX="100.0" layoutY="318.0" onMouseClicked="#handleBuyItem" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/BuyButton.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="2" fitHeight="38.0" fitWidth="108.0" layoutX="255.0" layoutY="318.0" onMouseClicked="#handleBuyItem" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/BuyButton.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="3" fitHeight="38.0" fitWidth="108.0" layoutX="424.0" layoutY="318.0" onMouseClicked="#handleBuyItem" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/BuyButton.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="40.0" fitWidth="126.0" layoutX="409.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/StoreSolcelle.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="40.0" fitWidth="108.0" layoutX="257.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/MellemSolcelle.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="40.0" fitWidth="83.0" layoutX="109.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/LilleSolcelle.png" />
+      </image>
+   </ImageView>
+   <Label layoutX="98.0" layoutY="220.0" text="Size: Small" textFill="WHITE" />
+   <Label layoutX="98.0" layoutY="260.0" text="Price: 2023" textFill="#fffefe" />
+   <Label layoutX="98.0" layoutY="240.0" text="Emission: 0" textFill="WHITE" />
+   <Label layoutX="98.0" layoutY="280.0" text="Output: 169.76" textFill="WHITE" />
 
-    <Label layoutX="260.0" layoutY="220.0" text="Size: Medium" textFill="WHITE"/>
-    <Label layoutX="260.0" layoutY="260.0" text="Price: 52000" textFill="WHITE"/>
-    <Label layoutX="260.0" layoutY="240.0" text="Emission: 0" textFill="WHITE"/>
-    <Label layoutX="260.0" layoutY="280.0" text="Output: 5926" textFill="WHITE"/>
+   <Label layoutX="260.0" layoutY="220.0" text="Size: Medium" textFill="WHITE" />
+   <Label layoutX="260.0" layoutY="260.0" text="Price: 52000" textFill="WHITE" />
+   <Label layoutX="260.0" layoutY="240.0" text="Emission: 0" textFill="WHITE" />
+   <Label layoutX="260.0" layoutY="280.0" text="Output: 5926" textFill="WHITE" />
 
-    <Label layoutX="415.0" layoutY="220.0" text="Size: Large" textFill="WHITE"/>
-    <Label layoutX="415.0" layoutY="260.0" text="Price: 91579" textFill="WHITE"/>
-    <Label layoutX="415.0" layoutY="240.0" text="Emission: 0" textFill="WHITE"/>
-    <Label layoutX="415.0" layoutY="280.0" text="Output: 12033" textFill="WHITE"/>
-    <Label layoutX="108.0" layoutY="91.0" text="array of 13sqm" textFill="WHITE"/>
-    <Label layoutX="267.0" layoutY="91.0" text="array of 32sqm" textFill="WHITE"/>
-    <Label layoutX="432.0" layoutY="91.0" text="array of 65sqm" textFill="WHITE"/>
+   <Label layoutX="415.0" layoutY="220.0" text="Size: Large" textFill="WHITE" />
+   <Label layoutX="415.0" layoutY="260.0" text="Price: 91579" textFill="WHITE" />
+   <Label layoutX="415.0" layoutY="240.0" text="Emission: 0" textFill="WHITE" />
+   <Label layoutX="415.0" layoutY="280.0" text="Output: 12033" textFill="WHITE" />
+   <Label layoutX="108.0" layoutY="91.0" text="array of 13sqm" textFill="WHITE" />
+   <Label layoutX="267.0" layoutY="91.0" text="array of 32sqm" textFill="WHITE" />
+   <Label layoutX="432.0" layoutY="91.0" text="array of 65sqm" textFill="WHITE" />
+   <Button fx:id="btnHouse" layoutX="22.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House Area" />
 </AnchorPane>

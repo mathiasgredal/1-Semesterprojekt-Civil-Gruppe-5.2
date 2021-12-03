@@ -8,55 +8,42 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
-   <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
-      <image>
-         <Image url="@../images/ShopOutline.png" />
-      </image>
-   </ImageView>
+    <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+        <Image url="@../images/ShopOutline.png" />
+    </ImageView>
     <Label layoutX="181.0" layoutY="14.0" text="Energy Shop Windmills">
-      <font>
-         <Font size="26.0" />
-      </font></Label>
-    <Button fx:id="btnEnergyShop" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnEnergyShop" text="Energy Shop" />
-   <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="144.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/ShopBoxes.png" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="332.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/ShopBoxes.png" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="120.0" fitWidth="108.0" layoutX="164.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/wind.png" />
-      </image>
-   </ImageView>
-   <Label layoutX="153.0" layoutY="83.0" text="Gaia 10kW wind turbine" textFill="#ede9e9" />
-   <ImageView fitHeight="120.0" fitWidth="108.0" layoutX="352.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/wind.png" />
-      </image>
-   </ImageView>
-   <Label layoutX="331.0" layoutY="83.0" text="Power 20kW wind generator" textFill="#ede9e9" />
-   <ImageView fitHeight="38.0" fitWidth="108.0" layoutX="173.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/BuyButton.png" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="38.0" fitWidth="108.0" layoutX="362.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/BuyButton.png" />
-      </image>
-   </ImageView>
-   <Label layoutX="160.0" layoutY="240.0" text="Size: Small" textFill="WHITE" />
-   <Label layoutX="160.0" layoutY="260.0" text="Price: 73557" textFill="WHITE" />
-   <Label layoutX="160.0" layoutY="280.0" text="Emission: 0" textFill="WHITE" />
-   <Label layoutX="160.0" layoutY="300.0" text="Output: 32000" textFill="WHITE" />
+        <font>
+            <Font size="26.0" />
+        </font>
+    </Label>
+    <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="144.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/ShopBoxes.png" />
+    </ImageView>
+    <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="332.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/ShopBoxes.png" />
+    </ImageView>
+    <ImageView fitHeight="120.0" fitWidth="108.0" layoutX="164.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/wind.png" />
+    </ImageView>
+    <Label layoutX="153.0" layoutY="83.0" text="Gaia 10kW wind turbine" textFill="#ede9e9" />
+    <ImageView fitHeight="120.0" fitWidth="108.0" layoutX="352.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/wind.png" />
+    </ImageView>
+    <Label layoutX="336.0" layoutY="83.0" text="Power 20kW wind turbine" textFill="#ede9e9" />
+    <ImageView id="1" fitHeight="38.0" fitWidth="108.0" layoutX="175.0" layoutY="318.0" onMouseClicked="#handleBuyItem" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/BuyButton.png" />
+    </ImageView>
+    <ImageView id="2" fitHeight="38.0" fitWidth="108.0" layoutX="362.0" layoutY="318.0" onMouseClicked="#handleBuyItem" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/BuyButton.png" />
+    </ImageView>
+    <Label layoutX="160.0" layoutY="234.0" text="Size: Small" textFill="WHITE" />
+    <Label layoutX="160.0" layoutY="254.0" text="Price: 73557" textFill="WHITE" />
+    <Label layoutX="160.0" layoutY="274.0" text="Emission: 0" textFill="WHITE" />
+    <Label layoutX="160.0" layoutY="294.0" text="Output: 32000" textFill="WHITE" />
 
-   <Label layoutX="350.0" layoutY="240.0" text="Size: Medium" textFill="WHITE" />
-   <Label layoutX="350.0" layoutY="260.0" text="Price: 163460" textFill="WHITE" />
-   <Label layoutX="350.0" layoutY="280.0" text="Emission: 0" textFill="WHITE" />
-   <Label layoutX="350.0" layoutY="300.0" text="Output: 122640" textFill="WHITE" />
+    <Label layoutX="350.0" layoutY="234.0" text="Size: Medium" textFill="WHITE" />
+    <Label layoutX="350.0" layoutY="254.0" text="Price: 163460" textFill="WHITE" />
+    <Label layoutX="350.0" layoutY="274.0" text="Emission: 0" textFill="WHITE" />
+    <Label layoutX="350.0" layoutY="294.0" text="Output: 122640" textFill="WHITE" />
+    <Button fx:id="btnHouse" layoutX="22.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House Area" />
 </AnchorPane>
