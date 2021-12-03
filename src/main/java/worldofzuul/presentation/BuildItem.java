@@ -12,15 +12,17 @@ import worldofzuul.Items.EnergySource;
 import java.util.Objects;
 
 public class BuildItem extends Rectangle {
-    int x, y;
-    int width, height;
-    double deltaX, deltaY;
-
     public static final int gridSize = 20;
 
-    EnergySource source;
+    private int x, y;
+    private int width, height;
+    private double deltaX, deltaY;
+    private EnergySource source;
 
-
+    /**
+     * Contructor: Loads tooltip, sets width and height, loads textures,
+     * finds available position in grid, and installs event handlers to handle dragging
+     */
     public BuildItem(EnergySource source) {
         this.source = source;
         this.x = source.getPosX();
@@ -54,7 +56,6 @@ public class BuildItem extends Rectangle {
             setFill(new ImagePattern(img));
         }
 
-
         setWidth(this.width * gridSize);
         setHeight(this.height * gridSize);
 
@@ -82,6 +83,10 @@ public class BuildItem extends Rectangle {
         enableDrag();
     }
 
+    /**
+     * @param x Grid position
+     * @param y Grid position y
+     */
     void setPosition(int x, int y) {
         this.x = x;
         this.y = y;

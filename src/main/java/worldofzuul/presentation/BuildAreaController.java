@@ -11,8 +11,6 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import worldofzuul.Game;
 
@@ -23,8 +21,6 @@ public class BuildAreaController {
     private Button btnHouse;
     @FXML
     private Group buildArea;
-    @FXML
-    private Rectangle background;
 
     ObservableList<BuildItem> buildItems = FXCollections.observableArrayList();
 
@@ -34,19 +30,15 @@ public class BuildAreaController {
     private int gridHeight = 17;
     private BoundingBox buildAreaBounds = new BoundingBox(gridOffset.getX(), gridOffset.getY(), gridWidth * BuildItem.gridSize, gridHeight * BuildItem.gridSize);
 
+    /**
+     * Initialize is called after the FXML attributes are saturates
+     */
     @FXML
     public void initialize() {
         // Setup build area component
         buildArea.setTranslateX(gridOffset.getX());
         buildArea.setTranslateY(gridOffset.getY());
         buildArea.setUserData(buildAreaBounds);
-
-        // Setup background
-//        background.setX(gridOffset.getX());
-//        background.setY(gridOffset.getY());
-//        background.setWidth(buildAreaBounds.getWidth());
-//        background.setHeight(buildAreaBounds.getHeight());
-//        background.setFill(Color.RED);
 
         // Load in energysources from build area
         for (var source : Game.instance.getBuildArea().getEnergySources()) {
@@ -57,6 +49,9 @@ public class BuildAreaController {
         Bindings.bindContent(buildArea.getChildren(), buildItems);
     }
 
+    /**
+     * A button to go back to the main scene
+     */
     public void handleBtnHouse() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/house.fxml")));
 
