@@ -68,13 +68,16 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    /*public void handleBtnNextYear() throws Exception {
+    public void handleBtnNextYear() throws Exception {
         //Change window
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/next year.fxml")));
 
         Stage window = (Stage) btnNextYear.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
-    }*/
+
+        Command c = new Command(CommandWord.NEXT, "year");
+        Game.instance.nextYear(c);
+    }
 
     public void handleBtnBatteryShop() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/batteryShop.fxml")));

@@ -38,17 +38,6 @@ public class Game {
     private final House house = new House(1600);
     private final BuildArea buildArea = new BuildArea();
 
-    public BuildArea getBuildArea() {
-        return buildArea;
-    }
-
-    public ArrayList<Shop> getShops() {
-        return shops;
-    }
-
-    public House getHouse() {
-        return house;
-    }
 
     private final ArrayList<Shop> shops = new ArrayList<>();
 
@@ -502,5 +491,13 @@ public class Game {
      */
     public BuildArea getBuildArea() {
         return buildArea;
+    }
+
+    public ArrayList<Shop> getShops() {
+        return shops;
+    }
+
+    public House getHouse() {
+        return house;
     }
 }
