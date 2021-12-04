@@ -17,7 +17,7 @@
         <font>
             <Font size="26.0" />
         </font></Label>
-    <Button fx:id="btnEnergyShop" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnEnergyShop" text="Energy Shop" />
+    <Button fx:id="btnHouse" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House Area" />
     <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="71.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
         <image>
             <Image url="@../images/ShopBoxes.png" />
@@ -51,9 +51,21 @@
             <Image url="@../images/BuyButton.png" />
         </image>
     </ImageView>
-    <Label layoutX="130.0" layoutY="245.0" text="Label" />
-    <Label layoutX="285.0" layoutY="245.0" text="Label" />
-    <Label layoutX="466.0" layoutY="246.0" text="Label" />
+    <Label layoutX="88.0" layoutY="240.0" text="Energy from 1kg coal" textFill="WHITE" />
+    <Label layoutX="88.0" layoutY="260.0" text="Price: 1.28" textFill="WHITE" />
+    <Label layoutX="88.0" layoutY="280.0" text="Emission: 2.4 kg co2" textFill="WHITE" />
+    <Label layoutX="88.0" layoutY="300.0" text="output: 90 kwh" textFill="WHITE" />
+
+    <Label layoutX="251.0" layoutY="240.0" text="Energy from 1kg oil" textFill="WHITE" />
+    <Label layoutX="251.0" layoutY="260.0" text="Price: 13.3" textFill="WHITE" />
+    <Label layoutX="251.0" layoutY="280.0" text="Emission: 3.1 kg co2" textFill="WHITE" />
+    <Label layoutX="251.0" layoutY="300.0" text="output: 151 kwh" textFill="WHITE" />
+
+    <Label layoutX="407.0" layoutY="240.0" text="Energy from 1kg natural gas" textFill="WHITE" />
+    <Label layoutX="407.0" layoutY="260.0" text="Price: 1.83" textFill="WHITE"/>
+    <Label layoutX="407.0" layoutY="280.0" text="Emission: 2.7 kg co2" textFill="WHITE" />
+    <Label layoutX="407.0" layoutY="300.0" text="output: 176 kwh" textFill="WHITE" />
+
    <ImageView fitHeight="112.0" fitWidth="111.0" layoutX="91.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/Kul.png" />

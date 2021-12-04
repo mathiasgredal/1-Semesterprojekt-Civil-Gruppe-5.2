@@ -35,7 +35,7 @@
          <Image url="@../images/ElBil.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="38.0" fitWidth="92.0" layoutX="352.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="buyCar" fitHeight="38.0" fitWidth="92.0" layoutX="352.0" layoutY="315.0" onMouseClicked="#handleBuyCar" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/BuyButton.png" />
       </image>
@@ -45,7 +45,7 @@
          <Image url="@../images/AC.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="38.0" fitWidth="92.0" layoutX="153.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="buyPump" fitHeight="38.0" fitWidth="92.0" layoutX="153.0" layoutY="315.0" onMouseClicked="#handleBuyPump" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/BuyButton.png" />
       </image>

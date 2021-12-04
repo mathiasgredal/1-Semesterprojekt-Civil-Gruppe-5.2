@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -22,7 +23,10 @@ import java.nio.charset.StandardCharsets;
 
 public class SceneController {
     @FXML
-    Button btnHouse, btnBuildArea, btnShopArea, btnWindturbineShop, btnSolarPanelShop, btnEnergyShop, btnRetailShop, btnHelp, btnNextYear, btnBatteryShop;
+    Button btnHouse, btnBuildArea, btnShopArea, btnWindturbineShop, btnSolarPanelShop, btnEnergyShop, btnRetailShop, btnHelp, btnNextYear, btnBatteryShop, btnFossilShop;
+
+    @FXML
+    ImageView pump, ElCar, btnBuyCar, btnBuyPump;
 
     @FXML
     private URL location;
@@ -85,6 +89,13 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
+    public void handleBtnFossilShop() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Fossil energyshop.fxml")));
+
+        Stage window = (Stage) btnFossilShop.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
+
     public void handleBtnHelp() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/help.fxml")));
 
@@ -93,6 +104,18 @@ public class SceneController {
     }
 
     public void handleBtnNextYear() throws Exception{}
+
+    public void handleBuyCar() throws Exception{
+        //mangler dvs virker ikke - hvis man kan købe bliver billederne visable på house
+        ElCar.setImage(new Image(getClass().getResource("ElBil.png").toString()));
+        ElCar.setVisible(true);
+    }
+
+    public void handleBuyPump() throws Exception{
+        //mangler dvs virker ikke - hvis man kan købe bliver billederne visable på house
+        pump.setImage(new Image(getClass().getResource("AC.png").toString()));
+        pump.setVisible(true);
+    }
 
     public void handleBuyItem(MouseEvent mouseEvent) throws Exception{
         String[] arrOfLocation = location.getFile().split("/");
