@@ -1,11 +1,7 @@
 package worldofzuul.presentation;
 
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.BoundingBox;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -24,36 +20,17 @@ public class BuildAreaController {
     private Button btnHouse;
 
     @FXML
-    private Group buildArea;
-
-    @FXML
     private Label renewable_label, fossil_label, battery_label;
 
-    ObservableList<BuildItem> buildItems = FXCollections.observableArrayList();
-
-    // Size and position of buildarea
-    private Point2D gridOffset = new Point2D(18, 36);
-    private int gridWidth = 27;
-    private int gridHeight = 17;
-    private BoundingBox buildAreaBounds = new BoundingBox(gridOffset.getX(), gridOffset.getY(), gridWidth * BuildItem.gridSize, gridHeight * BuildItem.gridSize);
+    @FXML
+    private Group buildArea;
 
     /**
      * Initialize is called after the FXML attributes are saturates
      */
     @FXML
-    public void initialize() {
-        // Setup build area component
-        buildArea.setTranslateX(gridOffset.getX());
-        buildArea.setTranslateY(gridOffset.getY());
-        buildArea.setUserData(buildAreaBounds);
-
-        // Load in energysources from build area
-        for (var source : Game.instance.getBuildArea().getEnergySources()) {
-            buildItems.add(new BuildItem(source));
-        }
-
-        // Make sure changes in buildItems are reflected in GUI
-        Bindings.bindContent(buildArea.getChildren(), buildItems);
+    private void initialize() {
+        this.buildArea.getChildren().add(new BuildGrid(new Point2D(18, 36), 20));
 
         // Set label values
         renewable_label.setText(String.format("Renewable energy: %s pr. year", humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProductionRenewable())));
