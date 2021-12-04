@@ -42,6 +42,8 @@ shopItems:
       emission: 0
       output: 169.76
       textureURL: "/images/LilleSolcelle.png"
+      width: 1
+      height: 1
     - name: "Solar Energy"
       description: "Photovoltaic solar panel array of 32sqm"
       size: "MEDIUM"
@@ -49,6 +51,8 @@ shopItems:
       emission: 0
       output: 5926
       textureURL: "/images/MellemSolcelle.png"
+      width: 2
+      height: 1
     - name: "Solar Energy"
       description: "Photovoltaic solar panel array of 65sqm"
       size: "LARGE"
@@ -56,6 +60,8 @@ shopItems:
       emission: 0
       output: 12033
       textureURL: "/images/StoreSolcelle.png"
+      width: 3
+      height: 1
   Windturbine shop:
     - name: "Wind Energy"
       description: "Gaia 10kW wind turbine"
@@ -63,9 +69,15 @@ shopItems:
       price: 73557
       emission: 0
       output: 32000
+      textureURL: "/images/Lille Mølle Stativ.png"
+      width: 1
+      height: 3
     - name: "Wind Energy"
       description: "Power 20kW wind generator"
       size: "MEDIUM"
       price: 163460
       emission: 0
       output: 122640
+      textureURL: "/images/Stor mølle stativ.png"
+      width: 1
+      height: 5
