@@ -25,5 +25,4 @@ public interface Buyable {
      *
      * Gets the output in kWh for the item
      */
-    double getOutput();
 }
