@@ -31,6 +31,8 @@ import java.nio.charset.StandardCharsets;
 
 public class SceneController {
     @FXML
+    Button btnHouse, btnBuildArea, btnShopArea, btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, btnRetailShop, btnHelp, btnNextYear, btnBatteryShop, btnCon;
+
     private Button btnHouse, btnHelp;
 
     @FXML
@@ -80,6 +82,12 @@ public class SceneController {
     }
 
     public void handleBtnNextYear() throws Exception {
+        //Change window
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/next year.fxml")));
+
+        Stage window = (Stage) btnNextYear.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+
         //Get the method - cormandline interface
         Command c = new Command(CommandWord.NEXT, "year");
         Game.instance.nextYear(c);
@@ -116,19 +124,8 @@ public class SceneController {
             // Step 7: Increment year
             int iy = Game.instance.getGameYear() + 1;
         }
-        //Change window
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/next year.fxml")));
 
-        Stage window = (Stage) btnNextYear.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
 
-        //Kan ikke få settext til at virke (det er ikke kun på den her måde jeg har prøvet)
-        /*textNextYear1.setText("You are now in the year: " + Game.instance.getGameYear());
-        textNextYear2.setText("Your emission for this year is: " + emissions);
-        textNextYear3.setText("Your total emission is: " + b.getYearlyEmissions());
-        textNextYear4.setText("Your earned money on sold energy: " + soldEnergyPrice);
-        textNextYear5.setText("Your balance are: " + p.getPlayerEconomy());
-*/
     }
 
     public void handleBtnBatteryShop() throws Exception{
