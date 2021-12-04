@@ -17,6 +17,17 @@ public class EnergySource implements Buyable {
     private double capacity = 0;
 
     /**
+     * This is the physical size and position of the object in the build area
+     */
+    private int posX = -1;
+    private int posY = -1;
+
+    /**
+     * URL to texture/image for energysource
+     */
+    private String textureURL = "";
+
+    /**
      * These values are logged each year for an eventual calculation of ROI
      */
     private double totalGeneratedEnergy = 0;
@@ -31,13 +42,15 @@ public class EnergySource implements Buyable {
     /**
      * Constructor for initializing values in energysource
      */
-    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput) {
+    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput, double energyCapacity, String textureURL) {
         this.name = energyName;
         this.description = energyDescription;
         this.size = size;
         this.price = energyPrice;
         this.emission = energyEmission;
         this.output = energyOutput;
+        this.capacity = energyCapacity;
+        this.textureURL = textureURL;
     }
 
     /**
@@ -192,6 +205,13 @@ public class EnergySource implements Buyable {
     }
 
     /**
+     * Getter for energy source description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
      * A utility function for generating a random percentage
      *
      * @param max The maximum percentage to increase price by
@@ -204,6 +224,21 @@ public class EnergySource implements Buyable {
         double procent = (random_int / 100);
         return (int) Math.round(price * procent);
     }
+
+    /**
+     * Gets the url for the energysource texture
+     */
+    public String getTextureURL() {
+        return textureURL;
+    }
+
+    /**
+     * Sets a new url for the energysource texture
+     */
+    public void setTextureURL(String textureURL) {
+        this.textureURL = textureURL;
+    }
+
 
     /**
      * Setter for energysource size
@@ -233,5 +268,21 @@ public class EnergySource implements Buyable {
      */
     public void setCapacity(double capacity) {
         this.capacity = capacity;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
     }
 }

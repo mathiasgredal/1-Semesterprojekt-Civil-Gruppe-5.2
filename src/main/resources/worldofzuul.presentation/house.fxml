@@ -20,7 +20,7 @@
          </font></Label>
       <Button fx:id="btnNextYear" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnNextYear" text="Next Year" />
       <Button fx:id="btnHelp" layoutX="100.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnHelp" text="Help" />
-      <Label layoutX="68.0" layoutY="235.0" text="Build Area">
+      <Label fx:id="labelBuildArea" layoutX="68.0" layoutY="235.0" text="Build Area" onMouseClicked="#handleLabelBuildArea">
          <font>
             <Font size="14.0" />
          </font>

@@ -324,7 +324,7 @@ public class Game {
             player.withdrawMoney(house.getYearlyCost());
 
             // Step 3: Log stuff for recap
-            player.transferEnergySources(getGameYear(), buildArea.getEnergySources(), house.getYearlyEmissions());
+            player.transferEnergySources(getGameYear(), new ArrayList<>(buildArea.getEnergySources()), house.getYearlyEmissions());
 
             // Step 5: Remove fossil fuels
             buildArea.removeFossilEnergySources();
@@ -485,5 +485,12 @@ public class Game {
      */
     public Player getPlayer() {
         return player;
+    }
+
+    /**
+     * A getter for the build area
+     */
+    public BuildArea getBuildArea() {
+        return buildArea;
     }
 }
