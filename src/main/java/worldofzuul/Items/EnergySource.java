@@ -22,6 +22,9 @@ public class EnergySource implements Buyable {
     private int posX = -1;
     private int posY = -1;
 
+    private int width = -1;
+    private int height = -1;
+
     /**
      * URL to texture/image for energysource
      */
@@ -42,7 +45,7 @@ public class EnergySource implements Buyable {
     /**
      * Constructor for initializing values in energysource
      */
-    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput, double energyCapacity, String textureURL) {
+    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput, double energyCapacity, String textureURL, int width, int height) {
         this.name = energyName;
         this.description = energyDescription;
         this.size = size;
@@ -51,6 +54,8 @@ public class EnergySource implements Buyable {
         this.output = energyOutput;
         this.capacity = energyCapacity;
         this.textureURL = textureURL;
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -284,5 +289,21 @@ public class EnergySource implements Buyable {
 
     public int getPosY() {
         return posY;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }
