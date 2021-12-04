@@ -32,6 +32,8 @@
             <Image url="@../images/ShopBoxes.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnRetailShop" layoutX="21.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleBtnRetailShop" text="Retail Shop" />
+      <Label layoutX="78.0" layoutY="92.0" textFill="#ede9e9" />
       <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="236.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ShopBoxes.png" />
@@ -79,6 +81,5 @@
       <Label layoutX="107.0" layoutY="83.0" text="BYD dual-panel" textFill="WHITE" />
       <Label layoutX="263.0" layoutY="83.0" text="BYD penta-panel " textFill="WHITE" />
       <Label layoutX="431.0" layoutY="100.0" text="LiFeo4 Battery" textFill="#fbfbfb" />
-      <Button fx:id="btnHouse" layoutX="26.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House Area" />
    </children>
 </AnchorPane>

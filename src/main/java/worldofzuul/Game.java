@@ -323,7 +323,7 @@ public class Game {
             player.withdrawMoney(house.getYearlyCost());
 
             // Step 3: Log stuff for recap
-            player.transferEnergySources(getGameYear(), new ArrayList<>(buildArea.getEnergySources()), house.getYearlyEmissions());
+            player.transferEnergySources(getGameYear(), buildArea.getEnergySources(), house.getYearlyEmissions());
 
             // Step 5: Remove fossil fuels
             buildArea.removeFossilEnergySources();
@@ -485,6 +485,7 @@ public class Game {
     public Player getPlayer() {
         return player;
     }
+<<<<<<< HEAD
 
     /**
      * A getter for the build area
@@ -500,4 +501,6 @@ public class Game {
     public House getHouse() {
         return house;
     }
+=======
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
 }

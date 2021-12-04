@@ -43,7 +43,11 @@ class PlayerTest {
         var myEnergy = new EnergySource(
                 "My energy",
                 "cold fusion", EnergySourceSize.MEDIUM,
+<<<<<<< HEAD
                 1000, 24, 1000, 0, "", 1, 1);
+=======
+                1000, 24, 1000);
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
 
         Shop shop = new EnergyShop("Magic shop",
                 "A shop test", List.of(myEnergy));

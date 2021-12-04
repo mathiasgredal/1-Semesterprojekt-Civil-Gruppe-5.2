@@ -41,27 +41,36 @@ shopItems:
       price: 2023
       emission: 0
       output: 169.76
+<<<<<<< HEAD
       textureURL: "/images/LilleSolcelle.png"
       width: 1
       height: 1
+=======
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
     - name: "Solar Energy"
       description: "Photovoltaic solar panel array of 32sqm"
       size: "MEDIUM"
       price: 52000
       emission: 0
       output: 5926
+<<<<<<< HEAD
       textureURL: "/images/MellemSolcelle.png"
       width: 2
       height: 1
+=======
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
     - name: "Solar Energy"
       description: "Photovoltaic solar panel array of 65sqm"
       size: "LARGE"
       price: 91579
       emission: 0
       output: 12033
+<<<<<<< HEAD
       textureURL: "/images/StoreSolcelle.png"
       width: 3
       height: 1
+=======
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
   Windturbine shop:
     - name: "Wind Energy"
       description: "Gaia 10kW wind turbine"
@@ -77,7 +86,11 @@ shopItems:
       size: "MEDIUM"
       price: 163460
       emission: 0
+<<<<<<< HEAD
       output: 122640
       textureURL: "/images/Stor mølle stativ.png"
       width: 1
       height: 5
+=======
+      output: 122640
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)

@@ -1,7 +1,5 @@
 package worldofzuul.Rooms;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import worldofzuul.Game;
 import worldofzuul.Items.EnergySource;
 
@@ -9,8 +7,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class BuildArea extends Room {
-
-    private ObservableList<EnergySource> energySources = FXCollections.observableArrayList();
+    private ArrayList<EnergySource> energySources = new ArrayList<>();
 
     public BuildArea() {
         super("build area", "at the build area, here you find the energy sources you have built");
@@ -20,16 +17,20 @@ public class BuildArea extends Room {
      * Adds an energysource to the list of energysources
      */
     public void addEnergySource(EnergySource e) {
+<<<<<<< HEAD
         // Clone the energysource, to prevent mutation when setting a new position
         var energySourceClone = new EnergySource(e.getName(), e.getDescription(), e.getSize(), e.getPrice(), e.getEmission(), e.getOutput(), e.getCapacity(), e.getTextureURL(), e.getWidth(), e.getHeight());
         energySources.add(energySourceClone);
+=======
+        energySources.add(e);
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
     }
 
     /**
      * Gets a copy of the list of energysources
      */
-    public ObservableList<EnergySource> getEnergySources() {
-        return energySources;
+    public ArrayList<EnergySource> getEnergySources() {
+        return new ArrayList<>(energySources);
     }
 
     /**
@@ -101,8 +102,7 @@ public class BuildArea extends Room {
                 renewableEnergySources.add(e);
         }
 
-        this.energySources.clear();
-        this.energySources.addAll(renewableEnergySources);
+        this.energySources = renewableEnergySources;
     }
 
     /**

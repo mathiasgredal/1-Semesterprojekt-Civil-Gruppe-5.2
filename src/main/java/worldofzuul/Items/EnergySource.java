@@ -17,6 +17,7 @@ public class EnergySource implements Buyable {
     private double capacity = 0;
 
     /**
+<<<<<<< HEAD
      * This is the physical size and position of the object in the build area
      */
     private int posX = -1;
@@ -31,6 +32,8 @@ public class EnergySource implements Buyable {
     private String textureURL = "";
 
     /**
+=======
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
      * These values are logged each year for an eventual calculation of ROI
      */
     private double totalGeneratedEnergy = 0;
@@ -45,17 +48,24 @@ public class EnergySource implements Buyable {
     /**
      * Constructor for initializing values in energysource
      */
+<<<<<<< HEAD
     public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput, double energyCapacity, String textureURL, int width, int height) {
+=======
+    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput) {
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
         this.name = energyName;
         this.description = energyDescription;
         this.size = size;
         this.price = energyPrice;
         this.emission = energyEmission;
         this.output = energyOutput;
+<<<<<<< HEAD
         this.capacity = energyCapacity;
         this.textureURL = textureURL;
         this.width = width;
         this.height = height;
+=======
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
     }
 
     /**
@@ -210,13 +220,6 @@ public class EnergySource implements Buyable {
     }
 
     /**
-     * Getter for energy source description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
      * A utility function for generating a random percentage
      *
      * @param max The maximum percentage to increase price by
@@ -229,21 +232,6 @@ public class EnergySource implements Buyable {
         double procent = (random_int / 100);
         return (int) Math.round(price * procent);
     }
-
-    /**
-     * Gets the url for the energysource texture
-     */
-    public String getTextureURL() {
-        return textureURL;
-    }
-
-    /**
-     * Sets a new url for the energysource texture
-     */
-    public void setTextureURL(String textureURL) {
-        this.textureURL = textureURL;
-    }
-
 
     /**
      * Setter for energysource size
@@ -274,6 +262,7 @@ public class EnergySource implements Buyable {
     public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
+<<<<<<< HEAD
 
     public void setPosX(int posX) {
         this.posX = posX;
@@ -306,4 +295,6 @@ public class EnergySource implements Buyable {
     public void setHeight(int height) {
         this.height = height;
     }
+=======
+>>>>>>> parent of 7524c53 (Merge branch 'master' into add-gui-functionality)
 }
