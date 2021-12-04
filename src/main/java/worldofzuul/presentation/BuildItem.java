@@ -1,17 +1,25 @@
 package worldofzuul.presentation;
 
+import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
 import javafx.geometry.BoundingBox;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import worldofzuul.Items.EnergySource;
+import worldofzuul.Items.EnergySourceSize;
 
 import java.util.Objects;
 
-public class BuildItem extends Rectangle {
+public class BuildItem extends Parent {
     public static final int gridSize = 20;
 
     private int x, y;
@@ -32,32 +40,57 @@ public class BuildItem extends Rectangle {
         Tooltip t = new Tooltip(source.getDescription());
         Tooltip.install(this, t);
 
-        // Set predefined sizes for the energysource depending on the size of the energysource
-        switch (source.getSize()) {
-            case SMALL -> {
-                this.width = 1;
-                this.height = 1;
-            }
-            case MEDIUM -> {
-                this.width = 2;
-                this.height = 1;
-            }
-            case LARGE -> {
-                this.width = 3;
-                this.height = 1;
-            }
+        // If the width or height hasn't been set, then use 1x1 to not break graphics
+        if (source.getWidth() == -1 || source.getHeight() == -1) {
+            this.width = 1;
+            this.height = 1;
+        } else {
+            this.width = source.getWidth();
+            this.height = source.getHeight();
         }
+
+        Rectangle rect = new Rectangle(this.width * gridSize, this.height * gridSize);
+        Rectangle rect2 = new Rectangle(this.width * gridSize, this.height * gridSize);
+        rect2.setFill(Color.PINK);
 
         // Load energysource texture
         if (Objects.equals(source.getTextureURL(), "")) {
-            setFill(Color.PINK);
+            rect.setStyle("-fx-background-color: PINK");
+            rect.setFill(Color.PINK);
         } else {
             Image img = new Image(getClass().getResource(source.getTextureURL()).toExternalForm());
-            setFill(new ImagePattern(img));
+            rect.setFill(new ImagePattern(img));
         }
 
-        setWidth(this.width * gridSize);
-        setHeight(this.height * gridSize);
+        // Add rectangle to node
+        getChildren().addAll(rect);
+
+        // If we have a windmill, we will need to add the rotating head.
+        // We don't have a good abstraction for this, so it is just hardcoded
+        if (source.getName().contains("Wind")) {
+            String imageURL = source.getSize() == EnergySourceSize.SMALL ? "/images/Lille mølle hoved.png" : "/images/Stor mølle hoved.png";
+            Image img = new Image(getClass().getResource(imageURL).toExternalForm());
+            ImageView windMillHead = new ImageView(img);
+
+            // Add proper offset, so the windmill heead is placed on the axel
+            if (source.getSize() == EnergySourceSize.SMALL) {
+                windMillHead.setTranslateY(-5);
+                windMillHead.setTranslateX(-11);
+            } else if (source.getSize() == EnergySourceSize.MEDIUM) {
+                windMillHead.setScaleX(0.8);
+                windMillHead.setScaleY(0.8);
+                windMillHead.setTranslateY(-15);
+                windMillHead.setTranslateX(-22);
+            }
+
+            RotateTransition rt = new RotateTransition(Duration.millis(1500), windMillHead);
+            rt.setInterpolator(Interpolator.LINEAR);
+            rt.setByAngle(360);
+            rt.setCycleCount(Animation.INDEFINITE);
+            rt.play();
+
+            getChildren().add(windMillHead);
+        }
 
         // If the source is colliding with an existing energysource, we should find another suitable spot
         parentProperty().addListener(e -> {
@@ -142,24 +175,31 @@ public class BuildItem extends Rectangle {
         return true;
     }
 
+    /**
+     * This installs the proper event handlers to detect mouse drags and use them to move the object
+     */
     private void enableDrag() {
+        // Register the start of the drag
         setOnMousePressed(mouseEvent -> {
             deltaX = getTranslateX() - mouseEvent.getSceneX();
             deltaY = getTranslateY() - mouseEvent.getSceneY();
             getScene().setCursor(Cursor.MOVE);
         });
 
-        setOnMouseReleased(mouseEvent -> getScene().setCursor(Cursor.HAND));
-
+        // Update the position of the object
         setOnMouseDragged(mouseEvent ->
+                // This method sets a new position for the object on the grid, if it fits there
+                // This prevents objects from being placed on top of each other, and it also makes
+                // sure the object is always placed in the grid
                 setPositionGridFromScene(mouseEvent.getSceneX() + deltaX, mouseEvent.getSceneY() + deltaY)
         );
 
+        // The following event handlers set the mouse cursor, which tells the user that these items can be moved
+        setOnMouseReleased(mouseEvent -> getScene().setCursor(Cursor.HAND));
         setOnMouseEntered(mouseEvent -> {
             if (!mouseEvent.isPrimaryButtonDown())
                 getScene().setCursor(Cursor.HAND);
         });
-
         setOnMouseExited(mouseEvent -> {
             if (!mouseEvent.isPrimaryButtonDown())
                 getScene().setCursor(Cursor.DEFAULT);
