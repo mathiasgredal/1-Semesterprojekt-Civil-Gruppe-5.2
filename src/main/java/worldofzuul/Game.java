@@ -349,7 +349,7 @@ public class Game {
     }
 
 
-    private void printRecap() {
+    public void printRecap() {
         int highScore = 0;
         highScore += player.getPlayerEconomy() * 34 + buildArea.getYearlyEnergyProductionRenewable() * 21 + player.calculateEmission() * 10;
 
