@@ -68,52 +68,13 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    public void handleBtnNextYear() throws Exception {
+    /*public void handleBtnNextYear() throws Exception {
         //Change window
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/next year.fxml")));
 
         Stage window = (Stage) btnNextYear.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
-
-        //Get the method - cormandline interface
-        Command c = new Command(CommandWord.NEXT, "year");
-        Game.instance.nextYear(c);
-
-        // Is energy requirement is fulfilled?
-        BuildArea b = new BuildArea();
-        House h = new House(16000);
-        Player p = new Player();
-
-        if (b.getYearlyEnergyProduction() > h.getEnergyRequirement()) {
-            // Step 0: Are we at 2030
-            if (Game.instance.getGameYear() == 20) {
-                Game.instance.printRecap();
-            }
-
-            // Step 1: Calculate values
-            double excessEnergy = b.getYearlyEnergyProduction() - h.getEnergyRequirement();
-            double soldEnergyPrice = excessEnergy * b.getEnergySalesPricePrkWh();
-            double emissions = b.getYearlyEmissions() + h.getYearlyEmissions();
-
-            // Step 2: Insert yearly salery and energy sales to player balance
-            p.insertMoney(soldEnergyPrice + p.getYearlyIncome());
-            p.withdrawMoney(h.getYearlyCost());
-
-            // Step 3: Log stuff for recap
-            p.transferEnergySources(Game.instance.getGameYear(), b.getEnergySources(), h.getYearlyEmissions());
-
-            // Step 5: Remove fossil fuels
-            b.removeFossilEnergySources();
-
-            // Step 6: Add earned money to each energysource
-            b.addYearlyEnergyProductionToEnergySources();
-
-            // Step 7: Increment year
-            int iy = Game.instance.getGameYear() + 1;
-        }
-
-
-    }
+    }*/
 
     public void handleBtnBatteryShop() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/batteryShop.fxml")));
