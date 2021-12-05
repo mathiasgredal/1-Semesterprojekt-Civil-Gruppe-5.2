@@ -31,18 +31,13 @@ import java.nio.charset.StandardCharsets;
 
 public class SceneController {
     @FXML
-    Button btnHouse, btnBuildArea, btnShopArea, btnWindEnergyShop, btnSolarEnergyShop, btnEnergyShop, btnRetailShop, btnHelp, btnNextYear, btnBatteryShop, btnCon;
-
-    private Button btnHouse, btnHelp;
+    private Button btnHouse, btnHelp, btnNextYear;
 
     @FXML
     private Button btnSolarPanelShop, btnWindturbineShop, btnBatteryShop, btnRetailShop;
 
     @FXML
     private URL location;
-
-    @FXML
-    Label textNextYear1, textNextYear2, textNextYear3, textNextYear4, textNextYear5;
 
     //methods for window change
     public void handleBtnHouse() throws Exception {
@@ -62,22 +57,14 @@ public class SceneController {
     public void handleBtnWindturbineShop() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Windturbine shop.fxml")));
 
-        Stage window = (Stage) btnWindEnergyShop.getScene().getWindow();
+        Stage window = (Stage) btnWindturbineShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
 
-    public void handleBtnHelp() throws Exception{
+    public void handleBtnHelp() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/help.fxml")));
 
         Stage window = (Stage) btnHelp.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
-    }
-
-
-    public void handleBtnCon() throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/house.fxml")));
-
-        Stage window = (Stage) btnCon.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
 
@@ -91,56 +78,6 @@ public class SceneController {
         //Get the method - cormandline interface
         Command c = new Command(CommandWord.NEXT, "year");
         Game.instance.nextYear(c);
-
-        // Is energy requirement is fulfilled?
-        BuildArea b = new BuildArea();
-        House h = new House(16000);
-        Player p = new Player();
-
-        if (b.getYearlyEnergyProduction() > h.getEnergyRequirement()) {
-            // Step 0: Are we at 2030
-            if (Game.instance.getGameYear() == 20) {
-                Game.instance.printRecap();
-            }
-
-            // Step 1: Calculate values
-            double excessEnergy = b.getYearlyEnergyProduction() - h.getEnergyRequirement();
-            double soldEnergyPrice = excessEnergy * b.getEnergySalesPricePrkWh();
-            double emissions = b.getYearlyEmissions() + h.getYearlyEmissions();
-
-            // Step 2: Insert yearly salery and energy sales to player balance
-            p.insertMoney(soldEnergyPrice + p.getYearlyIncome());
-            p.withdrawMoney(h.getYearlyCost());
-
-            // Step 3: Log stuff for recap
-            p.transferEnergySources(Game.instance.getGameYear(), b.getEnergySources(), h.getYearlyEmissions());
-
-            // Step 5: Remove fossil fuels
-            b.removeFossilEnergySources();
-
-            // Step 6: Add earned money to each energysource
-            b.addYearlyEnergyProductionToEnergySources();
-
-            // Step 7: Increment year
-            int iy = Game.instance.getGameYear() + 1;
-        }
-
-
-    }
-
-    public void handleBtnBatteryShop() throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/batteryShop.fxml")));
-
-        Stage window = (Stage) btnBatteryShop.getScene().getWindow();
-        Stage window = (Stage) btnWindturbineShop.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
-    }
-
-    public void handleBtnRetailShop() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Retail store.fxml")));
-
-        Stage window = (Stage) btnRetailShop.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
     }
 
     public void handleBtnBatteryShop() throws Exception {
@@ -150,31 +87,11 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    public void handleBtnHelp() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/help.fxml")));
+    public void handleBtnRetailShop() throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Retail store.fxml")));
 
-        Stage window = (Stage) btnHelp.getScene().getWindow();
+        Stage window = (Stage) btnRetailShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
-    }
-
-    public void handleBtnNextYear() throws Exception {
-    }
-
-    public void handleBuyItem(MouseEvent mouseEvent) throws Exception {
-        String[] arrOfLocation = location.getFile().split("/");
-        String[] shopName = arrOfLocation[arrOfLocation.length - 1].split("\\.");
-        String finalShopName = URLDecoder.decode(shopName[0], StandardCharsets.UTF_8);
-
-
-        Shop foundShop = null;
-        for (int i = 0; i < Game.instance.getShops().size(); i++) {
-            if (Game.instance.getShops().get(i).getName().equals(finalShopName)) {
-                foundShop = Game.instance.getShops().get(i);
-            }
-        }
-        if (foundShop != null) {
-            Game.instance.buyItem(new Command(CommandWord.BUY, ((ImageView) mouseEvent.getSource()).getId()), foundShop);
-        }
     }
 
     @FXML

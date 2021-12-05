@@ -38,10 +38,6 @@ public class Game {
     private final House house = new House(1600);
     private final BuildArea buildArea = new BuildArea();
 
-    public BuildArea getBuildArea() {
-        return buildArea;
-    }
-
     public ArrayList<Shop> getShops() {
         return shops;
     }
