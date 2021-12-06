@@ -79,7 +79,7 @@ public class BuildAreaController {
      * @param kWh energy in kWh
      * @return energy in human-readable unit
      */
-    private static String humanReadableWattHoursSI(double kWh) {
+    public static String humanReadableWattHoursSI(double kWh) {
         long wH = Math.round(kWh * 1000);
 
         if (-1000 < wH && wH < 1000) {
