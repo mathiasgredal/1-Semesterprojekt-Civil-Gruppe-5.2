@@ -34,7 +34,7 @@
             <Image url="@../images/ShopBoxes.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnRetailShop" layoutX="21.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleBtnRetailShop" text="Retail Shop" />
+      <Button fx:id="btnRetailShop" layoutX="21.0" layoutY="17.0" mnemonicParsing="false" onAction="#switchToRetailShop" text="Retail Shop" />
       <Label layoutX="125.0" layoutY="92.0" text="Battery 1" textFill="#ede9e9" />
       <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="236.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
          <image>

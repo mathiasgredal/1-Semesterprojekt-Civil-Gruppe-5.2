@@ -17,7 +17,7 @@
         <font>
             <Font size="26.0" />
         </font></Label>
-    <Button fx:id="btnEnergyShop" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnEnergyShop" text="Energy Shop" />
+    <Button fx:id="btnEnergyShop" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToEnergyShop" text="Energy Shop" />
     <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="71.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
         <image>
             <Image url="@../images/ShopBoxes.png" />

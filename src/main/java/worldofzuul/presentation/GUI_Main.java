@@ -14,17 +14,20 @@ public class GUI_Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/introduction.fxml")));
+        //Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/introduction.fxml")));
+        scene = new Scene(loadFXML("introduction"));
+        scene.getStylesheets().add(getClass().getResource("/font/style.css").toExternalForm());
         primaryStage.setTitle("Green House Jazz");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
+
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GUI_Main.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GUI_Main.class.getResource("/worldofzuul.presentation/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

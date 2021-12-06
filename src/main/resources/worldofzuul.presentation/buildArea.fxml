@@ -12,7 +12,7 @@
     <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#23b120" height="200.0" layoutY="200.0" stroke="#169427" strokeType="INSIDE" width="600.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="260.0" stroke="#3751c5" strokeType="INSIDE" width="600.0" />
-       <Button fx:id="btnShopArea" layoutX="515.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleBtnShopArea" text="Shop Area" />
+       <Button fx:id="btnShopArea" layoutX="515.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleLableEnergyShop" text="Shop Area" />
        <Button fx:id="btnHouse" layoutX="275.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House" />
        <Label layoutX="241.0" layoutY="274.0" text="Build Area">
          <font>

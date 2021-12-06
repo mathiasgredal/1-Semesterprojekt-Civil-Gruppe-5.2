@@ -17,7 +17,7 @@
       <font>
          <Font size="26.0" />
       </font></Label>
-    <Button fx:id="btnHouse" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House area" />
+    <Button fx:id="btnHouse" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#switchToHouse" text="House area" />
    <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="137.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/ShopBoxes.png" />
@@ -30,7 +30,10 @@
    </ImageView>
    <Label layoutX="384.0" layoutY="91.0" text="&quot;Fosille&quot;" textFill="#ede9e9" />
    <Label layoutX="175.0" layoutY="91.0" text="&quot;Bæredygtig&quot;" textFill="#fffdfd" />
-   <Button fx:id="btnSolarEnergyShop" layoutX="158.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleBtnSolarShop" text="Solar Panle Shop" />
-   <Button fx:id="btnWindEnergyShop" layoutX="164.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleBtnWindShop" text="Windmill Shop" />
-   <Button fx:id="FossilShop" layoutX="353.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleBtnFossilShop" text="Fossil Fuels Shop" />
+   <Button fx:id="btnSolarEnergyShop" layoutX="158.0" layoutY="134.0" mnemonicParsing="false" onAction="#switchToSolarShop" text="Solar Panle Shop" />
+   <Button fx:id="btnWindEnergyShop" layoutX="164.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchToWindShop" text="Windmill Shop" />
+   <Button fx:id="FossilShop" layoutX="353.0" layoutY="134.0" mnemonicParsing="false" onAction="#switchToFossilShop" text="Fossil Fuels Shop">
+      <font>
+         <Font size="24.0" />
+      </font></Button>
 </AnchorPane>

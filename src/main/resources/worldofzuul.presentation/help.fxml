@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
    <children>
-      <Button fx:id="btnHouse" layoutX="28.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="Go back" />
+      <Button fx:id="btnHouse" layoutX="28.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToHouse" text="Go back" />
       <Label layoutX="273.0" layoutY="44.0" text="Help">
          <font>
             <Font size="26.0" />

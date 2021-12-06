@@ -1,0 +1,10 @@
+/* This line of code loads the .ttf file "VCR_OSD_MONO_1.001", which make us able to use the font from the file */
+@font-face {
+    src: url("VCR_OSD_MONO_1.001.ttf");
+}
+
+/* This line changes all of the text labels in our program to the VCR OSD Mono font */
+.text {
+    -fx-font-family: "VCR OSD Mono";
+    -fx-font-size: 12px;
+}
