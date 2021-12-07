@@ -347,21 +347,38 @@ public class Game {
 
             // Step 8: Print to the player what happened(money, co2, sold energy, sales price)
             System.out.println("You are now in the year: " + gameYear);
-            // TODO: Print the rest of what happened
+            System.out.println("Your emission for this year is: " + player.getRecapEnergyEmission().get(gameYear-1));
+            System.out.println("Your total emission is: " + player.calculateEmission());
+            System.out.println("Your earned money on sold energy: " + soldEnergyPrice);
+            System.out.println("Your balance are:" + player.getPlayerEconomy());
             return false;
         } else {
-            System.out.printf("Please fulfill the required amount of energy, missing: %.2fkWh\n", house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction());
+            //checks if it is possible for the player to buy the required energy
+            double energyDeficit = house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction();
 
-            //TODO: Perhaps we should check if it is possible for the player to buy the required energy,
-            // and automatically end the game if they can't
-            return false;
+            boolean foundSolution = false;
+            for (var shop : shops) {
+                for (var source : shop.getShopItems()) {
+                    if (source instanceof EnergySource) {
+                        double maxOutput = ((EnergySource) source).getOutput() * player.getPlayerEconomy() / source.getPrice();
+                        if (maxOutput > energyDeficit)
+                            foundSolution = true;
+                    }
+                }
+            }
+
+            if (!foundSolution) {
+                System.out.println("You have died!");
+                return true;
+            }
         }
+        return false;
     }
 
 
     public void printRecap() {
         int highScore = 0;
-        highScore += player.getPlayerEconomy() * 34 + buildArea.getYearlyEnergyProductionRenewable() * 21 + player.calculateTotalEmission() * 10;
+        highScore += player.getPlayerEconomy() * 34 + buildArea.getYearlyEnergyProductionRenewable() * 21 + player.calculateEmission() * 10;
 
         String recapString = "RECAP";
         String eMoney = "Excess Money: ";
@@ -374,7 +391,7 @@ public class Game {
         textLengths.add(recapString.length());
         textLengths.add(eMoney.length() + String.valueOf(player.getPlayerEconomy()).length());
         textLengths.add(energyOutputString.length() + String.valueOf(buildArea.getYearlyEnergyProductionRenewable()).length());
-        textLengths.add(emissionString.length() + String.valueOf(player.calculateTotalEmission()).length());
+        textLengths.add(emissionString.length() + String.valueOf(player.calculateEmission()).length());
         textLengths.add(hsString.length() + String.valueOf(highScore).length());
 
 
@@ -442,8 +459,8 @@ public class Game {
                         System.out.print(" ");
                     }
 
-                    System.out.print(emissionString + player.calculateTotalEmission());
-                    int emissionAndNr = emissionString.length() + String.valueOf(player.calculateTotalEmission()).length();
+                    System.out.print(emissionString + player.calculateEmission());
+                    int emissionAndNr = emissionString.length() + String.valueOf(player.calculateEmission()).length();
                     for (counter = 0; counter < lineLength - emissionAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }

@@ -69,6 +69,14 @@ public class House extends Room {
         }
     }
 
+    public Car getCar(){
+        return car;
+    }
+
+    public Heating getHeater() {
+        return heater;
+    }
+
     /**
      * {@inheritDoc}
      */

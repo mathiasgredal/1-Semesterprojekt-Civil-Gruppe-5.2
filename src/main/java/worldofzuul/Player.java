@@ -12,6 +12,8 @@ public class Player {
     private double playerEconomy = 300000;
     private final double yearlyIncome = 10000;
     private HashMap<Integer, ArrayList<EnergySource>> recapEnergySources = new HashMap<Integer, ArrayList<EnergySource>>();
+
+
     private HashMap<Integer, Integer> recapEnergyEmission = new HashMap<Integer, Integer>();
 
     /**
@@ -53,7 +55,7 @@ public class Player {
 
     }
 
-    public int calculateTotalEmission() {
+    public int calculateEmission() {
         int totalEmission = 0;
 
         for (int re : recapEnergyEmission.keySet()) {
@@ -95,5 +97,9 @@ public class Player {
      */
     public double getYearlyIncome() {
         return yearlyIncome;
+    }
+
+    public HashMap<Integer, Integer> getRecapEnergyEmission() {
+        return recapEnergyEmission;
     }
 }

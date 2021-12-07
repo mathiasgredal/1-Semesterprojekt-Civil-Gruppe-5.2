@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.SceneController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.RetailController">
    <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
       <image>
          <Image url="@../images/ShopOutline.png" />
@@ -28,14 +28,14 @@
          <Image url="@../images/ShopBoxes.png" />
       </image>
    </ImageView>
-   <Label layoutX="158.0" layoutY="86.0" text="&quot;VarmePumpe&quot;" textFill="#f4efef" />
+   <Label layoutX="158.0" layoutY="86.0" text="Heating Pump" textFill="#f4efef" />
    <Label layoutX="385.0" layoutY="86.0" text="Cars" textFill="#f4efef" />
    <ImageView fitHeight="55.0" fitWidth="89.0" layoutX="352.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/ElBil.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="38.0" fitWidth="92.0" layoutX="352.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="2" fitHeight="38.0" fitWidth="92.0" layoutX="352.0" layoutY="315.0" onMouseClicked="#handleBuyCar" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/BuyButton.png" />
       </image>
@@ -45,11 +45,11 @@
          <Image url="@../images/AC.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="38.0" fitWidth="92.0" layoutX="153.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="1" fitHeight="38.0" fitWidth="92.0" layoutX="153.0" layoutY="315.0" onMouseClicked="#handleBuyPump" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/BuyButton.png" />
       </image>
    </ImageView>
-   <Label layoutX="382.0" layoutY="122.0" text="Car 1" textFill="#fdfafa" />
-   <Label layoutX="156.0" layoutY="122.0" text="&quot;Varme Pumpe&quot;" textFill="#fffdfd" />
+   <Label layoutX="347.0" layoutY="122.0" text="Hesla - Electric Car" textFill="#fdfafa" />
+   <Label layoutX="156.0" layoutY="122.0" text="Heating Pump" textFill="#fffdfd" />
 </AnchorPane>

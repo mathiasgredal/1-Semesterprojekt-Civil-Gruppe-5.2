@@ -1,12 +1,8 @@
 package worldofzuul.presentation;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import worldofzuul.Game;
 
 import java.io.IOException;
@@ -60,7 +56,7 @@ public class NextYearController {
     private void printYearlyRecap(){
         textNextYear1.setText("You are now in the year: " + Game.instance.getGameYear());
         yearlyEmissionText.setText("Your emission for this year is: " + Game.instance.getHouse().getYearlyEmissions());
-        totalEmissionText.setText("Your total emission is: " + Game.instance.getPlayer().calculateTotalEmission());
+        totalEmissionText.setText("Your total emission is: " + Game.instance.getPlayer().calculateEmission());
         earnedMoneyText.setText("Your earned money on sold energy: " + Game.instance.getSoldEnergyPrice());
         balanceText.setText("Your balance are: " + Game.instance.getPlayer().getPlayerEconomy());
     }
