@@ -20,7 +20,7 @@ public class NextYearController {
 
     @FXML
     void initialize(){
-        if(checkEnergyRequirementIsFulfilled()) {
+        if(energyRequirementIsFulfilled()) {
             textNextYear1.getText();
             yearlyEmissionText.getText();
             totalEmissionText.getText();
@@ -38,7 +38,7 @@ public class NextYearController {
     }
 
     public void handleCheckNextYearCondition() throws IOException {
-        if (checkEnergyRequirementIsFulfilled()) {
+        if (energyRequirementIsFulfilled()) {
             printYearlyRecap();
         }
 
@@ -51,7 +51,7 @@ public class NextYearController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    private boolean checkEnergyRequirementIsFulfilled(){
+    private boolean energyRequirementIsFulfilled(){
         if (Game.instance.getBuildArea().getYearlyEnergyProduction() > Game.instance.getHouse().getEnergyRequirement()) {
             return true;
         }
