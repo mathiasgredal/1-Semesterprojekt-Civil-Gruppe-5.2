@@ -94,10 +94,6 @@ public class SceneController {
     public void handleBtnFossilShop(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("Fossil energyshop");
     }
-
-    private void hudValues(){
-
-    }
 }
 
 
