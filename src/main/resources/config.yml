@@ -5,16 +5,25 @@ shopItems:
       size: "SMALL"
       price: 36375
       capacity: 5.12
+      textureURL: "/images/Lille batteri.png"
+      width: 1
+      height: 1
     - name: "Battery"
       description: "BYD penta-panel LiFePo4 battery"
       size: "MEDIUM"
       price: 81250
       capacity: 12.8
+      textureURL: "/images/Mellem Batteri.png"
+      width: 2
+      height: 1
     - name: "Battery"
       description: "BYD octa-panel LiFePo4 battery"
       size: "LARGE"
       price: 127250
       capacity: 22.1
+      textureURL: "/images/Stor batteri.png"
+      width: 3
+      height: 1
   Fossil energyshop: # Estimated energy prices, due to lack of sources
     - name: "Coal"
       description: "Energy from 1kg coal"
