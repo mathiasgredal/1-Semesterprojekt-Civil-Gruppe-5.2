@@ -1,10 +1,10 @@
 package worldofzuul.presentation;
 
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Tooltip;
@@ -17,24 +17,29 @@ import javafx.util.Duration;
 import worldofzuul.Items.EnergySource;
 import worldofzuul.Items.EnergySourceSize;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class BuildItem extends Parent {
-    public static final int gridSize = 20;
-
     private int x, y;
     private int width, height;
+    private double gridSize;
     private double deltaX, deltaY;
     private EnergySource source;
+
+    private Rectangle rect;
+    private ImageView windMillHead;
 
     /**
      * Contructor: Loads tooltip, sets width and height, loads textures,
      * finds available position in grid, and installs event handlers to handle dragging
      */
-    public BuildItem(EnergySource source) {
+    public BuildItem(EnergySource source, double gridSize) {
         this.source = source;
         this.x = source.getPosX();
         this.y = source.getPosY();
+        this.gridSize = gridSize;
 
         // Set tooltip for the item
         Tooltip t = new Tooltip(source.getDescription());
@@ -49,13 +54,10 @@ public class BuildItem extends Parent {
             this.height = source.getHeight();
         }
 
-        Rectangle rect = new Rectangle(this.width * gridSize, this.height * gridSize);
-        Rectangle rect2 = new Rectangle(this.width * gridSize, this.height * gridSize);
-        rect2.setFill(Color.PINK);
+        rect = new Rectangle(this.width * gridSize, this.height * gridSize);
 
         // Load energysource texture
         if (Objects.equals(source.getTextureURL(), "")) {
-            rect.setStyle("-fx-background-color: PINK");
             rect.setFill(Color.PINK);
         } else {
             Image img = new Image(getClass().getResource(source.getTextureURL()).toExternalForm());
@@ -63,26 +65,38 @@ public class BuildItem extends Parent {
         }
 
         // Add rectangle to node
-        getChildren().addAll(rect);
+        getChildren().add(rect);
 
         // If we have a windmill, we will need to add the rotating head.
         // We don't have a good abstraction for this, so it is just hardcoded
         if (source.getName().contains("Wind")) {
+            // Get windmill head texture
             String imageURL = source.getSize() == EnergySourceSize.SMALL ? "/images/Lille mølle hoved.png" : "/images/Stor mølle hoved.png";
             Image img = new Image(getClass().getResource(imageURL).toExternalForm());
-            ImageView windMillHead = new ImageView(img);
+            windMillHead = new ImageView(img);
+
+            // Scale head
+            double scale = (rect.getWidth() * 2.0) / img.getWidth();
+            windMillHead.setScaleX(scale);
+            windMillHead.setScaleY(scale);
 
             // Add proper offset, so the windmill heead is placed on the axel
+            // We do some number magic, to make sure the head is offset correctly on all scales
+            double offsetX = -windMillHead.getBoundsInParent().getMinX();
+            double offsetY = -windMillHead.getBoundsInParent().getMinY();
+
             if (source.getSize() == EnergySourceSize.SMALL) {
-                windMillHead.setTranslateY(-5);
-                windMillHead.setTranslateX(-11);
+                offsetX -= 10 * scale;
+                offsetY -= 5 * scale;
             } else if (source.getSize() == EnergySourceSize.MEDIUM) {
-                windMillHead.setScaleX(0.8);
-                windMillHead.setScaleY(0.8);
-                windMillHead.setTranslateY(-15);
-                windMillHead.setTranslateX(-22);
+                offsetX -= 16 * scale;
+                offsetY -= 12 * scale;
             }
 
+            windMillHead.setTranslateX(offsetX);
+            windMillHead.setTranslateY(offsetY);
+
+            // Initialize rotation animation
             RotateTransition rt = new RotateTransition(Duration.millis(1500), windMillHead);
             rt.setInterpolator(Interpolator.LINEAR);
             rt.setByAngle(360);
@@ -140,10 +154,10 @@ public class BuildItem extends Parent {
         setPosition(newX, newY);
 
         // Before doing collision checking, we scale down the rectangle, so we don't get incorrect collision answers
-        // when 2 rectangels are side by side(which javafx says are intersecting). The value 0.99 is picked since it
+        // when 2 rectangels are side by side(which javafx says are intersecting). The value 0.75 is picked since it
         // is enough to fix javafx collision detection
-        setScaleX(0.99);
-        setScaleY(0.99);
+        rect.setScaleX(0.75);
+        rect.setScaleY(0.75);
 
         // Do collision checking, by looping through each child
         boolean collision = false;
@@ -152,19 +166,34 @@ public class BuildItem extends Parent {
             if (child == this)
                 continue;
 
-            // Calculate intersection in parent coordinates
-            if (child.getBoundsInParent().intersects(this.getBoundsInParent()))
-                collision = true;
+            // Since javafx only supports rectilinear convex collision intersection, we need to check all children individually
+            List<Bounds> selfBoundingBoxes = new ArrayList<>();
+            // A map would be a much better fit, but i am not allowed to use streams :(
+            getChildren().forEach(node -> selfBoundingBoxes.add(localToScene(node.getBoundsInParent())));
+
+            List<Bounds> otherBoundingBoxes = new ArrayList<>();
+            ((Parent) child).getChildrenUnmodifiable().forEach(node -> otherBoundingBoxes.add(child.localToScene(node.getBoundsInParent())));
+
+            // Compare all children of this object with all children of the other object, and stop if a collision is found
+            otherLoop:
+            for (var bounds : selfBoundingBoxes) {
+                for (var otherBounds : otherBoundingBoxes) {
+                    if (bounds.intersects(otherBounds)) {
+                        collision = true;
+                        break otherLoop;
+                    }
+                }
+            }
         }
 
         // Check if new position is out of bounds
         var bounds = (BoundingBox) getParent().getUserData();
-        if (!sceneToLocal(bounds).contains(getBoundsInLocal()))
+        if (!bounds.contains(rect.localToScene(rect.getBoundsInLocal())))
             collision = true;
 
         // Revert scale
-        setScaleX(1);
-        setScaleY(1);
+        rect.setScaleX(1);
+        rect.setScaleY(1);
 
         // Revert move if there was a collision
         if (collision) {
