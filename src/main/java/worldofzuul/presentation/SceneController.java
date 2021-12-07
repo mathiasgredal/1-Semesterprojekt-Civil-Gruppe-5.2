@@ -37,7 +37,7 @@ public class SceneController {
             emissionLabel.getText();
             energyProductionLabel.getText();
             moneyLabel.getText();
-            yearLabel.setText(String.format("Year: " + Game.instance.getGameYear()));
+            yearLabel.setText(String.format("Year: " + (2010 + Game.instance.getGameYear())));
             moneyLabel.setText(String.format("Money: " + Game.instance.getPlayer().getPlayerEconomy()));
             emissionLabel.setText("Emission: " + Game.instance.getHouse().getYearlyEmissions());
             energyProductionLabel.setText(String.format("Energi production: " + Game.instance.getBuildArea().getYearlyEnergyProduction()));
