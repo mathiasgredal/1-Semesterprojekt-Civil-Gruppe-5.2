@@ -14,13 +14,13 @@ import java.io.IOException;
 public class NextYearController {
 
     @FXML
-    Button btnCon;
+    private Button btnCon;
     @FXML
-    Label textNextYear1, yearlyEmissionText, totalEmissionText, earnedMoneyText, balanceText, unableText;
+    private Label textNextYear1, yearlyEmissionText, totalEmissionText, earnedMoneyText, balanceText, unableText;
 
     @FXML
     void initialize(){
-        if(textNextYear1.getText() != null) {
+        if(checkEnergyRequirementIsFulfilled()) {
             textNextYear1.getText();
             yearlyEmissionText.getText();
             totalEmissionText.getText();
@@ -29,37 +29,41 @@ public class NextYearController {
             unableText.getText();
             unableText.setVisible(false);
 
-            textNextYear1.setText("You are now in the year: " + Game.instance.getGameYear());
-            yearlyEmissionText.setText("Your emission for this year is: " + Game.instance.getHouse().getYearlyEmissions());
-            totalEmissionText.setText("Your total emission is: " + Game.instance.getPlayer().calculateTotalEmission());
-            earnedMoneyText.setText("Your earned money on sold energy: " + Game.instance.soldEnergyPrice);
-            balanceText.setText("Your balance are: " + Game.instance.getPlayer().getPlayerEconomy());
-
-            if(Game.instance.getBuildArea().getYearlyEnergyProduction() < Game.instance.getHouse().getEnergyRequirement()){
-                unableText.setVisible(true);
-                btnCon.setText("Back");
-            }
+            printYearlyRecap();
+        }
+        else{
+            unableText.setVisible(true);
+            btnCon.setText("Back");
         }
     }
 
-    public void checkNextYearCondition() throws IOException, InterruptedException {
-        if(Game.instance.getBuildArea().getYearlyEnergyProduction() < Game.instance.getHouse().getEnergyRequirement()){
-            loadHouseScene();
+    public void handleCheckNextYearCondition() throws IOException {
+        if (checkEnergyRequirementIsFulfilled()) {
+            printYearlyRecap();
         }
-        else{
-            textNextYear1.setText("You are now in the year: " + Game.instance.getGameYear());
-            yearlyEmissionText.setText("Your emission for this year is: " + Game.instance.getHouse().getYearlyEmissions());
-            totalEmissionText.setText("Your total emission is: " + Game.instance.getPlayer().calculateTotalEmission());
-            earnedMoneyText.setText("Your earned money on sold energy: " + Game.instance.soldEnergyPrice);
-            balanceText.setText("Your balance are: " + Game.instance.getPlayer().getPlayerEconomy());
 
-            loadHouseScene();
-        }
+        loadHouseScene();
     }
 
     private void loadHouseScene() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/house.fxml")));
         Stage window = (Stage) btnCon.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
+    }
+
+    private boolean checkEnergyRequirementIsFulfilled(){
+        if (Game.instance.getBuildArea().getYearlyEnergyProduction() > Game.instance.getHouse().getEnergyRequirement()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void printYearlyRecap(){
+        textNextYear1.setText("You are now in the year: " + Game.instance.getGameYear());
+        yearlyEmissionText.setText("Your emission for this year is: " + Game.instance.getHouse().getYearlyEmissions());
+        totalEmissionText.setText("Your total emission is: " + Game.instance.getPlayer().calculateTotalEmission());
+        earnedMoneyText.setText("Your earned money on sold energy: " + Game.instance.getSoldEnergyPrice());
+        balanceText.setText("Your balance are: " + Game.instance.getPlayer().getPlayerEconomy());
     }
 }

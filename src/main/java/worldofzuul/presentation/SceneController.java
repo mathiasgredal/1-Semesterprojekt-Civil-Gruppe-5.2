@@ -75,7 +75,11 @@ public class SceneController {
         Stage window = (Stage) btnNextYear.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
 
-        //Get the method - cormandline interface
+        /**
+         *  Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
+         *
+         * @since 1st Iteration
+         */
         Command c = new Command(CommandWord.NEXT, "year");
         Game.instance.nextYear(c);
     }

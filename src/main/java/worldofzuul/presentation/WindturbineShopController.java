@@ -22,27 +22,25 @@ import java.nio.charset.StandardCharsets;
 
 public class WindturbineShopController {
     @FXML
-    Label windPrice1, windPrice2;
+    private Label windPrice1, windPrice2;
     @FXML
-    Button btnHouse;
+    private Button btnHouse;
     @FXML
     private URL location;
 
     @FXML
     public void initialize() {
         Shop foundShop = null;
-        if (windPrice1 != null) {
             Label[] arrOfWindPrices = {windPrice1, windPrice2};
             for(int i = 0; i < Game.instance.getShops().size(); i++) {
                 if (Game.instance.getShops().get(i).getName().equals(getShopName())) {
                     foundShop = Game.instance.getShops().get(i);
                 }
             }
-
-            for(int i = 0; i < foundShop.getShopItems().size(); i++){
+            
+            for(int i = 0; i < foundShop.getShopItems().size(); i++) {
                 arrOfWindPrices[i].setText("Price: " + foundShop.getShopItem(i).getPrice());
             }
-        }
     }
 
     public void handleBtnHouse(ActionEvent actionEvent) throws IOException {
@@ -61,13 +59,13 @@ public class WindturbineShopController {
     }
 
     public void handleBuyItem(MouseEvent mouseEvent) throws Exception {
-
         Shop foundShop = null;
         for(int i = 0; i < Game.instance.getShops().size(); i++) {
             if (Game.instance.getShops().get(i).getName().equals(getShopName())) {
                 foundShop = Game.instance.getShops().get(i);
             }
         }
+
         if (foundShop != null) {
             Game.instance.buyItem(new Command(CommandWord.BUY, ((ImageView) mouseEvent.getSource()).getId()), foundShop);
         }

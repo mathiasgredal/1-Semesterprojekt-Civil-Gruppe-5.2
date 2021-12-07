@@ -29,7 +29,7 @@ public class Game {
     private Player player = new Player();
     private Config config;
 
-    public double soldEnergyPrice;
+    private double soldEnergyPrice;
 
     private int gameYear = 0;
     private final Parser parser;
@@ -44,6 +44,10 @@ public class Game {
 
     public House getHouse() {
         return house;
+    }
+
+    public double getSoldEnergyPrice() {
+        return soldEnergyPrice;
     }
 
     private final ArrayList<Shop> shops = new ArrayList<>();
