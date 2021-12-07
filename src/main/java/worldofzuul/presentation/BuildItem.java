@@ -143,6 +143,15 @@ public class BuildItem extends Parent {
         source.setPosY(this.y);
     }
 
+    /**
+     * Updates the build item position to a new place in the build grid from scene/screen coordinates
+     * It automatically converts the scene coordinates to grid coordinates
+     * It checks whether the new position is available and sets the new position if that is the case
+     *
+     * @param sceneX The pixel x coordinate
+     * @param sceneY The pixel y coordinate
+     * @return A boolean indicating whether the new position was applied (true if set position was successful, false if there was a collision)
+     */
     public boolean setPositionGridFromScene(double sceneX, double sceneY) {
         // Save old position, for reverting in case of collision
         int oldX = this.x;
