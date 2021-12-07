@@ -23,7 +23,7 @@ public class SceneController {
     private Button btnHouse, btnHelp, btnNextYear;
 
     @FXML
-    private Button btnSolarPanelShop, btnWindturbineShop, btnBatteryShop, btnRetailShop, btnFossilShop;
+    private Button btnSolarPanelShop, btnWindturbineShop, btnBatteryShop, btnRetailShop, btnFossilShop, btnBuildArea;
 
     @FXML
     private URL location;
@@ -34,7 +34,7 @@ public class SceneController {
     @FXML
     private void initialize() {
         if (buildArea != null) {
-            this.buildArea.getChildren().add(new BuildGrid(new Point2D(48, 112), 8, 13, 13));
+            this.buildArea.getChildren().add(new BuildGrid(new Point2D(47, 184), 7, 25, 16));
         }
     }
 
@@ -97,20 +97,17 @@ public class SceneController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    @FXML
-    Label labelBuildArea;
-
-    public void handleLabelBuildArea() throws IOException {
+    public void handleBtnBuildArea() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/buildArea.fxml")));
 
-        Stage window = (Stage) labelBuildArea.getScene().getWindow();
+        Stage window = (Stage) btnBuildArea.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
 
     public void handleBtnFossilShop(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Fossil energyshop.fxml")));
 
-        Stage window = (Stage) labelBuildArea.getScene().getWindow();
+        Stage window = (Stage) btnFossilShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
 }
