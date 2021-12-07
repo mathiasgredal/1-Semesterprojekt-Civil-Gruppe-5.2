@@ -31,16 +31,16 @@ public class WindturbineShopController {
     @FXML
     public void initialize() {
         Shop foundShop = null;
-            Label[] arrOfWindPrices = {windPrice1, windPrice2};
-            for(int i = 0; i < Game.instance.getShops().size(); i++) {
-                if (Game.instance.getShops().get(i).getName().equals(getShopName())) {
-                    foundShop = Game.instance.getShops().get(i);
-                }
+        Label[] arrOfWindPrices = {windPrice1, windPrice2};
+        for (int i = 0; i < Game.instance.getShops().size(); i++) {
+            if (Game.instance.getShops().get(i).getName().equals(getShopName())) {
+                foundShop = Game.instance.getShops().get(i);
             }
-            
-            for(int i = 0; i < foundShop.getShopItems().size(); i++) {
-                arrOfWindPrices[i].setText("Price: " + foundShop.getShopItem(i).getPrice());
-            }
+        }
+
+        for (int i = 0; i < foundShop.getShopItems().size(); i++) {
+            arrOfWindPrices[i].setText("Price: " + foundShop.getShopItem(i).getPrice());
+        }
     }
 
     public void handleBtnHouse(ActionEvent actionEvent) throws IOException {
@@ -50,25 +50,11 @@ public class WindturbineShopController {
         window.setScene(new Scene(root, 600, 400));
     }
 
-    public String getShopName(){
+    public String getShopName() {
         String[] arrOfLocation = location.getFile().split("/");
         String[] shopName = arrOfLocation[arrOfLocation.length - 1].split("\\.");
         String finalShopName = URLDecoder.decode(shopName[0], StandardCharsets.UTF_8);
 
         return finalShopName;
     }
-
-    public void handleBuyItem(MouseEvent mouseEvent) throws Exception {
-        Shop foundShop = null;
-        for(int i = 0; i < Game.instance.getShops().size(); i++) {
-            if (Game.instance.getShops().get(i).getName().equals(getShopName())) {
-                foundShop = Game.instance.getShops().get(i);
-            }
-        }
-
-        if (foundShop != null) {
-            Game.instance.buyItem(new Command(CommandWord.BUY, ((ImageView) mouseEvent.getSource()).getId()), foundShop);
-        }
-    }
-
 }
