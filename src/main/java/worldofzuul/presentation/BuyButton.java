@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
@@ -39,12 +41,15 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
+        Media sound = new Media(getClass().getClassLoader().getResource("coinsound.mp3").toExternalForm());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+
         ScaleTransition st = new ScaleTransition(Duration.millis(200), this);
         st.setByX(-0.2f);
         st.setByY(-0.2f);
         st.setCycleCount(2);
         st.setAutoReverse(true);
-
         st.play();
 
         Shop foundShop = null;
