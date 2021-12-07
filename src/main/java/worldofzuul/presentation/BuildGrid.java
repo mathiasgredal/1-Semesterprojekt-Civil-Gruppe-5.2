@@ -12,14 +12,16 @@ public class BuildGrid extends Group {
     private Point2D offset;
 
     private double gridSize;
-    private int gridWidth = 27;
-    private int gridHeight = 17;
+    private int gridWidth;
+    private int gridHeight;
 
     ObservableList<BuildItem> buildItems = FXCollections.observableArrayList();
 
-    public BuildGrid(Point2D offset, double gridSize) {
+    public BuildGrid(Point2D offset, double gridSize, int gridWidth, int gridHeight) {
         this.offset = offset;
         this.gridSize = gridSize;
+        this.gridWidth = gridWidth;
+        this.gridHeight = gridHeight;
 
         this.setTranslateX(this.offset.getX());
         this.setTranslateY(this.offset.getY());
@@ -27,7 +29,9 @@ public class BuildGrid extends Group {
 
         // Load in energysources from build area
         for (var source : Game.instance.getBuildArea().getEnergySources()) {
-            buildItems.add(new BuildItem(source, getGridSize()));
+            // If the energysource is outside the clip area, we clip them off
+            if (source.getPosX() < gridWidth && source.getPosY() < gridHeight)
+                buildItems.add(new BuildItem(source, getGridSize()));
         }
 
         // Make sure changes in buildItems are reflected in GUI

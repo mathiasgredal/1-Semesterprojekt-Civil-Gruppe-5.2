@@ -37,7 +37,7 @@ public class SceneController {
     @FXML
     private void initialize() {
         if (buildArea != null) {
-            this.buildArea.getChildren().add(new BuildGrid(new Point2D(48, 112), 8));
+            this.buildArea.getChildren().add(new BuildGrid(new Point2D(48, 112), 8, 13, 13));
         }
     }
 

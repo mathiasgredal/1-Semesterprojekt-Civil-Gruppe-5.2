@@ -30,7 +30,7 @@ public class BuildAreaController {
      */
     @FXML
     private void initialize() {
-        this.buildArea.getChildren().add(new BuildGrid(new Point2D(18, 36), 20));
+        this.buildArea.getChildren().add(new BuildGrid(new Point2D(18, 36), 20, 27, 17));
 
         // Set label values
         renewable_label.setText(String.format("Renewable energy: %s pr. year", humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProductionRenewable())));
