@@ -23,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 public class SolarShopController {
     @FXML
     private Label solarPrice1, solarPrice2, solarPrice3;
+
     @FXML
     private Button btnHouse;
 
@@ -35,9 +36,6 @@ public class SolarShopController {
     }
 
     public void handleBtnHouse(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/house.fxml")));
-
-        Stage window = (Stage) btnHouse.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
+        GUI_Main.setRoot("house");
     }
 }

@@ -25,6 +25,9 @@ public class BuildGrid extends Group {
 
         this.setTranslateX(this.offset.getX());
         this.setTranslateY(this.offset.getY());
+
+        // This userdata is fetched by the individual build items, which they use during dragging,
+        // to avoid going outside the build area
         this.setUserData(getBuildAreaBounds());
 
         // Load in energysources from build area
@@ -42,6 +45,9 @@ public class BuildGrid extends Group {
         return gridSize;
     }
 
+    /**
+     * Creates a bounding box, that describes where energysources are allowed to be placed
+     */
     public BoundingBox getBuildAreaBounds() {
         return new BoundingBox(this.offset.getX(), this.offset.getY(), gridWidth * getGridSize(), gridHeight * getGridSize());
     }

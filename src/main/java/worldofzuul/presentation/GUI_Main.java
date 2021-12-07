@@ -14,11 +14,12 @@ public class GUI_Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/introduction.fxml")));
+        scene = new Scene(loadFXML("introduction"));
         primaryStage.setTitle("Green House Jazz");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
+
     //Sets the root FXML
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));

@@ -44,10 +44,7 @@ public class WindturbineShopController {
     }
 
     public void handleBtnHouse(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/house.fxml")));
-
-        Stage window = (Stage) btnHouse.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
+        GUI_Main.setRoot("house");
     }
 
     public String getShopName() {
