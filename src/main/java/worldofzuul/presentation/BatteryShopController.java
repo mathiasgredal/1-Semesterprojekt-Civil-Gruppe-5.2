@@ -1,31 +1,20 @@
 package worldofzuul.presentation;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
 import worldofzuul.Rooms.Shops.Shop;
 
-import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
-public class FossilController {
+public class BatteryShopController {
     @FXML
     private URL location;
-
-    @FXML
-    private void SwitchToFossilShop() throws IOException {
-        GUI_Main.setRoot("house");
-    }
 
     public void handleBtnHouse() throws Exception {
         GUI_Main.setRoot("house");
