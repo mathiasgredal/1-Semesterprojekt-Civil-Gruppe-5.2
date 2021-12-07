@@ -46,9 +46,7 @@ public class NextYearController {
     }
 
     private void loadHouseScene() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/house.fxml")));
-        Stage window = (Stage) btnCon.getScene().getWindow();
-        window.setScene(new Scene(root, 600, 400));
+        GUI_Main.setRoot("house");
     }
 
     private boolean energyRequirementIsFulfilled(){

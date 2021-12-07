@@ -12,6 +12,6 @@ import java.io.IOException;
 public class FossilController {
     @FXML
     private void SwitchToFossilShop() throws IOException {
-        GUI_Main.setRoot("energyShopFossil");
+        GUI_Main.setRoot("house");
     }
 }
