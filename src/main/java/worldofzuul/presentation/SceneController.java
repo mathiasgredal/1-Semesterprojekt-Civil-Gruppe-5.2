@@ -10,25 +10,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
-import worldofzuul.Rooms.Shops.Shop;
-import worldofzuul.Game;
-import worldofzuul.Input.Command;
-import worldofzuul.Input.CommandWord;
-import worldofzuul.Player;
-import worldofzuul.Rooms.BuildArea;
-import worldofzuul.Rooms.House;
-import worldofzuul.Rooms.Room;
 
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 public class SceneController {
     @FXML
