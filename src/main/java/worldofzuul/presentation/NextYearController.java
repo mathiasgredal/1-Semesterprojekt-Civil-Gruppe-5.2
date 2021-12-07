@@ -47,7 +47,6 @@ public class NextYearController {
 
     private void loadHouseScene() throws IOException {
         GUI_Main.setRoot("house");
-
     }
 
     private boolean energyRequirementIsFulfilled(){
