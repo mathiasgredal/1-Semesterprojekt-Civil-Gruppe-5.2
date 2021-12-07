@@ -4,6 +4,8 @@ package worldofzuul.presentation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +16,6 @@ import javafx.stage.Stage;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
-import worldofzuul.Input.CommandWords;
 import worldofzuul.Rooms.Shops.Shop;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
@@ -34,10 +35,20 @@ public class SceneController {
     private Button btnHouse, btnHelp, btnNextYear;
 
     @FXML
-    private Button btnSolarPanelShop, btnWindturbineShop, btnBatteryShop, btnRetailShop;
+    private Button btnSolarPanelShop, btnWindturbineShop, btnBatteryShop, btnRetailShop, btnFossilShop;
 
     @FXML
     private URL location;
+
+    @FXML
+    private Group buildArea;
+
+    @FXML
+    private void initialize() {
+        if (buildArea != null) {
+            this.buildArea.getChildren().add(new BuildGrid(new Point2D(48, 112), 8, 13, 13));
+        }
+    }
 
     //methods for window change
     public void handleBtnHouse() throws Exception {
