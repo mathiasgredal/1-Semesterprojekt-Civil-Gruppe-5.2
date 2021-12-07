@@ -118,6 +118,13 @@ public class SceneController {
         Stage window = (Stage) labelBuildArea.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
     }
+
+    public void handleBtnFossilShop(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Fossil energyshop.fxml")));
+
+        Stage window = (Stage) labelBuildArea.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
 }
 
 
