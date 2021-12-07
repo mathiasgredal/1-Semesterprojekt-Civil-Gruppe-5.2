@@ -3,14 +3,10 @@ package worldofzuul.presentation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
@@ -32,7 +28,22 @@ public class SceneController {
     private Group buildArea;
 
     @FXML
+    private Label moneyLabel, emissionLabel, energyProductionLabel, yearLabel;
+
+    @FXML
     private void initialize() {
+        if(yearLabel != null){
+            yearLabel.getText();
+            emissionLabel.getText();
+            energyProductionLabel.getText();
+            moneyLabel.getText();
+            yearLabel.setText(String.format("Year: " + Game.instance.getGameYear()));
+            moneyLabel.setText(String.format("Money: " + Game.instance.getPlayer().getPlayerEconomy()));
+            emissionLabel.setText("Emission: " + Game.instance.getHouse().getYearlyEmissions());
+            energyProductionLabel.setText(String.format("Energi production: " + Game.instance.getBuildArea().getYearlyEnergyProduction()));
+        }
+
+
         if (buildArea != null) {
             this.buildArea.getChildren().add(new BuildGrid(new Point2D(47, 184), 7, 25, 16));
         }
@@ -82,6 +93,10 @@ public class SceneController {
 
     public void handleBtnFossilShop(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("Fossil energyshop");
+    }
+
+    private void hudValues(){
+
     }
 }
 
