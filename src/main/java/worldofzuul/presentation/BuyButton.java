@@ -3,12 +3,8 @@ package worldofzuul.presentation;
 import javafx.animation.ScaleTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -16,10 +12,6 @@ import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
 import worldofzuul.Rooms.Shops.Shop;
-
-import java.net.URL;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
     @FXML
