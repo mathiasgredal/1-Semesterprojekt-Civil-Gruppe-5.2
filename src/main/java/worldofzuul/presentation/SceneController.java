@@ -26,7 +26,7 @@ public class SceneController {
     private Button btnHouse, btnHelp;
 
     @FXML
-    private Button btnSolarPanelShop, btnWindturbineShop, btnBatteryShop, btnRetailShop;
+    private Button btnSolarPanelShop, btnWindturbineShop, btnBatteryShop, btnRetailShop, btnFossilShop;
 
     @FXML
     private URL location;
@@ -71,7 +71,14 @@ public class SceneController {
     }
 
     public void handleBtnBatteryShop() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Battery Shop.fxml")));
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Battery shop.fxml")));
+
+        Stage window = (Stage) btnFossilShop.getScene().getWindow();
+        window.setScene(new Scene(root, 600, 400));
+    }
+
+    public void handleBtnFossilShop() throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource(("/worldofzuul.presentation/Fossil energyshop.fxml")));
 
         Stage window = (Stage) btnBatteryShop.getScene().getWindow();
         window.setScene(new Scene(root, 600, 400));
