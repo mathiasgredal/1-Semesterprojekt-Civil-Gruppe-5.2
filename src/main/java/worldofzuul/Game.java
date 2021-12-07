@@ -29,6 +29,8 @@ public class Game {
     private Player player = new Player();
     private Config config;
 
+    private double soldEnergyPrice;
+
     private int gameYear = 0;
     private final Parser parser;
     private Room currentRoom;
@@ -38,6 +40,14 @@ public class Game {
 
     public ArrayList<Shop> getShops() {
         return shops;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public double getSoldEnergyPrice() {
+        return soldEnergyPrice;
     }
 
     private final ArrayList<Shop> shops = new ArrayList<>();
@@ -316,7 +326,7 @@ public class Game {
 
             // Step 1: Calculate values
             double excessEnergy = buildArea.getYearlyEnergyProduction() - house.getEnergyRequirement();
-            double soldEnergyPrice = excessEnergy * buildArea.getEnergySalesPricePrkWh();
+            soldEnergyPrice = excessEnergy * buildArea.getEnergySalesPricePrkWh();
             double emissions = buildArea.getYearlyEmissions() + house.getYearlyEmissions();
 
             // Step 2: Insert yearly salery and energy sales to player balance
@@ -349,9 +359,9 @@ public class Game {
     }
 
 
-    private void printRecap() {
+    public void printRecap() {
         int highScore = 0;
-        highScore += player.getPlayerEconomy() * 34 + buildArea.getYearlyEnergyProductionRenewable() * 21 + player.calculateEmission() * 10;
+        highScore += player.getPlayerEconomy() * 34 + buildArea.getYearlyEnergyProductionRenewable() * 21 + player.calculateTotalEmission() * 10;
 
         String recapString = "RECAP";
         String eMoney = "Excess Money: ";
@@ -364,7 +374,7 @@ public class Game {
         textLengths.add(recapString.length());
         textLengths.add(eMoney.length() + String.valueOf(player.getPlayerEconomy()).length());
         textLengths.add(energyOutputString.length() + String.valueOf(buildArea.getYearlyEnergyProductionRenewable()).length());
-        textLengths.add(emissionString.length() + String.valueOf(player.calculateEmission()).length());
+        textLengths.add(emissionString.length() + String.valueOf(player.calculateTotalEmission()).length());
         textLengths.add(hsString.length() + String.valueOf(highScore).length());
 
 
@@ -432,8 +442,8 @@ public class Game {
                         System.out.print(" ");
                     }
 
-                    System.out.print(emissionString + player.calculateEmission());
-                    int emissionAndNr = emissionString.length() + String.valueOf(player.calculateEmission()).length();
+                    System.out.print(emissionString + player.calculateTotalEmission());
+                    int emissionAndNr = emissionString.length() + String.valueOf(player.calculateTotalEmission()).length();
                     for (counter = 0; counter < lineLength - emissionAndNr - distToEdge; counter++) {
                         System.out.print(" ");
                     }

@@ -10,9 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class FossilController {
-
-@FXML
-private void SwitchToFossilShop() throws IOException {
-GUI_Main.setRoot("energyShopFossil");
-}
+    @FXML
+    private void SwitchToFossilShop() throws IOException {
+        GUI_Main.setRoot("energyShopFossil");
+    }
 }

@@ -53,7 +53,7 @@ public class Player {
 
     }
 
-    public int calculateEmission() {
+    public int calculateTotalEmission() {
         int totalEmission = 0;
 
         for (int re : recapEnergyEmission.keySet()) {

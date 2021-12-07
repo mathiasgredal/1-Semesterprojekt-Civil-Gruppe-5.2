@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.NextYearController">
+   <children>
+      <Button fx:id="btnCon" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleCheckNextYearCondition" text="Next Year" />
+      <Label fx:id="textNextYear1" layoutX="174.0" layoutY="152.0" text="You are now in the year: ">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="yearlyEmissionText" layoutX="174.0" layoutY="169.0" text="Your emission for this year is:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="totalEmissionText" layoutX="174.0" layoutY="186.0" text="Your total emission is:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="earnedMoneyText" layoutX="174.0" layoutY="206.0" text="Your earned money on sold energy:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="balanceText" layoutX="174.0" layoutY="223.0" text="our balance are:">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label fx:id="unableText" layoutX="154.0" layoutY="83.0" prefHeight="30.0" prefWidth="293.0" text="REQUIREMENT NOT REACHED" textFill="RED" underline="true" visible="false">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
