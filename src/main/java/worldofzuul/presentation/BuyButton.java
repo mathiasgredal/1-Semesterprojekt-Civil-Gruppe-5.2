@@ -72,11 +72,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
 
         // Display error if we were unable to find the shop
         if (foundShop == null) {
-            Notifications.create()
-                    .title("Error")
-                    .text("Unknown error")
-                    .owner(this)
-                    .show();
+            showNotification("Error", "Unknown error");
             return;
         }
 
