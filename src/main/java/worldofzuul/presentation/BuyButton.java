@@ -98,7 +98,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
     // This has to be static, since all buybuttons share the same static notification system
     // There might be another way to do this cleanly without using static, but this works
     private static final ArrayList<Node> notificationsGraphic = new ArrayList<>();
-    private final int maxNotifications = 6;
+    private final int maxNotifications = 3;
 
     private void showNotification(String title, String description) {
         // If we have too many notifications we hide the oldest ones, so the don't go outside the window
@@ -121,6 +121,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
                 .text(description)
                 .graphic(n)
                 .owner(this)
+                .position(Pos.TOP_RIGHT)
                 .hideAfter(Duration.seconds(2))
                 .show();
 
@@ -136,7 +137,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
     private void playSuccessSound() {
         Media sound = new Media(getClass().getClassLoader().getResource("coinsound.mp3").toExternalForm());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.1);
+        mediaPlayer.setVolume(0.05);
         mediaPlayer.play();
     }
 
