@@ -15,6 +15,7 @@ public class GUI_Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         scene = new Scene(loadFXML("introduction"));
+        scene.getStylesheets().add("style.css");
         primaryStage.setTitle("Green House Jazz");
         primaryStage.setScene(scene);
         primaryStage.show();
