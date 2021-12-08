@@ -9,7 +9,39 @@
     -fx-padding: 5 5 5 5;
     -fx-font-size: 0.7em;
 }
+* {
+    -fx-primary-color: #3f361d;
+    -fx-secondary-color: #584b28;
+
+    -fx-focus-color: -fx-secondary-color;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: -fx-primary-color;
+    -fx-background-radius: 0;
+}
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: -fx-secondary-color;
+}
+.spinner .increment-arrow-button:hover:pressed,
+.spinner .decrement-arrow-button:hover:pressed,
+.spinner .increment-arrow-button:pressed,
+.spinner .decrement-arrow-button:pressed {
+    -fx-background-color: -fx-secondary-color;
+}
+.spinner .increment-arrow-button .increment-arrow,
+.spinner .decrement-arrow-button .decrement-arrow {
+    -fx-background-color: white;
+}
+
+.spinner .increment-arrow-button,
 .spinner .decrement-arrow-button {
     -fx-body-color: yellow;
 }
+
+
+
+
 
