@@ -136,6 +136,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
     private void playSuccessSound() {
         Media sound = new Media(getClass().getClassLoader().getResource("coinsound.mp3").toExternalForm());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(0.1);
         mediaPlayer.play();
     }
 
