@@ -19,7 +19,7 @@ public class NextYearController {
     private Label textNextYear1, yearlyEmissionText, totalEmissionText, earnedMoneyText, balanceText, unableText;
 
     @FXML
-    void initialize() throws IOException {
+    void initialize() {
         if(energyRequirementIsFulfilled()) {
             textNextYear1.getText();
             yearlyEmissionText.getText();

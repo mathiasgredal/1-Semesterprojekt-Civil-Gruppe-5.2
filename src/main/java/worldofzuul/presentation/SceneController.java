@@ -76,11 +76,6 @@ public class SceneController {
             //Change window
             GUI_Main.setRoot("next year");
 
-            /**
-             *  Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
-             *
-             * @since 1st Iteration
-             */
             Command c = new Command(CommandWord.NEXT, "year");
             Game.instance.nextYear(c);
         }
