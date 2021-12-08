@@ -18,7 +18,9 @@ import worldofzuul.Items.EnergyConsumer.Heating;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.CharacterIterator;
 import java.text.DecimalFormat;
+import java.text.StringCharacterIterator;
 
 public class SceneController {
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
@@ -49,9 +51,9 @@ public class SceneController {
             energyProductionLabel.getText();
             moneyLabel.getText();
             yearLabel.setText("Year: " + (2010 + Game.instance.getGameYear()));
-            moneyLabel.setText("Money: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()));
-            emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getHouse().getYearlyEmissions()));
-            energyProductionLabel.setText("Energi production: " + decimalFormat.format(Game.instance.getBuildArea().getYearlyEnergyProduction()));
+            moneyLabel.setText("Money: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()) + " DKK");
+            emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getHouse().getYearlyEmissions()) + " kg CO\u2082");
+            energyProductionLabel.setText("Energy production: " + humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProduction()));
         }
 
 
@@ -66,6 +68,21 @@ public class SceneController {
         if(Game.instance.getHouse().getHeater() instanceof HeatPump){
             imageviewPump.setOpacity(1.0);
         }
+    }
+
+    public static String humanReadableWattHoursSI(double kWh) {
+        long wH = Math.round(kWh * 1000);
+
+        if (-1000 < wH && wH < 1000) {
+            return wH + " Wh";
+        }
+
+        CharacterIterator ci = new StringCharacterIterator("kMGTPE");
+        while (wH <= -999_950 || wH >= 999_950) {
+            wH /= 1000;
+            ci.next();
+        }
+        return String.format("%.2f %cWh", wH / 1000.0, ci.current());
     }
 
     //methods for window change

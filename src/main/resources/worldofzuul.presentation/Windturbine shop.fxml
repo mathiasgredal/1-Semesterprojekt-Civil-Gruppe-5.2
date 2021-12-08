@@ -19,39 +19,49 @@
          <Font size="26.0" />
       </font></Label>
    <Button fx:id="btnHouse" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House area" />
-   <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="144.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="304.0" fitWidth="164.0" layoutX="134.0" layoutY="66.0" pickOnBounds="true">
       <image>
          <Image url="@../images/ShopBoxes.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="332.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="304.0" fitWidth="164.0" layoutX="325.0" layoutY="66.0" pickOnBounds="true">
       <image>
          <Image url="@../images/ShopBoxes.png" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="120.0" fitWidth="108.0" layoutX="164.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/wind.png" />
       </image>
    </ImageView>
    <Label layoutX="153.0" layoutY="83.0" text="Gaia 10kW wind turbine" textFill="#ede9e9" />
-   <ImageView fitHeight="120.0" fitWidth="108.0" layoutX="352.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/wind.png" />
-      </image>
-   </ImageView>
    <Label layoutX="331.0" layoutY="83.0" text="Power 20kW wind generator" textFill="#ede9e9" />
 
    <BuyButton itemIndex="1" layoutX="76.0" layoutY="318.0" shopName="Windturbine shop" />
    <BuyButton itemIndex="2" layoutX="262.0" layoutY="318.0" shopName="Windturbine shop" />
 
-   <Label layoutX="160.0" layoutY="240.0" text="Size: Small" textFill="WHITE" />
-   <Label fx:id="windPrice1" layoutX="160.0" layoutY="260.0" text="232323" textFill="WHITE" />
-   <Label layoutX="160.0" layoutY="280.0" text="Emission: 0" textFill="WHITE" />
-   <Label layoutX="160.0" layoutY="300.0" text="Output: 32000" textFill="WHITE" />
+   <Label layoutX="153.0" layoutY="241.0" text="Size: Small" textFill="WHITE" />
+   <Label fx:id="windPrice1" layoutX="153.0" layoutY="261.0" text="232323" textFill="WHITE" />
+   <Label layoutX="153.0" layoutY="281.0" text="Emission: 0" textFill="WHITE" />
+   <Label layoutX="153.0" layoutY="301.0" text="Output: 32000" textFill="WHITE" />
 
-   <Label layoutX="350.0" layoutY="240.0" text="Size: Medium" textFill="WHITE" />
-   <Label fx:id="windPrice2" layoutX="350.0" layoutY="260.0" text="asdasdasdsad" textFill="WHITE" />
-   <Label layoutX="350.0" layoutY="280.0" text="Emission: 0" textFill="WHITE" />
-   <Label layoutX="350.0" layoutY="300.0" text="Output: 122640" textFill="WHITE" />
+   <Label layoutX="342.0" layoutY="239.0" text="Size: Medium" textFill="WHITE" />
+   <Label fx:id="windPrice2" layoutX="342.0" layoutY="259.0" text="asdasdasdsad" textFill="WHITE" />
+   <Label layoutX="342.0" layoutY="279.0" text="Emission: 0" textFill="WHITE" />
+   <Label layoutX="342.0" layoutY="299.0" text="Output: 122640" textFill="WHITE" />
+   <ImageView fitHeight="112.0" fitWidth="30.0" layoutX="386.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/Stor%20mølle%20stativ.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="369.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/Stor%20mølle%20hoved.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="111.0" fitWidth="151.0" layoutX="189.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/Lille%20Mølle%20Stativ.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="187.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/Lille%20mølle%20hoved.png" />
+      </image>
+   </ImageView>
 </AnchorPane>
