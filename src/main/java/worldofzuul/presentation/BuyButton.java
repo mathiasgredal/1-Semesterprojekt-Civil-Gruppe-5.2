@@ -84,7 +84,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
         }
 
         // Check if we can buy the item
-        if (Game.instance.getPlayer().withdrawMoney(item.getPrice())) {
+        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice()) {
             Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
             playSuccessSound();
             showNotification("Success", "Bought " + item.getName());
