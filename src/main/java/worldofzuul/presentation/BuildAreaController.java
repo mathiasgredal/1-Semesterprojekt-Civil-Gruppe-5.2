@@ -17,9 +17,6 @@ import java.text.StringCharacterIterator;
 
 public class BuildAreaController {
     @FXML
-    private Button btnHouse;
-
-    @FXML
     private Label renewable_label, fossil_label, battery_label;
 
     @FXML
