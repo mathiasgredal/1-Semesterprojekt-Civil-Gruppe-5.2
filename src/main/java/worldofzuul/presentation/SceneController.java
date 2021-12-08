@@ -24,7 +24,7 @@ public class SceneController {
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     @FXML
-    ImageView imageviewPump, imageviewCar;
+    ImageView imageviewPump1, imageviewCar1;
 
     @FXML
     private Button btnHouse, btnHelp, btnNextYear, btnViewHouse;
@@ -60,11 +60,11 @@ public class SceneController {
         }
 
         if (Game.instance.getHouse().getCar() instanceof ElectricCar){
-            imageviewCar.setOpacity(1.0);
+            imageviewCar1.setOpacity(1.0);
         }
 
         if(Game.instance.getHouse().getHeater() instanceof HeatPump){
-            imageviewPump.setOpacity(1.0);
+            imageviewPump1.setOpacity(1.0);
         }
     }
 

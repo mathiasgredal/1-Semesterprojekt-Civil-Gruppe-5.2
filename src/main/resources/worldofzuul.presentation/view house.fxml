@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.ViewHouseController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="678.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
          <image>
             <Image url="@../images/SemesterProjektMap - Kopi.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="128.0" fitWidth="34.0" layoutX="509.0" layoutY="153.0" opacity="0.01" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageviewPump2" fitHeight="128.0" fitWidth="34.0" layoutX="453.0" layoutY="149.0" opacity="0.01" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/AC.png" />
          </image>
@@ -24,21 +24,21 @@
             <Image url="@../images/GasBil.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="55.0" fitWidth="100.0" layoutX="190.0" layoutY="293.0" opacity="0.01" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageviewCar2" fitHeight="55.0" fitWidth="100.0" layoutX="190.0" layoutY="293.0" opacity="0.01" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ElBil.png" />
          </image>
       </ImageView>
       <Label layoutX="150.0" layoutY="275.0" text="You have a car that runs on" />
-      <Label layoutX="305.0" layoutY="29.0" text="House">
+      <Label layoutX="256.0" layoutY="23.0" text="House">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="526.0" layoutY="234.0" opacity="0.01" text="You have a heating pump" />
-      <Label layoutX="300.0" layoutY="275.0" opacity="0.01" text="electricity" />
-      <Label layoutX="300.0" layoutY="275.0" text="petrol" />
-      <Button fx:id="btnNextYear" layoutX="305.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleNextYear" text="Next Year" />
+      <Label fx:id="heatingPump" layoutX="458.0" layoutY="233.0" opacity="0.01" text="You have a heating pump" />
+      <Label fx:id="electric" layoutX="300.0" layoutY="275.0" opacity="0.01" text="electricity" />
+      <Label fx:id="petrol" layoutX="300.0" layoutY="275.0" text="petrol" />
+      <Button fx:id="btnNextYear" layoutX="110.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleNextYear" text="Next Year" />
       <Button layoutX="24.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleHouseScene" text="House Area" />
    </children>
 </AnchorPane>
