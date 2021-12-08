@@ -19,8 +19,8 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Button fx:id="btnNextYear" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnNextYear" text="Next Year" />
       <Button fx:id="btnHelp" layoutX="100.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnHelp" text="Help" />
+      <Button fx:id="btnViewHouse" layoutX="290.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnViewHouse" prefHeight="50.0" prefWidth="85.0" style="-fx-opacity: 0.01;"/>
       <Label layoutX="101.0" layoutY="231.0" text="Build Area" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />

@@ -27,7 +27,7 @@ public class SceneController {
     ImageView imageviewPump, imageviewCar;
 
     @FXML
-    private Button btnHouse, btnHelp, btnNextYear;
+    private Button btnHouse, btnHelp, btnNextYear, btnViewHouse;
 
     @FXML
     private Button btnSolarPanelShop, btnWindturbineShop, btnBatteryShop, btnRetailShop, btnFossilShop, btnBuildArea;
@@ -119,6 +119,10 @@ public class SceneController {
 
     public void handleBtnFossilShop(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("Fossil energyshop");
+    }
+
+    public void handleBtnViewHouse() throws Exception{
+        GUI_Main.setRoot("view house");
     }
 }
 
