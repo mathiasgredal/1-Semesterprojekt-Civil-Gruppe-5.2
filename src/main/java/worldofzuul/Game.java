@@ -192,7 +192,11 @@ public class Game {
             case UNKNOWN -> System.out.println("I don't know what you mean...Please try again.");
             case BUY -> {
                 if (currentRoom instanceof Shop) {
-                    buyItem(command, (Shop) currentRoom);
+                    try {
+                        buyItem(command, (Shop) currentRoom);
+                    } catch (CannotBuyItemMoreThanOnceException e) {
+                        System.out.println(e.getMessage());
+                    }
                 } else {
                     System.out.println("You are not currently in a shop.");
                 }
@@ -257,7 +261,7 @@ public class Game {
      * @param command     Player input
      * @param currentShop The current shop the player is in
      */
-    public void buyItem(Command command, Shop currentShop) {
+    public void buyItem(Command command, Shop currentShop) throws CannotBuyItemMoreThanOnceException {
         if (!command.hasSecondWord()) {
             System.out.println("Buy what?");
             return;
@@ -288,8 +292,6 @@ public class Game {
             System.out.println("Please enter a valid number.");
         } catch (ReceiverForBoughtItemNotFoundException recieverForBoughtItemNotFound) {
             System.out.println("Could not buy that item");
-        } catch (CannotBuyItemMoreThanOnceException cannotBuyItemMoreThanOnce) {
-            System.out.println(cannotBuyItemMoreThanOnce.getMessage());
         }
     }
 
@@ -347,7 +349,7 @@ public class Game {
 
             // Step 8: Print to the player what happened(money, co2, sold energy, sales price)
             System.out.println("You are now in the year: " + gameYear);
-            System.out.println("Your emission for this year is: " + player.getRecapEnergyEmission().get(gameYear-1));
+            System.out.println("Your emission for this year is: " + player.getRecapEnergyEmission().get(gameYear - 1));
             System.out.println("Your total emission is: " + player.calculateEmission());
             System.out.println("Your earned money on sold energy: " + soldEnergyPrice);
             System.out.println("Your balance are:" + player.getPlayerEconomy());

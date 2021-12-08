@@ -13,6 +13,7 @@ module worldofzuul {
     exports worldofzuul.Config to org.yaml.snakeyaml;
     exports worldofzuul.Items to org.yaml.snakeyaml;
 
+    exports worldofzuul.Exceptions;
     exports worldofzuul.Rooms;
     exports worldofzuul;
 }
