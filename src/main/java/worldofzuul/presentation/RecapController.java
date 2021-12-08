@@ -14,7 +14,7 @@ public class RecapController {
 
     @FXML
     public void initialize(){
-        double emission = Game.instance.getPlayer().calculateTotalEmission();
+        double emission = Game.instance.getPlayer().calculateEmission();
         double moneyEarned = Game.instance.getSoldEnergyPrice();
         double excessMoney = Game.instance.getPlayer().getPlayerEconomy();
         int highscore = (int)((50000/(emission/1000))+moneyEarned+excessMoney);
