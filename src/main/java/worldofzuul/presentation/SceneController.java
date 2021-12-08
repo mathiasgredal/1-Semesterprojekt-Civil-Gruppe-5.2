@@ -68,16 +68,22 @@ public class SceneController {
     }
 
     public void handleBtnNextYear() throws Exception {
-        //Change window
-        GUI_Main.setRoot("next year");
+        //If 20 years have passed the game is over, and the player will get to the recap
+        if(Game.instance.getGameYear() == 20) {
+            GUI_Main.setRoot("recap");
+        }
+        else {
+            //Change window
+            GUI_Main.setRoot("next year");
 
-        /**
-         *  Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
-         *
-         * @since 1st Iteration
-         */
-        Command c = new Command(CommandWord.NEXT, "year");
-        Game.instance.nextYear(c);
+            /**
+             *  Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
+             *
+             * @since 1st Iteration
+             */
+            Command c = new Command(CommandWord.NEXT, "year");
+            Game.instance.nextYear(c);
+        }
     }
 
     public void handleBtnBatteryShop() throws Exception {
