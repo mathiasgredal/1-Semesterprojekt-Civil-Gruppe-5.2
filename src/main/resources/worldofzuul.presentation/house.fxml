@@ -61,12 +61,12 @@
             <Image url="@../images/GasBil.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="31.0" layoutX="294.0" layoutY="70.0" opacity="0.26" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageviewCar" fitHeight="20.0" fitWidth="31.0" layoutX="294.0" layoutY="70.0" opacity="0.01" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ElBil.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="71.0" fitWidth="12.0" layoutX="374.0" layoutY="43.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageviewPump" fitHeight="71.0" fitWidth="12.0" layoutX="375.0" layoutY="30.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/AC.png" />
          </image>

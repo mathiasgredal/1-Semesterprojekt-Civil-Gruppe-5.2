@@ -7,9 +7,14 @@ import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
+import worldofzuul.Items.EnergyConsumer.ElectricCar;
+import worldofzuul.Items.EnergyConsumer.HeatPump;
+import worldofzuul.Items.EnergyConsumer.Heating;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +22,9 @@ import java.text.DecimalFormat;
 
 public class SceneController {
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+    @FXML
+    ImageView imageviewPump, imageviewCar;
 
     @FXML
     private Button btnHouse, btnHelp, btnNextYear;
@@ -49,6 +57,14 @@ public class SceneController {
 
         if (buildArea != null) {
             this.buildArea.getChildren().add(new BuildGrid(new Point2D(47, 184), 7, 25, 16));
+        }
+
+        if (Game.instance.getHouse().getCar() instanceof ElectricCar){
+            imageviewCar.setOpacity(1.0);
+        }
+
+        if(Game.instance.getHouse().getHeater() instanceof HeatPump){
+            imageviewPump.setOpacity(1.0);
         }
     }
 
