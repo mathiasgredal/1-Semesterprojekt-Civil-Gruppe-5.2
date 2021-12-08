@@ -6,6 +6,7 @@ module worldofzuul {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires org.yaml.snakeyaml;
+    requires javafx.media;
 
     opens worldofzuul.presentation to javafx.fxml, javafx.graphics;
 
