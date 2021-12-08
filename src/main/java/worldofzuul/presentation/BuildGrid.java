@@ -25,13 +25,18 @@ public class BuildGrid extends Group {
 
         this.setTranslateX(this.offset.getX());
         this.setTranslateY(this.offset.getY());
+
+        // This userdata is fetched by the individual build items, which they use during dragging,
+        // to avoid going outside the build area
         this.setUserData(getBuildAreaBounds());
 
         // Load in energysources from build area
         for (var source : Game.instance.getBuildArea().getEnergySources()) {
             // If the energysource is outside the clip area, we clip them off
             if (source.getPosX() < gridWidth && source.getPosY() < gridHeight)
-                buildItems.add(new BuildItem(source, getGridSize()));
+                if(!source.isFossil()){
+                    buildItems.add(new BuildItem(source, getGridSize()));
+                }
         }
 
         // Make sure changes in buildItems are reflected in GUI
@@ -42,6 +47,9 @@ public class BuildGrid extends Group {
         return gridSize;
     }
 
+    /**
+     * Creates a bounding box, that describes where energysources are allowed to be placed
+     */
     public BoundingBox getBuildAreaBounds() {
         return new BoundingBox(this.offset.getX(), this.offset.getY(), gridWidth * getGridSize(), gridHeight * getGridSize());
     }

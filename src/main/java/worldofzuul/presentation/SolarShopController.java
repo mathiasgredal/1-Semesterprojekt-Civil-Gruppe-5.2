@@ -26,36 +26,16 @@ public class SolarShopController {
 
     @FXML
     private Button btnHouse;
-    @FXML
-    private URL location;
 
     @FXML
     public void initialize() {
         solarPrice1.getText();
         solarPrice2.getText();
         solarPrice3.getText();
-
         //TODO: Implement the setText() method, get the specific shop and the shops item prices, and write it to the labels.
     }
 
     public void handleBtnHouse(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("house");
-    }
-
-    public void handleBuyItem(MouseEvent mouseEvent) throws Exception {
-        String[] arrOfLocation = location.getFile().split("/");
-        String[] shopName = arrOfLocation[arrOfLocation.length - 1].split("\\.");
-        String finalShopName = URLDecoder.decode(shopName[0], StandardCharsets.UTF_8);
-
-
-        Shop foundShop = null;
-        for (int i = 0; i < Game.instance.getShops().size(); i++) {
-            if (Game.instance.getShops().get(i).getName().equals(finalShopName)) {
-                foundShop = Game.instance.getShops().get(i);
-            }
-        }
-        if (foundShop != null) {
-            Game.instance.buyItem(new Command(CommandWord.BUY, ((ImageView) mouseEvent.getSource()).getId()), foundShop);
-        }
     }
 }
