@@ -354,6 +354,8 @@ public class Game {
             return false;
         } else {
             //checks if it is possible for the player to buy the required energy
+            System.out.printf("Please fulfill the required amount of energy, missing: %.2fkWh\n", house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction());
+
             double energyDeficit = house.getEnergyRequirement() - buildArea.getYearlyEnergyProduction();
 
             boolean foundSolution = false;
