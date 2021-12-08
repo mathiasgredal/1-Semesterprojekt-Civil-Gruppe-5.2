@@ -3,22 +3,21 @@ package worldofzuul.presentation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 
 public class SceneController {
+    private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
     @FXML
     private Button btnHouse, btnHelp, btnNextYear;
 
@@ -32,7 +31,22 @@ public class SceneController {
     private Group buildArea;
 
     @FXML
+    private Label moneyLabel, emissionLabel, energyProductionLabel, yearLabel;
+
+    @FXML
     private void initialize() {
+        if(yearLabel != null){
+            yearLabel.getText();
+            emissionLabel.getText();
+            energyProductionLabel.getText();
+            moneyLabel.getText();
+            yearLabel.setText("Year: " + (2010 + Game.instance.getGameYear()));
+            moneyLabel.setText("Money: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()));
+            emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getHouse().getYearlyEmissions()));
+            energyProductionLabel.setText("Energi production: " + decimalFormat.format(Game.instance.getBuildArea().getYearlyEnergyProduction()));
+        }
+
+
         if (buildArea != null) {
             this.buildArea.getChildren().add(new BuildGrid(new Point2D(47, 184), 7, 25, 16));
         }
@@ -55,15 +69,16 @@ public class SceneController {
         GUI_Main.setRoot("help");
     }
 
+    /**
+     *  Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
+     *
+     * @see worldofzuul.Input.Command#Command(CommandWord, String) 
+     * @since 1st Iteration -
+     */
     public void handleBtnNextYear() throws Exception {
         //Change window
         GUI_Main.setRoot("next year");
-
-        /**
-         *  Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
-         *
-         * @since 1st Iteration
-         */
+        
         Command c = new Command(CommandWord.NEXT, "year");
         Game.instance.nextYear(c);
     }
