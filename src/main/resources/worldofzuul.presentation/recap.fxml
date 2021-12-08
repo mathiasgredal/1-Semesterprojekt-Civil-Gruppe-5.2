@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="worldofzuul.presentation.SceneController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.RecapController">
+   <children>
+      <Label layoutX="168.0" layoutY="14.0" text="Congratulations!">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="241.0" layoutY="94.0" text="Total Emission:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="120.0" layoutY="158.0" text="Total Money earned from sold excess energy:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="270.0" layoutY="221.0" text="Money:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="231.0" layoutY="282.0" text="HIGH SCORE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="emissionScore" alignment="CENTER" layoutX="16.0" layoutY="121.0" prefHeight="25.0" prefWidth="567.0" text="0" underline="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="moneyEarnedScore" alignment="CENTER" layoutX="10.0" layoutY="185.0" prefHeight="25.0" prefWidth="579.0" text="0" underline="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="money" alignment="CENTER" layoutX="16.0" layoutY="248.0" prefHeight="25.0" prefWidth="567.0" text="0" underline="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="highScore" alignment="CENTER" layoutX="16.0" layoutY="317.0" prefHeight="25.0" prefWidth="567.0" text="0">
+         <font>
+            <Font name="System Bold" size="23.5" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
