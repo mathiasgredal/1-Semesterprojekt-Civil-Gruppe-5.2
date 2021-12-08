@@ -30,7 +30,7 @@
       </image>
    </ImageView>
    <Label layoutX="158.0" layoutY="86.0" text="Heating Pump" textFill="#f4efef" />
-   <Label layoutX="385.0" layoutY="86.0" text="Cars" textFill="#f4efef" />
+   <Label layoutX="365.0" layoutY="86.0" text="Electric Cars" textFill="#f4efef" />
    <ImageView fitHeight="55.0" fitWidth="89.0" layoutX="352.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/ElBil.png" />
@@ -43,6 +43,12 @@
    </ImageView>
    <BuyButton itemIndex="2" layoutX="254.0" layoutY="315.0" shopName="Retail store" />
    <BuyButton itemIndex="1" layoutX="55.0" layoutY="315.0" shopName="Retail store" />
-   <Label layoutX="382.0" layoutY="122.0" text="Car 1" textFill="#fdfafa" />
-   <Label layoutX="156.0" layoutY="122.0" text="&quot;Varme Pumpe&quot;" textFill="#fffdfd" />
+   <Label layoutX="348.0" layoutY="122.0" text="Hesla - Electric Car" textFill="#fdfafa" />
+   <Label layoutX="156.0" layoutY="122.0" text="Heating Pump" textFill="#fffdfd" />
+   <Label layoutX="145.0" layoutY="237.0" text="Price: 11111" textFill="#fffdfd" />
+   <Label layoutX="145.0" layoutY="254.0" text="Emission: 0" textFill="#fffdfd" />
+   <Label layoutX="144.0" layoutY="271.0" text="Energy Requirement" textFill="#fffdfd" />
+   <Label layoutX="344.0" layoutY="237.0" text="Price: 11111" textFill="#fffdfd" />
+   <Label layoutX="344.0" layoutY="254.0" text="Emission: 0" textFill="#fffdfd" />
+   <Label layoutX="343.0" layoutY="271.0" text="Energy Requirement" textFill="#fffdfd" />
 </AnchorPane>
