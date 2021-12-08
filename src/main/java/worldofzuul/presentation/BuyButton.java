@@ -23,6 +23,7 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.action.Action;
+import worldofzuul.Exceptions.CannotBuyItemMoreThanOnceException;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
@@ -84,21 +85,27 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
         }
 
         // Check if we can buy the item
-        if (Game.instance.getPlayer().withdrawMoney(item.getPrice())) {
-            Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
-            playSuccessSound();
-            showNotification("Success", "Bought " + item.getName());
+        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice()) {
+            try {
+                Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
+                playSuccessSound();
+                showNotification("Success", "Bought " + item.getName());
+            } catch (CannotBuyItemMoreThanOnceException e) {
+                playErrorSound();
+                showNotification("Error", "Cannot buy item more than once");
+            }
         } else {
             // We cannot afford the item
             playErrorSound();
-            showNotification("Error", "Cannot afford item");
+            double missing = Math.abs(Game.instance.getPlayer().getPlayerEconomy() - item.getPrice());
+            showNotification("Error", String.format("Cannot afford item\n(missing %.1fDKK)", missing));
         }
     }
 
     // This has to be static, since all buybuttons share the same static notification system
     // There might be another way to do this cleanly without using static, but this works
     private static final ArrayList<Node> notificationsGraphic = new ArrayList<>();
-    private final int maxNotifications = 6;
+    private final int maxNotifications = 3;
 
     private void showNotification(String title, String description) {
         // If we have too many notifications we hide the oldest ones, so the don't go outside the window
@@ -106,6 +113,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
             var oldestNotification = notificationsGraphic.get(0);
             notificationsGraphic.remove(0);
             oldestNotification.getParent().getParent().setVisible(false);
+            oldestNotification.getParent().getParent().setMouseTransparent(true);
         }
 
         // We use an invisible node, to get a reference to the notification graphics, which we then use, to remove it
@@ -121,8 +129,12 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
                 .text(description)
                 .graphic(n)
                 .owner(this)
-                .hideAfter(Duration.seconds(2))
+                .position(Pos.TOP_RIGHT)
+                .hideAfter(Duration.seconds(1))
                 .show();
+
+        // Do a y-offset, so the notification doesn't collide with the window border
+        n.getParent().getParent().getParent().setLayoutY(20);
 
         notificationsGraphic.add(n);
     }
@@ -136,7 +148,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
     private void playSuccessSound() {
         Media sound = new Media(getClass().getClassLoader().getResource("coinsound.mp3").toExternalForm());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(0.1);
+        mediaPlayer.setVolume(0.05);
         mediaPlayer.play();
     }
 
