@@ -42,7 +42,14 @@ public class BuildItem extends Parent {
         this.gridSize = gridSize;
 
         // Set tooltip for the item
-        Tooltip t = new Tooltip(source.getDescription());
+        String tooltipDescription = String.join("\n",
+                source.getDescription(),
+                String.format("Total generation: %s", BuildAreaController.humanReadableWattHoursSI(source.getTotalGeneratedEnergy())),
+                String.format("Total returns: %s kr.", (int) source.getTotalGeneratedMoney()),
+                String.format("ROI: %.2f%%", 100 * source.getTotalGeneratedMoney() / source.getPrice())
+        );
+
+        Tooltip t = new Tooltip(tooltipDescription);
         Tooltip.install(this, t);
 
         // If the width or height hasn't been set, then use 1x1 to not break graphics
