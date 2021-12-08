@@ -125,6 +125,9 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
                 .hideAfter(Duration.seconds(2))
                 .show();
 
+        // Do a y-offset, so the notification doesn't collide with the window border
+        n.getParent().getParent().getParent().setLayoutY(20);
+
         notificationsGraphic.add(n);
     }
 
