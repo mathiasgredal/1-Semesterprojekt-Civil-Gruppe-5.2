@@ -91,21 +91,22 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
         if (Game.instance.getPlayer().withdrawMoney(item.getPrice())) {
             Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
             playSuccessSound();
-            showNotification("Success", "You have bought " + item.getName());
+            showNotification("Success", "Bought " + item.getName());
         } else {
             // We cannot afford the item
             playErrorSound();
-            showNotification("Error", "You cannot afford this item");
+            showNotification("Error", "Cannot afford item");
         }
     }
 
     // This has to be static, since all buybuttons share the same static notification system
     // There might be another way to do this cleanly without using static, but this works
     private static final ArrayList<Node> notificationsGraphic = new ArrayList<>();
+    private final int maxNotifications = 6;
 
     private void showNotification(String title, String description) {
         // If we have too many notifications we hide the oldest ones, so the don't go outside the window
-        if (notificationsGraphic.size() > 5) {
+        if (notificationsGraphic.size() > maxNotifications) {
             var oldestNotification = notificationsGraphic.get(0);
             notificationsGraphic.remove(0);
             oldestNotification.getParent().getParent().setVisible(false);
@@ -124,6 +125,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
                 .text(description)
                 .graphic(n)
                 .owner(this)
+                .hideAfter(Duration.seconds(2))
                 .show();
 
         notificationsGraphic.add(n);

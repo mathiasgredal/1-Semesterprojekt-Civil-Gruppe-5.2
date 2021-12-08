@@ -1,12 +1,12 @@
 /*Set the size for the controlsfx notification*/
 .notification-bar {
-    -fx-max-width: 100;
-    -fx-max-height: 50;
-    -fx-min-width: 100;
-    -fx-min-height: 50;
-    -fx-pref-width: 100;
-    -fx-pref-height: 50;
+    -fx-max-width: 150;
+    -fx-max-height: 40;
+    -fx-min-width: 150;
+    -fx-min-height: 40;
+    -fx-pref-width: 150;
+    -fx-pref-height: 40;
     -fx-padding: 5 5 5 5;
-    -fx-font-size: 0.8em;
+    -fx-font-size: 0.7em;
 }
 
