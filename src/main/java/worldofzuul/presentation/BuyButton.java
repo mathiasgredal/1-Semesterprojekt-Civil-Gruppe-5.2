@@ -9,10 +9,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -31,28 +34,39 @@ import worldofzuul.Rooms.Shops.Shop;
 
 import java.util.ArrayList;
 
-public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
+public class BuyButton extends VBox implements EventHandler<MouseEvent> {
     @FXML
     private int itemIndex;
 
     @FXML
     private String shopName;
 
+    @FXML
+    private boolean useSpinner = false;
+
+    private Rectangle button;
+
+    private Spinner<Integer> spinner;
+
     private double scale = 0.7;
 
     public BuyButton() {
+        button = new Rectangle();
         addEventHandler(MouseEvent.MOUSE_CLICKED, this);
         setTranslateX(100);
 
+        setSpacing(5);
         Image img = new Image(getClass().getResource("/images/BuyButton.png").toExternalForm());
-        setFill(new ImagePattern(img));
+        button.setFill(new ImagePattern(img));
 
-        setWidth(img.getWidth() * scale);
-        setHeight(img.getHeight() * scale);
+        button.setWidth(img.getWidth() * scale);
+        button.setHeight(img.getHeight() * scale);
 
         // Set rounded corners
-        setArcWidth(10);
-        setArcHeight(10);
+        button.setArcWidth(10);
+        button.setArcHeight(10);
+
+        getChildren().add(button);
     }
 
     int x = 0;
@@ -84,6 +98,10 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
         }
 
         // Check if we can buy the item
+        int amountItem = 1;
+        if(spinner != null){
+            amountItem = spinner.getValue();
+        }
         if (Game.instance.getPlayer().withdrawMoney(item.getPrice())) {
             Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
             playSuccessSound();
@@ -141,7 +159,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
     }
 
     private void doButtonBounce() {
-        ScaleTransition st = new ScaleTransition(Duration.millis(50), this);
+        ScaleTransition st = new ScaleTransition(Duration.millis(50), this.button);
         st.setByX(-0.2f);
         st.setByY(-0.2f);
         st.setCycleCount(2);
@@ -163,5 +181,19 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
 
     public void setItemIndex(int itemIndex) {
         this.itemIndex = itemIndex;
+    }
+
+    public boolean isUseSpinner() {
+        return useSpinner;
+    }
+
+    public void setUseSpinner(boolean useSpinner) {
+        if(useSpinner){
+            this.spinner = new Spinner<>(1,200,0);
+            this.spinner.setPrefWidth(button.getWidth());
+            this.spinner.setEditable(true);
+            getChildren().add(0, spinner);
+        }
+        this.useSpinner = useSpinner;
     }
 }

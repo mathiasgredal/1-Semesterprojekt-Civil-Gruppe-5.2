@@ -9,4 +9,7 @@
     -fx-padding: 5 5 5 5;
     -fx-font-size: 0.7em;
 }
+.spinner .decrement-arrow-button {
+    -fx-body-color: yellow;
+}
 
