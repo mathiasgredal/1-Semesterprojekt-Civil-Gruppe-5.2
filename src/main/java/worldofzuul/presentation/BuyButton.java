@@ -23,6 +23,7 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.action.Action;
+import worldofzuul.Exceptions.CannotBuyItemMoreThanOnceException;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
@@ -85,13 +86,19 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
 
         // Check if we can buy the item
         if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice()) {
-            Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
-            playSuccessSound();
-            showNotification("Success", "Bought " + item.getName());
+            try {
+                Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
+                playSuccessSound();
+                showNotification("Success", "Bought " + item.getName());
+            } catch (CannotBuyItemMoreThanOnceException e) {
+                playErrorSound();
+                showNotification("Error", "Cannot buy item more than once");
+            }
         } else {
             // We cannot afford the item
             playErrorSound();
-            showNotification("Error", "Cannot afford item");
+            double missing = Math.abs(Game.instance.getPlayer().getPlayerEconomy() - item.getPrice());
+            showNotification("Error", String.format("Cannot afford item\n(missing %.1fDKK)", missing));
         }
     }
 
@@ -106,6 +113,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
             var oldestNotification = notificationsGraphic.get(0);
             notificationsGraphic.remove(0);
             oldestNotification.getParent().getParent().setVisible(false);
+            oldestNotification.getParent().getParent().setMouseTransparent(true);
         }
 
         // We use an invisible node, to get a reference to the notification graphics, which we then use, to remove it
@@ -122,7 +130,7 @@ public class BuyButton extends Rectangle implements EventHandler<MouseEvent> {
                 .graphic(n)
                 .owner(this)
                 .position(Pos.TOP_RIGHT)
-                .hideAfter(Duration.seconds(2))
+                .hideAfter(Duration.seconds(1))
                 .show();
 
         // Do a y-offset, so the notification doesn't collide with the window border
