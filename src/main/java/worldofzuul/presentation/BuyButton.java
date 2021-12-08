@@ -103,11 +103,13 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
         if(spinner != null){
             amountItem = spinner.getValue();
         }
-        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice()) {
+        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice()*amountItem) {
             try {
-                Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
+                for (int i = 0; i < amountItem; i++) {
+                    Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
+                }
                 playSuccessSound();
-                showNotification("Success", "Bought " + item.getName());
+                showNotification("Success", "Bought " + amountItem + "x " + item.getName());
             } catch (CannotBuyItemMoreThanOnceException e) {
                 playErrorSound();
                 showNotification("Error", "Cannot buy item more than once");
@@ -115,8 +117,8 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
         } else {
             // We cannot afford the item
             playErrorSound();
-            double missing = Math.abs(Game.instance.getPlayer().getPlayerEconomy() - item.getPrice());
-            showNotification("Error", String.format("Cannot afford item\n(missing %.1fDKK)", missing));
+            double missing = Math.abs(Game.instance.getPlayer().getPlayerEconomy() - item.getPrice() * amountItem);
+            showNotification("Error", String.format("Cannot afford %sx item\n(missing %.1fDKK)", amountItem, missing));
         }
     }
 
@@ -148,7 +150,7 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
                 .graphic(n)
                 .owner(this)
                 .position(Pos.TOP_RIGHT)
-                .hideAfter(Duration.seconds(1))
+                .hideAfter(Duration.seconds(2))
                 .show();
 
         // Do a y-offset, so the notification doesn't collide with the window border
