@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import worldofzuul.presentation.BuyButton?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.RetailController">
    <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
@@ -35,21 +36,13 @@
          <Image url="@../images/ElBil.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="2" fitHeight="38.0" fitWidth="92.0" layoutX="352.0" layoutY="315.0" onMouseClicked="#handleBuyCar" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/BuyButton.png" />
-      </image>
-   </ImageView>
    <ImageView fitHeight="117.0" fitWidth="42.0" layoutX="177.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/AC.png" />
       </image>
    </ImageView>
-   <ImageView fx:id="1" fitHeight="38.0" fitWidth="92.0" layoutX="153.0" layoutY="315.0" onMouseClicked="#handleBuyPump" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/BuyButton.png" />
-      </image>
-   </ImageView>
-   <Label layoutX="347.0" layoutY="122.0" text="Hesla - Electric Car" textFill="#fdfafa" />
-   <Label layoutX="156.0" layoutY="122.0" text="Heating Pump" textFill="#fffdfd" />
+   <BuyButton itemIndex="2" layoutX="254.0" layoutY="315.0" shopName="Retail store" />
+   <BuyButton itemIndex="1" layoutX="55.0" layoutY="315.0" shopName="Retail store" />
+   <Label layoutX="382.0" layoutY="122.0" text="Car 1" textFill="#fdfafa" />
+   <Label layoutX="156.0" layoutY="122.0" text="&quot;Varme Pumpe&quot;" textFill="#fffdfd" />
 </AnchorPane>

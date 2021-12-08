@@ -34,7 +34,9 @@ public class BuildGrid extends Group {
         for (var source : Game.instance.getBuildArea().getEnergySources()) {
             // If the energysource is outside the clip area, we clip them off
             if (source.getPosX() < gridWidth && source.getPosY() < gridHeight)
-                buildItems.add(new BuildItem(source, getGridSize()));
+                if(!source.isFossil()){
+                    buildItems.add(new BuildItem(source, getGridSize()));
+                }
         }
 
         // Make sure changes in buildItems are reflected in GUI
