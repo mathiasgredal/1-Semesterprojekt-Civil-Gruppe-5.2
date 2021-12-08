@@ -42,7 +42,14 @@ public class BuildItem extends Parent {
         this.gridSize = gridSize;
 
         // Set tooltip for the item
-        Tooltip t = new Tooltip(source.getDescription());
+        String tooltipDescription = String.join("\n",
+                source.getDescription(),
+                String.format("Total generation: %s", BuildAreaController.humanReadableWattHoursSI(source.getTotalGeneratedEnergy())),
+                String.format("Total returns: %s kr.", (int) source.getTotalGeneratedMoney()),
+                String.format("ROI: %.2f%%", 100 * source.getTotalGeneratedMoney() / source.getPrice())
+        );
+
+        Tooltip t = new Tooltip(tooltipDescription);
         Tooltip.install(this, t);
 
         // If the width or height hasn't been set, then use 1x1 to not break graphics
@@ -143,6 +150,15 @@ public class BuildItem extends Parent {
         source.setPosY(this.y);
     }
 
+    /**
+     * Updates the build item position to a new place in the build grid from scene/screen coordinates
+     * It automatically converts the scene coordinates to grid coordinates
+     * It checks whether the new position is available and sets the new position if that is the case
+     *
+     * @param sceneX The pixel x coordinate
+     * @param sceneY The pixel y coordinate
+     * @return A boolean indicating whether the new position was applied (true if set position was successful, false if there was a collision)
+     */
     public boolean setPositionGridFromScene(double sceneX, double sceneY) {
         // Save old position, for reverting in case of collision
         int oldX = this.x;
