@@ -19,8 +19,8 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Button fx:id="btnNextYear" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnNextYear" text="Next Year" />
       <Button fx:id="btnHelp" layoutX="100.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnHelp" text="Help" />
+      <Button fx:id="btnViewHouse" layoutX="290.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleBtnViewHouse" prefHeight="50.0" prefWidth="85.0" style="-fx-opacity: 0.01;"/>
       <Label layoutX="101.0" layoutY="231.0" text="Build Area" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -61,12 +61,12 @@
             <Image url="@../images/GasBil.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageviewCar" fitHeight="20.0" fitWidth="31.0" layoutX="294.0" layoutY="70.0" opacity="0.01" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageviewCar1" fitHeight="20.0" fitWidth="31.0" layoutX="294.0" layoutY="70.0" opacity="0.01" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ElBil.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imageviewPump" fitHeight="71.0" fitWidth="12.0" layoutX="375.0" layoutY="30.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageviewPump1" fitHeight="71.0" fitWidth="12.0" layoutX="375.0" layoutY="30.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/AC.png" />
          </image>

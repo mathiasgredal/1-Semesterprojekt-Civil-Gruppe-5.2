@@ -18,16 +18,18 @@ import worldofzuul.Items.EnergyConsumer.Heating;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.CharacterIterator;
 import java.text.DecimalFormat;
+import java.text.StringCharacterIterator;
 
 public class SceneController {
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     @FXML
-    ImageView imageviewPump, imageviewCar;
+    ImageView imageviewPump1, imageviewCar1;
 
     @FXML
-    private Button btnHouse, btnHelp, btnNextYear;
+    private Button btnHouse, btnHelp, btnNextYear, btnViewHouse;
 
     @FXML
     private Button btnSolarPanelShop, btnWindturbineShop, btnBatteryShop, btnRetailShop, btnFossilShop, btnBuildArea;
@@ -49,9 +51,9 @@ public class SceneController {
             energyProductionLabel.getText();
             moneyLabel.getText();
             yearLabel.setText("Year: " + (2010 + Game.instance.getGameYear()));
-            moneyLabel.setText("Money: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()));
-            emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getHouse().getYearlyEmissions()));
-            energyProductionLabel.setText("Energi production: " + decimalFormat.format(Game.instance.getBuildArea().getYearlyEnergyProduction()));
+            moneyLabel.setText("Money: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()) + " DKK");
+            emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getHouse().getYearlyEmissions()) + " kg CO\u2082");
+            energyProductionLabel.setText("Energy production: " + BuildAreaController.humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProduction()));
         }
 
 
@@ -60,11 +62,11 @@ public class SceneController {
         }
 
         if (Game.instance.getHouse().getCar() instanceof ElectricCar){
-            imageviewCar.setOpacity(1.0);
+            imageviewCar1.setOpacity(1.0);
         }
 
         if(Game.instance.getHouse().getHeater() instanceof HeatPump){
-            imageviewPump.setOpacity(1.0);
+            imageviewPump1.setOpacity(1.0);
         }
     }
 
@@ -119,6 +121,10 @@ public class SceneController {
 
     public void handleBtnFossilShop(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("Fossil energyshop");
+    }
+
+    public void handleBtnViewHouse() throws Exception{
+        GUI_Main.setRoot("view house");
     }
 }
 

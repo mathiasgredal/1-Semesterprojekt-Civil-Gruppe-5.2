@@ -41,11 +41,11 @@ public class NextYearController {
             printYearlyRecap();
         }
 
-        loadHouseScene();
+        loadViewHouseScene();
     }
 
-    private void loadHouseScene() throws IOException {
-        GUI_Main.setRoot("house");
+    private void loadViewHouseScene() throws IOException {
+        GUI_Main.setRoot("view house");
     }
 
     private boolean energyRequirementIsFulfilled(){
