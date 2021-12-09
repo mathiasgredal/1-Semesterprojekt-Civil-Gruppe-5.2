@@ -60,16 +60,6 @@ public class ViewHouseController {
 
     @FXML
     private void handleNextYear() throws Exception{
-        Command c = new Command(CommandWord.NEXT, "year");
-        boolean endOfGame = Game.instance.nextYear(c);
-
-        //If 20 years have passed the game is over, and the player will get to the recap
-        if(endOfGame) {
-            GUI_Main.setRoot("recap");
-        }
-        else {
-            //Change window
             GUI_Main.setRoot("next year");
-        }
     }
 }

@@ -62,5 +62,6 @@
             <Insets left="65.0" top="40.0" />
          </padding>
       </VBox>
+      <Button fx:id="btnShowRecap" layoutX="489.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleCheckIfEnd" text="Show recap" visible="false" />
    </children>
 </AnchorPane>

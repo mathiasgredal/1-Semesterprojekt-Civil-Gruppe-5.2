@@ -1,5 +1,6 @@
 package worldofzuul.presentation;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,14 +14,15 @@ import java.text.DecimalFormat;
 public class NextYearController {
 
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
+    private boolean endOfGame = false;
 
     @FXML
-    private Button btnCon;
+    private Button btnCon, btnShowRecap;
     @FXML
     private Label textNextYear1, yearlyEmissionText, totalEmissionText, earnedMoneyText, balanceText, unableText;
 
     @FXML
-    void initialize() {
+    void initialize() throws IOException {
         if(energyRequirementIsFulfilled()) {
             textNextYear1.getText();
             yearlyEmissionText.getText();
@@ -29,6 +31,7 @@ public class NextYearController {
             balanceText.getText();
             unableText.getText();
             unableText.setVisible(false);
+            btnShowRecap.setVisible(false);
         }
         else{
             unableText.setVisible(true);
@@ -36,6 +39,12 @@ public class NextYearController {
         }
 
         printYearlyRecap();
+
+        nextYear();
+
+        if(nextYear()){
+            btnShowRecap.setVisible(true);
+        }
     }
 
     /**
@@ -56,6 +65,16 @@ public class NextYearController {
         GUI_Main.setRoot("view house");
     }
 
+    private boolean nextYear() throws IOException {
+        if(Game.instance.getGameYear() == 20){
+            return true;
+        }
+        else{
+            Game.instance.nextYear(new Command(CommandWord.NEXT, "year"));
+            return false;
+        }
+    }
+
     private boolean energyRequirementIsFulfilled(){
         if (Game.instance.getBuildArea().getYearlyEnergyProduction()  > Game.instance.getHouse().getEnergyRequirement()) {
             return true;
@@ -70,5 +89,10 @@ public class NextYearController {
         totalEmissionText.setText("Your total emission is: " + decimalFormat.format(Game.instance.getPlayer().calculateEmission()) + " kg CO\u2082");
         earnedMoneyText.setText("Your earned money on sold energy: " + decimalFormat.format(Game.instance.getSoldEnergyPrice()) + " DKK");
         balanceText.setText("Your balance are: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()) + " DKK");
+    }
+
+    @FXML
+    public void handleCheckIfEnd(ActionEvent actionEvent) throws IOException {
+        GUI_Main.setRoot("recap");
     }
 }
