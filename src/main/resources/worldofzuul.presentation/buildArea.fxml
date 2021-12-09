@@ -40,6 +40,8 @@
         <Label fx:id="fossil_label" text="Fossil energy: 115kWh" textFill="WHITE"/>
         <Separator orientation="VERTICAL"/>
         <Label fx:id="battery_label" text="Battery storage: 15kWh" textFill="WHITE"/>
+        <Separator orientation="VERTICAL"/>
+        <Label fx:id="sales_price" text="Electric price: 0.50 DKK pr. kWh" textFill="WHITE"/>
     </HBox>
     <Button fx:id="btnHouse" mnemonicParsing="false" onAction="#handleBtnHouse" text="Back"
             AnchorPane.topAnchor="10" AnchorPane.rightAnchor="10">
