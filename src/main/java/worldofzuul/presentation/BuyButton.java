@@ -1,10 +1,6 @@
 package worldofzuul.presentation;
 
-import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -17,16 +13,12 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Window;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import javafx.util.Pair;
 import org.controlsfx.control.Notifications;
-import org.controlsfx.control.action.Action;
 import worldofzuul.Exceptions.CannotBuyItemMoreThanOnceException;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
@@ -218,7 +210,7 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
 
     public void setUseSpinner(boolean useSpinner) {
         if (useSpinner) {
-            this.spinner = new Spinner<>(1, 200, 0);
+            this.spinner = new Spinner<>(1, 500, 0);
             this.spinner.setPrefWidth(button.getWidth());
             this.spinner.setEditable(true);
             getChildren().add(0, spinner);
