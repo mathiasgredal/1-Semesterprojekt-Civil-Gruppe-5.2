@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import worldofzuul.Game;
+import worldofzuul.Input.Command;
+import worldofzuul.Input.CommandWord;
 import worldofzuul.Items.EnergyConsumer.ElectricCar;
 import worldofzuul.Items.EnergyConsumer.HeatPump;
 

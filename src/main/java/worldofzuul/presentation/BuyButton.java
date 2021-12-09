@@ -1,31 +1,24 @@
 package worldofzuul.presentation;
 
-import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Window;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import javafx.util.Pair;
 import org.controlsfx.control.Notifications;
-import org.controlsfx.control.action.Action;
 import worldofzuul.Exceptions.CannotBuyItemMoreThanOnceException;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
@@ -68,6 +61,9 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
         button.setArcHeight(10);
 
         getChildren().add(button);
+
+        // This will technically update the price label 2 or 3 times
+        sceneProperty().addListener(e -> updateMoneyLabel());
     }
 
     int x = 0;
@@ -100,16 +96,19 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
 
         // Check if we can buy the item
         int amountItem = 1;
-        if(spinner != null){
+        if (spinner != null) {
             amountItem = spinner.getValue();
         }
-        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice()*amountItem) {
+        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice() * amountItem) {
             try {
                 for (int i = 0; i < amountItem; i++) {
                     Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
                 }
                 playSuccessSound();
                 showNotification("Success", "Bought " + amountItem + "x " + item.getName());
+
+                // It would be better to use polymorphism to handle this.
+                updateMoneyLabel();
             } catch (CannotBuyItemMoreThanOnceException e) {
                 playErrorSound();
                 showNotification("Error", "Cannot buy item more than once");
@@ -119,6 +118,14 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
             playErrorSound();
             double missing = Math.abs(Game.instance.getPlayer().getPlayerEconomy() - item.getPrice() * amountItem);
             showNotification("Error", String.format("Cannot afford %sx item\n(missing %.1fDKK)", amountItem, missing));
+        }
+    }
+
+    private void updateMoneyLabel() {
+        var moneyLabel = getParent().lookup("#moneys");
+        // Instanceof also covers null checking
+        if (moneyLabel instanceof Label) {
+            ((Label) moneyLabel).setText(String.format("%.2fDKK", Game.instance.getPlayer().getPlayerEconomy()));
         }
     }
 
@@ -202,8 +209,8 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
     }
 
     public void setUseSpinner(boolean useSpinner) {
-        if(useSpinner){
-            this.spinner = new Spinner<>(1,200,0);
+        if (useSpinner) {
+            this.spinner = new Spinner<>(1, 500, 0);
             this.spinner.setPrefWidth(button.getWidth());
             this.spinner.setEditable(true);
             getChildren().add(0, spinner);

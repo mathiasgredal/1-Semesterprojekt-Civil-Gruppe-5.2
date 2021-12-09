@@ -12,6 +12,10 @@ public class BuildArea extends Room {
 
     private ObservableList<EnergySource> energySources = FXCollections.observableArrayList();
 
+    // The minimal energy sales price: https://www.vivaenergi.dk/elsalg
+    // This fluctuates between 0.3 DKK pr. kWh and 0.8 DKK pr. kWh during the day
+    private double baseEnergyPriceDKK = 0.30;
+
     public BuildArea() {
         super("build area", "at the build area, here you find the energy sources you have built");
     }
@@ -110,7 +114,11 @@ public class BuildArea extends Room {
      */
     public void addYearlyEnergyProductionToEnergySources() {
         for (var e : energySources) {
-            e.addYearlyEnergyProduction(getEnergySalesPricePrkWh());
+            if (e.isBattery()) {
+                e.addTotalGeneratedMoney(getEnergySalesPricePrkWh(e.getCapacity()) - getBaseEnergyPriceDKK());
+            } else {
+                e.addYearlyEnergyProduction(getEnergySalesPricePrkWh());
+            }
         }
     }
 
@@ -209,25 +217,30 @@ public class BuildArea extends Room {
         }
     }
 
+    public double getBaseEnergyPriceDKK() {
+        return baseEnergyPriceDKK;
+    }
+
     /**
      * Energy sales price varies with the players installed battery capacity
      * Due to load shifting we store electricity when price is low and sell it when the price is higher
      * This method uses a formula to estimate this price
      * 0.25 * (1 + clamp(capacity/renewable_production, 0, 1)
      *
-     * @return The sales price in $ pr. kWh
+     * @return The sales price in DKK pr. kWh
      */
-    public double getEnergySalesPricePrkWh() {
-        // TODO: Perhaps this should be configurable through the config file
-        double baseSalesPrice = 0.25;
-
+    public double getEnergySalesPricePrkWh(double batteryCapacityPrKWh) {
         // Prevent a divide by zero
         if (getYearlyEnergyProductionRenewable() == 0) {
-            return baseSalesPrice;
+            return baseEnergyPriceDKK;
         } else {
             // Use the previously defined formula, for sales price estimation
-            double salesPriceFactor = Math.max(1, Math.min(2, 1 + getTotalBatteryCapacity() / getYearlyEnergyProductionRenewable()));
-            return baseSalesPrice * salesPriceFactor;
+            double salesPriceFactor = Math.max(1, Math.min(2, 1 + batteryCapacityPrKWh / getYearlyEnergyProductionRenewable()));
+            return baseEnergyPriceDKK * salesPriceFactor;
         }
+    }
+
+    public double getEnergySalesPricePrkWh() {
+        return getEnergySalesPricePrkWh(getTotalBatteryCapacity());
     }
 }

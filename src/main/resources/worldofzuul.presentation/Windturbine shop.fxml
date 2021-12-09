@@ -46,22 +46,23 @@
    <Label layoutX="342.0" layoutY="299.0" text="Output: 122640" textFill="WHITE" />
    <ImageView fitHeight="112.0" fitWidth="30.0" layoutX="386.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../images/Stor%20mølle%20stativ.png" />
+         <Image url="@../images/Stor mølle stativ.png" />
       </image>
    </ImageView>
    <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="369.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../images/Stor%20mølle%20hoved.png" />
+         <Image url="@../images/Stor mølle hoved.png" />
       </image>
    </ImageView>
    <ImageView fitHeight="111.0" fitWidth="151.0" layoutX="189.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../images/Lille%20Mølle%20Stativ.png" />
+         <Image url="@../images/Lille Mølle Stativ.png" />
       </image>
    </ImageView>
    <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="187.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@../images/Lille%20mølle%20hoved.png" />
+         <Image url="@../images/Lille mølle hoved.png" />
       </image>
    </ImageView>
+   <Label fx:id="moneys" layoutX="458.0" layoutY="21.0"  />
 </AnchorPane>
