@@ -41,7 +41,7 @@
       <image>
          <Image url="@../images/AC.png" />
       </image>
-   </ImageView
+   </ImageView>
    <BuyButton itemIndex="2" layoutX="354.0" layoutY="315.0" shopName="Retail store" />
    <BuyButton itemIndex="1" layoutX="155.0" layoutY="315.0" shopName="Retail store" />
    <Label layoutX="365.0" layoutY="122.0" text="Hesla - Electric Car" textFill="#fdfafa" />
