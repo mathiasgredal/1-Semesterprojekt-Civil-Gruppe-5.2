@@ -306,4 +306,8 @@ public class EnergySource implements Buyable {
     public void setHeight(int height) {
         this.height = height;
     }
+
+    public void addTotalGeneratedMoney(double v) {
+        totalGeneratedMoney += v;
+    }
 }
