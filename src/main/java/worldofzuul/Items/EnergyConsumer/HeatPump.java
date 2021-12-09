@@ -2,6 +2,6 @@ package worldofzuul.Items.EnergyConsumer;
 
 public class HeatPump extends Heating {
     public HeatPump() {
-        super("Heat pump", 10000, 0, 100, 0);
+        super("Heat pump", 76000, 0, 245, 0);
     }
 }
