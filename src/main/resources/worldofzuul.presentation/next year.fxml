@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.NextYearController">
    <children>
-      <Button fx:id="btnCon" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleCheckNextYearCondition" text="Next Year" />
+      <Button fx:id="btnCon" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleCheckNextYearCondition" text="Continue" />
       <Label fx:id="unableText" layoutX="147.0" layoutY="57.0" prefHeight="31.0" prefWidth="306.0" text="REQUIREMENT NOT REACHED" textFill="RED" underline="true" visible="false">
          <font>
             <Font name="System Bold Italic" size="21.0" />

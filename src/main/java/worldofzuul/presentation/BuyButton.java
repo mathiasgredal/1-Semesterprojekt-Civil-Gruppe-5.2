@@ -1,31 +1,21 @@
 package worldofzuul.presentation;
 
-import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Window;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import javafx.util.Pair;
 import org.controlsfx.control.Notifications;
-import org.controlsfx.control.action.Action;
 import worldofzuul.Exceptions.CannotBuyItemMoreThanOnceException;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
@@ -100,10 +90,10 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
 
         // Check if we can buy the item
         int amountItem = 1;
-        if(spinner != null){
+        if (spinner != null) {
             amountItem = spinner.getValue();
         }
-        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice()*amountItem) {
+        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice() * amountItem) {
             try {
                 for (int i = 0; i < amountItem; i++) {
                     Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
@@ -202,8 +192,8 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
     }
 
     public void setUseSpinner(boolean useSpinner) {
-        if(useSpinner){
-            this.spinner = new Spinner<>(1,200,0);
+        if (useSpinner) {
+            this.spinner = new Spinner<>(1, 500, 0);
             this.spinner.setPrefWidth(button.getWidth());
             this.spinner.setEditable(true);
             getChildren().add(0, spinner);

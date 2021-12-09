@@ -45,14 +45,14 @@ public class SceneController {
 
     @FXML
     private void initialize() {
-        if(yearLabel != null){
+        if (yearLabel != null) {
             yearLabel.getText();
             emissionLabel.getText();
             energyProductionLabel.getText();
             moneyLabel.getText();
             yearLabel.setText("Year: " + (2010 + Game.instance.getGameYear()));
             moneyLabel.setText("Money: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()) + " DKK");
-            emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getHouse().getYearlyEmissions()) + " kg CO\u2082");
+            emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getBuildArea().getYearlyEmissions() + Game.instance.getHouse().getYearlyEmissions()) + " kg CO\u2082");
             energyProductionLabel.setText("Energy production: " + BuildAreaController.humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProduction()));
         }
 
@@ -61,11 +61,11 @@ public class SceneController {
             this.buildArea.getChildren().add(new BuildGrid(new Point2D(47, 184), 7, 25, 16));
         }
 
-        if (Game.instance.getHouse().getCar() instanceof ElectricCar){
+        if (Game.instance.getHouse().getCar() instanceof ElectricCar) {
             imageviewCar1.setOpacity(1.0);
         }
 
-        if(Game.instance.getHouse().getHeater() instanceof HeatPump){
+        if (Game.instance.getHouse().getHeater() instanceof HeatPump) {
             imageviewPump1.setOpacity(1.0);
         }
     }
@@ -88,9 +88,9 @@ public class SceneController {
     }
 
     /**
-     *  Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
+     * Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
      *
-     * @see worldofzuul.Input.Command#Command(CommandWord, String) 
+     * @see worldofzuul.Input.Command#Command(CommandWord, String)
      * @since 1st Iteration -
      */
     public void handleBtnNextYear() throws Exception {
@@ -98,10 +98,9 @@ public class SceneController {
         boolean endOfGame = Game.instance.nextYear(c);
 
         //If 20 years have passed the game is over, and the player will get to the recap
-        if(endOfGame) {
+        if (endOfGame) {
             GUI_Main.setRoot("recap");
-        }
-        else {
+        } else {
             //Change window
             GUI_Main.setRoot("next year");
         }
@@ -116,14 +115,14 @@ public class SceneController {
     }
 
     public void handleBtnBuildArea() throws IOException {
-      GUI_Main.setRoot("buildArea");
+        GUI_Main.setRoot("buildArea");
     }
 
     public void handleBtnFossilShop(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("Fossil energyshop");
     }
 
-    public void handleBtnViewHouse() throws Exception{
+    public void handleBtnViewHouse() throws Exception {
         GUI_Main.setRoot("view house");
     }
 }
