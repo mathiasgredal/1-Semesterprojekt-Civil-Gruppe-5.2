@@ -53,7 +53,7 @@ public class SceneController {
             yearLabel.setText("Year: " + (2010 + Game.instance.getGameYear()));
             moneyLabel.setText("Money: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()) + " DKK");
             emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getHouse().getYearlyEmissions()) + " kg CO\u2082");
-            energyProductionLabel.setText("Energy production: " + humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProduction()));
+            energyProductionLabel.setText("Energy production: " + BuildAreaController.humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProduction()));
         }
 
 
@@ -68,21 +68,6 @@ public class SceneController {
         if(Game.instance.getHouse().getHeater() instanceof HeatPump){
             imageviewPump.setOpacity(1.0);
         }
-    }
-
-    public static String humanReadableWattHoursSI(double kWh) {
-        long wH = Math.round(kWh * 1000);
-
-        if (-1000 < wH && wH < 1000) {
-            return wH + " Wh";
-        }
-
-        CharacterIterator ci = new StringCharacterIterator("kMGTPE");
-        while (wH <= -999_950 || wH >= 999_950) {
-            wH /= 1000;
-            ci.next();
-        }
-        return String.format("%.2f %cWh", wH / 1000.0, ci.current());
     }
 
     //methods for window change
