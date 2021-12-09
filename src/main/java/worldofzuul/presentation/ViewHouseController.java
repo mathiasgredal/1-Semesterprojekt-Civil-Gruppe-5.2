@@ -23,14 +23,14 @@ public class ViewHouseController {
     private String tooltipDescriptionHeater = String.join("\n",
             String.format("You have a heat pump that runs from electricity"),
             String.format("Yearly energy required: %s kWh", Game.instance.getHouse().getHeater().getYearlyEnergyConsumption()),
-            String.format("Yearly cost: %s DKK", Game.instance.getHouse().getHeater().getYearlyCost()),
+            String.format("Yearly cost: %s DKK", Game.instance.getHouse().getHeater().getYearlyCost())
     );
 
     // Set tooltip for the electric car
     private String tooltipDescriptionCar = String.join("\n",
             String.format("You have a car that runs from electricity"),
             String.format("Yearly energy required: %s kWh", Game.instance.getHouse().getCar().getYearlyEnergyConsumption()),
-            String.format("Yearly cost: %s DKK", Game.instance.getHouse().getCar().getYearlyCost()),
+            String.format("Yearly cost: %s DKK", Game.instance.getHouse().getCar().getYearlyCost())
     );
 
     @FXML
@@ -49,7 +49,6 @@ public class ViewHouseController {
             Tooltip t2 = new Tooltip(tooltipDescriptionHeater);
             Tooltip.install(imageviewPump2, t2);
         }
-
     }
 
     @FXML
@@ -61,7 +60,4 @@ public class ViewHouseController {
     private void handleNextYear() throws Exception{
         GUI_Main.setRoot("next year");
     }
-
-
-
 }
