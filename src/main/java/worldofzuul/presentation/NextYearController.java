@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
@@ -22,20 +23,17 @@ public class NextYearController {
     private Button btnCon;
 
     @FXML
-    private Label textNextYear1, yearlyEmissionText, totalEmissionText, earnedMoneyText, balanceText, unableText;
+    private Label textNextYear1, yearlyEmissionText, totalEmissionText, earnedMoneyText, balanceText, statusText;
 
     @FXML
-    void initialize() throws IOException {
+    void initialize() {
         if (energyRequirementIsFulfilled()) {
-            textNextYear1.getText();
-            yearlyEmissionText.getText();
-            totalEmissionText.getText();
-            earnedMoneyText.getText();
-            balanceText.getText();
-            unableText.getText();
-            unableText.setVisible(false);
+            statusText.setText("SUCCESS");
+            statusText.setTextFill(Color.GREEN);
+            btnCon.setText("Continue");
         } else {
-            unableText.setVisible(true);
+            statusText.setText(String.format("REQUIREMENT NOT REACHED: MISSING %.2fkWh", Math.abs(energyBalance())));
+            statusText.setTextFill(Color.RED);
             btnCon.setText("Back");
         }
 
@@ -77,8 +75,12 @@ public class NextYearController {
         return Game.instance.nextYear(new Command(CommandWord.NEXT, "year"));
     }
 
+    private double energyBalance() {
+        return Game.instance.getBuildArea().getYearlyEnergyProduction() - Game.instance.getHouse().getEnergyRequirement();
+    }
+
     private boolean energyRequirementIsFulfilled() {
-        return Game.instance.getBuildArea().getYearlyEnergyProduction() > Game.instance.getHouse().getEnergyRequirement();
+        return energyBalance() > 0;
     }
 
     private void printYearlyRecap() {
