@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -68,6 +69,9 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
         button.setArcHeight(10);
 
         getChildren().add(button);
+
+        //
+        sceneProperty().addListener(e -> updateMoneyLabel());
     }
 
     int x = 0;
@@ -100,16 +104,19 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
 
         // Check if we can buy the item
         int amountItem = 1;
-        if(spinner != null){
+        if (spinner != null) {
             amountItem = spinner.getValue();
         }
-        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice()*amountItem) {
+        if (Game.instance.getPlayer().getPlayerEconomy() >= item.getPrice() * amountItem) {
             try {
                 for (int i = 0; i < amountItem; i++) {
                     Game.instance.buyItem(new Command(CommandWord.BUY, Integer.toString(itemIndex)), foundShop);
                 }
                 playSuccessSound();
                 showNotification("Success", "Bought " + amountItem + "x " + item.getName());
+
+                // It would be better to use polymorphism to handle this.
+                updateMoneyLabel();
             } catch (CannotBuyItemMoreThanOnceException e) {
                 playErrorSound();
                 showNotification("Error", "Cannot buy item more than once");
@@ -119,6 +126,14 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
             playErrorSound();
             double missing = Math.abs(Game.instance.getPlayer().getPlayerEconomy() - item.getPrice() * amountItem);
             showNotification("Error", String.format("Cannot afford %sx item\n(missing %.1fDKK)", amountItem, missing));
+        }
+    }
+
+    private void updateMoneyLabel() {
+        var moneyLabel = getParent().lookup("#moneys");
+        // Instanceof also covers null checking
+        if (moneyLabel instanceof Label) {
+            ((Label) moneyLabel).setText(String.format("%.2fDKK", Game.instance.getPlayer().getPlayerEconomy()));
         }
     }
 
@@ -202,8 +217,8 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
     }
 
     public void setUseSpinner(boolean useSpinner) {
-        if(useSpinner){
-            this.spinner = new Spinner<>(1,200,0);
+        if (useSpinner) {
+            this.spinner = new Spinner<>(1, 200, 0);
             this.spinner.setPrefWidth(button.getWidth());
             this.spinner.setEditable(true);
             getChildren().add(0, spinner);
