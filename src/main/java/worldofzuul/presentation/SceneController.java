@@ -56,7 +56,6 @@ public class SceneController {
             energyProductionLabel.setText("Energy production: " + BuildAreaController.humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProduction()));
         }
 
-
         if (buildArea != null) {
             this.buildArea.getChildren().add(new BuildGrid(new Point2D(47, 184), 7, 25, 16));
         }
@@ -85,25 +84,6 @@ public class SceneController {
 
     public void handleBtnHelp() throws Exception {
         GUI_Main.setRoot("help");
-    }
-
-    /**
-     * Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
-     *
-     * @see worldofzuul.Input.Command#Command(CommandWord, String)
-     * @since 1st Iteration -
-     */
-    public void handleBtnNextYear() throws Exception {
-        Command c = new Command(CommandWord.NEXT, "year");
-        boolean endOfGame = Game.instance.nextYear(c);
-
-        //If 20 years have passed the game is over, and the player will get to the recap
-        if (endOfGame) {
-            GUI_Main.setRoot("recap");
-        } else {
-            //Change window
-            GUI_Main.setRoot("next year");
-        }
     }
 
     public void handleBtnBatteryShop() throws Exception {
