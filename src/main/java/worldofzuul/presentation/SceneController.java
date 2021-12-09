@@ -18,7 +18,9 @@ import worldofzuul.Items.EnergyConsumer.Heating;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.CharacterIterator;
 import java.text.DecimalFormat;
+import java.text.StringCharacterIterator;
 
 public class SceneController {
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
@@ -49,9 +51,9 @@ public class SceneController {
             energyProductionLabel.getText();
             moneyLabel.getText();
             yearLabel.setText("Year: " + (2010 + Game.instance.getGameYear()));
-            moneyLabel.setText("Money: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()));
-            emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getHouse().getYearlyEmissions()));
-            energyProductionLabel.setText("Energi production: " + decimalFormat.format(Game.instance.getBuildArea().getYearlyEnergyProduction()));
+            moneyLabel.setText("Money: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()) + " DKK");
+            emissionLabel.setText("Emission: " + decimalFormat.format(Game.instance.getHouse().getYearlyEmissions()) + " kg CO\u2082");
+            energyProductionLabel.setText("Energy production: " + BuildAreaController.humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProduction()));
         }
 
 
