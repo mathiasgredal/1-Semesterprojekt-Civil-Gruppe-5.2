@@ -41,11 +41,11 @@
         <Image url="@../images/Stor batteri.png" />
     </ImageView>
     <Label layoutX="98.0" layoutY="220.0" text="Size: Small" textFill="WHITE" />
-    <Label layoutX="98.0" layoutY="240.0" text="Price: 36375 DKK" textFill="#fffefe" />
+    <Label fx:id="batteryPrice1" layoutX="98.0" layoutY="240.0" text="Price: 36375 DKK" textFill="#fffefe" />
     <Label layoutX="98.0" layoutY="260.0" text="Capacity: 5.12 kWh" textFill="WHITE" />
 
     <Label layoutX="260.0" layoutY="220.0" text="Size: Medium" textFill="WHITE" />
-    <Label layoutX="260.0" layoutY="240.0" text="Price: 81250 DKK" textFill="WHITE" />
+    <Label fx:id="batteryPrice2" layoutX="260.0" layoutY="240.0" text="Price: 81250 DKK" textFill="WHITE" />
     <Label layoutX="260.0" layoutY="260.0" text="Capacity: 12.8 kWh" textFill="WHITE" />
 
     <Label layoutX="415.0" layoutY="220.0" text="Size: Large" textFill="WHITE" />

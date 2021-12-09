@@ -45,7 +45,7 @@ public class WindturbineShopController {
 
         Label[] arrOfWindOutputs = {windOutput1, windOutput2};
         for (int i = 0; i < foundShop.getShopItems().size(); i++) {
-            arrOfWindOutputs[i].setText("Price: " + ((EnergySource)foundShop.getShopItem(i)).getOutput() + " kWh");
+            arrOfWindOutputs[i].setText("Output: " + ((EnergySource)foundShop.getShopItem(i)).getOutput() + " kWh");
         }
 
     }

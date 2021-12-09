@@ -61,17 +61,17 @@
    <Label layoutX="98.0" layoutY="220.0" text="Size: Small" textFill="WHITE" />
    <Label fx:id="solarPrice1" layoutX="98.0" layoutY="240.0" text="Price: 2023 DKK" textFill="#fffefe" />
    <Label layoutX="98.0" layoutY="260.0" text="Emission: 0" textFill="WHITE" />
-   <Label layoutX="98.0" layoutY="280.0" text="Output: 169.76 kWh" textFill="WHITE" />
+   <Label fx:id="solarOutput1" layoutX="98.0" layoutY="280.0" text="Output: 169.76 kWh" textFill="WHITE" />
 
    <Label layoutX="260.0" layoutY="220.0" text="Size: Medium" textFill="WHITE" />
    <Label fx:id="solarPrice2" layoutX="260.0" layoutY="240.0" text="Price: 52000 DKK" textFill="WHITE" />
    <Label layoutX="260.0" layoutY="260.0" text="Emission: 0" textFill="WHITE" />
-   <Label layoutX="260.0" layoutY="280.0" text="Output: 5926 kWh" textFill="WHITE" />
+   <Label fx:id="solarOutput2" layoutX="260.0" layoutY="280.0" text="Output: 5926 kWh" textFill="WHITE" />
 
    <Label layoutX="415.0" layoutY="220.0" text="Size: Large" textFill="WHITE" />
    <Label fx:id="solarPrice3" layoutX="415.0" layoutY="240.0" text="Price: 91579 DKK" textFill="WHITE" />
    <Label layoutX="415.0" layoutY="260.0" text="Emission: 0" textFill="WHITE" />
-   <Label layoutX="415.0" layoutY="280.0" text="Output: 12033 kWh" textFill="WHITE" />
+   <Label fx:id="solarOutput3" layoutX="415.0" layoutY="280.0" text="Output: 12033 kWh" textFill="WHITE" />
    <Label layoutX="108.0" layoutY="91.0" text="array of 13sqm" textFill="WHITE" />
    <Label layoutX="267.0" layoutY="91.0" text="array of 32sqm" textFill="WHITE" />
    <Label layoutX="432.0" layoutY="91.0" text="array of 65sqm" textFill="WHITE" />
