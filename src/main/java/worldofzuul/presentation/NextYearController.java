@@ -47,16 +47,6 @@ public class NextYearController {
     public void handleCheckNextYearCondition() throws IOException {
         if (energyRequirementIsFulfilled()) {
             printYearlyRecap();
-
-            Command c = new Command(CommandWord.NEXT, "year");
-            boolean endOfGame = Game.instance.nextYear(c);
-
-            System.out.println(endOfGame);
-
-            //If 20 years have passed the game is over, and the player will get to the recap
-            if(endOfGame) {
-                GUI_Main.setRoot("recap");
-            }
         }
 
         loadViewHouseScene();
