@@ -70,7 +70,7 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
 
         getChildren().add(button);
 
-        //
+        // This will technically update the price label 2 or 3 times
         sceneProperty().addListener(e -> updateMoneyLabel());
     }
 
