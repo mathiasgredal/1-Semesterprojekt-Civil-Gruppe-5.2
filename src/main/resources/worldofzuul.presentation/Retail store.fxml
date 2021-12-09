@@ -51,4 +51,5 @@
    <Label layoutX="344.0" layoutY="237.0" text="Price: 11111" textFill="#fffdfd" />
    <Label layoutX="344.0" layoutY="254.0" text="Emission: 0" textFill="#fffdfd" />
    <Label layoutX="343.0" layoutY="271.0" text="Energy Requirement" textFill="#fffdfd" />
+  <Label fx:id="moneys" layoutX="458.0" layoutY="21.0" />
 </AnchorPane>

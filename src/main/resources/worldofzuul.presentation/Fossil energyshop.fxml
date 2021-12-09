@@ -68,4 +68,5 @@
          <Image url="@../images/Gas.png" />
       </image>
    </ImageView>
+   <Label fx:id="moneys" layoutX="458.0" layoutY="21.0" />
 </AnchorPane>

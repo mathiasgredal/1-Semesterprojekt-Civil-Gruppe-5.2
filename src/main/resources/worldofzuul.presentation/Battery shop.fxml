@@ -57,4 +57,5 @@
     <BuyButton itemIndex="1" shopName="Battery shop" layoutX="5.0" layoutY="321.0" />
     <BuyButton itemIndex="2" shopName="Battery shop" layoutX="168.0" layoutY="321.0" />
     <BuyButton itemIndex="3" shopName="Battery shop" layoutX="324.0" layoutY="321.0" />
+   <Label fx:id="moneys" layoutX="458.0" layoutY="21.0" />
 </AnchorPane>
