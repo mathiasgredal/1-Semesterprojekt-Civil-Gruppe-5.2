@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import worldofzuul.Game;
+import worldofzuul.Input.Command;
+import worldofzuul.Input.CommandWord;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -36,9 +38,25 @@ public class NextYearController {
         printYearlyRecap();
     }
 
+    /**
+     *  Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
+     *
+     * @see worldofzuul.Input.Command#Command(CommandWord, String)
+     * @since 1st Iteration
+     */
     public void handleCheckNextYearCondition() throws IOException {
         if (energyRequirementIsFulfilled()) {
             printYearlyRecap();
+
+            Command c = new Command(CommandWord.NEXT, "year");
+            boolean endOfGame = Game.instance.nextYear(c);
+
+            System.out.println(endOfGame);
+
+            //If 20 years have passed the game is over, and the player will get to the recap
+            if(endOfGame) {
+                GUI_Main.setRoot("recap");
+            }
         }
 
         loadViewHouseScene();
@@ -49,7 +67,7 @@ public class NextYearController {
     }
 
     private boolean energyRequirementIsFulfilled(){
-        if (Game.instance.getBuildArea().getYearlyEnergyProduction() > Game.instance.getHouse().getEnergyRequirement()) {
+        if (Game.instance.getBuildArea().getYearlyEnergyProduction()  > Game.instance.getHouse().getEnergyRequirement()) {
             return true;
         }
 
