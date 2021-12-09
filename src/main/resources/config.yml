@@ -31,18 +31,21 @@ shopItems:
       price: 1.28
       emission: 2.4 # kg co2
       output: 90 # kwh
+      thumbImageURL: "/images/Kul.png"
     - name: "Oil"
       description: "It is energy from oil"
       size: "MEDIUM"
       price: 13.3
       emission: 3.1
       output: 151
+      thumbImageURL: "/images/Olie.png"
     - name: "Natural gas"
       description: "It is energy from natural gas"
       size: "MEDIUM"
       price: 1.83
       emission: 2.7
       output: 176
+      thumbImageURL: "/images/Gas.png"
   Solar shop:
     - name: "Solar Energy"
       description: "Photovoltaic solar panel array of 13sqm"
@@ -81,6 +84,7 @@ shopItems:
       textureURL: "/images/Lille Mølle Stativ.png"
       width: 1
       height: 3
+      thumbImageURL: "/images/Lille mølle.png"
     - name: "Wind Energy"
       description: "Power 20kW wind generator"
       size: "MEDIUM"
@@ -90,3 +94,4 @@ shopItems:
       textureURL: "/images/Stor mølle stativ.png"
       width: 1
       height: 5
+      thumbImageURL: "/images/Store mølle.png"

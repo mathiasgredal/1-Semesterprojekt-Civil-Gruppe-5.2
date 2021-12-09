@@ -47,7 +47,7 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
     public BuyButton() {
         button = new Rectangle();
         addEventHandler(MouseEvent.MOUSE_CLICKED, this);
-        setTranslateX(100);
+        setAlignment(Pos.CENTER);
 
         setSpacing(5);
         Image img = new Image(getClass().getResource("/images/BuyButton.png").toExternalForm());
@@ -65,9 +65,6 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
         // This will technically update the price label 2 or 3 times
         sceneProperty().addListener(e -> updateMoneyLabel());
     }
-
-    int x = 0;
-    int y = 0;
 
     @Override
     public void handle(MouseEvent mouseEvent) {
