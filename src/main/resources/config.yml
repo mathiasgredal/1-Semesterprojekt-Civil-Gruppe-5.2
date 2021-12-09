@@ -26,30 +26,30 @@ shopItems:
       height: 1
   Fossil energyshop: # Estimated energy prices, due to lack of sources
     - name: "Coal"
-      description: "Energy from 1kg coal"
+      description: "Energy from coal"
       size: "MEDIUM"
-      price: 1.28
-      emission: 2.4 # kg co2
+      price: 240.28
+      emission: 18.4 # kg co2
       output: 90 # kwh
     - name: "Oil"
-      description: "It is energy from oil"
+      description: "Energy from oil"
       size: "MEDIUM"
-      price: 13.3
-      emission: 3.1
-      output: 151
+      price: 300.6
+      emission: 25.1
+      output: 123
     - name: "Natural gas"
-      description: "It is energy from natural gas"
+      description: "Energy from natural gas"
       size: "MEDIUM"
-      price: 1.83
-      emission: 2.7
-      output: 176
+      price: 224.5
+      emission: 15.7
+      output: 76
   Solar shop:
     - name: "Solar Energy"
       description: "Photovoltaic solar panel array of 13sqm"
       size: "SMALL"
-      price: 2023
+      price: 10150
       emission: 0
-      output: 169.76
+      output: 1232
       textureURL: "/images/LilleSolcelle.png"
       width: 1
       height: 1
