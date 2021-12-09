@@ -22,8 +22,6 @@ public interface Buyable {
     String getInfo();
 
     /**
-     *
      * Gets the output in kWh for the item
      */
-
 }
