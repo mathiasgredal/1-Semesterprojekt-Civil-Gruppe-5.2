@@ -17,7 +17,7 @@ import java.text.StringCharacterIterator;
 
 public class BuildAreaController {
     @FXML
-    private Label renewable_label, fossil_label, battery_label;
+    private Label renewable_label, fossil_label, battery_label, sales_price;
 
     @FXML
     private Group buildArea;
@@ -30,9 +30,10 @@ public class BuildAreaController {
         this.buildArea.getChildren().add(new BuildGrid(new Point2D(18, 36), 20, 27, 17));
 
         // Set label values
-        renewable_label.setText(String.format("Renewable energy: %s pr. year", humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProductionRenewable())));
+        renewable_label.setText(String.format("Renew. energy: %s pr. year", humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProductionRenewable())));
         fossil_label.setText(String.format("Fossil energy: %s", humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProductionFossil())));
-        battery_label.setText(String.format("Battery storage: %s", humanReadableWattHoursSI(Game.instance.getBuildArea().getTotalBatteryCapacity())));
+        battery_label.setText(String.format("Storage: %s", humanReadableWattHoursSI(Game.instance.getBuildArea().getTotalBatteryCapacity())));
+        sales_price.setText(String.format("Price: %.2f DKK pr. kWh", Game.instance.getBuildArea().getEnergySalesPricePrkWh()));
     }
 
     /**

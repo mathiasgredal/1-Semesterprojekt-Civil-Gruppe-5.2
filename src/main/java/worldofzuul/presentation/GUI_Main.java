@@ -18,6 +18,7 @@ public class GUI_Main extends Application {
         scene.getStylesheets().add("style.css");
         primaryStage.setTitle("Greenhouse Jazz");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
