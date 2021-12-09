@@ -35,7 +35,7 @@ public class Game {
     private final Parser parser;
     private Room currentRoom;
 
-    private final House house = new House(1600);
+    private final House house = new House(4400);
     private final BuildArea buildArea = new BuildArea();
 
     public ArrayList<Shop> getShops() {

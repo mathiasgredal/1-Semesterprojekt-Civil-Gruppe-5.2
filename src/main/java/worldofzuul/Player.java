@@ -9,8 +9,8 @@ import java.util.HashMap;
  * The player class, used to manage player specific resources mainly ecomony and recap data
  */
 public class Player {
-    private double playerEconomy = 300000;
-    private final double yearlyIncome = 10000;
+    private double playerEconomy = 30200;
+    private final double yearlyIncome = 30200;
     private HashMap<Integer, ArrayList<EnergySource>> recapEnergySources = new HashMap<Integer, ArrayList<EnergySource>>();
     private HashMap<Integer, Integer> recapEnergyEmission = new HashMap<Integer, Integer>();
 
