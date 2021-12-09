@@ -59,7 +59,7 @@ public class ViewHouseController {
     }
 
     @FXML
-    private void handleNextYear() throws Exception{
-            GUI_Main.setRoot("next year");
+    private void handleNextYear() throws Exception {
+        GUI_Main.setRoot("next year");
     }
 }
