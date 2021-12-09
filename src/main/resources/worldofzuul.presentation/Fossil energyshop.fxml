@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import worldofzuul.presentation.BuyButton?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.FossilController">
@@ -17,53 +19,53 @@
             <Font size="26.0" />
         </font></Label>
     <Button fx:id="btnHouse" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House Area" />
-    <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="71.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="304.0" fitWidth="173.0" layoutX="25.0" layoutY="65.0" pickOnBounds="true">
         <image>
             <Image url="@../images/ShopBoxes.png" />
         </image>
     </ImageView>
-    <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="233.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="304.0" fitWidth="173.0" layoutX="209.0" layoutY="66.0" pickOnBounds="true">
         <image>
             <Image url="@../images/ShopBoxes.png" />
         </image>
     </ImageView>
-    <ImageView fitHeight="304.0" fitWidth="211.0" layoutX="395.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="304.0" fitWidth="173.0" layoutX="395.0" layoutY="66.0" pickOnBounds="true">
         <image>
             <Image url="@../images/ShopBoxes.png" />
         </image>
     </ImageView>
-    <Label layoutX="136.0" layoutY="83.0" text="Kul" textFill="#ede9e9" />
-    <Label layoutX="301.0" layoutY="83.0" text="Oil" textFill="#ede9e9" />
-    <Label layoutX="462.0" layoutY="83.0" text="Gas" textFill="#ede9e9" />
-    <BuyButton itemIndex="1" layoutX="1.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
-    <BuyButton itemIndex="2" layoutX="163.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
-    <BuyButton itemIndex="3" layoutX="325.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
-    <Label layoutX="88.0" layoutY="197.0" text="Energy from 1kg coal" textFill="WHITE" />
-    <Label layoutX="88.0" layoutY="217.0" text="Price: 1.28" textFill="WHITE" />
-    <Label layoutX="88.0" layoutY="237.0" text="Emission: 2.4 kg co2" textFill="WHITE" />
-    <Label layoutX="88.0" layoutY="257.0" text="Output: 90 kwh" textFill="WHITE" />
+    <Label layoutX="103.0" layoutY="83.0" text="Kul" textFill="#ede9e9" />
+    <Label layoutX="292.0" layoutY="82.0" text="Oil" textFill="#ede9e9" />
+    <Label layoutX="475.0" layoutY="83.0" text="Gas" textFill="#ede9e9" />
+    <BuyButton itemIndex="1" layoutX="-32.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
+    <BuyButton itemIndex="2" layoutX="154.0" layoutY="285.0" shopName="Fossil energyshop" useSpinner="true" />
+    <BuyButton itemIndex="3" layoutX="338.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
+    <Label layoutX="55.0" layoutY="197.0" text="Energy from 1kg coal" textFill="WHITE" />
+    <Label layoutX="55.0" layoutY="217.0" text="Price: 1.28 DKK" textFill="WHITE" />
+    <Label layoutX="55.0" layoutY="237.0" text="Emission: 2.4 kg co2" textFill="WHITE" />
+    <Label layoutX="55.0" layoutY="257.0" text="Output: 90 kwh" textFill="WHITE" />
 
-    <Label layoutX="251.0" layoutY="197.0" text="Energy from 1kg oil" textFill="WHITE" />
-    <Label layoutX="251.0" layoutY="217.0" text="Price: 13.3" textFill="WHITE" />
-    <Label layoutX="251.0" layoutY="237.0" text="Emission: 3.1 kg co2" textFill="WHITE" />
-    <Label layoutX="251.0" layoutY="257.0" text="Output: 151 kwh" textFill="WHITE" />
+    <Label layoutX="242.0" layoutY="196.0" text="Energy from 1kg oil" textFill="WHITE" />
+    <Label layoutX="242.0" layoutY="216.0" text="Price: 13.3 DKK" textFill="WHITE" />
+    <Label layoutX="242.0" layoutY="236.0" text="Emission: 3.1 kg co2" textFill="WHITE" />
+    <Label layoutX="242.0" layoutY="256.0" text="Output: 151 kwh" textFill="WHITE" />
 
     <Label layoutX="407.0" layoutY="197.0" text="Energy from 1kg natural gas" textFill="WHITE" />
-    <Label layoutX="407.0" layoutY="217.0" text="Price: 1.83" textFill="WHITE" />
+    <Label layoutX="407.0" layoutY="217.0" text="Price: 1.83 DKK" textFill="WHITE" />
     <Label layoutX="407.0" layoutY="237.0" text="Emission: 2.7 kg co2" textFill="WHITE" />
     <Label layoutX="407.0" layoutY="257.0" text="Output: 176 kwh" textFill="WHITE" />
     
-   <ImageView fitHeight="75.0" fitWidth="93.0" layoutX="109.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="75.0" fitWidth="93.0" layoutX="76.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/Kul.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="75.0" fitWidth="86.0" layoutX="273.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="75.0" fitWidth="86.0" layoutX="264.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/Olie.png" />
       </image>
    </ImageView>
-   <ImageView fitHeight="75.0" fitWidth="72.0" layoutX="434.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="75.0" fitWidth="72.0" layoutX="447.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/Gas.png" />
       </image>

@@ -14,7 +14,7 @@
          <Image url="@../images/ShopOutline.png" />
       </image>
    </ImageView>
-    <Label layoutX="181.0" layoutY="14.0" text="Energy Shop Windmills">
+    <Label layoutX="181.0" layoutY="14.0" text="Energy Shop Wind turbines">
       <font>
          <Font size="26.0" />
       </font></Label>
@@ -30,20 +30,20 @@
       </image>
    </ImageView>
    <Label layoutX="153.0" layoutY="83.0" text="Gaia 10kW wind turbine" textFill="#ede9e9" />
-   <Label layoutX="331.0" layoutY="83.0" text="Power 20kW wind generator" textFill="#ede9e9" />
+   <Label layoutX="339.0" layoutY="83.0" text="Power 20kW wind turbine" textFill="#ede9e9" />
 
    <BuyButton itemIndex="1" layoutX="76.0" layoutY="318.0" shopName="Windturbine shop" />
    <BuyButton itemIndex="2" layoutX="262.0" layoutY="318.0" shopName="Windturbine shop" />
 
    <Label layoutX="153.0" layoutY="241.0" text="Size: Small" textFill="WHITE" />
-   <Label fx:id="windPrice1" layoutX="153.0" layoutY="261.0" text="232323" textFill="WHITE" />
+   <Label fx:id="windPrice1" layoutX="153.0" layoutY="261.0" text="Price: 73557 DKK" textFill="WHITE" />
    <Label layoutX="153.0" layoutY="281.0" text="Emission: 0" textFill="WHITE" />
-   <Label layoutX="153.0" layoutY="301.0" text="Output: 32000" textFill="WHITE" />
+   <Label fx:id="windOutput1" layoutX="153.0" layoutY="301.0" text="Output: 32000 kWh" textFill="WHITE" />
 
    <Label layoutX="342.0" layoutY="239.0" text="Size: Medium" textFill="WHITE" />
-   <Label fx:id="windPrice2" layoutX="342.0" layoutY="259.0" text="asdasdasdsad" textFill="WHITE" />
+   <Label fx:id="windPrice2" layoutX="342.0" layoutY="259.0" text="Price: 163460 DKK" textFill="WHITE" />
    <Label layoutX="342.0" layoutY="279.0" text="Emission: 0" textFill="WHITE" />
-   <Label layoutX="342.0" layoutY="299.0" text="Output: 122640" textFill="WHITE" />
+   <Label fx:id="windOutput2" layoutX="342.0" layoutY="299.0" text="Output: 122640 kWh" textFill="WHITE" />
    <ImageView fitHeight="112.0" fitWidth="30.0" layoutX="386.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/Stor%20mølle%20stativ.png" />

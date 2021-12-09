@@ -45,10 +45,10 @@
    <BuyButton itemIndex="1" layoutX="55.0" layoutY="315.0" shopName="Retail store" />
    <Label layoutX="348.0" layoutY="122.0" text="Hesla - Electric Car" textFill="#fdfafa" />
    <Label layoutX="156.0" layoutY="122.0" text="Heating Pump" textFill="#fffdfd" />
-   <Label layoutX="145.0" layoutY="237.0" text="Price: 11111" textFill="#fffdfd" />
+   <Label layoutX="145.0" layoutY="237.0" text="Price: 110000 DKK" textFill="#fffdfd" />
    <Label layoutX="145.0" layoutY="254.0" text="Emission: 0" textFill="#fffdfd" />
    <Label layoutX="144.0" layoutY="271.0" text="Energy Requirement" textFill="#fffdfd" />
-   <Label layoutX="344.0" layoutY="237.0" text="Price: 11111" textFill="#fffdfd" />
+   <Label layoutX="344.0" layoutY="237.0" text="Price: 129000 DKK" textFill="#fffdfd" />
    <Label layoutX="344.0" layoutY="254.0" text="Emission: 0" textFill="#fffdfd" />
    <Label layoutX="343.0" layoutY="271.0" text="Energy Requirement" textFill="#fffdfd" />
 </AnchorPane>

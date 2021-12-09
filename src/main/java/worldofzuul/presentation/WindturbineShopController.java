@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import worldofzuul.Game;
 import worldofzuul.Input.Command;
 import worldofzuul.Input.CommandWord;
+import worldofzuul.Items.EnergySource;
 import worldofzuul.Rooms.Shops.Shop;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.nio.charset.StandardCharsets;
 
 public class WindturbineShopController {
     @FXML
-    private Label windPrice1, windPrice2;
+    private Label windPrice1, windPrice2, windOutput1, windOutput2;
     @FXML
     private Button btnHouse;
     @FXML
@@ -39,8 +40,14 @@ public class WindturbineShopController {
         }
 
         for (int i = 0; i < foundShop.getShopItems().size(); i++) {
-            arrOfWindPrices[i].setText("Price: " + foundShop.getShopItem(i).getPrice());
+            arrOfWindPrices[i].setText("Price: " + foundShop.getShopItem(i).getPrice() + " DKK");
         }
+
+        Label[] arrOfWindOutputs = {windOutput1, windOutput2};
+        for (int i = 0; i < foundShop.getShopItems().size(); i++) {
+            arrOfWindOutputs[i].setText("Price: " + ((EnergySource)foundShop.getShopItem(i)).getOutput() + " kWh");
+        }
+
     }
 
     public void handleBtnHouse(ActionEvent actionEvent) throws IOException {
