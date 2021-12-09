@@ -34,27 +34,26 @@
             <Image url="@../images/ShopBoxes.png" />
         </image>
     </ImageView>
-    <Label layoutX="103.0" layoutY="83.0" text="Kul" textFill="#ede9e9" />
-    <Label layoutX="292.0" layoutY="82.0" text="Oil" textFill="#ede9e9" />
-    <Label layoutX="475.0" layoutY="83.0" text="Gas" textFill="#ede9e9" />
-    <BuyButton itemIndex="1" layoutX="-32.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
-    <BuyButton itemIndex="2" layoutX="154.0" layoutY="285.0" shopName="Fossil energyshop" useSpinner="true" />
-    <BuyButton itemIndex="3" layoutX="338.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
-    <Label layoutX="55.0" layoutY="197.0" text="Energy from 1kg coal" textFill="WHITE" />
-    <Label layoutX="55.0" layoutY="217.0" text="Price: 1.28 DKK" textFill="WHITE" />
-    <Label layoutX="55.0" layoutY="237.0" text="Emission: 2.4 kg co2" textFill="WHITE" />
-    <Label layoutX="55.0" layoutY="257.0" text="Output: 90 kwh" textFill="WHITE" />
+    <Label layoutX="136.0" layoutY="83.0" text="Kul" textFill="#ede9e9" />
+    <Label layoutX="301.0" layoutY="83.0" text="Oil" textFill="#ede9e9" />
+    <Label layoutX="462.0" layoutY="83.0" text="Gas" textFill="#ede9e9" />
+    <BuyButton itemIndex="1" layoutX="1.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
+    <BuyButton itemIndex="2" layoutX="163.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
+    <BuyButton itemIndex="3" layoutX="325.0" layoutY="286.0" shopName="Fossil energyshop" useSpinner="true" />
+    <Label layoutX="88.0" layoutY="197.0" text="Energy from coal" textFill="WHITE" />
+    <Label layoutX="88.0" layoutY="217.0" text="Price: 1.28" textFill="WHITE" />
+    <Label layoutX="88.0" layoutY="237.0" text="Emission: 2.4 kg CO₂" textFill="WHITE" />
+    <Label layoutX="88.0" layoutY="257.0" text="Output: 90 kwh" textFill="WHITE" />
 
-    <Label layoutX="242.0" layoutY="196.0" text="Energy from 1kg oil" textFill="WHITE" />
-    <Label layoutX="242.0" layoutY="216.0" text="Price: 13.3 DKK" textFill="WHITE" />
-    <Label layoutX="242.0" layoutY="236.0" text="Emission: 3.1 kg co2" textFill="WHITE" />
-    <Label layoutX="242.0" layoutY="256.0" text="Output: 151 kwh" textFill="WHITE" />
+    <Label layoutX="251.0" layoutY="197.0" text="Energy from oil" textFill="WHITE" />
+    <Label layoutX="251.0" layoutY="217.0" text="Price: 13.3" textFill="WHITE" />
+    <Label layoutX="251.0" layoutY="237.0" text="Emission: 3.1 kg CO₂" textFill="WHITE" />
+    <Label layoutX="251.0" layoutY="257.0" text="Output: 151 kwh" textFill="WHITE" />
 
-    <Label layoutX="407.0" layoutY="197.0" text="Energy from 1kg natural gas" textFill="WHITE" />
-    <Label layoutX="407.0" layoutY="217.0" text="Price: 1.83 DKK" textFill="WHITE" />
-    <Label layoutX="407.0" layoutY="237.0" text="Emission: 2.7 kg co2" textFill="WHITE" />
+    <Label layoutX="407.0" layoutY="197.0" text="Energy from natural gas" textFill="WHITE" />
+    <Label layoutX="407.0" layoutY="217.0" text="Price: 1.83" textFill="WHITE" />
+    <Label layoutX="407.0" layoutY="237.0" text="Emission: 2.7 kg CO₂" textFill="WHITE" />
     <Label layoutX="407.0" layoutY="257.0" text="Output: 176 kwh" textFill="WHITE" />
-    
    <ImageView fitHeight="75.0" fitWidth="93.0" layoutX="76.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/Kul.png" />

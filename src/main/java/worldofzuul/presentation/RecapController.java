@@ -24,6 +24,5 @@ public class RecapController {
         moneyEarnedScore.setText(decimalFormat.format(moneyEarned) + " DKK");
         money.setText(decimalFormat.format(excessMoney) + " DKK");
         highScore.setText(String.valueOf(highscore));
-
     }
 }
