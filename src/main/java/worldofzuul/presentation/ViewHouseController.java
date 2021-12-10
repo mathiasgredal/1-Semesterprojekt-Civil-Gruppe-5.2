@@ -1,18 +1,12 @@
 package worldofzuul.presentation;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import worldofzuul.Game;
-import worldofzuul.Input.Command;
-import worldofzuul.Input.CommandWord;
 import worldofzuul.Items.EnergyConsumer.ElectricCar;
 import worldofzuul.Items.EnergyConsumer.HeatPump;
-
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 public class ViewHouseController {
     @FXML
