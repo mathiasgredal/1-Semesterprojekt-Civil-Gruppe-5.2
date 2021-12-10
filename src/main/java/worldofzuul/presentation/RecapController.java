@@ -13,16 +13,20 @@ public class RecapController {
     private Label emissionScore, moneyEarnedScore, money, highScore;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         double emission = Game.instance.getPlayer().calculateEmission();
         double moneyEarned = Game.instance.getSoldEnergyPrice();
         double excessMoney = Game.instance.getPlayer().getPlayerEconomy();
-        int highscore = (int)((50000/(emission/1000))+moneyEarned+excessMoney);
+        double assetValue = 0;
+        for (var source : Game.instance.getBuildArea().getEnergySources()) {
+            assetValue += source.getPrice();
+        }
 
-
+        int highscore = (int) ((50000 / (emission / 1000)) + moneyEarned + excessMoney);
+        
         emissionScore.setText(decimalFormat.format(emission) + " kg CO\u2082");
         moneyEarnedScore.setText(decimalFormat.format(moneyEarned) + " DKK");
-        money.setText(decimalFormat.format(excessMoney) + " DKK");
+        money.setText(decimalFormat.format(excessMoney + assetValue) + " DKK");
         highScore.setText(String.valueOf(highscore));
     }
 }
