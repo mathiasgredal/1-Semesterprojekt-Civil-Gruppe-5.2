@@ -80,7 +80,8 @@ public class NextYearController {
     }
 
     /**
-     * Calls the "setRoot" method from "GUI_Main" which is used to load the object hierarchy from an XML document (or in other terms change scenes)
+     * Method that calls the "setRoot" method from "GUI_Main" which is used to load the object hierarchy from an XML document (or in other terms change scenes)
+     * This loads the view house.fxml
      * @throws IOException
      */
     private void loadViewHouseScene() throws IOException {
