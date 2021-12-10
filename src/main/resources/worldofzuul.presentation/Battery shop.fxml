@@ -17,7 +17,6 @@
             <Font size="26.0"/>
         </font>
     </Label>
-
     <HBox fx:id="root" spacing="10" AnchorPane.bottomAnchor="25" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5"
           alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"/>
 
