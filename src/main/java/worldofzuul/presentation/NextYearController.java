@@ -124,7 +124,7 @@ public class NextYearController {
         earnedMoneyText.setText("Your earned money on sold energy: " + decimalFormat.format(Game.instance.getSoldEnergyPrice()) + " DKK");
         balanceText.setText("Your balance are: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()) + " DKK");
     }
-    
+
     public void handleCheckIfEnd(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("recap");
     }
