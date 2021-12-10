@@ -23,7 +23,7 @@ public abstract class ShopController {
 
     @FXML
     private void initialize() {
-        //This is the parrent class for shops
+        //This is the parent class for shops
 
         boolean useSpinner = root.getUserData() instanceof String && root.getUserData().equals("useSpinner");
 
@@ -36,7 +36,7 @@ public abstract class ShopController {
         }
 
         if (shop == null) {
-            // Welp we're dead
+            // Game over!
             return;
         }
 

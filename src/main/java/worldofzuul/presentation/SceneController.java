@@ -28,7 +28,6 @@ public class SceneController {
     @FXML
     ImageView imageviewPump1, imageviewCar1;
 
-
     @FXML
     private Button btnHouse, btnHelp, btnNextYear, btnViewHouse;
 

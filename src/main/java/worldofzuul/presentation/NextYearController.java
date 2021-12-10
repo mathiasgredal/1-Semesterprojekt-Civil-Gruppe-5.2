@@ -15,7 +15,7 @@ import java.text.DecimalFormat;
 
 public class NextYearController {
     /**
-     * Makes an object of the DecimalFormat class and uses it to make double variables decrease the decimalnummer down to two
+     * Makes an instance of the object DecimalFormat class and uses it to make double variables round the decimal number down to two
      **/
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
@@ -36,8 +36,8 @@ public class NextYearController {
      */
     @FXML
     void initialize() {
-        //Chekes if the energy requirement is fulfilled and handles the layout accordingly
-        //If "energyBalance" the leftover energy > 0 = succes
+        //Checks if the energy requirement is fulfilled and handles the layout accordingly
+        //If "energyBalance" the leftover energy > 0 = success
         if (energyRequirementIsFulfilled()) {
             statusText.setText("SUCCESS");
             statusText.setTextFill(Color.GREEN);
@@ -48,7 +48,7 @@ public class NextYearController {
             btnCon.setText("Back");
         }
 
-        //Calls the "printYearlyRecap" method so that the player gets the information about his/hers progress
+        //Calls the "printYearlyRecap" method so that the player gets the information about the players progress
         printYearlyRecap();
 
         //Calls the "nextYear" method
@@ -70,7 +70,6 @@ public class NextYearController {
      * The method calls the "loadViewHouseScene" method
      * @throws IOException
      */
-    //FIXME: delete if statement - you could use the laodViewHouse method instead
     public void handleCheckNextYearCondition() throws IOException {
         if (energyRequirementIsFulfilled()) {
             printYearlyRecap();
@@ -92,7 +91,6 @@ public class NextYearController {
      * Gets the method Command from the 1st iteration of the game - Commandline Interface (CLI) version.
      *
      * @see worldofzuul.Input.Command#Command(CommandWord, String)
-     * @since 1st Iteration
      * @return true is the game is over and false if it is not
      */
     private boolean nextYear() {
@@ -100,7 +98,7 @@ public class NextYearController {
     }
 
     /**
-     * Method that shows what the leftover energy requirement is after energy we have recived energy from your own production
+     * Method that shows what the leftover energy requirement is after energy we have received energy from your own production
      * @return leftover energy requirement (kWH)
      */
     private double energyBalance() {
@@ -108,8 +106,8 @@ public class NextYearController {
     }
 
     /**
-     * Method the returens the "energyBalance"/the leftover energy
-     * @return true if leftover energy requirement > 0 and false otherwies
+     * Method the returns the "energyBalance"/the leftover energy
+     * @return true if leftover energy requirement > 0 and false otherwise
      */
     private boolean energyRequirementIsFulfilled() {
         return energyBalance() > 0;
@@ -126,9 +124,7 @@ public class NextYearController {
         earnedMoneyText.setText("Your earned money on sold energy: " + decimalFormat.format(Game.instance.getSoldEnergyPrice()) + " DKK");
         balanceText.setText("Your balance are: " + decimalFormat.format(Game.instance.getPlayer().getPlayerEconomy()) + " DKK");
     }
-
-    @FXML
-    //FIXME: does this have to be under @FXML and is it used?
+    
     public void handleCheckIfEnd(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("recap");
     }

@@ -19,7 +19,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 public class RetailController {
-    //FIXME: Should these be here/are they used?
     @FXML
     private URL location;
 
