@@ -82,7 +82,8 @@ public class SceneController {
         }
     }
 
-    //methods for window change
+    //Methods for window change
+    //The methods gets run when the buttons gets pressed
     public void handleBtnHouse() throws Exception {
         GUI_Main.setRoot("house");
     }

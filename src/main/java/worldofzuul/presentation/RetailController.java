@@ -32,6 +32,7 @@ public class RetailController {
 
     /**
      * Method that calls the "setRoot" method from "GUI_Main" which is used to load the object hierarchy from an XML document (or in other terms change scenes)
+     * This method gets run when the "btnHouse" button is pressed in the "Retail store" scene
      * This loads the house.fxml
      * @throws IOException
      */

@@ -22,7 +22,9 @@ import java.nio.charset.StandardCharsets;
 
 public class WindturbineShopController extends ShopController {
     /**
-     * this method laods the house.fxml file
+     * Method that calls the "setRoot" method from "GUI_Main" which is used to load the object hierarchy from an XML document (or in other terms change scenes)
+     * This method gets run when the "btnHouse" button is pressed in the "Windturbine shop" scene
+     * This method laods the house.fxml file
      * @param actionEvent
      * @throws IOException
      */
