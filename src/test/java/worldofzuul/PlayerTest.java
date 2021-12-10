@@ -43,7 +43,7 @@ class PlayerTest {
         var myEnergy = new EnergySource(
                 "My energy",
                 "cold fusion", EnergySourceSize.MEDIUM,
-                1000, 24, 1000, 0, "", 1, 1);
+                1000, 24, 1000, 0, "", 1, 1, "");
 
         Shop shop = new EnergyShop("Magic shop",
                 "A shop test", List.of(myEnergy));

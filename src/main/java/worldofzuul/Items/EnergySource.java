@@ -31,6 +31,11 @@ public class EnergySource implements Buyable {
     private String textureURL = "";
 
     /**
+     * URL to thumbnail energysource
+     */
+    private String thumbImageURL = "";
+
+    /**
      * These values are logged each year for an eventual calculation of ROI
      */
     private double totalGeneratedEnergy = 0;
@@ -45,7 +50,7 @@ public class EnergySource implements Buyable {
     /**
      * Constructor for initializing values in energysource
      */
-    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput, double energyCapacity, String textureURL, int width, int height) {
+    public EnergySource(String energyName, String energyDescription, EnergySourceSize size, double energyPrice, double energyEmission, double energyOutput, double energyCapacity, String textureURL, int width, int height, String thumbImageURL) {
         this.name = energyName;
         this.description = energyDescription;
         this.size = size;
@@ -56,6 +61,7 @@ public class EnergySource implements Buyable {
         this.textureURL = textureURL;
         this.width = width;
         this.height = height;
+        this.thumbImageURL = thumbImageURL;
     }
 
     /**
@@ -310,4 +316,13 @@ public class EnergySource implements Buyable {
     public void addTotalGeneratedMoney(double v) {
         totalGeneratedMoney += v;
     }
+
+    public String getThumbImageURL() {
+        return thumbImageURL;
+    }
+
+    public void setThumbImageURL(String thumbImageURL) {
+        this.thumbImageURL = thumbImageURL;
+    }
+
 }

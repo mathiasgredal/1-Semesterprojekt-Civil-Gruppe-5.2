@@ -4,65 +4,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<?import worldofzuul.presentation.BuyButton?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.WindturbineShopController">
-   <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
-      <image>
-         <Image url="@../images/ShopOutline.png" />
-      </image>
-   </ImageView>
-    <Label layoutX="181.0" layoutY="14.0" text="Energy Shop Wind turbines">
-      <font>
-         <Font size="26.0" />
-      </font></Label>
-   <Button fx:id="btnHouse" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnHouse" text="House area" />
-   <ImageView fitHeight="304.0" fitWidth="164.0" layoutX="134.0" layoutY="66.0" pickOnBounds="true">
-      <image>
-         <Image url="@../images/ShopBoxes.png" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="304.0" fitWidth="164.0" layoutX="325.0" layoutY="66.0" pickOnBounds="true">
-      <image>
-         <Image url="@../images/ShopBoxes.png" />
-      </image>
-   </ImageView>
-   <Label layoutX="153.0" layoutY="83.0" text="Gaia 10kW wind turbine" textFill="#ede9e9" />
-   <Label layoutX="339.0" layoutY="83.0" text="Power 20kW wind turbine" textFill="#ede9e9" />
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="worldofzuul.presentation.WindturbineShopController">
+    <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+        <image>
+            <Image url="@../images/ShopOutline.png"/>
+        </image>
+    </ImageView>
+    <Label layoutX="181.0" layoutY="14.0" text="Energy Shop Windmills">
+        <font>
+            <Font size="26.0"/>
+        </font>
+    </Label>
+    <HBox fx:id="root" spacing="10" AnchorPane.bottomAnchor="25" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5"
+          alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"/>
 
-   <BuyButton itemIndex="1" layoutX="76.0" layoutY="318.0" shopName="Windturbine shop" />
-   <BuyButton itemIndex="2" layoutX="262.0" layoutY="318.0" shopName="Windturbine shop" />
-
-   <Label layoutX="153.0" layoutY="241.0" text="Size: Small" textFill="WHITE" />
-   <Label fx:id="windPrice1" layoutX="153.0" layoutY="261.0" text="Price: 73557 DKK" textFill="WHITE" />
-   <Label layoutX="153.0" layoutY="281.0" text="Emission: 0" textFill="WHITE" />
-   <Label fx:id="windOutput1" layoutX="153.0" layoutY="301.0" text="Output: 32000 kWh" textFill="WHITE" />
-
-   <Label layoutX="342.0" layoutY="239.0" text="Size: Medium" textFill="WHITE" />
-   <Label fx:id="windPrice2" layoutX="342.0" layoutY="259.0" text="Price: 163460 DKK" textFill="WHITE" />
-   <Label layoutX="342.0" layoutY="279.0" text="Emission: 0" textFill="WHITE" />
-   <Label fx:id="windOutput2" layoutX="342.0" layoutY="299.0" text="Output: 122640 kWh" textFill="WHITE" />
-   <ImageView fitHeight="112.0" fitWidth="30.0" layoutX="386.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/Stor mølle stativ.png" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="369.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/Stor mølle hoved.png" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="111.0" fitWidth="151.0" layoutX="189.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/Lille Mølle Stativ.png" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="45.0" fitWidth="47.0" layoutX="187.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/Lille mølle hoved.png" />
-      </image>
-   </ImageView>
-   <Label fx:id="moneys" layoutX="458.0" layoutY="21.0"  />
+    <Button fx:id="btnHouse" layoutX="14.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBtnHouse"
+            text="House area"/>
+    <Label fx:id="moneys" layoutX="458.0" layoutY="21.0"/>
 </AnchorPane>

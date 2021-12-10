@@ -46,8 +46,8 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
 
     public BuyButton() {
         button = new Rectangle();
-        addEventHandler(MouseEvent.MOUSE_CLICKED, this);
-        setTranslateX(100);
+        button.addEventHandler(MouseEvent.MOUSE_CLICKED, this);
+        setAlignment(Pos.CENTER);
 
         setSpacing(5);
         Image img = new Image(getClass().getResource("/images/BuyButton.png").toExternalForm());
@@ -66,13 +66,8 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
         sceneProperty().addListener(e -> updateMoneyLabel());
     }
 
-    int x = 0;
-    int y = 0;
-
     @Override
     public void handle(MouseEvent mouseEvent) {
-        doButtonBounce();
-
         // Find the shop in the shop list using the provided shop name
         Shop foundShop = null;
         for (int i = 0; i < Game.instance.getShops().size(); i++) {
@@ -119,6 +114,7 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
             double missing = Math.abs(Game.instance.getPlayer().getPlayerEconomy() - item.getPrice() * amountItem);
             showNotification("Error", String.format("Cannot afford %sx item\n(missing %.1fDKK)", amountItem, missing));
         }
+        doButtonBounce();
     }
 
     private void updateMoneyLabel() {

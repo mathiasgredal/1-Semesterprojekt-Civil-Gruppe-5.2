@@ -21,36 +21,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
-public class SolarShopController {
-    @FXML
-    private Label solarPrice1, solarPrice2, solarPrice3, solarOutput1, solarOutput2, solarOutput3;
-
-    @FXML
-    private Button btnHouse;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    public void initialize() {
-        Shop foundShop = null;
-        Label[] arrOfSolarPrices = {solarPrice1, solarPrice2, solarPrice3};
-        for (int i = 0; i < Game.instance.getShops().size(); i++) {
-            if (Game.instance.getShops().get(i).getName().equals(getShopName())) {
-                foundShop = Game.instance.getShops().get(i);
-            }
-        }
-
-        for (int i = 0; i < foundShop.getShopItems().size(); i++) {
-            arrOfSolarPrices[i].setText("Price: " + foundShop.getShopItem(i).getPrice() + " DKK");
-        }
-
-        Label[] arrOfWindOutputs = {solarOutput1, solarOutput2, solarOutput3};
-        for (int i = 0; i < foundShop.getShopItems().size(); i++) {
-            arrOfWindOutputs[i].setText("Output: " + ((EnergySource)foundShop.getShopItem(i)).getOutput() + " kWh");
-        }
-    }
-
+public class SolarShopController extends ShopController {
     public void handleBtnHouse(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("house");
     }
