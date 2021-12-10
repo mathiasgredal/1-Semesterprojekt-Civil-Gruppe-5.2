@@ -1,5 +1,9 @@
 package worldofzuul.Items;
 
+/**
+ * A class using enums so we are able to modify the size of Shop items
+ */
+
 public enum EnergySourceSize {
     SMALL("small"), MEDIUM("medium"), LARGE("large");
     private final String name;

@@ -101,7 +101,6 @@ public class House extends Room {
     public void getInfoAbout(String secondWord) {
         switch (secondWord) {
             case "car", "automobile" -> {
-                // TODO: Perhaps move this to the car class
                 if (car instanceof InternalCombustionCar) {
                     System.out.println("This is your internal combustion car, which runs on fossil fuels\n" +
                             "and has an annual cost of $" + car.getYearlyCost() +
@@ -114,7 +113,6 @@ public class House extends Room {
                 }
             }
             case "heater", "heating" -> {
-                // TODO: Perhaps move this to the heating class
                 if (heater instanceof GasHeating) {
                     System.out.println("Your house is heated by natural gas" +
                             " and costs you annualy $" + heater.getYearlyCost() +
