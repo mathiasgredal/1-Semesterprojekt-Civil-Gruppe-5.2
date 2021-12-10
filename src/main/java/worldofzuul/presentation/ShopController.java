@@ -23,6 +23,8 @@ public abstract class ShopController {
 
     @FXML
     private void initialize() {
+        //This is the parrent class for shops
+
         boolean useSpinner = root.getUserData() instanceof String && root.getUserData().equals("useSpinner");
 
         // Get shop
