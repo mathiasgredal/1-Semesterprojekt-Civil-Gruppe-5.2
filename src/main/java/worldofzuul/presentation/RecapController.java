@@ -35,7 +35,6 @@ public class RecapController {
 
         //uses decimalFormat.format
         // Sets the lable text to the assigned valuse of the variables and some text
-
         emissionScore.setText(decimalFormat.format(emission) + " kg CO\u2082");
         moneyEarnedScore.setText(decimalFormat.format(moneyEarned) + " DKK");
         money.setText(decimalFormat.format(excessMoney + assetValue) + " DKK");
