@@ -18,9 +18,6 @@ public class ViewHouseController {
     @FXML
     ImageView imageviewPump2, imageviewCar2;
 
-    @FXML
-    Label petrol, electric, heatingPump;
-
     // Set tooltip for the heater
     private String tooltipDescriptionHeater = String.join("\n",
             String.format("You have a heat pump that runs from electricity"),
@@ -39,15 +36,12 @@ public class ViewHouseController {
     private void initialize() {
         if (Game.instance.getHouse().getCar() instanceof ElectricCar) {
             imageviewCar2.setOpacity(1.0);
-            electric.setOpacity(1.0);
-            petrol.setOpacity(0.01);
             Tooltip t1 = new Tooltip(tooltipDescriptionCar);
             Tooltip.install(imageviewCar2, t1);
         }
 
         if (Game.instance.getHouse().getHeater() instanceof HeatPump) {
             imageviewPump2.setOpacity(1.0);
-            heatingPump.setOpacity(1.0);
             Tooltip t2 = new Tooltip(tooltipDescriptionHeater);
             Tooltip.install(imageviewPump2, t2);
         }

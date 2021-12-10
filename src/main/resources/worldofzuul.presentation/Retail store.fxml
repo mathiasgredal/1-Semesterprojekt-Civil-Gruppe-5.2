@@ -8,12 +8,13 @@
 <?import javafx.scene.text.Font?>
 <?import worldofzuul.presentation.BuyButton?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="worldofzuul.presentation.RetailController">
-   <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
-      <image>
-         <Image url="@../images/ShopOutline.png" />
-      </image>
-   </ImageView>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="worldofzuul.presentation.RetailController">
+    <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+        <image>
+            <Image url="@../images/ShopOutline.png"/>
+        </image>
+    </ImageView>
     <Label layoutX="235.0" layoutY="14.0" text="Retail Shop">
       <font>
          <Font size="26.0" />
@@ -41,8 +42,8 @@
          <Image url="@../images/AC.png" />
       </image>
    </ImageView>
-   <BuyButton itemIndex="2" layoutX="273.0" layoutY="315.0" shopName="Retail store" />
-   <BuyButton itemIndex="1" layoutX="55.0" layoutY="315.0" shopName="Retail store" />
+   <BuyButton itemIndex="2" layoutX="354.0" layoutY="315.0" shopName="Retail store" />
+   <BuyButton itemIndex="1" layoutX="155.0" layoutY="315.0" shopName="Retail store" />
    <Label layoutX="365.0" layoutY="122.0" text="Hesla - Electric Car" textFill="#fdfafa" />
    <Label layoutX="134.0" layoutY="122.0" text="Pandasanic - Heat Pump" textFill="#fffdfd" />
    <Label layoutX="117.0" layoutY="242.0" text="Price: 76000 DKK" textFill="#fffdfd" />

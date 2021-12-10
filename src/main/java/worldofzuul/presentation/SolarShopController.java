@@ -20,21 +20,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
-public class SolarShopController {
-    @FXML
-    private Label solarPrice1, solarPrice2, solarPrice3;
-
-    @FXML
-    private Button btnHouse;
-
-    @FXML
-    public void initialize() {
-        solarPrice1.getText();
-        solarPrice2.getText();
-        solarPrice3.getText();
-        //TODO: Implement the setText() method, get the specific shop and the shops item prices, and write it to the labels.
-    }
-
+public class SolarShopController extends ShopController {
     public void handleBtnHouse(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("house");
     }
