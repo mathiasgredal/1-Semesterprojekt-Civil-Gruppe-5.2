@@ -23,8 +23,7 @@ public class RecapController {
         }
 
         int highscore = (int) ((50000 / (emission / 1000)) + moneyEarned + excessMoney);
-
-
+        
         emissionScore.setText(decimalFormat.format(emission) + " kg CO\u2082");
         moneyEarnedScore.setText(decimalFormat.format(moneyEarned) + " DKK");
         money.setText(decimalFormat.format(excessMoney + assetValue) + " DKK");
