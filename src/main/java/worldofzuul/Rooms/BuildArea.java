@@ -26,7 +26,7 @@ public class BuildArea extends Room {
      */
     public void addEnergySource(EnergySource e) {
         // Clone the energysource, to prevent mutation when setting a new position
-        var energySourceClone = new EnergySource(e.getName(), e.getDescription(), e.getSize(), e.getPrice(), e.getEmission(), e.getOutput(), e.getCapacity(), e.getTextureURL(), e.getWidth(), e.getHeight());
+        var energySourceClone = new EnergySource(e.getName(), e.getDescription(), e.getSize(), e.getPrice(), e.getEmission(), e.getOutput(), e.getCapacity(), e.getTextureURL(), e.getWidth(), e.getHeight(), e.getThumbImageURL());
         energySources.add(energySourceClone);
     }
 
