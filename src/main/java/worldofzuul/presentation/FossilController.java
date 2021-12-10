@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.net.URL;
 
 public class FossilController extends ShopController {
+    /**
+     * This method loads the house.fxml file
+     * @throws Exception
+     */
     public void handleBtnHouse() throws Exception {
         GUI_Main.setRoot("house");
     }

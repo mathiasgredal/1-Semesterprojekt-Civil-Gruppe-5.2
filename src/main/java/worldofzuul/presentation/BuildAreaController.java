@@ -44,8 +44,6 @@ public class BuildAreaController {
     }
 
     /**
-     * TODO: Should probably be moved to a seperate helper class
-     * TODO: Could be generalized to all units
      * Based on: https://stackoverflow.com/a/3758880
      *
      * @param kWh energy in kWh
