@@ -12,12 +12,14 @@ import worldofzuul.Input.CommandWord;
 import worldofzuul.Rooms.Shops.Shop;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 public class RetailController {
+    //FIXME: Should these be here/are they used?
     @FXML
     private URL location;
 
@@ -28,6 +30,11 @@ public class RetailController {
     ImageView imageviewPump;
 
 
+    /**
+     * Method that calls the "setRoot" method from "GUI_Main" which is used to load the object hierarchy from an XML document (or in other terms change scenes)
+     * This loads the house.fxml
+     * @throws IOException
+     */
     public void handleBtnHouse() throws Exception {
         GUI_Main.setRoot("house");
     }
