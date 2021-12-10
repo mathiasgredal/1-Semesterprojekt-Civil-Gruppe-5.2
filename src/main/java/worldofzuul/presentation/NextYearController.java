@@ -31,10 +31,10 @@ public class NextYearController {
     @FXML
     private Label textNextYear1, yearlyEmissionText, totalEmissionText, earnedMoneyText, balanceText, statusText;
 
-    @FXML
     /**
      * This is the first method that is run
      */
+    @FXML
     void initialize() {
         //Chekes if the energy requirement is fulfilled and handles the layout accordingly
         //If "energyBalance" the leftover energy > 0 = succes
@@ -117,6 +117,7 @@ public class NextYearController {
 
     /**
      * Method that sets the lables text and the information about the players progress
+     * Uses decimalFormat.format
      */
     private void printYearlyRecap() {
         textNextYear1.setText("You are now in the year: " + (2010 + Game.instance.getGameYear()));
