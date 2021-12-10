@@ -10,8 +10,8 @@ import worldofzuul.Game;
 
 /**
  * This is a component representing the grid for the build area. It inherits from Group, which means it can be added as
- * a UI compoent on the node graph in javafx.
- * It doesn't support javafx built-in layouts, and must be positioned using an offset
+ * a UI component on the node graph in JavaFX.
+ * It doesn't support JavaFX built-in layouts, and must be positioned using an offset
  * It supports multiple scales using the grid size
  * It can support multiple grid sizes, and if an element is positioned outside the grid it is cut off
  */

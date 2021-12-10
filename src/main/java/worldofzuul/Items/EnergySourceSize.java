@@ -1,7 +1,7 @@
 package worldofzuul.Items;
 
 /**
- * A class using enums so we are able to modify the size of Shop items
+ * A class using enums, so we are able to modify the size of Shop items
  */
 
 public enum EnergySourceSize {

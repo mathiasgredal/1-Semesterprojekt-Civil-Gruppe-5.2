@@ -37,7 +37,7 @@ public class BuildAreaController {
     }
 
     /**
-     * A button to go back to the main scene
+     * A button to go back to the house
      */
     public void handleBtnHouse() throws IOException {
         GUI_Main.setRoot("house");

@@ -23,11 +23,11 @@ import java.util.Objects;
 
 /**
  * This is the component for the individual build item, and must be placed as a child to BuildGrid
- * It displays the given energysource in the grid, and handles movement and it also updates the given energysource
+ * It displays the given energysource in the grid, and handles movement, and it also updates the given energysource
  * with the new position.
  * If the item is positioned at coordinates (-1; -1), then an algorithm places it in a suitable spot
  * This however breaks visually if the grid is filled, since it will just be placed at coordinate (-1;-1)
- * The build item also installs the correct eventhandlers to handle dragging build items around on the grid
+ * The build item also installs the correct event handlers to handle dragging build items around on the grid
  */
 public class BuildItem extends Parent {
     // The grid position for the build item
@@ -96,7 +96,7 @@ public class BuildItem extends Parent {
         // If we have a windmill, we will need to add the rotating head.
         // We don't have a good abstraction for this, so it is just hardcoded
         if (source.getName().contains("Wind")) {
-            // Get windmill head texture
+            // Get windmill head texture, using a ternary operator
             String imageURL = source.getSize() == EnergySourceSize.SMALL ? "/images/Lille mølle hoved.png" : "/images/Stor mølle hoved.png";
             Image img = new Image(getClass().getResource(imageURL).toExternalForm());
             windMillHead = new ImageView(img);
@@ -106,7 +106,7 @@ public class BuildItem extends Parent {
             windMillHead.setScaleX(scale);
             windMillHead.setScaleY(scale);
 
-            // Add proper offset, so the windmill heead is placed on the axel
+            // Add proper offset, so the windmill head is placed on the axle
             // We do some number magic, to make sure the head is offset correctly on all scales
             // I just experimented with some offsets and this solution matches exactly on the axel on multiple scales
             double offsetX = -windMillHead.getBoundsInParent().getMinX();
@@ -140,7 +140,7 @@ public class BuildItem extends Parent {
         }
 
         // If the source is colliding with an existing energysource, we should find another suitable spot
-        // We listen to the parent property, since it gives us and event for when a parent has been added.
+        // We listen to the parent property, since it gives us an event for when a parent has been added.
         // This is useful because we need it the get the bounding box.
         parentProperty().addListener(e -> {
             // If the energysource has been moved, then we don't need to give it a position
@@ -171,7 +171,7 @@ public class BuildItem extends Parent {
     /**
      * Set the position on the grid and apply the move
      *
-     * @param x Grid position
+     * @param x Grid position x
      * @param y Grid position y
      */
     void setPosition(int x, int y) {

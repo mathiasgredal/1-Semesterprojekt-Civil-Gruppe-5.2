@@ -10,7 +10,7 @@ public class CommandWords {
     /**
      * initializing HashMap "validCommands", when the "CommandsWords" constructor is called.
      * forEach-loop iterating over the values in Enum "CommandWord".
-     * if the current value is not equal to ""UNKNOWN", then it will be added to the validCommands hashmap with the command.toString as the key, and the command as the value.
+     * if the current value is not equal to "UNKNOWN", then it will be added to the validCommands hashmap with the command.toString as the key, and the command as the value.
      * @author Sebastian J.
      */
     public CommandWords() {

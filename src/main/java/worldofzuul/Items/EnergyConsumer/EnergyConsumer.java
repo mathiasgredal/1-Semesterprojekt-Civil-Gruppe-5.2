@@ -33,7 +33,7 @@ public abstract class EnergyConsumer implements Buyable {
     }
 
     /**
-     * Overriding methods to fit the EnergyConsumer class
+     * Overriding methods from the Buyable interface
      */
     @Override
     public String getName() {
