@@ -21,6 +21,11 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 public class SolarShopController extends ShopController {
+    /**
+     * this method loads the house.fxml file
+     * @param actionEvent
+     * @throws IOException
+     */
     public void handleBtnHouse(ActionEvent actionEvent) throws IOException {
         GUI_Main.setRoot("house");
     }

@@ -20,6 +20,7 @@ public abstract class ShopController {
     @FXML
     private HBox root;
 
+
     @FXML
     private void initialize() {
         boolean useSpinner = root.getUserData() instanceof String && root.getUserData().equals("useSpinner");
