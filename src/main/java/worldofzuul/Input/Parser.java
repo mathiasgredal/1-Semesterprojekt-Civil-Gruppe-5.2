@@ -11,6 +11,12 @@ public class Parser {
         reader = new Scanner(System.in);
     }
 
+    /**
+     * getCommand Checks for the text that the player is typing, with the Scanner tokenizer.
+     * An if statement checks for the first two words the player writes. and returns the values to Command
+     * If no words is written, then is returns null.
+     * @author Sebastian J.
+     */
     public Command getCommand() {
         String inputLine;
         String word1 = null;
