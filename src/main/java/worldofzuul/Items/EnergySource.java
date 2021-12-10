@@ -4,9 +4,6 @@ import worldofzuul.Game;
 
 import java.util.Random;
 
-/**
- *
- */
 public class EnergySource implements Buyable {
     private String name = "";
     private String description = "";
@@ -82,7 +79,7 @@ public class EnergySource implements Buyable {
      * Getter for energysource price, with built-in price developments for energysources
      * Fossil energysource increase in price over the years, and renewables fall in price
      *
-     * @return Price in dkk.
+     * @return Price in DKK.
      */
     public double getPrice() {
         double newEnergyPrice = price;
@@ -114,7 +111,7 @@ public class EnergySource implements Buyable {
     /**
      * Sets the energy price to a specified value
      *
-     * @param price The price in dkk
+     * @param price The price in DKK
      */
     public void setPrice(double price) {
         this.price = price;
@@ -159,7 +156,7 @@ public class EnergySource implements Buyable {
     /**
      * Logs the produced energy and associated sales price for this year
      *
-     * @param electricityPrice electricity price in dkk pr. kWh
+     * @param electricityPrice electricity price in DKK pr. kWh
      */
     public void addYearlyEnergyProduction(double electricityPrice) {
         totalGeneratedEnergy += output;
@@ -174,7 +171,7 @@ public class EnergySource implements Buyable {
     }
 
     /**
-     * Getter for total generated money in dkk over the lifetime of the energysource
+     * Getter for total generated money in DKK over the lifetime of the energysource
      */
     public double getTotalGeneratedMoney() {
         return totalGeneratedMoney;
@@ -227,7 +224,7 @@ public class EnergySource implements Buyable {
      *
      * @param max The maximum percentage to increase price by
      * @param min The minimum percentage to increase price by
-     * @return The new price
+     * @return    The new price
      */
     public int randomPercent(int max, int min) {
         Random rand = new Random();

@@ -20,8 +20,11 @@ public abstract class ShopController {
     @FXML
     private HBox root;
 
+
     @FXML
     private void initialize() {
+        //This is the parent class for shops
+
         boolean useSpinner = root.getUserData() instanceof String && root.getUserData().equals("useSpinner");
 
         // Get shop
@@ -33,7 +36,7 @@ public abstract class ShopController {
         }
 
         if (shop == null) {
-            // Welp we're dead
+            // Game over!
             return;
         }
 
@@ -47,12 +50,17 @@ public abstract class ShopController {
         root.setOnMouseClicked(e -> updateMoneyLabel());
     }
 
+    /**
+     * Gets the shop name, from the FXML file name.
+     * It splits the file path, with the .split method.
+     *
+     * @return The shop name, from the FXML file name
+     */
     private String getShopName() {
         String[] arrOfLocation = location.getFile().split("/");
         String[] shopName = arrOfLocation[arrOfLocation.length - 1].split("\\.");
         return URLDecoder.decode(shopName[0], StandardCharsets.UTF_8);
     }
-
 
     private void updateMoneyLabel() {
         var moneyLabel = root.getParent().lookup("#moneys");

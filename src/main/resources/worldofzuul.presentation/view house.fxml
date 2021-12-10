@@ -33,6 +33,6 @@
          </font>
       </Label>
       <Button fx:id="btnNextYear" layoutX="110.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleNextYear" text="Next Year" />
-      <Button layoutX="24.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleHouseScene" text="House Area" />
+      <Button fx:id="btnHouse" layoutX="24.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleHouseScene" text="House Area" />
    </children>
 </AnchorPane>

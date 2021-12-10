@@ -13,7 +13,6 @@ public class Config {
      * Note: Due to type-erasure, we have to use an array instead of an arraylist,
      * so that SnakeYAML deserialise the data to EnergySource instead of LinkedHashMap.
      * Source: https://stackoverflow.com/a/40465555
-     * Time wasted: ~3 hours
      */
     private Map<String, EnergySource[]> shopItems;
 

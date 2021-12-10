@@ -43,6 +43,9 @@ public class SceneController {
     @FXML
     private Label moneyLabel, emissionLabel, energyProductionLabel, yearLabel;
 
+    /**
+     * When the house.fxml file is loaded. The hud is updated to match the values of year, money, emission and energy production
+     */
     @FXML
     private void initialize() {
         if (yearLabel != null) {
@@ -56,20 +59,32 @@ public class SceneController {
             energyProductionLabel.setText("Energy production: " + BuildAreaController.humanReadableWattHoursSI(Game.instance.getBuildArea().getYearlyEnergyProduction()));
         }
 
+        /**
+         * makes a grid for the over the build area
+         */
         if (buildArea != null) {
             this.buildArea.getChildren().add(new BuildGrid(new Point2D(47, 184), 7, 25, 16));
         }
 
+        /**
+         * if the player have bought an electric car, the image will be updatet to the electric car
+         */
         if (Game.instance.getHouse().getCar() instanceof ElectricCar) {
             imageviewCar1.setOpacity(1.0);
         }
 
+        /**
+         * if the plyaer have bought a heatpump, a visual heatpump will be added next to the house
+         */
         if (Game.instance.getHouse().getHeater() instanceof HeatPump) {
             imageviewPump1.setOpacity(1.0);
         }
     }
 
-    //methods for window change
+    /**
+     * Methods for window change / setting a new root FXML
+     * The methods gets run when the buttons get pressed
+     */
     public void handleBtnHouse() throws Exception {
         GUI_Main.setRoot("house");
     }

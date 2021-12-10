@@ -14,7 +14,19 @@ import worldofzuul.Items.EnergySource;
 
 import java.util.Objects;
 
+/**
+ * This is the graphics for a shop item in a shop.
+ * In the fxml we use an hbox to distribute the shop panes evenly.
+ */
 public class ShopPane extends AnchorPane {
+    /**
+     * The constructor for the shop pane.
+     *
+     * @param item       The energysource to be displayer
+     * @param shopName   The shop name that the pane is placed inside of
+     * @param index      The index for the shop item, used to call the buy command
+     * @param useSpinner Enables the spinner on the buy button
+     */
     public ShopPane(EnergySource item, String shopName, int index, boolean useSpinner) {
         addBackgroundImage();
         addTitle(item);
@@ -79,6 +91,9 @@ public class ShopPane extends AnchorPane {
         getChildren().add(wrapper);
     }
 
+    /**
+     * This adds the appropriate description to the shop pane, depending on the type of energysource
+     */
     private void addDescription(EnergySource item) {
         VBox descriptionArea = new VBox();
         descriptionArea.setAlignment(Pos.BOTTOM_LEFT);

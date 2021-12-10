@@ -1,10 +1,9 @@
 package worldofzuul.Exceptions;
 
 /**
- * We subclass exception, even though it is only used once,
- * since it allows us to specify which exception is catched in the try-catch.
- * Otherwise, we would have to catch all exceptions: try {...} catch(Exception ex) {...}
- * which is considered bad practise
+ * This is thrown when something is bought that doesn't have a receiver.
+ * In this context it means the build area for energysources or the house for energy consumers.
+ * This is not supposed to be thrown, unless one implements the buyable interface
  */
 public class ReceiverForBoughtItemNotFoundException extends Exception {
     public ReceiverForBoughtItemNotFoundException() {

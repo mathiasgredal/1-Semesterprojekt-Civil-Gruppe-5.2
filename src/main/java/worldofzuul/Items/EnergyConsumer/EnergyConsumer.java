@@ -17,6 +17,9 @@ public abstract class EnergyConsumer implements Buyable {
         this.yearlyCost = yearlyCost;
     }
 
+    /**
+     * Getters for the EnergyConsumer class' yearlyEmission, yearlyEnergyConsumption, yearlyCost
+     */
     public double getYearlyEmission() {
         return yearlyEmission;
     }
@@ -29,6 +32,9 @@ public abstract class EnergyConsumer implements Buyable {
         return yearlyCost;
     }
 
+    /**
+     * Overriding methods from the Buyable interface
+     */
     @Override
     public String getName() {
         return name;

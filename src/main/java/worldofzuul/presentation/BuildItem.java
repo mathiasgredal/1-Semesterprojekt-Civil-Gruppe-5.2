@@ -21,13 +21,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This is the component for the individual build item, and must be placed as a child to BuildGrid
+ * It displays the given energysource in the grid, and handles movement, and it also updates the given energysource
+ * with the new position.
+ * If the item is positioned at coordinates (-1; -1), then an algorithm places it in a suitable spot
+ * This however breaks visually if the grid is filled, since it will just be placed at coordinate (-1;-1)
+ * The build item also installs the correct event handlers to handle dragging build items around on the grid
+ */
 public class BuildItem extends Parent {
+    // The grid position for the build item
     private int x, y;
+
+    // How many cells wide and tall the build item is
     private int width, height;
+
+    // The size of an individual cell in pixels
     private double gridSize;
+
+    // The offset from when a mouse drag was started
     private double deltaX, deltaY;
+
+    // The energysource for the build item
     private EnergySource source;
 
+    // Subcomponents used in the UI
     private Rectangle rect;
     private ImageView windMillHead;
 
@@ -41,7 +59,7 @@ public class BuildItem extends Parent {
         this.y = source.getPosY();
         this.gridSize = gridSize;
 
-        // Set tooltip for the item
+        // Set tooltip for the item, when mousing over a build item
         String tooltipDescription = String.join("\n",
                 source.getDescription(),
                 String.format("Total generation: %s", BuildAreaController.humanReadableWattHoursSI(source.getTotalGeneratedEnergy())),
@@ -61,6 +79,7 @@ public class BuildItem extends Parent {
             this.height = source.getHeight();
         }
 
+        // Create a rectangle that spans the cell width and height of the energysource
         rect = new Rectangle(this.width * gridSize, this.height * gridSize);
 
         // Load energysource texture
@@ -77,21 +96,23 @@ public class BuildItem extends Parent {
         // If we have a windmill, we will need to add the rotating head.
         // We don't have a good abstraction for this, so it is just hardcoded
         if (source.getName().contains("Wind")) {
-            // Get windmill head texture
+            // Get windmill head texture, using a ternary operator
             String imageURL = source.getSize() == EnergySourceSize.SMALL ? "/images/Lille mølle hoved.png" : "/images/Stor mølle hoved.png";
             Image img = new Image(getClass().getResource(imageURL).toExternalForm());
             windMillHead = new ImageView(img);
 
-            // Scale head
+            // Scale head, specifying that the windmill head should be twice as wide as the base
             double scale = (rect.getWidth() * 2.0) / img.getWidth();
             windMillHead.setScaleX(scale);
             windMillHead.setScaleY(scale);
 
-            // Add proper offset, so the windmill heead is placed on the axel
+            // Add proper offset, so the windmill head is placed on the axle
             // We do some number magic, to make sure the head is offset correctly on all scales
+            // I just experimented with some offsets and this solution matches exactly on the axel on multiple scales
             double offsetX = -windMillHead.getBoundsInParent().getMinX();
             double offsetY = -windMillHead.getBoundsInParent().getMinY();
 
+            // We hard code some offsets for the different windmill sizes
             if (source.getSize() == EnergySourceSize.SMALL) {
                 offsetX -= 10 * scale;
                 offsetY -= 5 * scale;
@@ -100,11 +121,16 @@ public class BuildItem extends Parent {
                 offsetY -= 12 * scale;
             }
 
+            // We apply the offsets
             windMillHead.setTranslateX(offsetX);
             windMillHead.setTranslateY(offsetY);
 
             // Initialize rotation animation
+            // It does one rotation every 1.5 seconds, which looks visually pleasing,
+            // don't know if it is actually correct
             RotateTransition rt = new RotateTransition(Duration.millis(1500), windMillHead);
+            // By default, the rotation animation uses a weird animation curve
+            // that slows down at the end of the rotation
             rt.setInterpolator(Interpolator.LINEAR);
             rt.setByAngle(360);
             rt.setCycleCount(Animation.INDEFINITE);
@@ -114,22 +140,27 @@ public class BuildItem extends Parent {
         }
 
         // If the source is colliding with an existing energysource, we should find another suitable spot
+        // We listen to the parent property, since it gives us an event for when a parent has been added.
+        // This is useful because we need it the get the bounding box.
         parentProperty().addListener(e -> {
             // If the energysource has been moved, then we don't need to give it a position
             if (source.getPosX() != -1 || source.getPosY() != -1)
                 return;
             BoundingBox bounds = (BoundingBox) getParent().getUserData();
+
+            // Loop through all possible positions on the grid and check if a spot is available
             outerloop:
             for (int col = 0; col < bounds.getWidth() / gridSize; col++) {
                 for (int row = 0; row < bounds.getWidth() / gridSize; row++) {
                     if (setPositionGridFromScene(col * gridSize, row * gridSize)) {
-                        // We have found a suitable spot
+                        // We have found a suitable spot, we can break of the nested loop
                         break outerloop;
                     }
                 }
             }
         });
 
+        // Translate the build item to its grid coordinate
         setTranslateX(this.x * gridSize);
         setTranslateY(this.y * gridSize);
 
@@ -138,7 +169,9 @@ public class BuildItem extends Parent {
     }
 
     /**
-     * @param x Grid position
+     * Set the position on the grid and apply the move
+     *
+     * @param x Grid position x
      * @param y Grid position y
      */
     void setPosition(int x, int y) {

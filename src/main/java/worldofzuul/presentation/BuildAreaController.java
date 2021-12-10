@@ -37,15 +37,13 @@ public class BuildAreaController {
     }
 
     /**
-     * A button to go back to the main scene
+     * A button to go back to the house
      */
     public void handleBtnHouse() throws IOException {
         GUI_Main.setRoot("house");
     }
 
     /**
-     * TODO: Should probably be moved to a seperate helper class
-     * TODO: Could be generalized to all units
      * Based on: https://stackoverflow.com/a/3758880
      *
      * @param kWh energy in kWh
