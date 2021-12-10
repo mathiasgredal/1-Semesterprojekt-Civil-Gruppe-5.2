@@ -82,8 +82,10 @@ public class SceneController {
         }
     }
 
-    //Methods for window change
-    //The methods gets run when the buttons gets pressed
+    /**
+     * Methods for window change / setting a new root FXML
+     * The methods gets run when the buttons get pressed
+     */
     public void handleBtnHouse() throws Exception {
         GUI_Main.setRoot("house");
     }
