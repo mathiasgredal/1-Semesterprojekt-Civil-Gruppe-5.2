@@ -8,21 +8,43 @@ import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import worldofzuul.Game;
 
+/**
+ * This is a component representing the grid for the build area. It inherits from Group, which means it can be added as
+ * a UI compoent on the node graph in javafx.
+ * It doesn't support javafx built-in layouts, and must be positioned using an offset
+ * It supports multiple scales using the grid size
+ * It can support multiple grid sizes, and if an element is positioned outside the grid it is cut off
+ */
 public class BuildGrid extends Group {
+    // The offset from the top left corner
     private Point2D offset;
 
+    // Height and width in pixels of a grid cell
     private double gridSize;
+
+    // The size of the grid in cells
     private int gridWidth;
     private int gridHeight;
 
+    // The list of build items. This is an observable list, which is bound to the children list of this class
+    // This means that whenever a build item is added to this list, it automatically updates in the UI
     ObservableList<BuildItem> buildItems = FXCollections.observableArrayList();
 
+    /**
+     * Constructor for the BuildGrid
+     *
+     * @param offset     The offset from the top left corner
+     * @param gridSize   The size of an individual cell in pixels
+     * @param gridWidth  The number of cells wide the build grid will be
+     * @param gridHeight The number of cells high the build grid will be
+     */
     public BuildGrid(Point2D offset, double gridSize, int gridWidth, int gridHeight) {
         this.offset = offset;
         this.gridSize = gridSize;
         this.gridWidth = gridWidth;
         this.gridHeight = gridHeight;
 
+        // Offset the component
         this.setTranslateX(this.offset.getX());
         this.setTranslateY(this.offset.getY());
 
