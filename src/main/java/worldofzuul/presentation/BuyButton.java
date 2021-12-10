@@ -155,6 +155,8 @@ public class BuyButton extends VBox implements EventHandler<MouseEvent> {
         var moneyLabel = getParent().lookup("#moneys");
         // Instanceof also covers null checking
         if (moneyLabel instanceof Label) {
+            moneyLabel.setLayoutX(500);
+            moneyLabel.setLayoutY(25);
             ((Label) moneyLabel).setText(String.format("%.2fDKK", Game.instance.getPlayer().getPlayerEconomy()));
         }
     }
