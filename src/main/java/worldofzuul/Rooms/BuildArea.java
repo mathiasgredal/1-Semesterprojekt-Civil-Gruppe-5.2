@@ -19,9 +19,11 @@ public class BuildArea extends Room {
     public BuildArea() {
         super("build area", "at the build area, here you find the energy sources you have built");
     }
-
+    
     /**
      * Adds an energysource to the list of energysources
+     *
+     * @param e Energysource, when passing an Energysource to this method it will make a clone of the energysource and add it to the list energySources
      */
     public void addEnergySource(EnergySource e) {
         // Clone the energysource, to prevent mutation when setting a new position
@@ -30,14 +32,14 @@ public class BuildArea extends Room {
     }
 
     /**
-     * Gets a copy of the list of energysources
+     * @return energySources
      */
     public ObservableList<EnergySource> getEnergySources() {
         return energySources;
     }
 
     /**
-     * Gets the total energyproduction this year for all the energysources
+     * Gets the total energy production this year for all the energysources
      *
      * @return kWh
      */
@@ -51,7 +53,7 @@ public class BuildArea extends Room {
     }
 
     /**
-     * Gets the total energyproduction this year for the renewable energysources
+     * Gets the total energy production this year for the renewable energysources
      *
      * @return kWh
      */
