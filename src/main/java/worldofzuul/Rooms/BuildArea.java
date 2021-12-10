@@ -6,11 +6,12 @@ import worldofzuul.Game;
 import worldofzuul.Items.EnergySource;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class BuildArea extends Room {
 
-    private ObservableList<EnergySource> energySources = FXCollections.observableArrayList();
+    private List<EnergySource> energySources = new ArrayList<>();
 
     // The minimal energy sales price: https://www.vivaenergi.dk/elsalg
     // This fluctuates between 0.3 DKK pr. kWh and 0.8 DKK pr. kWh during the day
@@ -32,7 +33,7 @@ public class BuildArea extends Room {
     /**
      * Gets a copy of the list of energysources
      */
-    public ObservableList<EnergySource> getEnergySources() {
+    public List<EnergySource> getEnergySources() {
         return energySources;
     }
 
