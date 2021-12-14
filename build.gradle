@@ -1,0 +1,92 @@
+// Plugins
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath 'com.google.gradle:osdetector-gradle-plugin:1.7.0'
+        classpath 'org.openjfx:javafx-plugin:0.0.11-SNAPSHOT'
+        classpath "com.gluonhq:gluonfx-gradle-plugin:1.0.10"
+        classpath "org.beryx:badass-jlink-plugin:2.24.4"
+    }
+}
+
+apply plugin: "application"
+apply plugin: "idea"
+apply plugin: "com.google.osdetector"
+apply plugin: "org.openjfx.javafxplugin"
+apply plugin: "com.gluonhq.gluonfx-gradle-plugin"
+apply plugin: "org.beryx.jlink"
+
+// Settings
+group = 'gruppe5_2'
+version = '1.0'
+description = '1. semesterprojekt gruppe 5.2'
+
+application {
+    mainModule = 'worldofzuul'
+    mainClass = 'worldofzuul.presentation.GUI_Main'
+}
+
+// Dependencies
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "17.0.2-ea+1"
+    modules = ['javafx.base', 'javafx.controls', 'javafx.graphics', 'javafx.media', 'javafx.fxml']
+    configuration = "implementation"
+}
+
+dependencies {
+    implementation 'org.controlsfx:controlsfx:11.1.0'
+    implementation 'com.dlsc.formsfx:formsfx-core:11.3.2'
+    implementation 'org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0'
+    implementation 'org.yaml:snakeyaml:1.29'
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+}
+
+compileJava {
+    options.release = 17
+}
+
+// JLink options, used for packaging 
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+
+    // These modules are required for Snake YAML
+    mergedModule {
+        requires 'java.logging'
+        requires 'transitive java.desktop'
+    }
+    jpackage {
+        skipInstaller = false
+        def appVersionForJpackage = version
+
+        imageOptions = ["--verbose", "--app-version", appVersionForJpackage]
+        installerOptions = ["--app-version", appVersionForJpackage]
+        
+        // Do platform specific configuration
+        if(osdetector.os.equals("linux")) {
+            if (osdetector.release.isLike('debian')) { 
+                installerType = 'deb'
+            } else if (osdetector.release.isLike('redhat')) {
+                installerType = 'rpm'
+            } else {
+                installerType = null
+            }
+        } else if (osdetector.os.equals("osx")) {
+            installerType = 'dmg'
+            // imageOptions += [ '--mac-sign' ]
+        } else if (osdetector.os.equals("windows")) {
+            installerType = 'exe'
+            installerOptions += ['--win-dir-chooser', '--win-menu', '--win-shortcut']
+        } else {
+            installerType = null
+        }
+    }
+}

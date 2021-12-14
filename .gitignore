@@ -13,3 +13,12 @@
 /out/
 .idea/.name
 /target/
+
+.gradle
+**/build/
+!src/**/build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+.project
+.classpath
