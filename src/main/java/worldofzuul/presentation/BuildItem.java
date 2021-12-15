@@ -97,7 +97,7 @@ public class BuildItem extends Parent {
         // We don't have a good abstraction for this, so it is just hardcoded
         if (source.getName().contains("Wind")) {
             // Get windmill head texture, using a ternary operator
-            String imageURL = source.getSize() == EnergySourceSize.SMALL ? "/images/Lille mølle hoved.png" : "/images/Stor mølle hoved.png";
+            String imageURL = source.getSize() == EnergySourceSize.SMALL ? "/images/Lille moelle hoved.png" : "/images/Stor moelle hoved.png";
             Image img = new Image(getClass().getResource(imageURL).toExternalForm());
             windMillHead = new ImageView(img);
 

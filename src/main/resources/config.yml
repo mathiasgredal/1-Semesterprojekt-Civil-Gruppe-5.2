@@ -81,17 +81,17 @@ shopItems:
       price: 73557
       emission: 0
       output: 32000
-      textureURL: "/images/Lille Mølle Stativ.png"
+      textureURL: "/images/Lille Moelle Stativ.png"
       width: 1
       height: 3
-      thumbImageURL: "/images/Lille mølle.png"
+      thumbImageURL: "/images/Lille moelle.png"
     - name: "Wind Energy"
       description: "Power 20kW wind generator"
       size: "MEDIUM"
       price: 163460
       emission: 0
       output: 122640
-      textureURL: "/images/Stor mølle stativ.png"
+      textureURL: "/images/Stor moelle stativ.png"
       width: 1
       height: 5
-      thumbImageURL: "/images/Store mølle.png"
+      thumbImageURL: "/images/Store moelle.png"
